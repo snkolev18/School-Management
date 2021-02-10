@@ -3,24 +3,9 @@
 struct STUDENT {
 	std::string name = "";
 	std::string surname = "";
-	std::string team = "";
+	std::string grade = "";
 	std::string role = "";
 	std::string email = "";
-	std::string status = "";
-	std::string username = "";
-	std::string pass = "";
-};
-
-// vector Students
-// vector Teachers 
-// students.txt and teachers.txt | 
-
-struct CUSTOM_TEAM
-{
-	std::string teamName;
-	std::string status;
-	vector<STUDENT> students;
-	TEACHER teachers;
 };
 
 struct TEACHER {
@@ -30,3 +15,16 @@ struct TEACHER {
 	std::string email = "";
 	std::string status = "";
 };
+
+// vector Students
+// vector Teachers 
+// students.txt and teachers.txt | 
+
+struct CUSTOM_TEAM
+{
+	std::string teamName = "";
+	std::string status = "";
+	std::vector<STUDENT> students;
+	TEACHER teachers;
+};
+
