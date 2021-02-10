@@ -43,13 +43,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="students.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="teachers.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="roles.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="students.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

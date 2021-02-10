@@ -64,4 +64,3 @@ void removeRole(vector<string>& roles, int id)
 {
 	roles.erase(roles.begin() + id);
 }
-

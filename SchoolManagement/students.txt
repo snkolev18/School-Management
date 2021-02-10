@@ -1,0 +1,4 @@
+Stoyan|Kolev|10A|QA|SNKolev18@codingburgas.bg|
+Jekata|Velikov|10A|Backend|DMKalchev18@codingburgas.bg|
+Ili qm|Ili ne|10A|Backend|ILIQM18@codingburgas.bg|
+Life|Georgiev|Turkey|Frontend|GKGeorgiev@codingburgas.bg|

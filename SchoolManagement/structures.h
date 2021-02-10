@@ -6,6 +6,8 @@ struct STUDENT {
 	std::string grade = "";
 	std::string role = "";
 	std::string email = "";
+
+	std::string delimitInfo();
 };
 
 struct TEACHER {
