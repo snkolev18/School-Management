@@ -139,12 +139,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="data.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="SchoolManagement.cpp" />
+    <ClCompile Include="userInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="data.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="structures.h" />
+    <ClInclude Include="userInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="roles.txt" />
+    <Text Include="students.txt" />
+    <Text Include="teachers.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
