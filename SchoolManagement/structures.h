@@ -13,8 +13,8 @@ struct STUDENT
 struct TEACHER 
 {
 	std::string name = "";
-	std::string familyName = "";
-	std::vector<std::string> teamOwnership;
+	std::string surname = "";
+	std::vector<std::string> teams;
 	std::string email = "";
 };
 

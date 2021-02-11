@@ -21,6 +21,18 @@ STUDENT inputStudent()
 	return student;
 }
 
+TEACHER inputTeacher()
+{
+	TEACHER teacher;
+	cout << "First name: ";
+	cin >> teacher.name;
+	cout << "Surname: ";
+	cin >> teacher.surname;
+	cout << "Email: ";
+	cin >> teacher.email;
+	return teacher;
+}
+
 bool checkForExistingEmailStudents(vector<STUDENT> students, string email)
 {
 	for (size_t i = 0; i < students.size(); i++)
@@ -59,35 +71,40 @@ bool checkIfRoleIsWhiteListed(vector<string> whiteListedRoles, string role)
 
 STUDENT findStudentByEmail(vector<STUDENT> students, string email)
 {
-	if (checkForExistingEmailStudents(students,email))
+
+	for (size_t i = 0; i < students.size(); i++)
 	{
-		for (size_t i = 0; i < students.size(); i++)
+		if (students[i].email == email)
 		{
-			if (students[i].email == email)
-			{
-				return students[i];
-			}
+			return students[i];
 		}
 	}
-	return;
+}
+
+int findIndexByEmailTeachers(vector<TEACHER> teachers, string email)
+{
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (teachers[i].email == email)
+		{
+			return i;
+		}
+	}
+	return -3; //Unique value if email not found
 }
 
 TEACHER findTeacherByEmail(vector<TEACHER> teachers, string email)
 {
-	if (checkForExistingEmailTeachers(teachers, email))
+	for (size_t i = 0; i < teachers.size(); i++)
 	{
-		for (size_t i = 0; i < teachers.size(); i++)
+		if (teachers[i].email == email)
 		{
-			if (teachers[i].email == email)
-			{
-				return teachers[i];
-			}
+			return teachers[i];
 		}
 	}
-	return;
 }
 
-CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector<TEACHER> teachers)
+CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector<TEACHER>& teachers)
 {
 	CUSTOM_TEAM team;
 	int nPeople;
@@ -128,6 +145,7 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 	}
 	team.teacher = findTeacherByEmail(teachers, email);
 	team.status = "In use";
+	teachers[findIndexByEmail(teachers, email)].teams.push_back(team.teamName);
 	return team;
 }
 

@@ -3,6 +3,8 @@
 
 STUDENT inputStudent();
 
+TEACHER inputTeacher();
+
 std::string addRole();
 
 void writeRolesInTxt(std::vector<std::string> roles);
@@ -19,6 +21,8 @@ bool checkIfRoleIsWhiteListed(std::vector<std::string> whiteListedRoles, std::st
 
 STUDENT findStudentByEmail(std::vector<STUDENT> students, std::string email);
 
+int findIndexByEmailTeachers(std::vector<TEACHER> teachers, std::string email);
+
 TEACHER findTeacherByEmail(std::vector<TEACHER> teachers, std::string email);
 
-CUSTOM_TEAM inputTeam(std::vector<std::string> whiteListedRoles, std::vector<STUDENT> students, std::vector<TEACHER> teachers);
+CUSTOM_TEAM inputTeam(std::vector<std::string> whiteListedRoles, std::vector<STUDENT> students, std::vector<TEACHER>& teachers);
