@@ -1,32 +1,37 @@
 #pragma once
 
-struct STUDENT {
+struct STUDENT 
+{
 	std::string name = "";
 	std::string surname = "";
 	std::string grade = "";
-	std::string role = "";
 	std::string email = "";
 
 	std::string delimitInfo();
 };
 
-struct TEACHER {
+struct TEACHER 
+{
 	std::string name = "";
 	std::string familyName = "";
-	std::string teamOwnership = "";
+	std::vector<std::string> teamOwnership;
 	std::string email = "";
-	std::string status = "";
 };
 
 // vector Students
 // vector Teachers 
 // students.txt and teachers.txt | 
-
+struct ROLES
+{
+	std::string role;
+	std::string student;
+};
 struct CUSTOM_TEAM
 {
+	std::vector<ROLES> roles;
 	std::string teamName = "";
 	std::string status = "";
 	std::vector<STUDENT> students;
-	TEACHER teachers;
+	TEACHER teacher;
 };
 
