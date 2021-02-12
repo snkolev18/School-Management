@@ -114,7 +114,8 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 	CUSTOM_TEAM team;
 	int nPeople;
 	string email;
-	string role;
+	string roleName;
+	ROLES role;
 	cout << "Team name: ";
 	cin >> team.teamName;
 	cout << "How many people are in this team: ";
@@ -122,14 +123,14 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 	for (int i = 0; i < nPeople; i++)
 	{
 		cout << "Enter the role of the student: ";
-		cin >> role;
+		cin >> roleName;
 		//team.roles[i].role.push_back(role);
-		while (!checkIfRoleIsWhiteListed(whiteListedRoles, team.roles[i].role))
+		while (!checkIfRoleIsWhiteListed(whiteListedRoles, roleName))
 		{
 			cout << "This role does not exist" << endl;
 			//Here should be printed all available roles
 			cout << "Please enter role that exists: ";
-			cin >> team.roles[i].role;
+			cin >> roleName;
 		}
 		cout << "Enter the email of the student: ";
 		cin >> email;
@@ -140,7 +141,9 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 			cin >> email;
 		}
 		team.students.push_back(findStudentByEmail(students, email));
-		team.roles[i].student = email;
+		role.role = roleName;
+		role.student = email;
+		team.roles.push_back(role);
 	}
 	cout << "Enter the email of the consultant (teacher) of your team: ";
 	cin >> email;
@@ -156,11 +159,17 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 	return team;
 }
 
-string addRole()
+string addRole(vector<string> whiteListedRoles)
 {
 	string role;
 	cout << "Enter a name for the role: ";
-	cin >> role;
+	getline(cin, role);
+	while (checkIfRoleIsWhiteListed(whiteListedRoles, role))
+	{
+		cout << "This role is already existing" << endl;
+		cout << "Please enter a new name for the role: ";
+		getline(cin, role);
+	}
 	return role;
 }
 

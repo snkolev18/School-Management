@@ -24,12 +24,11 @@ string STUDENT::delimitInfo()
 int main()
 {
 	vector<string> whiteListedRoles;
-
+	whiteListedRoles = readRolesFromTxt();
 	for (size_t i = 0; i < 4; i++)
 	{
-		whiteListedRoles.push_back(addRole());
+		whiteListedRoles.push_back(addRole(whiteListedRoles));
 	}
-	writeRolesInTxt(whiteListedRoles);
 	whiteListedRoles = readRolesFromTxt();
 
 	vector<STUDENT> students;
@@ -44,7 +43,7 @@ int main()
 	cout << "Create a team: " << endl;
 
 	teams.push_back(inputTeam(whiteListedRoles, students, teachers));
-
+	writeRolesInTxt(whiteListedRoles);
 
 
 	/*

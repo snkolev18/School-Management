@@ -5,7 +5,7 @@ STUDENT inputStudent();
 
 TEACHER inputTeacher();
 
-std::string addRole();
+std::string addRole(std::vector<std::string> whiteListedRoles);
 
 void writeRolesInTxt(std::vector<std::string> roles);
 
