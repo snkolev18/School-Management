@@ -7,35 +7,16 @@
 
 using namespace std;
 
-STUDENT inputStudent()
+bool checkForExistingEmailTeachers(vector<TEACHER> teachers, string email)
 {
-	STUDENT student;
-	cout << "First name: ";
-	cin >> student.name;
-	cout << endl;
-	cout << "Surname: ";
-	cin >> student.surname;
-	cout << endl;
-	cout << "Class: ";
-	cin >> student.grade;
-	cout << endl;
-	cout << "Email: ";
-	cin >> student.email;
-	return student;
-}
-
-TEACHER inputTeacher()
-{
-	TEACHER teacher;
-	cout << "First name: ";
-	cin >> teacher.name;
-	cout << endl;
-	cout << "Surname: ";
-	cin >> teacher.surname;
-	cout << endl;
-	cout << "Email: ";
-	cin >> teacher.email;
-	return teacher;
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (teachers[i].email == email)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 bool checkForExistingEmailStudents(vector<STUDENT> students, string email)
@@ -50,14 +31,11 @@ bool checkForExistingEmailStudents(vector<STUDENT> students, string email)
 	return false;
 }
 
-bool checkForExistingEmailTeachers(vector<TEACHER> teachers, string email)
+bool checkForExistingEmail(vector<STUDENT> students, vector<TEACHER> teachers, string email)
 {
-	for (size_t i = 0; i < teachers.size(); i++)
+	if (checkForExistingEmailTeachers(teachers, email) or checkForExistingEmailStudents(students, email))
 	{
-		if (teachers[i].email == email)
-		{
-			return true;
-		}
+		return true;
 	}
 	return false;
 }
@@ -109,36 +87,63 @@ TEACHER findTeacherByEmail(vector<TEACHER> teachers, string email)
 	}
 }
 
+STUDENT inputStudent(vector<STUDENT> students,vector<TEACHER> teachers)
+{
+	STUDENT student;
+	cout << "First name: ";
+	getline(cin, student.name);
+	cout << endl;
+	cout << "Surname: ";
+	getline(cin, student.surname);
+	cout << endl;
+	cout << "Class: ";
+	getline(cin, student.grade);
+	cout << endl;
+	cout << "Email: ";
+	getline(cin, student.email);
+	while (checkForExistingEmail(students,teachers,student.email))
+	{
+		cout << "This email is already registered " << endl;
+		cout << "Please enter new email: ";
+		getline(cin, student.email);
+	}
+	return student;
+}
+
+TEACHER inputTeacher()
+{
+	TEACHER teacher;
+	cout << "First name: ";
+	getline(cin, teacher.name);
+	cout << endl;
+	cout << "Surname: ";
+	getline(cin, teacher.surname);
+	cout << endl;
+	cout << "Email: ";
+	getline(cin, teacher.email);
+	return teacher;
+}
+
 CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector<TEACHER>& teachers)
 {
 	CUSTOM_TEAM team;
-	int nPeople;
 	string email;
 	string roleName;
 	ROLES role;
 	cout << "Team name: ";
-	cin >> team.teamName;
-	cout << "How many people are in this team: ";
-	cin >> nPeople;
-	for (int i = 0; i < nPeople; i++)
+	cin.ignore();
+	getline(cin, team.teamName);
+	for (size_t i=0;i<whiteListedRoles.size();i++)
 	{
-		cout << "Enter the role of the student: ";
-		cin >> roleName;
-		//team.roles[i].role.push_back(role);
-		while (!checkIfRoleIsWhiteListed(whiteListedRoles, roleName))
-		{
-			cout << "This role does not exist" << endl;
-			//Here should be printed all available roles
-			cout << "Please enter role that exists: ";
-			cin >> roleName;
-		}
+		cout << whiteListedRoles[i] << ":" << endl;
 		cout << "Enter the email of the student: ";
-		cin >> email;
+		cin.ignore();
+		getline(cin, email);
 		while (!checkForExistingEmailStudents(students, email))
 		{
 			cout << "There is no student with this email" << endl;
 			cout << "Please enter an email of a student: ";
-			cin >> email;
+			getline(cin, email);
 		}
 		team.students.push_back(findStudentByEmail(students, email));
 		role.role = roleName;
@@ -185,6 +190,20 @@ void writeRolesInTxt(vector<string> whiteListedRoles)
 		}
 		file.close();
 	}
+}
+
+void writeStudentsInTxt(vector<STUDENT> students)
+{
+
+}
+
+void writeTeachersInTxt()
+{
+
+}
+void writeTeamsInTxt()
+{
+
 }
 
 vector<string> readRolesFromTxt()

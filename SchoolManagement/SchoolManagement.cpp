@@ -29,14 +29,12 @@ int main()
 	{
 		whiteListedRoles.push_back(addRole(whiteListedRoles));
 	}
-	whiteListedRoles = readRolesFromTxt();
-
 	vector<STUDENT> students;
 	vector<TEACHER> teachers;
 	vector<CUSTOM_TEAM> teams;
 
-	students.push_back(inputStudent());
-	students.push_back(inputStudent());
+	students.push_back(inputStudent(students,teachers));
+	students.push_back(inputStudent(students,teachers));
 	cout << '\n';
 	teachers.push_back(inputTeacher());
 
