@@ -139,12 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="checker.cpp" />
     <ClCompile Include="data.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="SchoolManagement.cpp" />
     <ClCompile Include="userInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="checkers.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="functions.h" />
     <ClInclude Include="structures.h" />
