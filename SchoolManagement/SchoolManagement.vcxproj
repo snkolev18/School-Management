@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="checker.cpp" />
     <ClCompile Include="data.cpp" />
+    <ClCompile Include="delimitMethods.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="SchoolManagement.cpp" />
     <ClCompile Include="userInterface.cpp" />
@@ -156,6 +157,7 @@
     <Text Include="roles.txt" />
     <Text Include="students.txt" />
     <Text Include="teachers.txt" />
+    <Text Include="teams.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

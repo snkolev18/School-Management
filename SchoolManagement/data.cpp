@@ -66,7 +66,7 @@ STUDENT inputStudent(vector<STUDENT> students,vector<TEACHER> teachers)
 	return student;
 }
 
-TEACHER inputTeacher()
+TEACHER inputTeacher(vector<STUDENT> students, vector<TEACHER> teachers)
 {
 	TEACHER teacher;
 	cout << "First name: ";
@@ -77,23 +77,27 @@ TEACHER inputTeacher()
 	cout << endl;
 	cout << "Email: ";
 	getline(cin, teacher.email);
+	while (checkForExistingEmail(students, teachers, teacher.email))
+	{
+		cout << "This email is already registered " << endl;
+		cout << "Please enter new email: ";
+		getline(cin, teacher.email);
+	}
 	return teacher;
 }
 
-CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector<TEACHER>& teachers)
+TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector<TEACHER>& teachers)
 {
-	CUSTOM_TEAM team;
+	TEAM team;
+	STUDENT student;
 	string email;
-	string roleName;
-	ROLES role;
+	ROLE role;
 	cout << "Team name: ";
-	cin.ignore();
 	getline(cin, team.teamName);
 	for (size_t i=0;i<whiteListedRoles.size();i++)
 	{
 		cout << whiteListedRoles[i] << ":" << endl;
 		cout << "Enter the email of the student: ";
-		cin.ignore();
 		getline(cin, email);
 		while (!checkForExistingEmailStudents(students, email))
 		{
@@ -101,21 +105,22 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 			cout << "Please enter an email of a student: ";
 			getline(cin, email);
 		}
-		team.students.push_back(findStudentByEmail(students, email));
-		role.role = roleName;
-		role.student = email;
+		role.student = findStudentByEmail(students, email);
+		role.role = whiteListedRoles[i];
 		team.roles.push_back(role);
 	}
 	cout << "Enter the email of the consultant (teacher) of your team: ";
-	cin >> email;
+	getline(cin, email);
 	while (!checkForExistingEmailTeachers(teachers, email))
 	{
 		cout << "There is no teacher with this email" << endl;
 		cout << "Please enter an email of a teacher: ";
-		cin >> email;
+		getline(cin, email);
 	}
 	team.teacher = findTeacherByEmail(teachers, email);
 	team.status = "In use";
+	cout << "Write the description of the team: ";
+	getline(cin, team.description);
 	teachers[findIndexByEmailTeachers(teachers, email)].teams.push_back(team.teamName);
 	return team;
 }
@@ -150,16 +155,43 @@ void writeRolesInTxt(vector<string> whiteListedRoles)
 
 void writeStudentsInTxt(vector<STUDENT> students)
 {
-
+	ofstream file;
+	file.open("students.txt", ios::trunc);
+	if (file.is_open())
+	{
+		for (size_t i = 0; i < students.size(); i++)
+		{
+			file << students[i].delimitInfo() << endl;
+		}
+		file.close();
+	}
 }
 
-void writeTeachersInTxt()
+void writeTeachersInTxt(vector<TEACHER> teachers)
 {
-
+	ofstream file;
+	file.open("teachers.txt", ios::trunc);
+	if (file.is_open())
+	{
+		for (size_t i = 0; i < teachers.size(); i++)
+		{
+			file << teachers[i].delimitInfo() << endl;
+		}
+		file.close();
+	}
 }
-void writeTeamsInTxt()
+void writeTeamsInTxt(vector<TEAM> teams)
 {
-
+	ofstream file;
+	file.open("teams.txt", ios::trunc);
+	if (file.is_open())
+	{
+		for (size_t i = 0; i < teams.size(); i++)
+		{
+			file << teams[i].delimitInfo() << endl;
+		}
+		file.close();
+	}
 }
 
 vector<string> readRolesFromTxt()

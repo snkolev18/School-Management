@@ -30,6 +30,9 @@
     <ClCompile Include="checker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="delimitMethods.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="structures.h">
@@ -56,6 +59,9 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="students.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="teams.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

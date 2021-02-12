@@ -8,41 +8,26 @@
 #include "userInterface.h"
 using namespace std;
 
-string STUDENT::delimitInfo() 
-{
-	string result = "";
-
-	result += name;
-	result += "|" + surname;
-	result += "|" + grade;
-	result += "|" + email + "|";
-
-	return result;
-}
-
-
 int main()
 {
 	vector<string> whiteListedRoles;
 	whiteListedRoles = readRolesFromTxt();
-	for (size_t i = 0; i < 4; i++)
-	{
-		whiteListedRoles.push_back(addRole(whiteListedRoles));
-	}
 	vector<STUDENT> students;
 	vector<TEACHER> teachers;
-	vector<CUSTOM_TEAM> teams;
+	vector<TEAM> teams;
 
 	students.push_back(inputStudent(students,teachers));
 	students.push_back(inputStudent(students,teachers));
 	cout << '\n';
-	teachers.push_back(inputTeacher());
+	teachers.push_back(inputTeacher(students,teachers));
 
 	cout << "Create a team: " << endl;
 
 	teams.push_back(inputTeam(whiteListedRoles, students, teachers));
 	writeRolesInTxt(whiteListedRoles);
-
+	writeStudentsInTxt(students);
+	writeTeachersInTxt(teachers);
+	writeTeamsInTxt(teams);
 
 	/*
 	ofstream file;
