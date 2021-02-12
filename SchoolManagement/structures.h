@@ -28,6 +28,7 @@ struct ROLES
 };
 struct CUSTOM_TEAM
 {
+	// .reserve() might fix it
 	std::vector<ROLES> roles;
 	std::string teamName = "";
 	std::string status = "";

@@ -12,10 +12,13 @@ STUDENT inputStudent()
 	STUDENT student;
 	cout << "First name: ";
 	cin >> student.name;
+	cout << endl;
 	cout << "Surname: ";
 	cin >> student.surname;
+	cout << endl;
 	cout << "Class: ";
 	cin >> student.grade;
+	cout << endl;
 	cout << "Email: ";
 	cin >> student.email;
 	return student;
@@ -26,8 +29,10 @@ TEACHER inputTeacher()
 	TEACHER teacher;
 	cout << "First name: ";
 	cin >> teacher.name;
+	cout << endl;
 	cout << "Surname: ";
 	cin >> teacher.surname;
+	cout << endl;
 	cout << "Email: ";
 	cin >> teacher.email;
 	return teacher;
@@ -109,6 +114,7 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 	CUSTOM_TEAM team;
 	int nPeople;
 	string email;
+	string role;
 	cout << "Team name: ";
 	cin >> team.teamName;
 	cout << "How many people are in this team: ";
@@ -116,7 +122,8 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 	for (int i = 0; i < nPeople; i++)
 	{
 		cout << "Enter the role of the student: ";
-		cin >> team.roles[i].role;
+		cin >> role;
+		//team.roles[i].role.push_back(role);
 		while (!checkIfRoleIsWhiteListed(whiteListedRoles, team.roles[i].role))
 		{
 			cout << "This role does not exist" << endl;
