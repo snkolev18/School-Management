@@ -145,7 +145,7 @@ CUSTOM_TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students,
 	}
 	team.teacher = findTeacherByEmail(teachers, email);
 	team.status = "In use";
-	teachers[findIndexByEmail(teachers, email)].teams.push_back(team.teamName);
+	teachers[findIndexByEmailTeachers(teachers, email)].teams.push_back(team.teamName);
 	return team;
 }
 

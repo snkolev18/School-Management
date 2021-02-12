@@ -26,6 +26,8 @@ int main()
 	vector<string> whiteListedRoles;
 	whiteListedRoles = readRolesFromTxt();
 
+
+
 	/*
 	ofstream file;
 
