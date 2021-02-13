@@ -43,7 +43,7 @@ TEACHER findTeacherByEmail(vector<TEACHER> teachers, string email)
 	}
 }
 
-STUDENT inputStudent(vector<STUDENT> students,vector<TEACHER> teachers)
+STUDENT inputStudent(vector<STUDENT> students, vector<TEACHER> teachers)
 {
 	STUDENT student;
 	cout << "First name: ";
@@ -57,9 +57,9 @@ STUDENT inputStudent(vector<STUDENT> students,vector<TEACHER> teachers)
 	cout << endl;
 	cout << "Email: ";
 	getline(cin, student.email);
-	while (checkForExistingEmail(students,teachers,student.email))
+	while (checkForExistingEmail(students, teachers, student.email) or !checkEmailValidity(student.email))
 	{
-		cout << "This email is already registered " << endl;
+		cout << "This email is already registered or it's not valid " << endl;
 		cout << "Please enter new email: ";
 		getline(cin, student.email);
 	}
@@ -77,9 +77,9 @@ TEACHER inputTeacher(vector<STUDENT> students, vector<TEACHER> teachers)
 	cout << endl;
 	cout << "Email: ";
 	getline(cin, teacher.email);
-	while (checkForExistingEmail(students, teachers, teacher.email))
+	while (checkForExistingEmail(students, teachers, teacher.email) or !checkEmailValidity(teacher.email))
 	{
-		cout << "This email is already registered " << endl;
+		cout << "This email is already registered or it's not valid" << endl;
 		cout << "Please enter new email: ";
 		getline(cin, teacher.email);
 	}
@@ -94,14 +94,14 @@ TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector
 	ROLE role;
 	cout << "Team name: ";
 	getline(cin, team.teamName);
-	for (size_t i=0;i<whiteListedRoles.size();i++)
+	for (size_t i = 0; i < whiteListedRoles.size(); i++)
 	{
 		cout << whiteListedRoles[i] << ":" << endl;
 		cout << "Enter the email of the student: ";
 		getline(cin, email);
-		while (!checkForExistingEmailStudents(students, email))
+		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
-			cout << "There is no student with this email" << endl;
+			cout << "There is no student with this email or it's incorrectly inputted" << endl;
 			cout << "Please enter an email of a student: ";
 			getline(cin, email);
 		}
@@ -111,9 +111,9 @@ TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector
 	}
 	cout << "Enter the email of the consultant (teacher) of your team: ";
 	getline(cin, email);
-	while (!checkForExistingEmailTeachers(teachers, email))
+	while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 	{
-		cout << "There is no teacher with this email" << endl;
+		cout << "There is no teacher with this email or it's incorrectly inputted" << endl;
 		cout << "Please enter an email of a teacher: ";
 		getline(cin, email);
 	}
