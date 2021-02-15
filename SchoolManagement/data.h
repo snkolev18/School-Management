@@ -17,6 +17,14 @@ void writeTeamsInTxt(std::vector<TEAM> teams);
 
 std::vector<std::string> readRolesFromTxt();
 
+STUDENT parsedStudentInfo(std::string info);
+
+std::vector<STUDENT> readStudentsFromTxt();
+
+TEACHER parsedTeacherInfo(std::string info);
+
+std::vector<TEACHER> readTeachersFromTxt();
+
 void removeRole(std::vector<std::string>& roles, int id);
 
 STUDENT findStudentByEmail(std::vector<STUDENT> students, std::string email);

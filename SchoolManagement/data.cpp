@@ -180,6 +180,7 @@ void writeTeachersInTxt(vector<TEACHER> teachers)
 		file.close();
 	}
 }
+
 void writeTeamsInTxt(vector<TEAM> teams)
 {
 	ofstream file;
@@ -194,16 +195,99 @@ void writeTeamsInTxt(vector<TEAM> teams)
 	}
 }
 
+STUDENT parsedStudentInfo(string info)
+{
+	STUDENT studentInfo;
+
+	studentInfo.name = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|')+1);
+	studentInfo.surname = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|')+1);
+	studentInfo.grade = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|')+1);
+	studentInfo.email = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|')+1);
+	return studentInfo;
+}
+
+vector<STUDENT> readStudentsFromTxt()
+{
+	vector<STUDENT> students;
+	ifstream file;
+	string info;
+	file.open("students.txt");
+	if (file.is_open())
+	{
+		while (getline(file, info))
+		{
+			students.push_back(parsedStudentInfo(info));
+		}
+	}
+	return students;
+}
+
+TEACHER parsedTeacherInfo(string info)
+{
+	TEACHER teacherInfo;
+
+	teacherInfo.name = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	teacherInfo.surname = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	teacherInfo.email = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	while (info.find('|') != string::npos)
+	{
+		teacherInfo.teams.push_back(info.substr(0, info.find('|')));
+		info.erase(0, info.find('|') + 1);
+	}
+	return teacherInfo;
+}
+/*
+TEAM parsedTeamInfo(string info)
+{
+	TEAM teacherInfo;
+
+	teacherInfo.name = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	teacherInfo.surname = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	teacherInfo.email = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	while (info.find('|') != string::npos)
+	{
+		teacherInfo.teams.push_back(info.substr(0, info.find('|')));
+		info.erase(0, info.find('|') + 1);
+	}
+	return teacherInfo;
+}
+*/
+vector<TEACHER> readTeachersFromTxt()
+{
+	vector<TEACHER> teachers;
+	ifstream file;
+	string info;
+	file.open("teachers.txt");
+	if (file.is_open())
+	{
+		while (getline(file, info))
+		{
+			teachers.push_back(parsedTeacherInfo(info));
+		}
+	}
+	return teachers;
+}
+
 vector<string> readRolesFromTxt()
 {
 	vector<string> roles;
-	string line;
+	string info;
 	ifstream file("roles.txt");
 	if (file.is_open())
 	{
-		while (getline(file, line))
+		while (getline(file, info))
 		{
-			roles.push_back(line);
+			roles.push_back(info);
 		}
 		file.close();
 	}
