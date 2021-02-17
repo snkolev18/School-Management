@@ -23,6 +23,10 @@ std::vector<STUDENT> readStudentsFromTxt();
 
 TEACHER parsedTeacherInfo(std::string info);
 
+TEAM parsedTeamInfo(std::string info);
+
+std::vector<TEAM> readTeamsFromTxt();
+
 std::vector<TEACHER> readTeachersFromTxt();
 
 void removeRole(std::vector<std::string>& roles, int id);
@@ -33,4 +37,4 @@ int findIndexByEmailTeachers(std::vector<TEACHER> teachers, std::string email);
 
 TEACHER findTeacherByEmail(std::vector<TEACHER> teachers, std::string email);
 
-TEAM inputTeam(std::vector<std::string> whiteListedRoles, std::vector<STUDENT> students, std::vector<TEACHER>& teachers);
+TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);

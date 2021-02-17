@@ -86,7 +86,7 @@ TEACHER inputTeacher(vector<STUDENT> students, vector<TEACHER> teachers)
 	return teacher;
 }
 
-TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector<TEACHER>& teachers)
+TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers)
 {
 	TEAM team;
 	STUDENT student;
@@ -122,6 +122,7 @@ TEAM inputTeam(vector<string> whiteListedRoles, vector<STUDENT> students, vector
 	cout << "Write the description of the team: ";
 	getline(cin, team.description);
 	teachers[findIndexByEmailTeachers(teachers, email)].teams.push_back(team.teamName);
+	team.teacher.teams.push_back(team.teamName);
 	return team;
 }
 
@@ -236,32 +237,55 @@ TEACHER parsedTeacherInfo(string info)
 	info.erase(0, info.find('|') + 1);
 	teacherInfo.email = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
-	while (info.find('|') != string::npos)
+	while (info.find(';') != string::npos)
 	{
-		teacherInfo.teams.push_back(info.substr(0, info.find('|')));
-		info.erase(0, info.find('|') + 1);
+		teacherInfo.teams.push_back(info.substr(0, info.find(';')));
+		info.erase(0, info.find(';') + 1);
 	}
 	return teacherInfo;
 }
-/*
+
 TEAM parsedTeamInfo(string info)
 {
-	TEAM teacherInfo;
-
-	teacherInfo.name = info.substr(0, info.find('|'));
+	TEAM teamInfo;
+	ROLE roles;
+	teamInfo.teamName = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
-	teacherInfo.surname = info.substr(0, info.find('|'));
-	info.erase(0, info.find('|') + 1);
-	teacherInfo.email = info.substr(0, info.find('|'));
-	info.erase(0, info.find('|') + 1);
-	while (info.find('|') != string::npos)
+	while (info.find(',') != string::npos)
 	{
-		teacherInfo.teams.push_back(info.substr(0, info.find('|')));
-		info.erase(0, info.find('|') + 1);
+		roles.role = info.substr(0, info.find(':'));
+		info.erase(0, info.find(':') + 1);
+		roles.student = parsedStudentInfo(info.substr(0, info.find(',')));
+		info.erase(0, info.find(',') + 1);
+		teamInfo.roles.push_back(roles);
 	}
-	return teacherInfo;
+	teamInfo.teacher = parsedTeacherInfo(info.substr(0, info.find(";|")+1));
+	info.erase(0, info.find(";|") + 2);
+	teamInfo.dateCreation= info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	teamInfo.status= info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	teamInfo.description= info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	return teamInfo;
 }
-*/
+
+vector<TEAM> readTeamsFromTxt()
+{
+	vector<TEAM> teams;
+	ifstream file;
+	string info;
+	file.open("teams.txt");
+	if (file.is_open())
+	{
+		while (getline(file, info))
+		{
+			teams.push_back(parsedTeamInfo(info));
+		}
+	}
+	return teams;
+}
+
 vector<TEACHER> readTeachersFromTxt()
 {
 	vector<TEACHER> teachers;

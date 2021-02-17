@@ -26,12 +26,10 @@ string TEACHER::delimitInfo()
 	for (size_t i = 0; i < teams.size(); i++)
 	{
 		result += teams[i];
-		if (i != teams.size() - 1)
-		{
-			result += ',';
-		}
+		if (i!=teams.size()-1)
+			result += ';';
 	}
-	result += '|';
+	result += ';';
 	return result;
 }
 
@@ -45,6 +43,8 @@ string TEAM::delimitInfo()
 		result += roles[i].student.delimitInfo();
 		result += ',';
 	}
+	result += teacher.delimitInfo();
+	result += '|'+ dateCreation + '|';
 	result += status + '|';
 	result += description + '|';
 
