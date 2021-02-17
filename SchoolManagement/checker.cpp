@@ -54,57 +54,103 @@ bool checkIfRoleIsWhiteListed(vector<string> whiteListedRoles, string role)
 
 bool checkEmailValidity(string email)
 {
-    size_t atPos = email.find('@');
-    size_t dotPos;
-    string username, domain;
-    string invalid = "!#$%&'*+""~\\/=?^`{|^/}[],;:";
+	size_t atPos = email.find('@');
+	size_t dotPos;
+	string username, domain;
+	string invalid = "!#$%&'*+""~\\/=?^`{|^/}[],;:";
 
-    bool invalidCharsCheck = true;
-    bool subdomainCheck = false;
+	bool invalidCharsCheck = true;
+	bool subdomainCheck = false;
 
-    if (atPos != string::npos)
-    {
-        username = email.substr(0, atPos);
-        domain = email.substr(atPos + 1);
+	if (atPos != string::npos)
+	{
+		username = email.substr(0, atPos);
+		domain = email.substr(atPos + 1);
 
-        if (isalpha(username[0]))
-        {
-            for (int i = 1; i < username.size(); i++)
-            {
-                for (size_t j = 0; j < invalid.size(); j++)
-                {
-                    if (username[i] == invalid[j])
-                    {
-                        invalidCharsCheck = false;
-                        break;
-                    }
-                }
-            }
-            dotPos = email.find('.', atPos + 2);
+		if (isalpha(username[0]))
+		{
+			for (int i = 1; i < username.size(); i++)
+			{
+				for (size_t j = 0; j < invalid.size(); j++)
+				{
+					if (username[i] == invalid[j])
+					{
+						invalidCharsCheck = false;
+						break;
+					}
+				}
+			}
+			dotPos = email.find('.', atPos + 2);
 
-            /*for (int i = 0; i < domain.size(); i++)
-            {
-                for (int j = 0; j < invalid.size(); j++)
-                {
-                    if(domain[i] != invalid[j])
-                    {
-                        valid++;
-                    }
-                }
-            }*/
+			/*for (int i = 0; i < domain.size(); i++)
+			{
+				for (int j = 0; j < invalid.size(); j++)
+				{
+					if(domain[i] != invalid[j])
+					{
+						valid++;
+					}
+				}
+			}*/
 
-            if (dotPos != string::npos)
-            {
-                subdomainCheck = true;
-            }
-            else
-            {
-                subdomainCheck = false;
-            }
-        }
-    }
+			if (dotPos != string::npos)
+			{
+				subdomainCheck = true;
+			}
+			else
+			{
+				subdomainCheck = false;
+			}
+		}
+	}
 
-    return invalidCharsCheck and subdomainCheck ? true : false;
+	return invalidCharsCheck and subdomainCheck ? true : false;
 
-    //size_t dotPos = email.find()
+	//size_t dotPos = email.find()
+}
+
+
+bool checkGrade(string grade)
+{
+	string gradeNum = "";
+	int numGrade;
+	bool gradeNumInRange = false, spaces = false;
+	if (grade.size() < 2 or grade.size() == 3) {
+		if (isdigit(grade[0]) or (isdigit(grade[0]) and isdigit(grade[1])))
+		{
+			if (grade.size() == 2)
+			{
+				gradeNum = grade.substr(0, 1);
+			}
+			if (grade.size() == 3)
+			{
+				gradeNum = grade.substr(0, 2);
+			}
+
+			numGrade = stoi(gradeNum);
+
+			if (numGrade >= 1 and numGrade <= 12)
+			{
+				gradeNumInRange = true;
+			}
+
+			/*for (size_t i = 0; i < grade.size(); i++)
+			{
+				if (grade[i] == ' ')
+				{
+					spaces = true;
+					break;
+				}
+			}*/
+
+		}
+	}
+	if (isalpha(grade[grade.size() - 1]) and gradeNumInRange)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

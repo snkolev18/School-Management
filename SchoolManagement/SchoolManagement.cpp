@@ -28,6 +28,8 @@ int main()
 	writeStudentsInTxt(students);
 	writeTeachersInTxt(teachers);
 	writeTeamsInTxt(teams);
+
+
 	/*
 	ofstream file;
 

@@ -54,6 +54,22 @@ STUDENT inputStudent(vector<STUDENT> students, vector<TEACHER> teachers)
 	cout << endl;
 	cout << "Class: ";
 	getline(cin, student.grade);
+
+	try
+	{
+		while (!checkGrade(student.grade))
+		{
+			cout << "This is cringe grade" << endl;
+			cout << "Please enter a valid one: ";
+			getline(cin, student.grade);
+		}
+
+	}
+	catch (const std::exception& ex)
+	{
+		cout << ex.what();
+	}
+
 	cout << endl;
 	cout << "Email: ";
 	getline(cin, student.email);
@@ -201,13 +217,13 @@ STUDENT parsedStudentInfo(string info)
 	STUDENT studentInfo;
 
 	studentInfo.name = info.substr(0, info.find('|'));
-	info.erase(0, info.find('|')+1);
+	info.erase(0, info.find('|') + 1);
 	studentInfo.surname = info.substr(0, info.find('|'));
-	info.erase(0, info.find('|')+1);
+	info.erase(0, info.find('|') + 1);
 	studentInfo.grade = info.substr(0, info.find('|'));
-	info.erase(0, info.find('|')+1);
+	info.erase(0, info.find('|') + 1);
 	studentInfo.email = info.substr(0, info.find('|'));
-	info.erase(0, info.find('|')+1);
+	info.erase(0, info.find('|') + 1);
 	return studentInfo;
 }
 
@@ -259,13 +275,13 @@ TEAM parsedTeamInfo(string info)
 		info.erase(0, info.find(',') + 1);
 		teamInfo.roles.push_back(roles);
 	}
-	teamInfo.teacher = parsedTeacherInfo(info.substr(0, info.find(";|")+1));
+	teamInfo.teacher = parsedTeacherInfo(info.substr(0, info.find(";|") + 1));
 	info.erase(0, info.find(";|") + 2);
-	teamInfo.dateCreation= info.substr(0, info.find('|'));
+	teamInfo.dateCreation = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
-	teamInfo.status= info.substr(0, info.find('|'));
+	teamInfo.status = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
-	teamInfo.description= info.substr(0, info.find('|'));
+	teamInfo.description = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
 	return teamInfo;
 }
