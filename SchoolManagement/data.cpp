@@ -20,7 +20,7 @@ STUDENT findStudentByEmail(vector<STUDENT> students, string email)
 	}
 }
 
-int findIndexByEmailTeachers(vector<TEACHER> teachers, string email)
+int findIndexByEmailTeachers(vector<TEACHER>& teachers, string email)
 {
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
@@ -31,7 +31,17 @@ int findIndexByEmailTeachers(vector<TEACHER> teachers, string email)
 	}
 	return -3; //Unique value if email not found
 }
-
+int findIndexByEmailStudents(vector<STUDENT>& students, string email)
+{
+	for (size_t i = 0; i < students.size(); i++)
+	{
+		if (students[i].email == email)
+		{
+			return i;
+		}
+	}
+	return -3; //Unique value if email not found
+}
 TEACHER findTeacherByEmail(vector<TEACHER> teachers, string email)
 {
 	for (size_t i = 0; i < teachers.size(); i++)
@@ -334,6 +344,21 @@ vector<string> readRolesFromTxt()
 	return roles;
 }
 
+void removeStudentFromTeam(vector<ROLE>& students,string email)
+{
+	for (size_t i = 0; i < students.size(); i++)
+	{
+		if (students[i].student.email == email)
+		{
+			students.erase(students.begin() + i);
+			break;
+		}
+	}
+}
+void addStudentToTeam(vector<ROLE>& students, ROLE student)
+{
+	students.push_back(student);
+}
 void removeRole(vector<string>& roles, int id)
 {
 	roles.erase(roles.begin() + id);

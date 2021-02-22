@@ -33,8 +33,12 @@ void removeRole(std::vector<std::string>& roles, int id);
 
 STUDENT findStudentByEmail(std::vector<STUDENT> students, std::string email);
 
-int findIndexByEmailTeachers(std::vector<TEACHER> teachers, std::string email);
+int findIndexByEmailTeachers(std::vector<TEACHER>& teachers, std::string email);
 
 TEACHER findTeacherByEmail(std::vector<TEACHER> teachers, std::string email);
+
+void removeStudentFromTeam(std::vector<ROLE>& students, std::string email);
+
+void addStudentToTeam(std::vector<ROLE>& students, ROLE student);
 
 TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
