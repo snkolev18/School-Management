@@ -1,44 +1,47 @@
 #pragma once
 #include "structures.h"
 
-STUDENT inputStudent(std::vector<STUDENT> students, std::vector<TEACHER> teachers);
 
-TEACHER inputTeacher(std::vector<STUDENT> students, std::vector<TEACHER> teachers);
+STUDENT findStudentByEmail(std::vector<STUDENT>& students, std::string& email);
 
-std::string addRole(std::vector<std::string> whiteListedRoles);
+TEACHER findTeacherByEmail(std::vector<TEACHER>& teachers, std::string& email);
 
-void writeRolesInTxt(std::vector<std::string> roles);
+int findIndexByEmailStudents(std::vector<STUDENT>& students, std::string& email);
 
-void writeStudentsInTxt(std::vector<STUDENT> students);
+int findIndexByEmailTeachers(std::vector<TEACHER>& teachers, std::string& email);
 
-void writeTeachersInTxt(std::vector<TEACHER> teachers);
+STUDENT inputStudent(std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
 
-void writeTeamsInTxt(std::vector<TEAM> teams);
+TEACHER inputTeacher(std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
 
-std::vector<std::string> readRolesFromTxt();
+TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
+
+std::string addRole(std::vector<std::string>& whiteListedRoles);
+
+void removeRole(std::vector<std::string>& roles, int& id);
+
+void writeRolesInTxt(std::vector<std::string>& roles);
+
+void writeStudentsInTxt(std::vector<STUDENT>& students);
+
+void writeTeachersInTxt(std::vector<TEACHER>& teachers);
+
+void writeTeamsInTxt(std::vector<TEAM>& teams);
 
 STUDENT parsedStudentInfo(std::string info);
-
-std::vector<STUDENT> readStudentsFromTxt();
 
 TEACHER parsedTeacherInfo(std::string info);
 
 TEAM parsedTeamInfo(std::string info);
 
-std::vector<TEAM> readTeamsFromTxt();
+std::vector<std::string> readRolesFromTxt();
+
+std::vector<STUDENT> readStudentsFromTxt();
 
 std::vector<TEACHER> readTeachersFromTxt();
 
-void removeRole(std::vector<std::string>& roles, int id);
+std::vector<TEAM> readTeamsFromTxt();
 
-STUDENT findStudentByEmail(std::vector<STUDENT> students, std::string email);
+void removeStudentFromTeam(std::vector<ROLE>& students, std::string& email);
 
-int findIndexByEmailTeachers(std::vector<TEACHER>& teachers, std::string email);
-
-TEACHER findTeacherByEmail(std::vector<TEACHER> teachers, std::string email);
-
-void removeStudentFromTeam(std::vector<ROLE>& students, std::string email);
-
-void addStudentToTeam(std::vector<ROLE>& students, ROLE student);
-
-TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
+void addStudentToTeam(std::vector<ROLE>& students, ROLE& student);

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-STUDENT findStudentByEmail(vector<STUDENT> students, string email)
+STUDENT findStudentByEmail(vector<STUDENT>& students, string& email)
 {
 
 	for (size_t i = 0; i < students.size(); i++)
@@ -20,29 +20,7 @@ STUDENT findStudentByEmail(vector<STUDENT> students, string email)
 	}
 }
 
-int findIndexByEmailTeachers(vector<TEACHER>& teachers, string email)
-{
-	for (size_t i = 0; i < teachers.size(); i++)
-	{
-		if (teachers[i].email == email)
-		{
-			return i;
-		}
-	}
-	return -3; //Unique value if email not found
-}
-int findIndexByEmailStudents(vector<STUDENT>& students, string email)
-{
-	for (size_t i = 0; i < students.size(); i++)
-	{
-		if (students[i].email == email)
-		{
-			return i;
-		}
-	}
-	return -3; //Unique value if email not found
-}
-TEACHER findTeacherByEmail(vector<TEACHER> teachers, string email)
+TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 {
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
@@ -53,7 +31,31 @@ TEACHER findTeacherByEmail(vector<TEACHER> teachers, string email)
 	}
 }
 
-STUDENT inputStudent(vector<STUDENT> students, vector<TEACHER> teachers)
+int findIndexByEmailTeachers(vector<TEACHER>& teachers, string& email)
+{
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (teachers[i].email == email)
+		{
+			return i;
+		}
+	}
+	return -3; //Unique value if email not found
+}
+
+int findIndexByEmailStudents(vector<STUDENT>& students, string& email)
+{
+	for (size_t i = 0; i < students.size(); i++)
+	{
+		if (students[i].email == email)
+		{
+			return i;
+		}
+	}
+	return -3; //Unique value if email not found
+}
+
+STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 {
 	STUDENT student;
 	cout << "First name: ";
@@ -92,7 +94,7 @@ STUDENT inputStudent(vector<STUDENT> students, vector<TEACHER> teachers)
 	return student;
 }
 
-TEACHER inputTeacher(vector<STUDENT> students, vector<TEACHER> teachers)
+TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 {
 	TEACHER teacher;
 	cout << "First name: ";
@@ -152,7 +154,7 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	return team;
 }
 
-string addRole(vector<string> whiteListedRoles)
+string addRole(vector<string>& whiteListedRoles)
 {
 	string role;
 	cout << "Enter a name for the role: ";
@@ -166,7 +168,12 @@ string addRole(vector<string> whiteListedRoles)
 	return role;
 }
 
-void writeRolesInTxt(vector<string> whiteListedRoles)
+void removeRole(vector<string>& roles, int& id)
+{
+	roles.erase(roles.begin() + id);
+}
+
+void writeRolesInTxt(vector<string>& whiteListedRoles)
 {
 	ofstream file;
 	file.open("roles.txt", ios::trunc);
@@ -180,7 +187,7 @@ void writeRolesInTxt(vector<string> whiteListedRoles)
 	}
 }
 
-void writeStudentsInTxt(vector<STUDENT> students)
+void writeStudentsInTxt(vector<STUDENT>& students)
 {
 	ofstream file;
 	file.open("students.txt", ios::trunc);
@@ -194,7 +201,7 @@ void writeStudentsInTxt(vector<STUDENT> students)
 	}
 }
 
-void writeTeachersInTxt(vector<TEACHER> teachers)
+void writeTeachersInTxt(vector<TEACHER>& teachers)
 {
 	ofstream file;
 	file.open("teachers.txt", ios::trunc);
@@ -208,7 +215,7 @@ void writeTeachersInTxt(vector<TEACHER> teachers)
 	}
 }
 
-void writeTeamsInTxt(vector<TEAM> teams)
+void writeTeamsInTxt(vector<TEAM>& teams)
 {
 	ofstream file;
 	file.open("teams.txt", ios::trunc);
@@ -235,22 +242,6 @@ STUDENT parsedStudentInfo(string info)
 	studentInfo.email = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
 	return studentInfo;
-}
-
-vector<STUDENT> readStudentsFromTxt()
-{
-	vector<STUDENT> students;
-	ifstream file;
-	string info;
-	file.open("students.txt");
-	if (file.is_open())
-	{
-		while (getline(file, info))
-		{
-			students.push_back(parsedStudentInfo(info));
-		}
-	}
-	return students;
 }
 
 TEACHER parsedTeacherInfo(string info)
@@ -296,20 +287,36 @@ TEAM parsedTeamInfo(string info)
 	return teamInfo;
 }
 
-vector<TEAM> readTeamsFromTxt()
+vector<string> readRolesFromTxt()
 {
-	vector<TEAM> teams;
-	ifstream file;
+	vector<string> roles;
 	string info;
-	file.open("teams.txt");
+	ifstream file("roles.txt");
 	if (file.is_open())
 	{
 		while (getline(file, info))
 		{
-			teams.push_back(parsedTeamInfo(info));
+			roles.push_back(info);
+		}
+		file.close();
+	}
+	return roles;
+}
+
+vector<STUDENT> readStudentsFromTxt()
+{
+	vector<STUDENT> students;
+	ifstream file;
+	string info;
+	file.open("students.txt");
+	if (file.is_open())
+	{
+		while (getline(file, info))
+		{
+			students.push_back(parsedStudentInfo(info));
 		}
 	}
-	return teams;
+	return students;
 }
 
 vector<TEACHER> readTeachersFromTxt()
@@ -328,23 +335,23 @@ vector<TEACHER> readTeachersFromTxt()
 	return teachers;
 }
 
-vector<string> readRolesFromTxt()
+vector<TEAM> readTeamsFromTxt()
 {
-	vector<string> roles;
+	vector<TEAM> teams;
+	ifstream file;
 	string info;
-	ifstream file("roles.txt");
+	file.open("teams.txt");
 	if (file.is_open())
 	{
 		while (getline(file, info))
 		{
-			roles.push_back(info);
+			teams.push_back(parsedTeamInfo(info));
 		}
-		file.close();
 	}
-	return roles;
+	return teams;
 }
 
-void removeStudentFromTeam(vector<ROLE>& students,string email)
+void removeStudentFromTeam(vector<ROLE>& students,string& email)
 {
 	for (size_t i = 0; i < students.size(); i++)
 	{
@@ -355,11 +362,8 @@ void removeStudentFromTeam(vector<ROLE>& students,string email)
 		}
 	}
 }
-void addStudentToTeam(vector<ROLE>& students, ROLE student)
+
+void addStudentToTeam(vector<ROLE>& students, ROLE& student)
 {
 	students.push_back(student);
-}
-void removeRole(vector<string>& roles, int id)
-{
-	roles.erase(roles.begin() + id);
 }
