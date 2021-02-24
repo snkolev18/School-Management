@@ -67,4 +67,11 @@ struct LOGS
 	std::string time;
 	SEVERITY severity;
 	std::string information;
+
+	ofstream logFile;
+
+	bool open(std::string filename);
+	void close();
+	std::string putLogMsg();
+	void writeLogMsg(SEVERITY severity, std::string information);
 };
