@@ -28,6 +28,7 @@ struct ROLE
 	std::string role = "";
 	STUDENT student;
 };
+
 struct TEAM
 {
 	// .reserve() might fix it
@@ -49,4 +50,21 @@ struct SCHOOL
 	std::vector<TEACHER> teachers;
 	std::vector<TEAM> teams;
 	std::vector<STUDENT> students;
+};
+
+
+enum SEVERITY
+{
+	CRITICAL,
+	ERROR,
+	WARNING,
+	INFO
+};
+
+struct LOGS
+{
+	std::string date;
+	std::string time;
+	SEVERITY severity;
+	std::string information;
 };
