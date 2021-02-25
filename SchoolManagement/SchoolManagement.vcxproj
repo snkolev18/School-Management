@@ -155,7 +155,7 @@
     <ClInclude Include="userInterface.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="logs.txt" />
+    <Text Include="logs.log" />
     <Text Include="roles.txt" />
     <Text Include="students.txt" />
     <Text Include="teachers.txt" />

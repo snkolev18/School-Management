@@ -109,7 +109,6 @@ bool checkEmailValidity(string email)
 	//size_t dotPos = email.find()
 }
 
-
 bool checkGrade(string grade)
 {
 	string gradeNum = "";

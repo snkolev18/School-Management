@@ -1,1 +1,1 @@
-teamsonbudget|scrum:stoqn|kolev|10a|stoqn@abv.bg|,dev:atanas|burmov|10a|burmov@abv.bg|,dev1:atanas|burmov|10a|burmov@abv.bg|,qa:stoqn|kolev|10a|stoqn@abv.bg|,aleksandur|dinev|agdinev18@codingburgas.bg|teamsonbudget;||In use|we are too good|
+Erasum+|scrum:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,dev:Cringe|Dinev|10A|AGDinev18@codingburgas.bg|,dev1:Cringe|Dinev|10A|AGDinev18@codingburgas.bg|,qa:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,Didy|Todorova|dtodorova@codingburgas.bg|Erasum+;||In use|Erasum+|

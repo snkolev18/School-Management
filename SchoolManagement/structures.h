@@ -1,6 +1,7 @@
 #pragma once
+#include <fstream>
 
-struct STUDENT 
+struct STUDENT
 {
 	std::string name = "";
 	std::string surname = "";
@@ -10,7 +11,7 @@ struct STUDENT
 	std::string delimitInfo();
 };
 
-struct TEACHER 
+struct TEACHER
 {
 	std::string name = "";
 	std::string surname = "";
@@ -20,25 +21,32 @@ struct TEACHER
 	std::string delimitInfo();
 };
 
-// vector Students
-// vector Teachers 
-// students.txt and teachers.txt | 
 struct ROLE
 {
 	std::string role = "";
 	STUDENT student;
 };
 
+
 struct TEAM
 {
-	// .reserve() might fix it
+	enum STATUS
+	{
+		IN_USE,
+		NOT_ACTIVE,
+		ARCHIVED
+	};
+
 	std::vector<ROLE> roles;
 	std::string teamName = "";
 	TEACHER teacher;
 	std::string description = "";
 	std::string dateCreation = "";
+	
 	std::string status = "";
 
+
+	static std::string statusToString(STATUS stat);
 	std::string delimitInfo();
 };
 
@@ -51,7 +59,6 @@ struct SCHOOL
 	std::vector<TEAM> teams;
 	std::vector<STUDENT> students;
 };
-
 
 enum SEVERITY
 {
@@ -68,7 +75,7 @@ struct LOGS
 	SEVERITY severity;
 	std::string information;
 
-	ofstream logFile;
+	std::ofstream logFile;
 
 	bool open(std::string filename);
 	void close();

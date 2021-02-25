@@ -8,6 +8,21 @@
 
 using namespace std;
 
+string TEAM::statusToString(STATUS stat) 
+{
+	switch (stat)
+	{
+	case IN_USE:
+		return "In use";
+	case NOT_ACTIVE:
+		return "Not active";
+	case ARCHIVED:
+		return "Archived";
+	default:
+		return "Unknown Status";
+	}
+}
+
 STUDENT findStudentByEmail(vector<STUDENT>& students, string& email)
 {
 
@@ -146,7 +161,7 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 		getline(cin, email);
 	}
 	team.teacher = findTeacherByEmail(teachers, email);
-	team.status = "In use";
+	team.status = TEAM::statusToString(TEAM::IN_USE);
 	cout << "Write the description of the team: ";
 	getline(cin, team.description);
 	teachers[findIndexByEmailTeachers(teachers, email)].teams.push_back(team.teamName);
