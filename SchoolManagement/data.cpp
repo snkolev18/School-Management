@@ -3,12 +3,13 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <ctime>
 #include "structures.h"
 #include "checkers.h"
 
 using namespace std;
 
-string TEAM::statusToString(STATUS stat) 
+string TEAM::statusToString(STATUS stat)
 {
 	switch (stat)
 	{
@@ -92,7 +93,7 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 		}
 
 	}
-	catch (const std::exception& ex)
+	catch (const std::exception & ex)
 	{
 		cout << ex.what();
 	}
@@ -127,6 +128,53 @@ TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 		getline(cin, teacher.email);
 	}
 	return teacher;
+}
+
+string getDate()
+{
+	int day, month, year,hour,minute,second;
+	string days, months, years, hours,minutes,seconds;
+
+	time_t timer = time(NULL);
+	tm timerPtr{ 0 };
+	errno_t err = localtime_s(&timerPtr, &timer);
+
+	day = timerPtr.tm_mday;
+	month = timerPtr.tm_mon + 1;
+	year = timerPtr.tm_year + 1900;
+	hour = timerPtr.tm_hour;
+	minute = timerPtr.tm_min;
+	second = timerPtr.tm_sec;
+
+	seconds = to_string(second);
+	minutes = to_string(minute);
+	hours = to_string(hour);
+	days = to_string(day);
+	months = to_string(month);
+	if (months.length() < 2)
+	{
+		months = "0" + months;
+	}
+	if (days.length() < 2)
+	{
+		days = "0" + days;
+	}
+	if (hours.length() < 2)
+	{
+		hours = "0" + hours;
+	}
+	if (minutes.length() < 2)
+	{
+		minutes = "0" + minutes;
+	}
+	if (seconds.length() < 2)
+	{
+		seconds = "0" + seconds;
+	}
+
+	years = to_string(year);
+
+	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;
 }
 
 TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers)
@@ -165,6 +213,7 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	cout << "Write the description of the team: ";
 	getline(cin, team.description);
 	teachers[findIndexByEmailTeachers(teachers, email)].teams.push_back(team.teamName);
+	team.dateCreation = getDate();
 	team.teacher.teams.push_back(team.teamName);
 	return team;
 }
@@ -366,13 +415,13 @@ vector<TEAM> readTeamsFromTxt()
 	return teams;
 }
 
-void removeStudentFromTeam(vector<ROLE>& students,string& email)
+void removeStudentFromTeam(vector<ROLE>& students, string& email)
 {
 	for (size_t i = 0; i < students.size(); i++)
 	{
 		if (students[i].student.email == email)
 		{
-			students.erase(students.begin() + i);
+			students[i].student = {};
 			break;
 		}
 	}
