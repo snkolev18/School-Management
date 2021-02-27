@@ -21,15 +21,13 @@ string TEACHER::delimitInfo()
 	string result = "";
 
 	result += name;
-	result += '|' + surname;
-	result += '|' + email + '|';
+	result += '|' + surname + '|';
 	for (size_t i = 0; i < teams.size(); i++)
 	{
 		result += teams[i];
-		if (i!=teams.size()-1)
-			result += ';';
+			result += '=';
 	}
-	result += ';';
+	result += email + "|;";
 	return result;
 }
 

@@ -17,7 +17,7 @@ void displayNSpaces(int n)
 	}
 }
 
-void displayHeaderStudentsTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail)
+void displayHeaderTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail,string object)
 {
 	cout << char(201);
 	for (int i = 0; i < maxSizeNames; i++)
@@ -44,8 +44,8 @@ void displayHeaderStudentsTable(int& maxSize, int& maxSizeNames, int& maxSizeSur
 	displayNSpaces(maxSizeNames - 4);
 	cout << char(186) << "Surname";
 	displayNSpaces(maxSizeSurnames - 7);
-	cout << char(186) << "Class";
-	displayNSpaces(maxSizeClass - 5);
+	cout << char(186) << object;
+	displayNSpaces(maxSizeClass - object.size());
 	cout << char(186) << "Email";
 	displayNSpaces(maxSizeEmail - 5);
 	cout << char(186) << endl;
@@ -87,8 +87,43 @@ void displayBodyStudentsTable(vector<STUDENT>& students, int& maxSize, int& maxS
 		cout << char(186) << endl;
 	}
 }
-
-void displayFooterStudentsTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail)
+void displayBodyTeachersTable(vector<TEACHER>& teachers, int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail,vector<string> teams)
+{
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		cout << char(204);
+		for (int i = 0; i < maxSizeNames; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(206);
+		for (int i = 0; i < maxSizeSurnames; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(206);
+		for (int i = 0; i < maxSizeClass; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(206);
+		for (int i = 0; i < maxSizeEmail; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(185) << endl;
+		cout << char(186) << teachers[i].name;
+		displayNSpaces(maxSizeNames - teachers[i].name.size());
+		cout << char(186) << teachers[i].surname;
+		displayNSpaces(maxSizeSurnames - teachers[i].surname.size());
+		cout << char(186) << teams[i];
+		displayNSpaces(maxSizeClass - teams[i].size());
+		cout << char(186) << teachers[i].email;
+		displayNSpaces(maxSizeEmail - teachers[i].email.size());
+		cout << char(186) << endl;
+	}
+}
+void displayFooterTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail)
 {
 	cout << char(200);
 	for (int i = 0; i < maxSizeNames; i++)
@@ -129,11 +164,39 @@ void displayStudentsInTable(vector<STUDENT>& students)
 	maxSizeEmail = maxSizeOfStrings(emails);
 	maxSizeClass = maxSizeOfStrings(classes);
 	maxSize = maxSizeClass + maxSizeEmail + maxSizeNames + maxSizeSurnames;
-	displayHeaderStudentsTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
+	displayHeaderTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail,"Class");
 	displayBodyStudentsTable(students, maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
-	displayFooterStudentsTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
+	displayFooterTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
 }
-
+void displayTeachersInTable(vector<TEACHER>& teachers)
+{
+	int maxSizeNames, maxSizeSurnames, maxSizeEmail, maxSizeTeams, maxSize;
+	vector<string> names, surnames, emails, teams;
+	string team;
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		names.push_back(teachers[i].name);
+		surnames.push_back(teachers[i].surname);
+		for (size_t j = 0; j < teachers[i].teams.size(); j++)
+		{
+			team += teachers[i].teams[j];
+			if (j < teachers[i].teams.size() - 1)
+			{
+				team += ',';
+			}
+		}
+		teams.push_back(team);
+		emails.push_back(teachers[i].email);
+	}
+	maxSizeNames = maxSizeOfStrings(names);
+	maxSizeSurnames = maxSizeOfStrings(surnames);
+	maxSizeEmail = maxSizeOfStrings(emails);
+	maxSizeTeams = maxSizeOfStrings(teams);
+	maxSize = maxSizeTeams + maxSizeEmail + maxSizeNames + maxSizeSurnames;
+	displayHeaderTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail,"Teams");
+	displayBodyTeachersTable(teachers, maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail,teams);
+	displayFooterTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail);
+}
 bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& whiteListedRoles, vector<TEAM>& teams)
 {
 	system("chcp 65001");
@@ -146,7 +209,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
        ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   
                                                                                                                   
         )";
-	system("chcp 850");
+	system("chcp 437");
 	cout << endl;
 	cout << "/-----------------------------------\\" << endl;
 	cout << "Welcome to the Menu!" << endl;
@@ -163,9 +226,9 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	{
 	case 1:
 		cout << "Enter the amount of students: "; cin >> amount;
+		cin.ignore();
 		while (counter < amount)
 		{
-			cin.ignore();
 			students.push_back(inputStudent(students, teachers));
 			writeStudentsInTxt(students);
 			counter++;
@@ -175,9 +238,9 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 
 	case 2:
 		cout << "Enter the amount of teachers: "; cin >> amount;
+		cin.ignore();
 		while (counter < amount)
 		{
-			cin.ignore();
 			teachers.push_back(inputTeacher(students, teachers));
 			writeTeachersInTxt(teachers);
 			counter++;
@@ -187,19 +250,25 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 
 	case 3:
 		cout << "Enter the amount of teams: "; cin >> amount;
+		cin.ignore();
 		while (counter < amount)
 		{
-			cin.ignore();
-			teams.push_back(inputTeam(whiteListedRoles, students, teachers));
+			addRole(whiteListedRoles);
 			writeRolesInTxt(whiteListedRoles);
-			writeTeamsInTxt(teams);
 
 			counter++;
 		}
 		counter = 0;
 		break;
-	case 4:
+	case 4: 
+		teams.push_back(inputTeam(whiteListedRoles, students, teachers));
+		writeTeamsInTxt(teams);
+		break;
+	case 5:
 		displayStudentsInTable(students);
+		break;
+	case 6:
+		displayTeachersInTable(teachers);
 		break;
 	case 9: return false;
 	default:

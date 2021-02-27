@@ -16,7 +16,7 @@ TEACHER inputTeacher(std::vector<STUDENT>& students, std::vector<TEACHER>& teach
 
 TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
 
-std::string addRole(std::vector<std::string>& whiteListedRoles);
+void addRole(std::vector<std::string>& whiteListedRoles);
 
 void removeRole(std::vector<std::string>& roles, int& id);
 

@@ -24,6 +24,62 @@ string TEAM::statusToString(STATUS stat)
 	}
 }
 
+void writeRolesInTxt(vector<string>& whiteListedRoles)
+{
+	ofstream file;
+	file.open("roles.txt", ios::trunc);
+	if (file.is_open())
+	{
+		for (size_t i = 0; i < whiteListedRoles.size(); i++)
+		{
+			file << whiteListedRoles[i] << endl;
+		}
+		file.close();
+	}
+}
+
+void writeStudentsInTxt(vector<STUDENT>& students)
+{
+	ofstream file;
+	file.open("students.txt", ios::trunc);
+	if (file.is_open())
+	{
+		for (size_t i = 0; i < students.size(); i++)
+		{
+			file << students[i].delimitInfo() << endl;
+		}
+		file.close();
+	}
+}
+
+void writeTeachersInTxt(vector<TEACHER>& teachers)
+{
+	ofstream file;
+	file.open("teachers.txt", ios::trunc);
+	if (file.is_open())
+	{
+		for (size_t i = 0; i < teachers.size(); i++)
+		{
+			file << teachers[i].delimitInfo() << endl;
+		}
+		file.close();
+	}
+}
+
+void writeTeamsInTxt(vector<TEAM>& teams)
+{
+	ofstream file;
+	file.open("teams.txt", ios::trunc);
+	if (file.is_open())
+	{
+		for (size_t i = 0; i < teams.size(); i++)
+		{
+			file << teams[i].delimitInfo() << endl;
+		}
+		file.close();
+	}
+}
+
 STUDENT findStudentByEmail(vector<STUDENT>& students, string& email)
 {
 
@@ -183,6 +239,7 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	STUDENT student;
 	string email;
 	ROLE role;
+	cin.ignore();
 	cout << "Team name: ";
 	getline(cin, team.teamName);
 	for (size_t i = 0; i < whiteListedRoles.size(); i++)
@@ -215,10 +272,11 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	teachers[findIndexByEmailTeachers(teachers, email)].teams.push_back(team.teamName);
 	team.dateCreation = getDate();
 	team.teacher.teams.push_back(team.teamName);
+	writeTeachersInTxt(teachers);
 	return team;
 }
 
-string addRole(vector<string>& whiteListedRoles)
+void addRole(vector<string>& whiteListedRoles)
 {
 	string role;
 	cout << "Enter a name for the role: ";
@@ -229,68 +287,12 @@ string addRole(vector<string>& whiteListedRoles)
 		cout << "Please enter a new name for the role: ";
 		getline(cin, role);
 	}
-	return role;
+	whiteListedRoles.push_back(role);
 }
 
 void removeRole(vector<string>& roles, int& id)
 {
 	roles.erase(roles.begin() + id);
-}
-
-void writeRolesInTxt(vector<string>& whiteListedRoles)
-{
-	ofstream file;
-	file.open("roles.txt", ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < whiteListedRoles.size(); i++)
-		{
-			file << whiteListedRoles[i] << endl;
-		}
-		file.close();
-	}
-}
-
-void writeStudentsInTxt(vector<STUDENT>& students)
-{
-	ofstream file;
-	file.open("students.txt", ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < students.size(); i++)
-		{
-			file << students[i].delimitInfo() << endl;
-		}
-		file.close();
-	}
-}
-
-void writeTeachersInTxt(vector<TEACHER>& teachers)
-{
-	ofstream file;
-	file.open("teachers.txt", ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < teachers.size(); i++)
-		{
-			file << teachers[i].delimitInfo() << endl;
-		}
-		file.close();
-	}
-}
-
-void writeTeamsInTxt(vector<TEAM>& teams)
-{
-	ofstream file;
-	file.open("teams.txt", ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < teams.size(); i++)
-		{
-			file << teams[i].delimitInfo() << endl;
-		}
-		file.close();
-	}
 }
 
 STUDENT parsedStudentInfo(string info)
@@ -316,13 +318,13 @@ TEACHER parsedTeacherInfo(string info)
 	info.erase(0, info.find('|') + 1);
 	teacherInfo.surname = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
+	while (info.find('=') != string::npos)
+	{
+		teacherInfo.teams.push_back(info.substr(0, info.find('=')));
+		info.erase(0, info.find('=') + 1);
+	}
 	teacherInfo.email = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
-	while (info.find(';') != string::npos)
-	{
-		teacherInfo.teams.push_back(info.substr(0, info.find(';')));
-		info.erase(0, info.find(';') + 1);
-	}
 	return teacherInfo;
 }
 
