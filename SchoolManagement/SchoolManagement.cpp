@@ -13,14 +13,13 @@ int main()
 	vector<string> whiteListedRoles;
 	whiteListedRoles = readRolesFromTxt();
 	vector<STUDENT> students;
+	students = readStudentsFromTxt();
 	vector<TEACHER> teachers;
+	teachers = readTeachersFromTxt();
 	vector<TEAM> teams;
+	teams = readTeamsFromTxt();
 
-	string adminEmail = "1";
-	string adminPass = "2";
-
-	system("chcp 65001");
-	mainMenu(adminEmail, adminPass, students, teachers, whiteListedRoles, teams);
+	menu(students, teachers, whiteListedRoles, teams);
 
 	/*
 	

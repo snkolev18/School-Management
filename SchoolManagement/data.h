@@ -45,3 +45,5 @@ std::vector<TEAM> readTeamsFromTxt();
 void removeStudentFromTeam(std::vector<ROLE>& students, std::string& email);
 
 void addStudentToTeam(std::vector<ROLE>& students, ROLE& student);
+
+int maxSizeOfStrings(std::vector<std::string>& strings);

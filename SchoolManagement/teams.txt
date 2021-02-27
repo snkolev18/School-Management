@@ -1,1 +1,0 @@
-teamsonbudget|scrum:stoqn|kolev|10a|stoqn@abv.bg|,dev:atanas|burmov|10a|burmov@abv.bg|,dev1:atanas|burmov|10a|burmov@abv.bg|,qa:stoqn|kolev|10a|stoqn@abv.bg|,aleksandur|dinev|agdinev18@codingburgas.bg|teamsonbudget;|2021/02/26 18:57:48|In use|we are too good|
