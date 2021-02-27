@@ -16,6 +16,16 @@ int main()
 	vector<TEACHER> teachers;
 	vector<TEAM> teams;
 
+	string adminEmail = "1";
+	string adminPass = "2";
+
+	system("chcp 65001");
+	mainMenu(adminEmail, adminPass, students, teachers, whiteListedRoles, teams);
+
+	/*
+	
+	Tuka
+
 	students.push_back(inputStudent(students,teachers));
 	students.push_back(inputStudent(students,teachers));
 	cout << '\n';
@@ -28,8 +38,7 @@ int main()
 	writeStudentsInTxt(students);
 	writeTeachersInTxt(teachers);
 	writeTeamsInTxt(teams);
-
-
+	*/
 	/*
 	ofstream file;
 
