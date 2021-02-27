@@ -1,5 +1,7 @@
 #pragma once
 #include "structures.h"
+#include <vector>
+#include <string>
 
 bool checkForExistingEmail(std::vector<STUDENT> students, std::vector<TEACHER> teachers, std::string email);
 

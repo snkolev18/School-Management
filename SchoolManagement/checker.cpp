@@ -37,6 +37,7 @@ bool checkForExistingEmail(vector<STUDENT> students, vector<TEACHER> teachers, s
 	{
 		return true;
 	}
+
 	return false;
 }
 
@@ -49,6 +50,7 @@ bool checkIfRoleIsWhiteListed(vector<string> whiteListedRoles, string role)
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -57,7 +59,7 @@ bool checkEmailValidity(string email)
 	size_t atPos = email.find('@');
 	size_t dotPos;
 	string username, domain;
-	string invalid = "!#$%&'*+""~\\/=?^`{|^/}[],;:";
+	string invalid = "!#$%&'*+\"~\\/=?^`{|^/}[],;:";
 
 	bool invalidCharsCheck = true;
 	bool subdomainCheck = false;
