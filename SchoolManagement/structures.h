@@ -77,10 +77,10 @@ struct LOGS
 	SEVERITY severity;
 	std::string information;
 
-	std::ofstream logFile;
 
 	bool open(std::string filename);
 	void close();
 	std::string putLogMsg();
 	void writeLogMsg(SEVERITY severity, std::string information);
+	std::ofstream logFile;
 };

@@ -37,7 +37,7 @@ string severityToString(SEVERITY severity)
 
 string LOGS::putLogMsg() 
 {
-	return "[" + date + " " + time + "]" + " " + severityToString(severity) + " " + information;
+	return "[" + date + " " + time + "]" + " " + severityToString(severity) + " " + information + '\n';
 }
 
 void LOGS::writeLogMsg(SEVERITY severity, string information)

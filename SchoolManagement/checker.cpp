@@ -43,6 +43,10 @@ bool checkForExistingEmail(vector<STUDENT> students, vector<TEACHER> teachers, s
 
 bool checkIfRoleIsWhiteListed(vector<string> whiteListedRoles, string role)
 {
+	if (whiteListedRoles.size() == 0) 
+	{
+		return false;
+	}
 	for (size_t i = 0; i < whiteListedRoles.size(); i++)
 	{
 		if (whiteListedRoles[i] == role)
