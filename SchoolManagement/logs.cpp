@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include "structures.h"
+#include "data.h"
 
 using namespace std;
 
@@ -36,13 +37,13 @@ string severityToString(SEVERITY severity)
 
 string LOGS::putLogMsg() 
 {
-	return "[ " + date + " " + time + " ]" + severityToString(severity) + " " + information;
+	return "[" + date + " " + time + "]" + " " + severityToString(severity) + " " + information;
 }
 
 void LOGS::writeLogMsg(SEVERITY severity, string information)
 {
 
-	LOGS logEntry = { "", "", severity, information };
+	LOGS logEntry = { getDate().substr(0, getDate().find(' ')), getDate().substr(getDate().find(' ')), severity, information };
 	logFile << logEntry.putLogMsg();
 
 }

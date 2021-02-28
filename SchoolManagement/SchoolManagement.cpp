@@ -10,16 +10,20 @@ using namespace std;
 
 int main()
 {
-	vector<string> whiteListedRoles;
-	whiteListedRoles = readRolesFromTxt();
-	vector<STUDENT> students;
-	students = readStudentsFromTxt();
-	vector<TEACHER> teachers;
-	teachers = readTeachersFromTxt();
-	vector<TEAM> teams;
-	teams = readTeamsFromTxt();
+	LOGS logs;
+	if (logs.open("logs.log")) {
+		vector<string> whiteListedRoles;
+		whiteListedRoles = readRolesFromTxt();
+		vector<STUDENT> students;
+		students = readStudentsFromTxt();
+		vector<TEACHER> teachers;
+		teachers = readTeachersFromTxt();
+		vector<TEAM> teams;
+		teams = readTeamsFromTxt();
 
-	menu(students, teachers, whiteListedRoles, teams);
+		menu(students, teachers, whiteListedRoles, teams);
+		logs.writeLogMsg(SEVERITY::INFO, "CHUPENDRA");
+	}
 
 	/*
 	
