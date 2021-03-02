@@ -14,3 +14,5 @@ bool checkIfRoleIsWhiteListed(std::vector<std::string> whiteListedRoles, std::st
 bool checkEmailValidity(std::string email);
 
 bool checkGrade(std::string grade);
+
+bool checkIfNameIsValid(std::string name);

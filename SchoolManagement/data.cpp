@@ -457,3 +457,74 @@ void removeStudent(vector<STUDENT>& students,string email)
 		}
 	}
 }
+
+void updateStudentData(vector<STUDENT>& students)
+{
+	ofstream file;
+	file.open("students.txt", ios::trunc and ios::binary);
+	file.seekp(0, ios::end);
+	int size = file.tellp();
+	
+	if (size == 0) {
+		throw exception("File with students has no data!");
+	}
+	else {
+		string email;
+		cout << "Enter the email of the student that you want to edit: ";
+		cin >> email;
+		while (!checkEmailValidity(email))
+		{
+			cout << "This email is not valid " << endl;
+			cout << "Please try again: ";
+			getline(cin, email);
+		}
+
+		int id = 0;
+
+		for (size_t i = 0; i < students.size(); i++)
+		{
+			if (students[i].email == email)
+			{
+				id = i;
+				break;
+			}
+		}
+
+		cin >> students.at(id).name;
+		while (!checkIfNameIsValid(students.at(id).name))
+		{
+			cout << "Name is incorrect" << endl;
+			cout << "Re-Enter a correct name: ";
+			cin >> students.at(id).name;
+		}
+
+		cin >> students.at(id).surname;
+		while (!checkIfNameIsValid(students.at(id).surname))
+		{
+			cout << "Surname is incorrect" << endl;
+			cout << "Re-Enter a correct surname: ";
+			cin >> students.at(id).surname;
+		}
+
+		cin >> students.at(id).grade;
+		try
+		{
+			while (!checkGrade(students.at(id).grade))
+			{
+				cout << "This is cringe grade" << endl;
+				cout << "Please enter a valid one: ";
+				cin >> students.at(id).grade;
+			}
+
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+
+		cin >> students.at(id).email;
+
+		writeStudentsInTxt(students);
+	}
+
+}

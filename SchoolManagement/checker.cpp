@@ -159,3 +159,19 @@ bool checkGrade(string grade)
 		return false;
 	}
 }
+
+bool checkIfNameIsValid(string name) 
+{
+	bool isValid = true;
+
+	for (size_t i = 0; i < name.size(); i++)
+	{
+		if(!isalpha(name[i]))
+		{
+			isValid = false;
+			break;
+		}
+	}
+
+	return isValid;
+}
