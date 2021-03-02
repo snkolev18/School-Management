@@ -436,7 +436,7 @@ void addStudentToTeam(vector<ROLE>& students, ROLE& student)
 
 int maxSizeOfStrings(vector<string>& strings)
 {
-	int max = 7;
+	int max = 0;
 	for (size_t i = 0; i < strings.size(); i++)
 	{
 		if (strings[i].size() > max)

@@ -1,7 +1,17 @@
 #pragma once
 #include "structures.h"
 
-void displayHeaderTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail, std::string object);
+void displayNSpaces(int n);
+
+void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, std::vector<std::string>& whiteListedRoles);
+
+void displayBodyTeamsTable(std::vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus);
+
+void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus);
+
+void displayTeamsInTable(std::vector<TEAM>& teams, std::vector<std::string> whiteListedRoles);
+
+void displayHeaderStudentsAndTeachersTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail, std::string object);
 
 void displayBodyStudentsTable(std::vector<STUDENT>& students, int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail);
 
