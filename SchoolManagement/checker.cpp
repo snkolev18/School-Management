@@ -120,7 +120,7 @@ bool checkGrade(string grade)
 	string gradeNum = "";
 	int numGrade;
 	bool gradeNumInRange = false, spaces = false;
-	if (grade.size() < 2 or grade.size() == 3) {
+	if (grade.size() == 2 or grade.size() == 3) {
 		if (isdigit(grade[0]) or (isdigit(grade[0]) and isdigit(grade[1])))
 		{
 			if (grade.size() == 2)

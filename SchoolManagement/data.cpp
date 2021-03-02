@@ -447,3 +447,13 @@ int maxSizeOfStrings(vector<string>& strings)
 	return max;
 }
 
+void removeStudent(vector<STUDENT>& students,string email)
+{
+	for (size_t i = 0; i < students.size(); i++)
+	{
+		if (email == students[i].email)
+		{
+			students.erase(students.begin() + i);
+		}
+	}
+}
