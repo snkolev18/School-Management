@@ -149,7 +149,7 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 		}
 
 	}
-	catch (const std::exception & ex)
+	catch (const std::exception& ex)
 	{
 		cout << ex.what();
 	}
@@ -188,8 +188,8 @@ TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 
 string getDate()
 {
-	int day, month, year,hour,minute,second;
-	string days, months, years, hours,minutes,seconds;
+	int day, month, year, hour, minute, second;
+	string days, months, years, hours, minutes, seconds;
 
 	time_t timer = time(NULL);
 	tm timerPtr{ 0 };
@@ -447,7 +447,7 @@ int maxSizeOfStrings(vector<string>& strings)
 	return max;
 }
 
-void removeStudent(vector<STUDENT>& students,string email)
+void removeStudent(vector<STUDENT>& students, string email)
 {
 	for (size_t i = 0; i < students.size(); i++)
 	{
@@ -464,7 +464,7 @@ void updateStudentData(vector<STUDENT>& students)
 	file.open("students.txt", ios::trunc and ios::binary);
 	file.seekp(0, ios::end);
 	int size = file.tellp();
-	
+
 	if (size == 0) {
 		throw exception("File with students has no data!");
 	}
@@ -527,4 +527,30 @@ void updateStudentData(vector<STUDENT>& students)
 		writeStudentsInTxt(students);
 	}
 
+}
+
+void deleteStudentData(vector<STUDENT>& students)
+{
+	ofstream file;
+	file.open("students.txt", ios::trunc and ios::binary);
+	file.seekp(0, ios::end);
+	int size = file.tellp();
+
+	if (size == 0) {
+		throw exception("File with students has no data to delete!");
+	}
+	else {
+		string email;
+		cout << "Enter email of the student that you want to be delete: ";
+		cin.ignore();
+		getline(cin, email);
+		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
+		{
+			cout << "There is no student with this email or it's incorrectly inputted" << endl;
+			cout << "Please enter an email of a student: ";
+			getline(cin, email);
+		}
+		removeStudent(students, email);
+		writeStudentsInTxt(students);
+	}
 }

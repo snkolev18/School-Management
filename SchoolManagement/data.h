@@ -53,3 +53,5 @@ int maxSizeOfStrings(std::vector<std::string>& strings);
 void removeStudent(std::vector<STUDENT>& students, std::string email);
 
 void updateStudentData(std::vector<STUDENT>& students);
+
+void deleteStudentData(std::vector<STUDENT>& students);
