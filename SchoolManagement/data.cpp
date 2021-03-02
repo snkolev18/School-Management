@@ -458,6 +458,17 @@ void removeStudent(vector<STUDENT>& students, string email)
 	}
 }
 
+void removeTeacher(vector<TEACHER>& teachers, string email)
+{
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (email == teachers[i].email)
+		{
+			teachers.erase(teachers.begin() + i);
+		}
+	}
+}
+
 void updateStudentData(vector<STUDENT>& students)
 {
 	ofstream file;
@@ -552,5 +563,31 @@ void deleteStudentData(vector<STUDENT>& students)
 		}
 		removeStudent(students, email);
 		writeStudentsInTxt(students);
+	}
+}
+
+void deleteTeacherData(vector<TEACHER>& teachers)
+{
+	ofstream file;
+	file.open("teachers.txt", ios::trunc and ios::binary);
+	file.seekp(0, ios::end);
+	int size = file.tellp();
+
+	if (size == 0) {
+		throw exception("File with teachers has no data to delete!");
+	}
+	else {
+		string email;
+		cout << "Enter email of the teacher that you want to be delete: ";
+		cin.ignore();
+		getline(cin, email);
+		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
+		{
+			cout << "There is no teachers with this email or it's incorrectly inputted" << endl;
+			cout << "Please enter an email of a teacher: ";
+			getline(cin, email);
+		}
+		removeTeacher(teachers, email);
+		writeTeachersInTxt(teachers);
 	}
 }
