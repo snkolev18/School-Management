@@ -3,8 +3,8 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
-#include <ctime>
 #include "structures.h"
+#include <time.h>
 #include "checkers.h"
 
 using namespace std;
@@ -210,7 +210,7 @@ string getDate()
 
 	time_t timer = time(NULL);
 	tm timerPtr{ 0 };
-	int err = localtime_s(&timerPtr, &timer);
+	int err = ::localtime_s(&timerPtr, &timer);
 
 	day = timerPtr.tm_mday;
 	month = timerPtr.tm_mon + 1;
