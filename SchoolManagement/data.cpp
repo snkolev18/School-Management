@@ -3,8 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
-#include "structures.h"
+#define _POSIX_THREAD_SAFE_FUNCTIONS
 #include <time.h>
+#include "structures.h"
 #include "checkers.h"
 
 using namespace std;
