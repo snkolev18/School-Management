@@ -21,12 +21,10 @@ int main()
 		vector<TEAM> teams;
 		teams = readTeamsFromTxt();
 
-		menu(students, teachers, whiteListedRoles, teams);
+		while(true)menu(students, teachers, whiteListedRoles, teams);
 		//logs.writeLogMsg(SEVERITY::INFO, "CHUPENDRA");
 		LOGS::putLogMsg(SEVERITY::CRITICAL, "Ako ne rabotish.......");
 	}
-
-	vector<LOGS> audits = LOGS::readLogs()
 
 	/*
 	

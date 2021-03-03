@@ -521,7 +521,27 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		break;
 	case 7: displayTeamsInTable(teams, whiteListedRoles);
 		break;
-	case 9: return false;
+	case 8: 
+		try
+		{
+			deleteStudentData(students);
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+		break;
+	case 9:
+		try
+		{
+			updateStudentData(students);
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+		break;
+	case 10: return false;
 	default:
 		cout << endl;
 		cout << "|--------------------------|" << endl;

@@ -3,6 +3,11 @@
 #include <vector>
 #include <string>
 
+#define MAX_NAME_SIZE 15
+#define MAX_TEAM_DESCRIPTION 25
+#define MAX_EMAIL_SIZE 40
+#define MAX_TEAMNAME_SIZE 40
+
 struct STUDENT
 {
 	std::string name = "";

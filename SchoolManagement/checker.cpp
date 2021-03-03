@@ -43,7 +43,7 @@ bool checkForExistingEmail(vector<STUDENT> students, vector<TEACHER> teachers, s
 
 bool checkIfRoleIsWhiteListed(vector<string> whiteListedRoles, string role)
 {
-	if (whiteListedRoles.size() == 0) 
+	if (whiteListedRoles.size() == 0)
 	{
 		return false;
 	}
@@ -110,7 +110,7 @@ bool checkEmailValidity(string email)
 		}
 	}
 
-	return invalidCharsCheck and subdomainCheck ? true : false;
+	return invalidCharsCheck and subdomainCheck and email.length() < MAX_EMAIL_SIZE ? true : false;
 
 	//size_t dotPos = email.find()
 }
@@ -160,13 +160,20 @@ bool checkGrade(string grade)
 	}
 }
 
-bool checkIfNameIsValid(string name) 
+bool checkNameValidity(string name)
 {
+
 	bool isValid = true;
+
+	if (name.length() > MAX_NAME_SIZE) 
+	{
+		return false;
+	}
+
 
 	for (size_t i = 0; i < name.size(); i++)
 	{
-		if(!isalpha(name[i]))
+		if (!isalpha(name[i]))
 		{
 			isValid = false;
 			break;
@@ -174,4 +181,14 @@ bool checkIfNameIsValid(string name)
 	}
 
 	return isValid;
+}
+
+bool checkTeamNameLength(string name) 
+{
+	return name.length() > MAX_TEAMNAME_SIZE ? false : true;
+}
+
+bool checkTeamDescriptionLength(string description) 
+{
+	return description.length() > MAX_TEAM_DESCRIPTION ? false : true;
 }

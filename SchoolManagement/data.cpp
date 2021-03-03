@@ -132,9 +132,23 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 	STUDENT student;
 	cout << "First name: ";
 	getline(cin, student.name);
+	while (!checkNameValidity(student.name))
+	{
+		cout << "That Student name is too long and doesnt't match our criteria" << endl;
+		cout << "Re-Enter a the name: ";
+
+		getline(cin, student.name);
+	}
 	cout << endl;
 	cout << "Surname: ";
 	getline(cin, student.surname);
+	while (!checkNameValidity(student.surname))
+	{
+		cout << "That Student name is too long and doesnt't match our criteria" << endl;
+		cout << "Re-Enter a the name: ";
+
+		getline(cin, student.surname);
+	}
 	cout << endl;
 	cout << "Class: ";
 	getline(cin, student.grade);
@@ -145,6 +159,7 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 		{
 			cout << "This is cringe grade" << endl;
 			cout << "Please enter a valid one: ";
+
 			getline(cin, student.grade);
 		}
 
@@ -161,6 +176,7 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 	{
 		cout << "This email is already registered or it's not valid " << endl;
 		cout << "Please enter new email: ";
+
 		getline(cin, student.email);
 	}
 	return student;
@@ -181,6 +197,7 @@ TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 	{
 		cout << "This email is already registered or it's not valid" << endl;
 		cout << "Please enter new email: ";
+
 		getline(cin, teacher.email);
 	}
 	return teacher;
@@ -193,7 +210,7 @@ string getDate()
 
 	time_t timer = time(NULL);
 	tm timerPtr{ 0 };
-	errno_t err = localtime_s(&timerPtr, &timer);
+	int err = localtime_s(&timerPtr, &timer);
 
 	day = timerPtr.tm_mday;
 	month = timerPtr.tm_mon + 1;
@@ -239,9 +256,18 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	STUDENT student;
 	string email;
 	ROLE role;
+
 	cin.ignore();
 	cout << "Team name: ";
 	getline(cin, team.teamName);
+	while (!checkTeamNameLength(team.teamName))
+	{
+		cout << "That Team name is too long" << endl;
+		cout << "Re-Enter a shorter name: ";
+
+		getline(cin, team.teamName);
+	}
+
 	for (size_t i = 0; i < whiteListedRoles.size(); i++)
 	{
 		cout << whiteListedRoles[i] << ":" << endl;
@@ -251,34 +277,49 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 		{
 			cout << "There is no student with this email or it's incorrectly inputted" << endl;
 			cout << "Please enter an email of a student: ";
+
 			getline(cin, email);
 		}
 		role.student = findStudentByEmail(students, email);
 		role.role = whiteListedRoles[i];
 		team.roles.push_back(role);
 	}
+
 	cout << "Enter the email of the consultant (teacher) of your team: ";
 	getline(cin, email);
 	while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 	{
 		cout << "There is no teacher with this email or it's incorrectly inputted" << endl;
 		cout << "Please enter an email of a teacher: ";
+
 		getline(cin, email);
 	}
+
 	team.teacher = findTeacherByEmail(teachers, email);
 	team.status = TEAM::statusToString(TEAM::IN_USE);
+
 	cout << "Write the description of the team: ";
 	getline(cin, team.description);
+	while (!checkTeamDescriptionLength(team.description)) 
+	{
+		cout << "Description length violates our criteria" << endl;
+		cout << "Write shorter description: ";
+
+		getline(cin, team.description);
+	}
+
 	teachers[findIndexByEmailTeachers(teachers, email)].teams.push_back(team.teamName);
 	team.dateCreation = getDate();
 	team.teacher.teams.push_back(team.teamName);
 	writeTeachersInTxt(teachers);
+
 	return team;
 }
 
 void addRole(vector<string>& whiteListedRoles)
 {
 	string role;
+
 	cout << "Enter a name for the role: ";
 	getline(cin, role);
 	while (checkIfRoleIsWhiteListed(whiteListedRoles, role))
@@ -287,6 +328,7 @@ void addRole(vector<string>& whiteListedRoles)
 		cout << "Please enter a new name for the role: ";
 		getline(cin, role);
 	}
+
 	whiteListedRoles.push_back(role);
 }
 
@@ -307,6 +349,7 @@ STUDENT parsedStudentInfo(string info)
 	info.erase(0, info.find('|') + 1);
 	studentInfo.email = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
+
 	return studentInfo;
 }
 
@@ -318,11 +361,13 @@ TEACHER parsedTeacherInfo(string info)
 	info.erase(0, info.find('|') + 1);
 	teacherInfo.surname = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
+
 	while (info.find('=') != string::npos)
 	{
 		teacherInfo.teams.push_back(info.substr(0, info.find('=')));
 		info.erase(0, info.find('=') + 1);
 	}
+
 	teacherInfo.email = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
 	return teacherInfo;
@@ -332,8 +377,10 @@ TEAM parsedTeamInfo(string info)
 {
 	TEAM teamInfo;
 	ROLE roles;
+
 	teamInfo.teamName = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
+
 	while (info.find(',') != string::npos)
 	{
 		roles.role = info.substr(0, info.find(':'));
@@ -342,6 +389,7 @@ TEAM parsedTeamInfo(string info)
 		info.erase(0, info.find(',') + 1);
 		teamInfo.roles.push_back(roles);
 	}
+
 	teamInfo.teacher = parsedTeacherInfo(info.substr(0, info.find(";|") + 1));
 	info.erase(0, info.find(";|") + 2);
 	teamInfo.dateCreation = info.substr(0, info.find('|'));
@@ -350,6 +398,7 @@ TEAM parsedTeamInfo(string info)
 	info.erase(0, info.find('|') + 1);
 	teamInfo.description = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
+
 	return teamInfo;
 }
 
@@ -358,6 +407,7 @@ vector<string> readRolesFromTxt()
 	vector<string> roles;
 	string info;
 	ifstream file("roles.txt");
+
 	if (file.is_open())
 	{
 		while (getline(file, info))
@@ -366,6 +416,7 @@ vector<string> readRolesFromTxt()
 		}
 		file.close();
 	}
+
 	return roles;
 }
 
@@ -375,6 +426,7 @@ vector<STUDENT> readStudentsFromTxt()
 	ifstream file;
 	string info;
 	file.open("students.txt");
+
 	if (file.is_open())
 	{
 		while (getline(file, info))
@@ -382,6 +434,7 @@ vector<STUDENT> readStudentsFromTxt()
 			students.push_back(parsedStudentInfo(info));
 		}
 	}
+
 	return students;
 }
 
@@ -391,6 +444,7 @@ vector<TEACHER> readTeachersFromTxt()
 	ifstream file;
 	string info;
 	file.open("teachers.txt");
+
 	if (file.is_open())
 	{
 		while (getline(file, info))
@@ -398,6 +452,7 @@ vector<TEACHER> readTeachersFromTxt()
 			teachers.push_back(parsedTeacherInfo(info));
 		}
 	}
+
 	return teachers;
 }
 
@@ -407,6 +462,7 @@ vector<TEAM> readTeamsFromTxt()
 	ifstream file;
 	string info;
 	file.open("teams.txt");
+
 	if (file.is_open())
 	{
 		while (getline(file, info))
@@ -414,6 +470,7 @@ vector<TEAM> readTeamsFromTxt()
 			teams.push_back(parsedTeamInfo(info));
 		}
 	}
+
 	return teams;
 }
 
@@ -437,6 +494,7 @@ void addStudentToTeam(vector<ROLE>& students, ROLE& student)
 int maxSizeOfStrings(vector<string>& strings)
 {
 	int max = 0;
+
 	for (size_t i = 0; i < strings.size(); i++)
 	{
 		if (strings[i].size() > max)
@@ -444,6 +502,7 @@ int maxSizeOfStrings(vector<string>& strings)
 			max = strings[i].size();
 		}
 	}
+
 	return max;
 }
 
@@ -471,16 +530,18 @@ void removeTeacher(vector<TEACHER>& teachers, string email)
 
 void updateStudentData(vector<STUDENT>& students)
 {
-	ofstream file;
-	file.open("students.txt", ios::trunc and ios::binary);
+	fstream file;
+	file.open("students.txt", ios::out | ios::trunc | ios::binary);
 	file.seekp(0, ios::end);
-	int size = file.tellp();
+	std::streamoff size = file.tellp();
 
 	if (size == 0) {
-		throw exception("File with students has no data!");
+		LOGS::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
+		throw std::exception("File with students has no data!");
 	}
 	else {
 		string email;
+
 		cout << "Enter the email of the student that you want to edit: ";
 		cin >> email;
 		while (!checkEmailValidity(email))
@@ -502,7 +563,7 @@ void updateStudentData(vector<STUDENT>& students)
 		}
 
 		cin >> students.at(id).name;
-		while (!checkIfNameIsValid(students.at(id).name))
+		while (!checkNameValidity(students.at(id).name))
 		{
 			cout << "Name is incorrect" << endl;
 			cout << "Re-Enter a correct name: ";
@@ -510,7 +571,7 @@ void updateStudentData(vector<STUDENT>& students)
 		}
 
 		cin >> students.at(id).surname;
-		while (!checkIfNameIsValid(students.at(id).surname))
+		while (!checkNameValidity(students.at(id).surname))
 		{
 			cout << "Surname is incorrect" << endl;
 			cout << "Re-Enter a correct surname: ";
@@ -537,21 +598,23 @@ void updateStudentData(vector<STUDENT>& students)
 
 		writeStudentsInTxt(students);
 	}
-
+	LOGS::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
 }
 
 void deleteStudentData(vector<STUDENT>& students)
 {
 	ofstream file;
-	file.open("students.txt", ios::trunc and ios::binary);
+	file.open("students.txt", ios::out | ios::trunc | ios::binary);
 	file.seekp(0, ios::end);
-	int size = file.tellp();
+	std::streamoff size = file.tellp();
 
 	if (size == 0) {
-		throw exception("File with students has no data to delete!");
+		LOGS::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		throw std::exception("File with students has no data to delete!");
 	}
 	else {
 		string email;
+
 		cout << "Enter email of the student that you want to be delete: ";
 		cin.ignore();
 		getline(cin, email);
@@ -569,15 +632,17 @@ void deleteStudentData(vector<STUDENT>& students)
 void deleteTeacherData(vector<TEACHER>& teachers)
 {
 	ofstream file;
-	file.open("teachers.txt", ios::trunc and ios::binary);
+	file.open("teachers.txt", ios::out | ios::trunc | ios::binary);
 	file.seekp(0, ios::end);
-	int size = file.tellp();
+	std::streamoff size = file.tellp();
 
 	if (size == 0) {
-		throw exception("File with teachers has no data to delete!");
+		LOGS::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		throw std::exception("File with teachers has no data to delete!");
 	}
 	else {
 		string email;
+
 		cout << "Enter email of the teacher that you want to be delete: ";
 		cin.ignore();
 		getline(cin, email);

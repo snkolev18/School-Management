@@ -15,4 +15,8 @@ bool checkEmailValidity(std::string email);
 
 bool checkGrade(std::string grade);
 
-bool checkIfNameIsValid(std::string name);
+bool checkNameValidity(std::string name);
+
+bool checkTeamNameLength(std::string name);
+
+bool checkTeamDescriptionLength(std::string description);
