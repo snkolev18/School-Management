@@ -659,4 +659,5 @@ void deleteTeacherData(vector<TEACHER>& teachers)
 		removeTeacher(teachers, email);
 		writeTeachersInTxt(teachers);
 	}
+
 }
