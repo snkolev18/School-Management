@@ -541,7 +541,7 @@ void updateStudentData(vector<STUDENT>& students)
 
 	if (size == 0) {
 		LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
-		throw std::exception("File with students has no data!");
+		throw std::runtime_error("File with students has no data!");
 	}
 	else {
 		string email;
@@ -614,7 +614,7 @@ void deleteStudentData(vector<STUDENT>& students)
 
 	if (size == 0) {
 		LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
-		throw std::exception("File with students has no data to delete!");
+		throw std::runtime_error("File with students has no data to delete!");
 	}
 	else {
 		string email;
@@ -642,7 +642,7 @@ void deleteTeacherData(vector<TEACHER>& teachers)
 
 	if (size == 0) {
 		LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
-		throw std::exception("File with teachers has no data to delete!");
+		throw std::runtime_error("File with teachers has no data to delete!");
 	}
 	else {
 		string email;
