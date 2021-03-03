@@ -86,5 +86,5 @@ struct LOGS
 	std::fstream logFile;
 
 	std::vector<LOGS> readLogs();
-	LOGS parseLogs(std::string currLine);
+	static LOGS parseLogs(std::string currLine);
 };

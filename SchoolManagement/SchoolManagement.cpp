@@ -26,7 +26,7 @@ int main()
 		LOGS::putLogMsg(SEVERITY::CRITICAL, "Ako ne rabotish.......");
 	}
 
-	vector<LOGS> audits = logs.readLogs();
+	vector<LOGS> audits = LOGS::readLogs()
 
 	/*
 	
