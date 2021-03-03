@@ -10,24 +10,23 @@ using namespace std;
 
 int main()
 {
-	LOGS logs;
-	if (logs.open("logs.log")) {
-		vector<string> whiteListedRoles;
-		whiteListedRoles = readRolesFromTxt();
-		vector<STUDENT> students;
-		students = readStudentsFromTxt();
-		vector<TEACHER> teachers;
-		teachers = readTeachersFromTxt();
-		vector<TEAM> teams;
-		teams = readTeamsFromTxt();
+	logger.open("logs.log");
+	logger.writeLogMsg(SEVERITY::INFO, "CHUPENDRA");
+	vector<string> whiteListedRoles;
+	whiteListedRoles = readRolesFromTxt();
+	vector<STUDENT> students;
+	students = readStudentsFromTxt();
+	vector<TEACHER> teachers;
+	teachers = readTeachersFromTxt();
+	vector<TEAM> teams;
+	teams = readTeamsFromTxt();
 
-		while(true)menu(students, teachers, whiteListedRoles, teams);
-		//logs.writeLogMsg(SEVERITY::INFO, "CHUPENDRA");
-		LOGS::putLogMsg(SEVERITY::CRITICAL, "Ako ne rabotish.......");
-	}
+	while (true)menu(students, teachers, whiteListedRoles, teams);
+	
+	//LOGS::putLogMsg(SEVERITY::CRITICAL, "Ako ne rabotish.......");
 
 	/*
-	
+
 	Tuka
 
 	students.push_back(inputStudent(students,teachers));

@@ -206,12 +206,12 @@ TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 
 string getDate()
 {
-	int day, month, year, hour, minute, second;
+	/*int day, month, year, hour, minute, second;
 	string days, months, years, hours, minutes, seconds;
 
 	time_t timer = time(NULL);
 	tm timerPtr{ 0 };
-	int err = ::localtime_s(&timerPtr, &timer);
+	errno_t err = localtime_s(&timerPtr, &timer);
 
 	day = timerPtr.tm_mday;
 	month = timerPtr.tm_mon + 1;
@@ -248,7 +248,10 @@ string getDate()
 
 	years = to_string(year);
 
-	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;
+	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;*/
+
+	return "chicho ivo sadsa sad as as";
+	
 }
 
 TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers)
@@ -537,7 +540,7 @@ void updateStudentData(vector<STUDENT>& students)
 	std::streamoff size = file.tellp();
 
 	if (size == 0) {
-		LOGS::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
+		LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
 		throw std::exception("File with students has no data!");
 	}
 	else {
@@ -599,7 +602,7 @@ void updateStudentData(vector<STUDENT>& students)
 
 		writeStudentsInTxt(students);
 	}
-	LOGS::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
+	LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
 }
 
 void deleteStudentData(vector<STUDENT>& students)
@@ -610,7 +613,7 @@ void deleteStudentData(vector<STUDENT>& students)
 	std::streamoff size = file.tellp();
 
 	if (size == 0) {
-		LOGS::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		throw std::exception("File with students has no data to delete!");
 	}
 	else {
@@ -638,7 +641,7 @@ void deleteTeacherData(vector<TEACHER>& teachers)
 	std::streamoff size = file.tellp();
 
 	if (size == 0) {
-		LOGS::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		throw std::exception("File with teachers has no data to delete!");
 	}
 	else {

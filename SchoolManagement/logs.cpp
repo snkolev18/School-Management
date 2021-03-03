@@ -7,13 +7,15 @@
 
 using namespace std;
 
-bool LOGS::open(string filename)
+LOG logger;
+
+bool LOG::open(string filename)
 {
 	logFile.open(filename, ios::out | ios::app);
 	return logFile.is_open();
 }
 
-void LOGS::close()
+void LOG::close()
 {
 	logFile.close();
 }
@@ -56,30 +58,31 @@ SEVERITY severityToENUM(string severity)
 	}
 }
 
-string LOGS::putLogMsg() 
+string LOG::putLogMsg() 
 {
-	return "[" + date + " " + time + "]" + " " + severityToString(severity) + " " + information + '\n';
+	return "[" + date + " " + time + "]" + " " + severityToString(severity) + " " + information ;
 }
 
-void LOGS::writeLogMsg(SEVERITY severity, string information)
+void LOG::writeLogMsg(SEVERITY severity, string information)
 {
 
-	LOGS logEntry = { getDate().substr(0, getDate().find(' ')), getDate().substr(getDate().find(' ')), severity, information };
-	logFile << logEntry.putLogMsg();
+	LOG logEntry = { getDate().substr(0, getDate().find(' ')), getDate().substr(getDate().find(' ')), severity, information };
+	logFile << logEntry.putLogMsg() << endl;
 
 }
 
-void LOGS::putLogMsg(SEVERITY severity, string information)
+void LOG::putLogMsg(SEVERITY severity, string information)
 {
 	ofstream logs;
-	logs.open("logs.log", ios::app);
+	logs.open("logs.log", ios::out | ios::app);
+	
 	logs << "[" + getDate().substr(0, getDate().find(' ')) + " " + getDate().substr(getDate().find(' ')) + "]" + " " + severityToString(severity) + " " + information + '\n';
 	logs.close();
 }
 
-LOGS LOGS::parseLogs(string currLine) 
+LOG LOG::parseLogs(string currLine) 
 {
-	LOGS audits;
+	LOG audits;
 
 	audits.date = currLine.substr(1, currLine.find(' '));
 	currLine.erase(0, currLine.find(' ') + 1);
@@ -92,9 +95,9 @@ LOGS LOGS::parseLogs(string currLine)
 	return audits;
 }
 
-vector<LOGS> LOGS::readLogs() 
+vector<LOG> LOG::readLogs() 
 {
-	vector<LOGS> audits;
+	vector<LOG> audits;
 	string currLog;
 	if (open("logs.log")) 
 	{

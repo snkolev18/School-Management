@@ -75,7 +75,7 @@ enum SEVERITY
 	INFO
 };
 
-struct LOGS
+struct LOG
 {
 	std::string date;
 	std::string time;
@@ -90,6 +90,8 @@ struct LOGS
 	void writeLogMsg(SEVERITY severity, std::string information);
 	std::fstream logFile;
 
-	std::vector<LOGS> readLogs();
-	static LOGS parseLogs(std::string currLine);
+	std::vector<LOG> readLogs();
+	static LOG parseLogs(std::string currLine);
 };
+
+extern LOG logger;
