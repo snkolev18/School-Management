@@ -81,6 +81,10 @@ struct LOGS
 	bool open(std::string filename);
 	void close();
 	std::string putLogMsg();
+	static void putLogMsg(SEVERITY severity, std::string msg);
 	void writeLogMsg(SEVERITY severity, std::string information);
-	std::ofstream logFile;
+	std::fstream logFile;
+
+	std::vector<LOGS> readLogs();
+	LOGS parseLogs(std::string currLine);
 };

@@ -22,8 +22,11 @@ int main()
 		teams = readTeamsFromTxt();
 
 		menu(students, teachers, whiteListedRoles, teams);
-		logs.writeLogMsg(SEVERITY::INFO, "CHUPENDRA");
+		//logs.writeLogMsg(SEVERITY::INFO, "CHUPENDRA");
+		LOGS::putLogMsg(SEVERITY::CRITICAL, "Ako ne rabotish.......");
 	}
+
+	vector<LOGS> audits = logs.readLogs();
 
 	/*
 	
