@@ -458,7 +458,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
        ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   
                                                                                                                   
         )";
-	system("chcp 437 > NUL");
+	system("chcp 437");
 	cout << endl;
 	cout << "/-----------------------------------\\" << endl;
 	cout << "Welcome to the Menu!" << endl;
