@@ -70,6 +70,9 @@
     <Text Include="logs.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="school.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

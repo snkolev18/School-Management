@@ -157,6 +157,7 @@
   <ItemGroup>
     <Text Include="logs.txt" />
     <Text Include="roles.txt" />
+    <Text Include="school.txt" />
     <Text Include="students.txt" />
     <Text Include="teachers.txt" />
     <Text Include="teams.txt" />

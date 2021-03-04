@@ -224,3 +224,6 @@
 [2021/03/05  01:07:52] INFO Program was executed successfully
 [2021/03/05  01:08:21] INFO Program was executed successfully
 [2021/03/05  01:08:58] INFO Program was executed successfully
+[2021/03/05  01:37:32] INFO Program was executed successfully
+[2021/03/05  01:37:58] INFO Option X: Teacher was successfully added
+[2021/03/05  01:37:58] INFO Teachers were successfully written into teachers.txt

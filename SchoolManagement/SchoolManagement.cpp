@@ -10,20 +10,24 @@ using namespace std;
 
 int main()
 {
+	SCHOOL school;
+
+
+
 	logger.open("logs.txt");
 	logger.writeLogMsg(SEVERITY::INFO, "Program was executed successfully");
 	vector<string> whiteListedRoles;
 	whiteListedRoles = readRolesFromTxt();
-	vector<STUDENT> students;
-	students = readStudentsFromTxt();
-	vector<TEACHER> teachers;
-	teachers = readTeachersFromTxt();
-	vector<TEAM> teams;
-	teams = readTeamsFromTxt();
+	//vector<STUDENT> students;
+	school.students = readStudentsFromTxt();
+	//vector<TEACHER> teachers;
+	school.teachers = readTeachersFromTxt();
+	//vector<TEAM> teams;
+	school.teams = readTeamsFromTxt();
 
 
 
-	while (true)menu(students, teachers, whiteListedRoles, teams);
+	while (true)menu(school.students, school.teachers, whiteListedRoles, school.teams);
 
 	logger.writeLogMsg(SEVERITY::INFO, "Program was terminated successfully");
 
