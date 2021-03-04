@@ -73,7 +73,7 @@ void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& m
 	cout << char(186) << endl;
 }
 
-void displayBodyTeamsTable(vector<TEAM>& teams,int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus)
+void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus)
 {
 	for (size_t i = 0; i < teams.size(); i++)
 	{
@@ -220,7 +220,7 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 		maxSize = maxSizeDate + maxSizeNames + maxSizeDescriptions + maxSizeTeachers + maxSizeStatus;
 
 		displayHeaderTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus, whiteListedRoles);
-		displayBodyTeamsTable(teams,maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus);
+		displayBodyTeamsTable(teams, maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus);
 		displayFooterTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus);
 	}
 	else
@@ -473,9 +473,18 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	cout << endl;
 	cout << "/-----------------------------------\\" << endl;
 	cout << "Welcome to the Menu!" << endl;
-	cout << "(1) |Add Students|" << endl;
-	cout << "(2) |Add Teachers|" << endl;
-	cout << "(3) |Add Roles|" << endl;
+	cout << "(1) |Add a student|" << endl;
+	cout << "(2) |Add a teacher|" << endl;
+	cout << "(3) |Add a role|" << endl;
+	cout << "(4) |Add a team|" << endl;
+	cout << "(5) |List of the students|" << endl;
+	cout << "(6) |List of the teachers|" << endl;
+	cout << "(7) |List of the teams|" << endl;
+	cout << "(8) |Delete a student|" << endl;
+	cout << "(9) |Delete a teacher|" << endl;
+	cout << "(10) |Delete a team|" << endl;
+	cout << "(11) |Update student's information|" << endl;
+	cout << "(12) |Update teacher's information|" << endl;
 	cout << "\\-----------------------------------/" << endl;
 
 	int option;
@@ -486,20 +495,20 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	{
 	case 1:
 		cin.ignore();
-			students.push_back(inputStudent(students, teachers));
-			writeStudentsInTxt(students);
+		students.push_back(inputStudent(students, teachers));
+		writeStudentsInTxt(students);
 		break;
 
 	case 2:
 		cin.ignore();
-			teachers.push_back(inputTeacher(students, teachers));
-			writeTeachersInTxt(teachers);
+		teachers.push_back(inputTeacher(students, teachers));
+		writeTeachersInTxt(teachers);
 		break;
 
 	case 3:
 		cin.ignore();
-			addRole(whiteListedRoles);
-			writeRolesInTxt(whiteListedRoles);
+		addRole(whiteListedRoles);
+		writeRolesInTxt(whiteListedRoles);
 		break;
 	case 4:
 		teams.push_back(inputTeam(whiteListedRoles, students, teachers));
@@ -513,12 +522,12 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		break;
 	case 7: displayTeamsInTable(teams, whiteListedRoles);
 		break;
-	case 8: 
+	case 8:
 		try
 		{
 			deleteStudentData(students);
 		}
-		catch (const std::exception& ex)
+		catch (const std::exception & ex)
 		{
 			cout << ex.what();
 		}
@@ -526,9 +535,9 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	case 9:
 		try
 		{
-			updateStudentData(students);
+			deleteTeacherData(teachers);
 		}
-		catch (const std::exception& ex)
+		catch (const std::exception & ex)
 		{
 			cout << ex.what();
 		}
@@ -536,14 +545,24 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	case 10:
 		try
 		{
-			deleteTeacherData(teachers);
+			deleteTeamsData(teams);
 		}
-		catch (const std::exception& ex)
+		catch (const std::exception & ex)
 		{
 			cout << ex.what();
 		}
 		break;
 	case 11:
+		try
+		{
+			updateStudentData(students);
+		}
+		catch (const std::exception & ex)
+		{
+			cout << ex.what();
+		}
+		break;
+	case 12:
 		/*vector<LOG> audits = logger.readLogs();
 
 		for (size_t i = 0; i < audits.size(); i++)
@@ -555,17 +574,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 			updateTeacherData(teachers);
 		}
-		catch (const std::exception& ex)
-		{
-			cout << ex.what();
-		}
-		break;
-	case 12:
-		try
-		{
-			deleteTeamsData(teams);
-		}
-		catch (const std::exception& ex)
+		catch (const std::exception & ex)
 		{
 			cout << ex.what();
 		}
