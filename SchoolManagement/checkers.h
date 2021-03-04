@@ -22,3 +22,5 @@ bool checkNameValidity(std::string name);
 bool checkTeamNameLength(std::string name);
 
 bool checkTeamDescriptionLength(std::string description);
+
+void checkChoiceInput(int& option);

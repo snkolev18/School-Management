@@ -210,3 +210,16 @@ bool checkTeamDescriptionLength(string description)
 {
 	return description.length() > MAX_TEAM_DESCRIPTION ? false : true;
 }
+
+void checkChoiceInput(int& option) 
+{
+
+	while (!(cin >> option).good())
+	{
+		cout << "That's not a valid input!" << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "Re-enter your choice: ";
+	}
+
+}

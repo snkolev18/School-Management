@@ -891,8 +891,13 @@ void updateTeamsData(vector<TEAM>& teams)
 	
 }
 
-vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, string& grade)
+vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const string& grade)
 {
+	if (students.empty()) 
+	{
+		throw runtime_error("No students to search for and filter!!!");
+	}
+
 	vector<STUDENT> foundStudents;
 	for (size_t i = 0; i < students.size(); i++)
 	{
@@ -901,11 +906,17 @@ vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, string& gra
 			foundStudents.push_back(students[i]);
 		}
 	}
+
 	return foundStudents;
 }
 
-vector<STUDENT> findStudentsByName(vector<STUDENT>& students, string& name)
+vector<STUDENT> findStudentsByName(const vector<STUDENT>& students, const string& name)
 {
+	if (students.empty())
+	{
+		throw runtime_error("No students to search for or filter!!!");
+	}
+
 	vector<STUDENT> foundStudents;
 	for (size_t i = 0; i < students.size(); i++)
 	{
@@ -914,11 +925,17 @@ vector<STUDENT> findStudentsByName(vector<STUDENT>& students, string& name)
 			foundStudents.push_back(students[i]);
 		}
 	}
+
 	return foundStudents;
 }
 
-vector<STUDENT> findStudentsBySurname(vector<STUDENT>& students, string& surname)
+vector<STUDENT> findStudentsBySurname(const vector<STUDENT>& students, const string& surname)
 {
+	if (students.empty())
+	{
+		throw runtime_error("No students to search for or filter!!!");
+	}
+
 	vector<STUDENT> foundStudents;
 	for (size_t i = 0; i < students.size(); i++)
 	{
@@ -927,11 +944,17 @@ vector<STUDENT> findStudentsBySurname(vector<STUDENT>& students, string& surname
 			foundStudents.push_back(students[i]);
 		}
 	}
+
 	return foundStudents;
 }
 
-vector<TEACHER> findTeachersByName(vector<TEACHER>& teachers, string& name)
+vector<TEACHER> findTeachersByName(const vector<TEACHER>& teachers, const string& name)
 {
+	if (teachers.empty())
+	{
+		throw runtime_error("No teachers to search for or filter!!!");
+	}
+
 	vector<TEACHER> foundTeachers;
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
@@ -940,11 +963,17 @@ vector<TEACHER> findTeachersByName(vector<TEACHER>& teachers, string& name)
 			foundTeachers.push_back(teachers[i]);
 		}
 	}
+
 	return foundTeachers;
 }
 
-vector<TEACHER> findTeachersBySurname(vector<TEACHER>& teachers, string& surname)
+vector<TEACHER> findTeachersBySurname(const vector<TEACHER>& teachers, const string& surname)
 {
+	if (teachers.empty())
+	{
+		throw runtime_error("No teachers to search for or filter!!!");
+	}
+
 	vector<TEACHER> foundTeachers;
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
@@ -953,11 +982,17 @@ vector<TEACHER> findTeachersBySurname(vector<TEACHER>& teachers, string& surname
 			foundTeachers.push_back(teachers[i]);
 		}
 	}
+
 	return foundTeachers;
 }
 
-vector<TEACHER> findTeachersByNoTeams(vector<TEACHER>& teachers)
+vector<TEACHER> findTeachersByNoTeams(const vector<TEACHER>& teachers)
 {
+	if (teachers.empty())
+	{
+		throw runtime_error("No teachers to search for or filter!!!");
+	}
+
 	vector<TEACHER> foundTeachers;
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
@@ -966,11 +1001,17 @@ vector<TEACHER> findTeachersByNoTeams(vector<TEACHER>& teachers)
 			foundTeachers.push_back(teachers[i]);
 		}
 	}
+
 	return foundTeachers;
 }
 
-vector<TEAM> findTeamsByTeacher(vector<TEAM>& teams,string& name)
+vector<TEAM> findTeamsByTeacher(const vector<TEAM>& teams, const string& name)
 {
+	if (teams.empty())
+	{
+		throw runtime_error("No teams to search for or filter!!!");
+	}
+
 	vector<TEAM> foundTeams;
 	for (size_t i = 0; i < teams.size(); i++)
 	{
@@ -979,11 +1020,17 @@ vector<TEAM> findTeamsByTeacher(vector<TEAM>& teams,string& name)
 			foundTeams.push_back(teams[i]);
 		}
 	}
+
 	return foundTeams;
 }
 
-vector<TEAM> findTeamsByStatus(vector<TEAM>& teams, string& status)
+vector<TEAM> findTeamsByStatus(const vector<TEAM>& teams, const string& status)
 {
+	if (teams.empty())
+	{
+		throw runtime_error("No teams to search for or filter!!!");
+	}
+
 	vector<TEAM> foundTeams;
 	for (size_t i = 0; i < teams.size(); i++)
 	{
@@ -992,5 +1039,6 @@ vector<TEAM> findTeamsByStatus(vector<TEAM>& teams, string& status)
 			foundTeams.push_back(teams[i]);
 		}
 	}
+
 	return foundTeams;
 }

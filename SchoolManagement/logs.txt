@@ -197,3 +197,30 @@
 [2021/03/04  23:37:52] INFO Program was executed successfully
 [2021/03/04  23:38:35] INFO Students were successfully written into students.txt
 [2021/03/04  23:38:35] INFO Student was successfully UPDATED
+[2021/03/05  00:18:33] INFO Program was executed successfully
+[2021/03/05  00:39:33] INFO Program was executed successfully
+[2021/03/05  00:41:08] INFO Students were successfully written into students.txt
+[2021/03/05  00:41:08] INFO Student was successfully DELETED
+[2021/03/05  00:44:44] INFO Program was executed successfully
+[2021/03/05  00:46:40] INFO Program was executed successfully
+[2021/03/05  00:47:25] INFO Students were successfully written into students.txt
+[2021/03/05  00:47:25] INFO Student was successfully DELETED
+[2021/03/05  00:47:36] INFO Students were successfully written into students.txt
+[2021/03/05  00:47:36] INFO Student was successfully DELETED
+[2021/03/05  00:47:38] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/05  00:48:35] INFO Program was executed successfully
+[2021/03/05  00:49:12] INFO Program was executed successfully
+[2021/03/05  00:51:36] INFO Program was executed successfully
+[2021/03/05  00:52:10] INFO Program was executed successfully
+[2021/03/05  00:52:14] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/05  00:52:47] INFO Program was executed successfully
+[2021/03/05  00:53:05] INFO Program was executed successfully
+[2021/03/05  00:53:21] INFO Program was executed successfully
+[2021/03/05  00:59:45] INFO Program was executed successfully
+[2021/03/05  01:00:33] INFO Program was executed successfully
+[2021/03/05  01:01:20] INFO Program was executed successfully
+[2021/03/05  01:04:17] INFO Program was executed successfully
+[2021/03/05  01:05:16] INFO Program was executed successfully
+[2021/03/05  01:07:52] INFO Program was executed successfully
+[2021/03/05  01:08:21] INFO Program was executed successfully
+[2021/03/05  01:08:58] INFO Program was executed successfully

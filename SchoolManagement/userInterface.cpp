@@ -7,6 +7,7 @@
 #include "functions.h"
 #include "data.h"
 #include "userInterface.h"
+#include "checkers.h"
 using namespace std;
 
 void displayNSpaces(int n)
@@ -474,7 +475,7 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& whiteListedRoles, vector<TEAM>& teams)
 {
 	vector<STUDENT> foundStudentsByCriteria;
-	string grade;
+	string criteria;
 	system("chcp 65001");
 	cout << endl << u8R"( 
     ████████╗███████╗ █████╗ ███╗   ███╗███████╗ ██████╗ ███╗   ██╗██████╗ ██╗   ██╗██████╗  ██████╗ ███████╗████████╗
@@ -504,7 +505,8 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	cout << "\\-----------------------------------/" << endl;
 
 	int option;
-	cout << "->: "; cin >> option;
+	cout << "->: "; 
+	checkChoiceInput(option);
 
 
 	switch (option)
@@ -543,7 +545,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 			deleteStudentData(students);
 		}
-		catch (const std::exception & ex)
+		catch (const std::exception& ex)
 		{
 			cout << ex.what();
 		}
@@ -553,7 +555,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 			deleteTeacherData(teachers);
 		}
-		catch (const std::exception & ex)
+		catch (const std::exception& ex)
 		{
 			cout << ex.what();
 		}
@@ -563,7 +565,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 			deleteTeamsData(teams);
 		}
-		catch (const std::exception & ex)
+		catch (const std::exception& ex)
 		{
 			cout << ex.what();
 		}
@@ -573,7 +575,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 			updateStudentData(students);
 		}
-		catch (const std::exception & ex)
+		catch (const std::exception& ex)
 		{
 			cout << ex.what();
 		}
@@ -590,16 +592,53 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 			updateTeacherData(teachers);
 		}
-		catch (const std::exception & ex)
+		catch (const std::exception& ex)
 		{
 			cout << ex.what();
 		}
 		break;
 	case 13: return false;
 	case 14:
-		cin >> grade;
-		foundStudentsByCriteria = findStudentsByClass(students, grade);
-		displayStudentsInTable(foundStudentsByCriteria);
+		try
+		{
+			cin >> criteria;
+			foundStudentsByCriteria = findStudentsByClass(students, criteria);
+			displayStudentsInTable(foundStudentsByCriteria);
+			foundStudentsByCriteria.clear();
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+		break;
+	case 15:
+		try
+		{
+			cin >> criteria;
+			foundStudentsByCriteria = findStudentsByName(students, criteria);
+			displayStudentsInTable(foundStudentsByCriteria);
+			foundStudentsByCriteria.clear();
+
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+		break;
+	case 16:
+		try
+		{
+
+			cin >> criteria;
+			foundStudentsByCriteria = findStudentsBySurname(students, criteria);
+			displayStudentsInTable(foundStudentsByCriteria);
+			foundStudentsByCriteria.clear();
+
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
 		break;
 	default:
 		cout << endl;

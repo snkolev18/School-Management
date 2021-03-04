@@ -68,18 +68,18 @@ int findTeamByName(const std::vector<TEAM>& teams, const std::string name);
 
 void updateTeamsData(std::vector<TEAM>& teams);
 
-std::vector<STUDENT> findStudentsByClass(const std::vector<STUDENT>& students, std::string& grade);
+std::vector<STUDENT> findStudentsByClass(const std::vector<STUDENT>& students, const std::string& grade);
 
-std::vector<STUDENT> findStudentsByName(std::vector<STUDENT>& students, std::string& name);
+std::vector<STUDENT> findStudentsByName(const std::vector<STUDENT>& students, const std::string& name);
 
-std::vector<STUDENT> findStudentsBySurname(std::vector<STUDENT>& students, std::string& surname);
+std::vector<STUDENT> findStudentsBySurname(const std::vector<STUDENT>& students, const std::string& surname);
 
-std::vector<TEACHER> findTeachersByName(std::vector<TEACHER>& teachers, std::string& name);
+std::vector<TEACHER> findTeachersByName(const std::vector<TEACHER>& teachers, const std::string& name);
 
-std::vector<TEACHER> findTeachersBySurname(std::vector<TEACHER>& teachers, std::string& surname);
+std::vector<TEACHER> findTeachersBySurname(const std::vector<TEACHER>& teachers, const std::string& surname);
 
-std::vector<TEACHER> findTeachersByNoTeams(std::vector<TEACHER>& teachers);
+std::vector<TEACHER> findTeachersByNoTeams(const std::vector<TEACHER>& teachers);
 
-std::vector<TEAM> findTeamsByTeacher(std::vector<TEAM>& teams, std::string& name);
+std::vector<TEAM> findTeamsByTeacher(const std::vector<TEAM>& teams, const std::string& name);
 
-std::vector<TEAM> findTeamsByStatus(std::vector<TEAM>& teams, std::string& status);
+std::vector<TEAM> findTeamsByStatus(const std::vector<TEAM>& teams, const std::string& status);
