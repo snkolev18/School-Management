@@ -1,4 +1,4 @@
-Petar|Georgiev|d@d.d|;
 aleksandur|dinev|teamsonbudget=agdinev18@codingburgas.bg|;
 stoqn|kolev|abv@abv.bg|;
 stoqn|trollev|troll@abv.bg|;
+a|s|d@abv.bg|;

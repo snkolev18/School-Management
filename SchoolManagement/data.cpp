@@ -890,3 +890,107 @@ void updateTeamsData(vector<TEAM>& teams)
 	}
 	
 }
+
+vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, string& grade)
+{
+	vector<STUDENT> foundStudents;
+	for (size_t i = 0; i < students.size(); i++)
+	{
+		if (students[i].grade == grade)
+		{
+			foundStudents.push_back(students[i]);
+		}
+	}
+	return foundStudents;
+}
+
+vector<STUDENT> findStudentsByName(vector<STUDENT>& students, string& name)
+{
+	vector<STUDENT> foundStudents;
+	for (size_t i = 0; i < students.size(); i++)
+	{
+		if (students[i].name == name)
+		{
+			foundStudents.push_back(students[i]);
+		}
+	}
+	return foundStudents;
+}
+
+vector<STUDENT> findStudentsBySurname(vector<STUDENT>& students, string& surname)
+{
+	vector<STUDENT> foundStudents;
+	for (size_t i = 0; i < students.size(); i++)
+	{
+		if (students[i].surname == surname)
+		{
+			foundStudents.push_back(students[i]);
+		}
+	}
+	return foundStudents;
+}
+
+vector<TEACHER> findTeachersByName(vector<TEACHER>& teachers, string& name)
+{
+	vector<TEACHER> foundTeachers;
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (teachers[i].name == name)
+		{
+			foundTeachers.push_back(teachers[i]);
+		}
+	}
+	return foundTeachers;
+}
+
+vector<TEACHER> findTeachersBySurname(vector<TEACHER>& teachers, string& surname)
+{
+	vector<TEACHER> foundTeachers;
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (teachers[i].surname == surname)
+		{
+			foundTeachers.push_back(teachers[i]);
+		}
+	}
+	return foundTeachers;
+}
+
+vector<TEACHER> findTeachersByNoTeams(vector<TEACHER>& teachers)
+{
+	vector<TEACHER> foundTeachers;
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (teachers[i].teams.empty())
+		{
+			foundTeachers.push_back(teachers[i]);
+		}
+	}
+	return foundTeachers;
+}
+
+vector<TEAM> findTeamsByTeacher(vector<TEAM>& teams,string& name)
+{
+	vector<TEAM> foundTeams;
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		if (teams[i].teacher.name==name)
+		{
+			foundTeams.push_back(teams[i]);
+		}
+	}
+	return foundTeams;
+}
+
+vector<TEAM> findTeamsByStatus(vector<TEAM>& teams, string& status)
+{
+	vector<TEAM> foundTeams;
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		if (teams[i].status == status)
+		{
+			foundTeams.push_back(teams[i]);
+		}
+	}
+	return foundTeams;
+}

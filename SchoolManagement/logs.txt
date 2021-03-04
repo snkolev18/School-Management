@@ -177,3 +177,23 @@
 [2021/03/04  21:45:04] INFO Program was executed successfully
 [2021/03/04  21:46:16] INFO Teams were successfully written into teams.txt
 [2021/03/04  21:46:47] INFO Program was executed successfully
+[2021/03/04  22:50:40] INFO Program was executed successfully
+[2021/03/04  22:51:27] INFO Students were successfully written into students.txt
+[2021/03/04  22:51:27] INFO Student was successfully DELETED
+[2021/03/04  22:51:47] INFO Teachers were successfully written into teachers.txt
+[2021/03/04  22:52:12] INFO Teams were successfully written into teams.txt
+[2021/03/04  23:31:27] INFO Program was executed successfully
+[2021/03/04  23:31:34] INFO Program was executed successfully
+[2021/03/04  23:32:08] INFO Program was executed successfully
+[2021/03/04  23:32:26] INFO Program was executed successfully
+[2021/03/04  23:33:51] INFO Program was executed successfully
+[2021/03/04  23:36:15] INFO Program was executed successfully
+[2021/03/04  23:36:41] INFO Option X: Teacher was successfully added
+[2021/03/04  23:36:41] INFO Teachers were successfully written into teachers.txt
+[2021/03/04  23:36:53] INFO Option X: Student was successfully added
+[2021/03/04  23:36:53] INFO Students were successfully written into students.txt
+[2021/03/04  23:37:35] INFO Option X: Student was successfully added
+[2021/03/04  23:37:35] INFO Students were successfully written into students.txt
+[2021/03/04  23:37:52] INFO Program was executed successfully
+[2021/03/04  23:38:35] INFO Students were successfully written into students.txt
+[2021/03/04  23:38:35] INFO Student was successfully UPDATED

@@ -66,4 +66,20 @@ void deleteTeamsData(std::vector<TEAM>& teams);
 
 int findTeamByName(const std::vector<TEAM>& teams, const std::string name);
 
-void updateTeamsData(vector<TEAM>& teams);
+void updateTeamsData(std::vector<TEAM>& teams);
+
+std::vector<STUDENT> findStudentsByClass(const std::vector<STUDENT>& students, std::string& grade);
+
+std::vector<STUDENT> findStudentsByName(std::vector<STUDENT>& students, std::string& name);
+
+std::vector<STUDENT> findStudentsBySurname(std::vector<STUDENT>& students, std::string& surname);
+
+std::vector<TEACHER> findTeachersByName(std::vector<TEACHER>& teachers, std::string& name);
+
+std::vector<TEACHER> findTeachersBySurname(std::vector<TEACHER>& teachers, std::string& surname);
+
+std::vector<TEACHER> findTeachersByNoTeams(std::vector<TEACHER>& teachers);
+
+std::vector<TEAM> findTeamsByTeacher(std::vector<TEAM>& teams, std::string& name);
+
+std::vector<TEAM> findTeamsByStatus(std::vector<TEAM>& teams, std::string& status);

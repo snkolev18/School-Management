@@ -387,78 +387,94 @@ void displayFooterTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, i
 
 void displayStudentsInTable(vector<STUDENT>& students)
 {
-	int maxSizeNames, maxSizeSurnames, maxSizeEmail, maxSizeClass, maxSize;
-
-	vector<string> names, surnames, emails, classes;
-
-	for (size_t i = 0; i < students.size(); i++)
+	if (students.size() > 0)
 	{
-		names.push_back(students[i].name);
-		surnames.push_back(students[i].surname);
-		emails.push_back(students[i].email);
-		classes.push_back(students[i].grade);
+		int maxSizeNames, maxSizeSurnames, maxSizeEmail, maxSizeClass, maxSize;
+
+		vector<string> names, surnames, emails, classes;
+
+		for (size_t i = 0; i < students.size(); i++)
+		{
+			names.push_back(students[i].name);
+			surnames.push_back(students[i].surname);
+			emails.push_back(students[i].email);
+			classes.push_back(students[i].grade);
+		}
+
+		names.push_back("Name");
+		surnames.push_back("Surname");
+		classes.push_back("Class");
+		emails.push_back("Email");
+
+		maxSizeNames = maxSizeOfStrings(names);
+		maxSizeSurnames = maxSizeOfStrings(surnames);
+		maxSizeEmail = maxSizeOfStrings(emails);
+		maxSizeClass = maxSizeOfStrings(classes);
+
+		maxSize = maxSizeClass + maxSizeEmail + maxSizeNames + maxSizeSurnames;
+
+		displayHeaderStudentsAndTeachersTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail, "Class");
+		displayBodyStudentsTable(students, maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
+		displayFooterTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
 	}
-
-	names.push_back("Name");
-	surnames.push_back("Surname");
-	classes.push_back("Class");
-	emails.push_back("Email");
-
-	maxSizeNames = maxSizeOfStrings(names);
-	maxSizeSurnames = maxSizeOfStrings(surnames);
-	maxSizeEmail = maxSizeOfStrings(emails);
-	maxSizeClass = maxSizeOfStrings(classes);
-
-	maxSize = maxSizeClass + maxSizeEmail + maxSizeNames + maxSizeSurnames;
-
-	displayHeaderStudentsAndTeachersTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail, "Class");
-	displayBodyStudentsTable(students, maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
-	displayFooterTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeClass, maxSizeEmail);
+	else
+	{
+		cout << "There are 0 students";
+	}
 }
 
 void displayTeachersInTable(vector<TEACHER>& teachers)
 {
-	int maxSizeNames, maxSizeSurnames, maxSizeEmail, maxSizeTeams, maxSize;
-
-	vector<string> names, surnames, emails, teams;
-
-	string team;
-
-	for (size_t i = 0; i < teachers.size(); i++)
+	if (teachers.size() > 0)
 	{
-		names.push_back(teachers[i].name);
-		surnames.push_back(teachers[i].surname);
-		for (size_t j = 0; j < teachers[i].teams.size(); j++)
+		int maxSizeNames, maxSizeSurnames, maxSizeEmail, maxSizeTeams, maxSize;
+
+		vector<string> names, surnames, emails, teams;
+
+		string team;
+
+		for (size_t i = 0; i < teachers.size(); i++)
 		{
-			team += teachers[i].teams[j];
-			if (j < teachers[i].teams.size() - 1)
+			names.push_back(teachers[i].name);
+			surnames.push_back(teachers[i].surname);
+			for (size_t j = 0; j < teachers[i].teams.size(); j++)
 			{
-				team += ',';
+				team += teachers[i].teams[j];
+				if (j < teachers[i].teams.size() - 1)
+				{
+					team += ',';
+				}
 			}
+			teams.push_back(team);
+			emails.push_back(teachers[i].email);
 		}
-		teams.push_back(team);
-		emails.push_back(teachers[i].email);
+
+		names.push_back("Name");
+		surnames.push_back("Surname");
+		teams.push_back("Teams");
+		emails.push_back("Email");
+
+		maxSizeNames = maxSizeOfStrings(names);
+		maxSizeSurnames = maxSizeOfStrings(surnames);
+		maxSizeEmail = maxSizeOfStrings(emails);
+		maxSizeTeams = maxSizeOfStrings(teams);
+
+		maxSize = maxSizeTeams + maxSizeEmail + maxSizeNames + maxSizeSurnames;
+
+		displayHeaderStudentsAndTeachersTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail, "Teams");
+		displayBodyTeachersTable(teachers, maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail, teams);
+		displayFooterTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail);
 	}
-
-	names.push_back("Name");
-	surnames.push_back("Surname");
-	teams.push_back("Teams");
-	emails.push_back("Email");
-
-	maxSizeNames = maxSizeOfStrings(names);
-	maxSizeSurnames = maxSizeOfStrings(surnames);
-	maxSizeEmail = maxSizeOfStrings(emails);
-	maxSizeTeams = maxSizeOfStrings(teams);
-
-	maxSize = maxSizeTeams + maxSizeEmail + maxSizeNames + maxSizeSurnames;
-
-	displayHeaderStudentsAndTeachersTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail, "Teams");
-	displayBodyTeachersTable(teachers, maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail, teams);
-	displayFooterTable(maxSize, maxSizeNames, maxSizeSurnames, maxSizeTeams, maxSizeEmail);
+	else
+	{
+		cout << "There are 0 teachers";
+	}
 }
 
 bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& whiteListedRoles, vector<TEAM>& teams)
 {
+	vector<STUDENT> foundStudentsByCriteria;
+	string grade;
 	system("chcp 65001");
 	cout << endl << u8R"( 
     ████████╗███████╗ █████╗ ███╗   ███╗███████╗ ██████╗ ███╗   ██╗██████╗ ██╗   ██╗██████╗  ██████╗ ███████╗████████╗
@@ -580,6 +596,11 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		break;
 	case 13: return false;
+	case 14:
+		cin >> grade;
+		foundStudentsByCriteria = findStudentsByClass(students, grade);
+		displayStudentsInTable(foundStudentsByCriteria);
+		break;
 	default:
 		cout << endl;
 		cout << "|--------------------------|" << endl;
