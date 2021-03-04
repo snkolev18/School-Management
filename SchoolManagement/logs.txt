@@ -173,3 +173,7 @@
 [2021/03/04  21:38:38] INFO Option X: Teacher was successfully added
 [2021/03/04  21:38:38] INFO Teachers were successfully written into teachers.txt
 [2021/03/04  21:38:41] INFO Program was executed successfully
+[2021/03/04  21:44:44] INFO Program was executed successfully
+[2021/03/04  21:45:04] INFO Program was executed successfully
+[2021/03/04  21:46:16] INFO Teams were successfully written into teams.txt
+[2021/03/04  21:46:47] INFO Program was executed successfully

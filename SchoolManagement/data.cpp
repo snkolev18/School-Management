@@ -538,6 +538,17 @@ void removeStudent(vector<STUDENT>& students, string email)
 	}
 }
 
+void removeTeam(vector<TEAM>& teams, const string teamName) 
+{
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		if (teamName == teams[i].teamName) 
+		{
+			teams.erase(teams.begin() + i);
+		}
+	}
+}
+
 void removeTeacher(vector<TEACHER>& teachers, string email)
 {
 	for (size_t i = 0; i < teachers.size(); i++)
@@ -737,8 +748,6 @@ void deleteStudentData(vector<STUDENT>& students)
 	}
 }
 
-
-
 void deleteTeacherData(vector<TEACHER>& teachers)
 {
 	ifstream file;
@@ -766,6 +775,37 @@ void deleteTeacherData(vector<TEACHER>& teachers)
 		}
 		removeTeacher(teachers, email);
 		writeTeachersInTxt(teachers);
+	}
+
+}
+
+void deleteTeamsData(vector<TEAM>& teams)
+{
+	ifstream file;
+	file.open("teams.txt", ios::in | ios::binary);
+	file.seekg(0, ios::end);
+	std::streamoff size = file.tellg();
+
+	if (size == 0) {
+		//LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		throw std::runtime_error("File with teams has no data to delete!");
+	}
+	else {
+
+		string name;
+
+		cin.ignore();
+		cout << "Enter the name of the team that you want to be deleted: ";
+		getline(cin, name);
+		while (!checkIfTeamNameIsUsed(teams, name))
+		{
+			cout << "This team name is invalid or doesn't exist " << endl;
+			cout << "Please enter a correct name of a team: ";
+			getline(cin, name);
+		}
+		removeTeam(teams, name);
+		writeTeamsInTxt(teams);
 	}
 
 }

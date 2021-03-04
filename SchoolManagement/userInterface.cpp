@@ -560,8 +560,17 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 			cout << ex.what();
 		}
 		break;
-
-	case 12: return false;
+	case 12:
+		try
+		{
+			deleteTeamsData(teams);
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+		break;
+	case 13: return false;
 	default:
 		cout << endl;
 		cout << "|--------------------------|" << endl;

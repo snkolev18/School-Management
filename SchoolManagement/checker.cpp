@@ -58,6 +58,24 @@ bool checkIfRoleIsWhiteListed(vector<string> whiteListedRoles, string role)
 	return false;
 }
 
+bool checkIfTeamNameIsUsed(const vector<TEAM> teams, const string name) 
+{
+	if (teams.empty()) 
+	{
+		return false;
+	}
+
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		if (name == teams[i].teamName) 
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool checkEmailValidity(string email)
 {
 	size_t atPos = email.find('@');
