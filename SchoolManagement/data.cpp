@@ -111,6 +111,17 @@ TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 	}
 }
 
+int findTeamByName(const vector<TEAM>& teams, const string name)
+{
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		if (teams.at(i).teamName == name)
+		{
+			return i;
+		}
+	}
+}
+
 int findIndexByEmailTeachers(vector<TEACHER>& teachers, string& email)
 {
 	for (size_t i = 0; i < teachers.size(); i++)
@@ -222,13 +233,13 @@ string getDate()
 	tm timerPtr{ 0 };
 	char* err = asctime(localtime(&timer));
 
-	if (err == NULL) 
+	if (err == NULL)
 	{
 		return "Couldn't convert time";
 	}
 
 	timerPtr = *localtime(&timer);
-	
+
 
 	day = timerPtr.tm_mday;
 	month = timerPtr.tm_mon + 1;
@@ -268,7 +279,7 @@ string getDate()
 	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;
 
 	//return "chicho ivo sadsa sad as as";
-	
+
 }
 
 TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers)
@@ -321,7 +332,7 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 
 	cout << "Write the description of the team: ";
 	getline(cin, team.description);
-	while (!checkTeamDescriptionLength(team.description)) 
+	while (!checkTeamDescriptionLength(team.description))
 	{
 		cout << "Description length violates our criteria" << endl;
 		cout << "Write shorter description: ";
@@ -538,11 +549,11 @@ void removeStudent(vector<STUDENT>& students, string email)
 	}
 }
 
-void removeTeam(vector<TEAM>& teams, const string teamName) 
+void removeTeam(vector<TEAM>& teams, const string teamName)
 {
 	for (size_t i = 0; i < teams.size(); i++)
 	{
-		if (teamName == teams[i].teamName) 
+		if (teamName == teams[i].teamName)
 		{
 			teams.erase(teams.begin() + i);
 		}
@@ -734,7 +745,7 @@ void deleteStudentData(vector<STUDENT>& students)
 
 		cin.ignore();
 		cout << "Enter email of the student that you want to be delete: ";
-		
+
 		getline(cin, email);
 		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
@@ -793,19 +804,89 @@ void deleteTeamsData(vector<TEAM>& teams)
 	}
 	else {
 
+
 		string name;
 
 		cin.ignore();
 		cout << "Enter the name of the team that you want to be deleted: ";
 		getline(cin, name);
-		while (!checkIfTeamNameIsUsed(teams, name))
+
+		int teamID = findTeamByName(teams, name);
+
+		if (teams.at(teamID).status == TEAM::statusToString(TEAM::IN_USE))
 		{
-			cout << "This team name is invalid or doesn't exist " << endl;
-			cout << "Please enter a correct name of a team: ";
-			getline(cin, name);
+			while (!checkIfTeamNameIsUsed(teams, name))
+			{
+				cout << "This team name is invalid or doesn't exist " << endl;
+				cout << "Please enter a correct name of a team: ";
+				getline(cin, name);
+			}
+			removeTeam(teams, name);
+			writeTeamsInTxt(teams);
 		}
-		removeTeam(teams, name);
-		writeTeamsInTxt(teams);
+		else 
+		{
+			logger.writeLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to delete contents of a team which status is set to IN_USE");
+			throw std::runtime_error("Tried to delete a team that is currently being used. STATUS => In Use");
+		}
+
 	}
 
+}
+
+void updateTeamsData(vector<TEAM>& teams)
+{
+	ifstream file;
+	file.open("teams.txt", ios::in | ios::binary);
+	file.seekg(0, ios::end);
+	std::streamoff size = file.tellg();
+
+	if (size == 0) {
+		//LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
+		logger.writeLogMsg(SEVERITY::WARNING, "Option X clicked and Exception was thrown: Tried to update contents of a file that has no data");
+		throw std::runtime_error("File with teams has no data!");
+	}
+	else {
+		string name;
+
+		cin.ignore();
+		cout << "Enter the name of the team that you want to edit: ";
+		getline(cin, name);
+
+		int teamID = findTeamByName(teams, name);
+
+		if (teams.at(teamID).status == TEAM::statusToString(TEAM::IN_USE))
+		{
+			while (!checkIfTeamNameIsUsed(teams, name))
+			{
+				cout << "This team name is invalid or doesn't exist " << endl;
+				cout << "Please enter a correct name of a team: ";
+				getline(cin, name);
+			}
+			
+			cin.ignore();
+			cout << "Update the name of the team: ";
+			getline(cin, teams.at(teamID).teamName);
+			while (!checkTeamNameLength(teams.at(teamID).teamName))
+			{
+				cout << "That Team name is too long and invalid" << endl;
+				cout << "Re-Enter a shorter name: ";
+
+				getline(cin, teams.at(teamID).teamName);
+			}
+
+			cin.ignore();
+			cout << "Put a new teacher to consult this team: ";
+			getline(cin, teams.at(teamID).teacher.email);
+			/*while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
+			{
+				cout << "There is no teacher with this email or it's incorrectly inputted" << endl;
+				cout << "Please enter an email of a teacher: ";
+
+				getline(cin, email);
+			}*/
+
+		}
+	}
+	
 }

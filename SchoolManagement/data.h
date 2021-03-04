@@ -63,3 +63,7 @@ void deleteStudentData(std::vector<STUDENT>& students);
 void deleteTeacherData(std::vector<TEACHER>& teachers);
 
 void deleteTeamsData(std::vector<TEAM>& teams);
+
+int findTeamByName(const std::vector<TEAM>& teams, const std::string name);
+
+void updateTeamsData(vector<TEAM>& teams);
