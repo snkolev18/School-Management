@@ -67,8 +67,11 @@
     <Text Include="teams.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="logs.log">
+    <Text Include="logs.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
   </ItemGroup>
 </Project>

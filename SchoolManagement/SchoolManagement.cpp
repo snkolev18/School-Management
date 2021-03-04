@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-	logger.open("logs.log");
+	logger.open("logs.txt");
 	logger.writeLogMsg(SEVERITY::INFO, "Program was executed successfully");
 	vector<string> whiteListedRoles;
 	whiteListedRoles = readRolesFromTxt();

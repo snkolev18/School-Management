@@ -74,7 +74,7 @@ void LOG::writeLogMsg(SEVERITY severity, string information)
 void LOG::putLogMsg(SEVERITY severity, string information)
 {
 	ofstream logs;
-	logs.open("logs.log", ios::out | ios::app);
+	logs.open("logs.txt", ios::out | ios::app);
 	
 	logs << "[" + getDate().substr(0, getDate().find(' ')) + " " + getDate().substr(getDate().find(' ')) + "]" + " " + severityToString(severity) + " " + information + '\n';
 	logs.close();
@@ -99,7 +99,7 @@ vector<LOG> LOG::readLogs()
 {
 	vector<LOG> audits;
 	string currLog;
-	if (open("logs.log")) 
+	if (open("logs.txt")) 
 	{
 		while (getline(logFile, currLog)) 
 		{
