@@ -11,7 +11,7 @@ using namespace std;
 int main()
 {
 	logger.open("logs.log");
-	logger.writeLogMsg(SEVERITY::INFO, "CHUPENDRA");
+	logger.writeLogMsg(SEVERITY::INFO, "Program was executed successfully");
 	vector<string> whiteListedRoles;
 	whiteListedRoles = readRolesFromTxt();
 	vector<STUDENT> students;
@@ -21,8 +21,12 @@ int main()
 	vector<TEAM> teams;
 	teams = readTeamsFromTxt();
 
+
+
 	while (true)menu(students, teachers, whiteListedRoles, teams);
-	
+
+	logger.writeLogMsg(SEVERITY::INFO, "Program was terminated successfully");
+
 	//LOGS::putLogMsg(SEVERITY::CRITICAL, "Ako ne rabotish.......");
 
 	/*

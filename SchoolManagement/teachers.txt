@@ -1,2 +1,1 @@
-Petar|Georgiev|PRG - 10 Class=Musala Soft Project=pgeorgiev18@codingburgas.bg|;
-Georgie|Georgiev|Chakal=ggeorgiev@techno.lo|;
+ehso|Georgiev|pgeorgiev@codingburgas.bg|;

@@ -91,7 +91,9 @@ struct LOG
 	std::fstream logFile;
 
 	std::vector<LOG> readLogs();
-	static LOG parseLogs(std::string currLine);
+	void parseLogs(std::string currLine);
 };
 
+// Compilator and linker should know about this variable whenever
+// is structures.h included
 extern LOG logger;

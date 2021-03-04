@@ -56,6 +56,8 @@ void removeTeacher(std::vector<TEACHER>& teachers, std::string email);
 
 void updateStudentData(std::vector<STUDENT>& students);
 
+void updateTeacherData(std::vector<TEACHER>& teachers);
+
 void deleteStudentData(std::vector<STUDENT>& students);
 
 void deleteTeacherData(std::vector<TEACHER>& teachers);

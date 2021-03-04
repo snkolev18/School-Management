@@ -80,19 +80,19 @@ void LOG::putLogMsg(SEVERITY severity, string information)
 	logs.close();
 }
 
-LOG LOG::parseLogs(string currLine) 
+void LOG::parseLogs(string currLine) 
 {
-	LOG audits;
+	LOG logger;
 
-	audits.date = currLine.substr(1, currLine.find(' '));
+	logger.date = currLine.substr(1, currLine.find(' '));
 	currLine.erase(0, currLine.find(' ') + 1);
-	audits.time = currLine.substr(0, currLine.find(']'));
+	logger.time = currLine.substr(0, currLine.find(']'));
 	currLine.erase(0, currLine.find(']') + 1);
-	audits.severity = severityToENUM(currLine.substr(0, currLine.find(' ')));
+	logger.severity = severityToENUM(currLine.substr(0, currLine.find(' ')));
 	currLine.erase(0, currLine.find(' ') + 1);
-	audits.information = currLine.substr(0);
+	logger.information = currLine.substr(0);
 
-	return audits;
+	//return logger;
 }
 
 vector<LOG> LOG::readLogs() 
@@ -103,7 +103,7 @@ vector<LOG> LOG::readLogs()
 	{
 		while (getline(logFile, currLog)) 
 		{
-			audits.push_back(parseLogs(currLog));
+			//audits.push_back(parseLogs(currLog));
 		}
 	}
 

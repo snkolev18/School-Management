@@ -36,6 +36,7 @@ void writeRolesInTxt(vector<string>& whiteListedRoles)
 			file << whiteListedRoles[i] << endl;
 		}
 		file.close();
+		logger.writeLogMsg(SEVERITY::INFO, "Roles were successfully written into roles.txt");
 	}
 }
 
@@ -50,6 +51,7 @@ void writeStudentsInTxt(vector<STUDENT>& students)
 			file << students[i].delimitInfo() << endl;
 		}
 		file.close();
+		logger.writeLogMsg(SEVERITY::INFO, "Students were successfully written into students.txt");
 	}
 }
 
@@ -64,6 +66,7 @@ void writeTeachersInTxt(vector<TEACHER>& teachers)
 			file << teachers[i].delimitInfo() << endl;
 		}
 		file.close();
+		logger.writeLogMsg(SEVERITY::INFO, "Teachers were successfully written into teachers.txt");
 	}
 }
 
@@ -78,6 +81,7 @@ void writeTeamsInTxt(vector<TEAM>& teams)
 			file << teams[i].delimitInfo() << endl;
 		}
 		file.close();
+		logger.writeLogMsg(SEVERITY::INFO, "Teams were successfully written into teams.txt");
 	}
 }
 
@@ -180,6 +184,7 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 
 		getline(cin, student.email);
 	}
+	logger.writeLogMsg(SEVERITY::INFO, "Option X: Student was successfully added");
 	return student;
 }
 
@@ -201,6 +206,7 @@ TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 
 		getline(cin, teacher.email);
 	}
+	logger.writeLogMsg(SEVERITY::INFO, "Option X: Teacher was successfully added");
 	return teacher;
 }
 
@@ -316,7 +322,7 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	team.dateCreation = getDate();
 	team.teacher.teams.push_back(team.teamName);
 	writeTeachersInTxt(teachers);
-
+	logger.writeLogMsg(SEVERITY::INFO, "Option X: Team was successfully added");
 	return team;
 }
 
@@ -534,21 +540,23 @@ void removeTeacher(vector<TEACHER>& teachers, string email)
 
 void updateStudentData(vector<STUDENT>& students)
 {
-	fstream file;
-	file.open("students.txt", ios::out | ios::trunc | ios::binary);
-	file.seekp(0, ios::end);
-	std::streamoff size = file.tellp();
+	ifstream file;
+	file.open("students.txt", ios::in | ios::binary);
+	file.seekg(0, ios::end);
+	std::streamoff size = file.tellg();
 
 	if (size == 0) {
-		LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
+		//LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
+		logger.writeLogMsg(SEVERITY::WARNING, "Option X clicked and Exception was thrown: Tried to update contents of a file that has no data");
 		throw std::runtime_error("File with students has no data!");
 	}
 	else {
 		string email;
 
+		cin.ignore();
 		cout << "Enter the email of the student that you want to edit: ";
-		cin >> email;
-		while (!checkEmailValidity(email))
+		getline(cin, email);
+		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
 			cout << "This email is not valid " << endl;
 			cout << "Please try again: ";
@@ -598,29 +606,113 @@ void updateStudentData(vector<STUDENT>& students)
 			cout << ex.what();
 		}
 
-		cin >> students.at(id).email;
+		cin.ignore();
+		cout << "Enter new email of a student: ";
+		getline(cin, students.at(id).email);
+		while (!checkForExistingEmailStudents(students, students.at(id).email) or !checkEmailValidity(students.at(id).email))
+		{
+			cout << "This email is not valid " << endl;
+			cout << "Please try again: ";
+			getline(cin, students.at(id).email);
+		}
 
 		writeStudentsInTxt(students);
+		logger.writeLogMsg(SEVERITY::INFO, "Student was successfully UPDATED");
 	}
-	LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
+	//LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
+}
+
+void updateTeacherData(vector<TEACHER>& teachers)
+{
+	ifstream file;
+	file.open("teachers.txt", ios::in | ios::binary);
+	file.seekg(0, ios::end);
+	std::streamoff size = file.tellg();
+
+	if (size == 0) {
+		//LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
+		logger.writeLogMsg(SEVERITY::WARNING, "Option X clicked and Exception was thrown: Tried to update contents of a file that has no data");
+		throw std::runtime_error("File with teachers has no data for update!");
+	}
+	else {
+		string email;
+
+		cin.ignore();
+		cout << "Enter the email of the teacher that you want to edit: ";
+		getline(cin, email);
+		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
+		{
+			cout << "This email is not valid " << endl;
+			cout << "Please try again: ";
+			getline(cin, email);
+		}
+
+		int id = 0;
+
+		for (size_t i = 0; i < teachers.size(); i++)
+		{
+			if (teachers[i].email == email)
+			{
+				id = i;
+				break;
+			}
+		}
+
+		cin.ignore();
+		cout << "Enter new first NAME of a teacher with email [ " << email << " ]" << " :";
+		getline(cin, teachers.at(id).name);
+		while (!checkNameValidity(teachers.at(id).name))
+		{
+			cout << "Name is incorrect" << endl;
+			cout << "Re-Enter a correct name: ";
+			cin >> teachers.at(id).name;
+		}
+
+		cin.ignore();
+		cout << "Enter new first SURNAME of a teacher with email [ " << email << " ]" << " :";
+		getline(cin, teachers.at(id).name);
+		while (!checkNameValidity(teachers.at(id).surname))
+		{
+			cout << "Surname is incorrect" << endl;
+			cout << "Re-Enter a correct surname: ";
+			getline(cin, teachers.at(id).name);
+		}
+
+
+		cin.ignore();
+		cout << "Enter new email of a teacher: ";
+		getline(cin, teachers.at(id).email);
+		while (!checkForExistingEmailTeachers(teachers, teachers.at(id).email) or !checkEmailValidity(teachers.at(id).email))
+		{
+			cout << "This email is not valid " << endl;
+			cout << "Please try again: ";
+			getline(cin, teachers.at(id).email);
+		}
+
+		writeTeachersInTxt(teachers);
+		logger.writeLogMsg(SEVERITY::INFO, "Teacher was successfully UPDATED");
+	}
+	//LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
 }
 
 void deleteStudentData(vector<STUDENT>& students)
 {
-	ofstream file;
-	file.open("students.txt", ios::out | ios::trunc | ios::binary);
-	file.seekp(0, ios::end);
-	std::streamoff size = file.tellp();
+	ifstream file;
+	file.open("students.txt", ios::in | ios::binary);
+	file.seekg(0, ios::end);
+	std::streamoff size = file.tellg();
 
 	if (size == 0) {
-		LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		//LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		throw std::runtime_error("File with students has no data to delete!");
 	}
 	else {
 		string email;
 
-		cout << "Enter email of the student that you want to be delete: ";
 		cin.ignore();
+		cout << "Enter email of the student that you want to be delete: ";
+		
 		getline(cin, email);
 		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
@@ -630,25 +722,30 @@ void deleteStudentData(vector<STUDENT>& students)
 		}
 		removeStudent(students, email);
 		writeStudentsInTxt(students);
+		logger.writeLogMsg(SEVERITY::INFO, "Student was successfully DELETED");
 	}
 }
 
+
+
 void deleteTeacherData(vector<TEACHER>& teachers)
 {
-	ofstream file;
-	file.open("teachers.txt", ios::out | ios::trunc | ios::binary);
-	file.seekp(0, ios::end);
-	std::streamoff size = file.tellp();
+	ifstream file;
+	file.open("teachers.txt", ios::in | ios::binary);
+	file.seekg(0, ios::end);
+	std::streamoff size = file.tellg();
 
 	if (size == 0) {
-		LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		//LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
+		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		throw std::runtime_error("File with teachers has no data to delete!");
 	}
 	else {
+
 		string email;
 
-		cout << "Enter email of the teacher that you want to be delete: ";
 		cin.ignore();
+		cout << "Enter email of the teacher that you want to be delete: ";
 		getline(cin, email);
 		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 		{

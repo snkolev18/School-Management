@@ -541,7 +541,35 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 			cout << ex.what();
 		}
 		break;
-	case 10: return false;
+	case 10:
+		try
+		{
+			deleteTeacherData(teachers);
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+		break;
+	case 11:
+		/*vector<LOG> audits = logger.readLogs();
+
+		for (size_t i = 0; i < audits.size(); i++)
+		{
+			cout << audits[i].date << " " << audits[i].time << " " << audits[i].severity << " " << audits[i].information;
+		}
+		break;*/
+		try
+		{
+			updateTeacherData(teachers);
+		}
+		catch (const std::exception& ex)
+		{
+			cout << ex.what();
+		}
+		break;
+
+	case 12: return false;
 	default:
 		cout << endl;
 		cout << "|--------------------------|" << endl;
