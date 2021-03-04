@@ -1,3 +1,4 @@
+#pragma warning(disable : 4996)
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -5,6 +6,8 @@
 #include <algorithm>
 #define _POSIX_THREAD_SAFE_FUNCTIONS
 #include <time.h>
+#include <ctime>
+#include <stdio.h>
 #include "structures.h"
 #include "checkers.h"
 
@@ -212,12 +215,20 @@ TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 
 string getDate()
 {
-	/*int day, month, year, hour, minute, second;
+	int day, month, year, hour, minute, second;
 	string days, months, years, hours, minutes, seconds;
 
 	time_t timer = time(NULL);
 	tm timerPtr{ 0 };
-	errno_t err = localtime_s(&timerPtr, &timer);
+	char* err = asctime(localtime(&timer));
+
+	if (err == NULL) 
+	{
+		return "Couldn't convert time";
+	}
+
+	timerPtr = *localtime(&timer);
+	
 
 	day = timerPtr.tm_mday;
 	month = timerPtr.tm_mon + 1;
@@ -254,9 +265,9 @@ string getDate()
 
 	years = to_string(year);
 
-	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;*/
+	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;
 
-	return "chicho ivo sadsa sad as as";
+	//return "chicho ivo sadsa sad as as";
 	
 }
 
