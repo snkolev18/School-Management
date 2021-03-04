@@ -341,8 +341,11 @@ void displayBodyTeachersTable(vector<TEACHER>& teachers, int& maxSize, int& maxS
 		displayNSpaces(maxSizeNames - teachers[i].name.size());
 		cout << char(186) << teachers[i].surname;
 		displayNSpaces(maxSizeSurnames - teachers[i].surname.size());
-		cout << char(186) << teams[i];
-		displayNSpaces(maxSizeClass - teams[i].size());
+		for (size_t j = 0; i < teachers[i].teams.size(); j++)
+		{
+			cout << char(186) << teachers[i].teams[j];
+			displayNSpaces(maxSizeClass - teams[i].size());
+		}
 		cout << char(186) << teachers[i].email;
 		displayNSpaces(maxSizeEmail - teachers[i].email.size());
 		cout << char(186) << endl;
