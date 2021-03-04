@@ -341,10 +341,18 @@ void displayBodyTeachersTable(vector<TEACHER>& teachers, int& maxSize, int& maxS
 		displayNSpaces(maxSizeNames - teachers[i].name.size());
 		cout << char(186) << teachers[i].surname;
 		displayNSpaces(maxSizeSurnames - teachers[i].surname.size());
-		for (size_t j = 0; i < teachers[i].teams.size(); j++)
+		if (teachers[i].teams.size() > 0)
 		{
-			cout << char(186) << teachers[i].teams[j];
-			displayNSpaces(maxSizeClass - teams[i].size());
+			for (size_t j = 0; j < teachers[i].teams.size(); j++)
+			{
+				cout << char(186) << teachers[i].teams[j];
+				displayNSpaces(maxSizeClass - teachers[i].teams[j].size());
+			}
+		}
+		else
+		{
+			cout << char(186);
+			displayNSpaces(maxSizeClass);
 		}
 		cout << char(186) << teachers[i].email;
 		displayNSpaces(maxSizeEmail - teachers[i].email.size());
@@ -470,47 +478,28 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	cout << "(3) |Add Roles|" << endl;
 	cout << "\\-----------------------------------/" << endl;
 
-	int option, amount, counter = 0;
+	int option;
 	cout << "->: "; cin >> option;
 
 
 	switch (option)
 	{
 	case 1:
-		cout << "Enter the amount of students: "; cin >> amount;
 		cin.ignore();
-		while (counter < amount)
-		{
 			students.push_back(inputStudent(students, teachers));
 			writeStudentsInTxt(students);
-			counter++;
-		}
-		counter = 0;
 		break;
 
 	case 2:
-		cout << "Enter the amount of teachers: "; cin >> amount;
 		cin.ignore();
-		while (counter < amount)
-		{
 			teachers.push_back(inputTeacher(students, teachers));
 			writeTeachersInTxt(teachers);
-			counter++;
-		}
-		counter = 0;
 		break;
 
 	case 3:
-		cout << "Enter the amount of roles: "; cin >> amount;
 		cin.ignore();
-		while (counter < amount)
-		{
 			addRole(whiteListedRoles);
 			writeRolesInTxt(whiteListedRoles);
-
-			counter++;
-		}
-		counter = 0;
 		break;
 	case 4:
 		teams.push_back(inputTeam(whiteListedRoles, students, teachers));

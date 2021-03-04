@@ -157,3 +157,19 @@
 [2021/03/04  17:46:40] INFO Program was executed successfully
 [2021/03/04  17:46:49] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
 [2021/03/04  17:46:50] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/04  21:28:31] INFO Program was executed successfully
+[2021/03/04  21:28:56] INFO Program was executed successfully
+[2021/03/04  21:30:08] INFO Program was executed successfully
+[2021/03/04  21:30:40] INFO Program was executed successfully
+[2021/03/04  21:31:16] INFO Program was executed successfully
+[2021/03/04  21:32:32] INFO Program was executed successfully
+[2021/03/04  21:33:39] INFO Program was executed successfully
+[2021/03/04  21:33:49] INFO Program was executed successfully
+[2021/03/04  21:37:21] INFO Program was executed successfully
+[2021/03/04  21:37:26] INFO Program was executed successfully
+[2021/03/04  21:37:40] INFO Option X: Teacher was successfully added
+[2021/03/04  21:37:40] INFO Teachers were successfully written into teachers.txt
+[2021/03/04  21:37:46] INFO Program was executed successfully
+[2021/03/04  21:38:38] INFO Option X: Teacher was successfully added
+[2021/03/04  21:38:38] INFO Teachers were successfully written into teachers.txt
+[2021/03/04  21:38:41] INFO Program was executed successfully
