@@ -10,6 +10,19 @@
 #include "checkers.h"
 using namespace std;
 
+void clearScreen()
+{
+
+#ifdef __linux__
+	system("clear");
+#else WIN32
+	system("cls");
+#endif
+
+}
+
+
+
 void displayNSpaces(int n)
 {
 	for (int i = 0; i < n; i++)
@@ -226,7 +239,8 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 	}
 	else
 	{
-		cout << "There are 0 teams" << endl;
+		clearScreen();
+		cout << ERROR_MSG_CR << "There are 0 teams" << CLOSE_ERR_MSG << endl;
 	}
 }
 
@@ -420,7 +434,8 @@ void displayStudentsInTable(vector<STUDENT>& students)
 	}
 	else
 	{
-		cout << "There are 0 students";
+		clearScreen();
+		cout << setw(50) <<ERROR_MSG_CR << "There are 0 students" << CLOSE_ERR_MSG;
 	}
 }
 
@@ -468,6 +483,7 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 	}
 	else
 	{
+		clearScreen();
 		cout << "There are 0 teachers";
 	}
 }
@@ -505,7 +521,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 				\\-----------------------------------/)" << endl;
 
 	int option;
-	cout << setw(50) << "->: "; 
+	cout << setw(50) << "->: ";
 	checkChoiceInput(option);
 
 
@@ -529,7 +545,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		writeRolesInTxt(whiteListedRoles);
 		break;
 	case 4:
-		teams.push_back(inputTeam(whiteListedRoles, students, teachers));
+		teams.push_back(inputTeam(whiteListedRoles, students, teachers, teams));
 		writeTeamsInTxt(teams);
 		break;
 	case 5:
@@ -557,7 +573,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		catch (const std::exception& ex)
 		{
-			cout << ex.what();
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
 	case 10:
@@ -567,17 +583,18 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		catch (const std::exception& ex)
 		{
-			cout << ex.what();
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
 	case 11:
 		try
 		{
+			clearScreen();
 			updateStudentData(students);
 		}
 		catch (const std::exception& ex)
 		{
-			cout << ex.what();
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
 	case 12:
@@ -594,7 +611,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		catch (const std::exception& ex)
 		{
-			cout << ex.what();
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
 	case 13: return false;
@@ -608,7 +625,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		catch (const std::exception& ex)
 		{
-			cout << ex.what();
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
 	case 15:
@@ -622,7 +639,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		catch (const std::exception& ex)
 		{
-			cout << ex.what();
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
 	case 16:
@@ -637,14 +654,14 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		catch (const std::exception& ex)
 		{
-			cout << ex.what();
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
 	default:
 		cout << endl;
-		cout << "|--------------------------|" << endl;
-		cout << "Incorrect input, try again!" << endl;
-		cout << "|--------------------------|" << endl;
+		cout << ERROR_MSG_CR << "|--------------------------|" << endl;
+		cout <<  "Incorrect input, try again!" << endl;
+		cout << "|--------------------------|" << CLOSE_ERR_MSG << endl;
 	}
 	return true;
 }

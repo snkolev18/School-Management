@@ -3,10 +3,22 @@
 #include <vector>
 #include <string>
 
+// ######### Restrictions ##########
 #define MAX_NAME_SIZE 15
 #define MAX_TEAM_DESCRIPTION 25
 #define MAX_EMAIL_SIZE 40
-#define MAX_TEAMNAME_SIZE 40
+#define MAX_TEAMNAME_SIZE 25
+// #################################
+
+// ######### MESSAGE COLORS ########
+#define ERROR_MSG_CR "\033[31;31m"
+#define CLOSE_ERR_MSG "\033[31;0m"
+#define EXCEPTION_MSG_CR "\033[33;33m"
+#define CLOSE_EXC_MSG "\033[33;0m"
+#define INFO_MSG_CR 
+#define CLOSE_MSG_CR
+// #################################
+
 
 struct STUDENT
 {

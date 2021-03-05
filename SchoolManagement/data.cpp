@@ -282,7 +282,7 @@ string getDate()
 
 }
 
-TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers)
+TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers, vector<TEAM>& teams)
 {
 	TEAM team;
 	STUDENT student;
@@ -292,9 +292,9 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	cin.ignore();
 	cout << "Team name: ";
 	getline(cin, team.teamName);
-	while (!checkTeamNameLength(team.teamName))
+	while (!checkTeamNameLength(team.teamName) or checkIfTeamNameIsUsed(teams, team.teamName))
 	{
-		cout << "That Team name is too long" << endl;
+		cout << "That Team name is too long or there is already a team with that name" << endl;
 		cout << "Re-Enter a shorter name: ";
 
 		getline(cin, team.teamName);

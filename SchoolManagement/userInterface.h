@@ -1,6 +1,8 @@
 #pragma once
 #include "structures.h"
 
+void clearScreen();
+
 void displayNSpaces(int n);
 
 void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, std::vector<std::string>& whiteListedRoles);

@@ -16,7 +16,7 @@ TEACHER inputTeacher(std::vector<STUDENT>& students, std::vector<TEACHER>& teach
 
 std::string getDate();
 
-TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
+TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers, std::vector<TEAM>& teams);
 
 void addRole(std::vector<std::string>& whiteListedRoles);
 

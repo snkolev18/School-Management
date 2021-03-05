@@ -216,10 +216,10 @@ void checkChoiceInput(int& option)
 
 	while (!(cin >> option).good())
 	{
-		cout << "That's not a valid input!" << endl;
+		cout << ERROR_MSG_CR << "That's not a valid input!" << CLOSE_ERR_MSG << endl;
 		cin.clear();
 		cin.ignore(INT_MAX, '\n');
-		cout << "Re-enter your choice: ";
+		cout << ERROR_MSG_CR << "Re-enter your choice: " << CLOSE_ERR_MSG;
 	}
 
 }
