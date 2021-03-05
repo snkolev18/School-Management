@@ -488,24 +488,24 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
         )";
 	system("chcp 437");
 	cout << endl;
-	cout << "/-----------------------------------\\" << endl;
-	cout << "Welcome to the Menu!" << endl;
-	cout << "(1) |Add a student|" << endl;
-	cout << "(2) |Add a teacher|" << endl;
-	cout << "(3) |Add a role|" << endl;
-	cout << "(4) |Add a team|" << endl;
-	cout << "(5) |List of the students|" << endl;
-	cout << "(6) |List of the teachers|" << endl;
-	cout << "(7) |List of the teams|" << endl;
-	cout << "(8) |Delete a student|" << endl;
-	cout << "(9) |Delete a teacher|" << endl;
-	cout << "(10) |Delete a team|" << endl;
-	cout << "(11) |Update student's information|" << endl;
-	cout << "(12) |Update teacher's information|" << endl;
-	cout << "\\-----------------------------------/" << endl;
+	cout << R"(				/-----------------------------------\
+					Welcome to the Menu!
+				(1) |Add a student|
+				(2) |Add a teacher|
+				(3) |Add a role|
+				(4) |Add a team|
+				(5) |List of the students|
+				(6) |List of the teachers|
+				(7) |List of the teams|
+				(8) |Delete a student|
+				(9) |Delete a teacher|
+				(10) |Delete a team|
+				(11) |Update student's information|
+				(12) |Update teacher's information|
+				\\-----------------------------------/)" << endl;
 
 	int option;
-	cout << "->: "; 
+	cout << setw(50) << "->: "; 
 	checkChoiceInput(option);
 
 
