@@ -275,3 +275,53 @@
 [2021/03/05  12:41:35] INFO Teachers were successfully written into teachers.txt
 [2021/03/05  12:44:14] INFO Program was executed successfully
 [2021/03/05  13:10:17] INFO Program was executed successfully
+[2021/03/05  20:22:10] INFO Program was executed successfully
+[2021/03/05  20:23:11] INFO Program was executed successfully
+[2021/03/05  20:23:29] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/05  20:24:11] INFO Roles were successfully written into roles.txt
+[2021/03/05  20:24:29] INFO Option X: Teacher was successfully added
+[2021/03/05  20:24:29] INFO Teachers were successfully written into teachers.txt
+[2021/03/05  20:25:29] INFO Program was executed successfully
+[2021/03/05  20:29:20] INFO Program was executed successfully
+[2021/03/05  20:29:55] INFO Program was executed successfully
+[2021/03/05  20:30:24] INFO Program was executed successfully
+[2021/03/05  20:30:51] INFO Program was executed successfully
+[2021/03/05  20:32:13] INFO Program was executed successfully
+[2021/03/05  20:33:40] INFO Program was executed successfully
+[2021/03/05  20:34:26] INFO Program was executed successfully
+[2021/03/05  20:34:38] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:36:13] INFO Program was executed successfully
+[2021/03/05  20:36:44] INFO Program was executed successfully
+[2021/03/05  20:36:54] INFO Program was executed successfully
+[2021/03/05  20:37:09] INFO Program was executed successfully
+[2021/03/05  20:37:36] INFO Program was executed successfully
+[2021/03/05  20:37:55] INFO Program was executed successfully
+[2021/03/05  20:38:12] INFO Program was executed successfully
+[2021/03/05  20:38:31] INFO Program was executed successfully
+[2021/03/05  20:39:26] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:39:35] INFO Program was executed successfully
+[2021/03/05  20:40:14] INFO Program was executed successfully
+[2021/03/05  20:40:17] INFO Option X: Student was successfully added
+[2021/03/05  20:40:17] INFO Students were successfully written into students.txt
+[2021/03/05  20:40:24] INFO Option X: Student was successfully added
+[2021/03/05  20:40:24] INFO Students were successfully written into students.txt
+[2021/03/05  20:41:13] INFO Program was executed successfully
+[2021/03/05  20:41:26] INFO Program was executed successfully
+[2021/03/05  20:41:38] INFO Teachers were successfully written into teachers.txt
+[2021/03/05  20:41:38] INFO Option X: Team was successfully added
+[2021/03/05  20:41:38] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:41:51] INFO Teachers were successfully written into teachers.txt
+[2021/03/05  20:41:51] INFO Option X: Team was successfully added
+[2021/03/05  20:41:51] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:42:07] INFO Teachers were successfully written into teachers.txt
+[2021/03/05  20:42:07] INFO Option X: Team was successfully added
+[2021/03/05  20:42:07] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:43:08] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:43:48] INFO Program was executed successfully
+[2021/03/05  20:45:57] INFO Program was executed successfully
+[2021/03/05  20:46:14] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:46:30] INFO Program was executed successfully
+[2021/03/05  20:54:39] INFO Program was executed successfully
+[2021/03/05  20:54:55] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:55:33] INFO Teams were successfully written into teams.txt
+[2021/03/05  20:55:46] INFO Program was executed successfully

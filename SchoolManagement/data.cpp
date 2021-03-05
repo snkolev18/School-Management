@@ -842,14 +842,50 @@ void deleteTeamsData(vector<TEAM>& teams)
 	}
 
 }
-
-void updateTeamsData(vector<TEAM>& teams)
+void displayTeamsUpdateMenu()
+{
+	cout << "1. Change team status " << endl;
+	cout << "2. Change team description" << endl;
+	cout << "3. Change team name" << endl;
+	cout << "4. Change teacher" << endl;
+	cout << "5. Change student" << endl;
+}
+void updateTeamStatus(TEAM& team, string& status)
+{
+	team.status = status;
+}
+void updateTeamDescription(TEAM& team, string& description)
+{
+	team.description = description;
+}
+void updateTeamName(TEAM& team, string& name)
+{
+	team.teamName = name;
+}
+void updateTeamTeacher(TEAM& team, TEACHER& teacher)
+{
+	team.teacher = teacher;
+}
+void updateTeamStudent(TEAM& team, STUDENT& student, string& studentForReplacement)
+{
+	for (size_t i = 0; i < team.roles.size(); i++)
+	{
+		if (team.roles[i].student.email == studentForReplacement)
+		{
+			team.roles[i].student = student;
+		}
+	}
+}
+void updateTeamsData(vector<TEAM>& teams,vector<TEACHER>& teachers,vector<STUDENT>& students)
 {
 	ifstream file;
+	string temporary;
+	TEACHER teacher;
+	STUDENT student;
 	file.open("teams.txt", ios::in | ios::binary);
 	file.seekg(0, ios::end);
 	std::streamoff size = file.tellg();
-
+	int option;
 	if (size == 0 or teams.empty()) {
 		//LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
 		logger.writeLogMsg(SEVERITY::WARNING, "Option X clicked and Exception was thrown: Tried to update contents of a file that has no data");
@@ -861,7 +897,6 @@ void updateTeamsData(vector<TEAM>& teams)
 		cin.ignore();
 		cout << INFO_MSG_CR << "Enter the name of the team that you want to edit: " << CLOSE_INFO_MSG;
 		getline(cin, name);
-
 		int teamID = findTeamByName(teams, name);
 
 		if (teams.at(teamID).status == TEAM::statusToString(TEAM::IN_USE))
@@ -872,9 +907,44 @@ void updateTeamsData(vector<TEAM>& teams)
 				cout << "Please enter a correct name of a team: " << CLOSE_ERR_MSG;
 				getline(cin, name);
 			}
-			
-			cin.ignore();
-			cout << INFO_MSG_CR << "Update the name of the team: " << CLOSE_INFO_MSG;
+			displayTeamsUpdateMenu();
+			cin >> option;
+			switch (option)
+			{
+			case 1:
+				cout << "Enter the new status: ";
+				cin >> temporary;
+				updateTeamStatus(teams[teamID], temporary);
+				break;
+			case 2:
+				cout << "Enter the new description: ";
+				cin >> temporary;
+				updateTeamDescription(teams[teamID], temporary);
+				break;
+			case 3:
+				cout << "Enter the new name of the team: ";
+				cin >> temporary;
+				updateTeamName(teams[teamID], temporary);
+				break;
+			case 4:
+				cout << "Enter the new teacher's email: ";
+				cin >> temporary;
+				teacher = findTeacherByEmail(teachers, temporary);
+				updateTeamTeacher(teams[teamID], teacher);
+				break;
+			case 5:
+				cout << "Enter the new student's email: ";
+				cin >> temporary;
+				student=findStudentByEmail(students, temporary);
+				cout << "Enter the email of the student you want to replace: ";
+				cin >> temporary;
+				updateTeamStudent(teams[teamID], student, temporary);
+				break;
+			default:
+				break;
+			}
+			writeTeamsInTxt(teams);
+			/*cout << INFO_MSG_CR << "Update the name of the team: " << CLOSE_INFO_MSG;
 			getline(cin, teams.at(teamID).teamName);
 			while (!checkTeamNameLength(teams.at(teamID).teamName))
 			{
@@ -886,7 +956,7 @@ void updateTeamsData(vector<TEAM>& teams)
 
 			cin.ignore();
 			cout << INFO_MSG_CR <<"Put a new teacher to consult this team: " << CLOSE_INFO_MSG;
-			getline(cin, teams.at(teamID).teacher.email);
+			getline(cin, teams.at(teamID).teacher.email);*/
 			/*while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 			{
 				cout << "There is no teacher with this email or it's incorrectly inputted" << endl;

@@ -4,7 +4,6 @@
 #include <fstream>
 #include <sstream>
 #include "structures.h"
-#include "functions.h"
 #include "data.h"
 #include "userInterface.h"
 #include "checkers.h"
@@ -20,7 +19,6 @@ void clearScreen()
 #endif
 
 }
-
 
 
 void displayNSpaces(int n)
@@ -660,6 +658,16 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 
 		}
 		catch (const std::exception& ex)
+		{
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+		}
+		break;
+	case 17: 
+		try
+		{
+			updateTeamsData(teams, teachers, students);
+		}
+		catch (const std::exception & ex)
 		{
 			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}

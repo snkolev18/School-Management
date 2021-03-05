@@ -142,7 +142,6 @@
     <ClCompile Include="checker.cpp" />
     <ClCompile Include="data.cpp" />
     <ClCompile Include="delimitMethods.cpp" />
-    <ClCompile Include="functions.cpp" />
     <ClCompile Include="logs.cpp" />
     <ClCompile Include="SchoolManagement.cpp" />
     <ClCompile Include="userInterface.cpp" />
@@ -150,7 +149,6 @@
   <ItemGroup>
     <ClInclude Include="checkers.h" />
     <ClInclude Include="data.h" />
-    <ClInclude Include="functions.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="userInterface.h" />
   </ItemGroup>
