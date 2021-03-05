@@ -19,6 +19,8 @@ bool checkGrade(std::string grade);
 
 bool checkNameValidity(std::string name);
 
+bool checkStrInput(const std::string inp_);
+
 bool checkTeamNameLength(std::string name);
 
 bool checkTeamDescriptionLength(std::string description);

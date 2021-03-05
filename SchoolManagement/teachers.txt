@@ -1,8 +1,2 @@
-aleksandur|dinev|teamsonbudget=teamsonbudget=stoqn@abv.bg=burmov@abv.bg=agdinev18@codingburgas.bg|;
-stoqn|kolev|abv@abv.bg|;
-stoqn|trollev|troll@abv.bg|;
-a|s|d@abv.bg|;
-Svetlio|Babata|sbabata@gmail.com|;
-||asdas@asdsa.asd|;
-|||;
-3|4|asd@abv.bg|;
+Petar|Georgiev|SQL=Musala=pgeorgiev@codingburgas.bg|;
+Georgiev|Georgiev|Himiq=GGeorgiev@codingburgas.bg|;

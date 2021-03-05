@@ -25,4 +25,10 @@ void displayStudentsInTable(std::vector<STUDENT>& students);
 
 void displayTeachersInTable(std::vector<TEACHER>& teachers);
 
+void displayTeamsUpdateMenu();
+
+void statusMenu();
+
+void handleUpdateTeamInfo(int option, std::vector<TEAM>& teams, std::vector<TEACHER>& teachers, std::vector<STUDENT>& students, int& teamID);
+
 bool menu(std::vector<STUDENT>& students, std::vector<TEACHER>& teachers, std::vector<std::string>& whiteListedRoles, std::vector<TEAM>& teams);

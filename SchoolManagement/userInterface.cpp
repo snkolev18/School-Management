@@ -486,6 +486,101 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 	}
 }
 
+void displayTeamsUpdateMenu()
+{
+	cout << "1. Change team status " << endl;
+	cout << "2. Change team description" << endl;
+	cout << "3. Change team name" << endl;
+	cout << "4. Change teacher" << endl;
+	cout << "5. Change student" << endl;
+}
+
+void statusMenu() 
+{
+	cout << "0. In use" << endl;
+	cout << "1. Not Active" << endl;
+	cout << "2. Archived" << endl;
+}
+
+void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUDENT>& students, int& teamID)
+{
+	STUDENT student;
+	TEACHER teacher;
+	string temporary;
+	int status;
+
+	switch (option)
+	{
+	case 1:
+		statusMenu();
+		cout << INFO_MSG_CR << "Set a new status: " << CLOSE_INFO_MSG;
+		cin >> status;
+		while (toStatus(status) == "Vania") 
+		{
+			cout << ERROR_MSG_CR << "Invalid status, re-enter: " << CLOSE_ERR_MSG; cin >> status;
+		}
+		updateTeamStatus(teams[teamID], toStatus(status));
+		break;
+	case 2:
+		cin.ignore();
+		cout << INFO_MSG_CR << "Enter the new description: " << CLOSE_INFO_MSG;
+		getline(cin, temporary);
+		while (!checkTeamDescriptionLength(temporary))
+		{
+			cout << ERROR_MSG_CR << "Description length violates our criteria" << endl;
+			cout << "Write shorter description: " << CLOSE_ERR_MSG;
+
+			getline(cin, temporary);
+		}
+		updateTeamDescription(teams[teamID], temporary);
+		break;
+	case 3:
+		cin.ignore();
+		cout << INFO_MSG_CR << "Enter the new name of the team: " << CLOSE_INFO_MSG;
+		getline(cin, temporary);
+		while (!checkTeamNameLength(temporary) or checkIfTeamNameIsUsed(teams, temporary))
+		{
+			cout << ERROR_MSG_CR <<"That Team name is too long or there is already a team with that name" << endl;
+			cout << "Re-Enter a shorter name: " << CLOSE_ERR_MSG;
+
+			getline(cin, temporary);
+		}
+		updateTeamName(teams[teamID], temporary);
+		break;
+	case 4:
+		cout << INFO_MSG_CR << "Enter the new teacher's email: " << CLOSE_INFO_MSG;
+		cin >> temporary;
+		teacher = findTeacherByEmail(teachers, temporary);
+		updateTeamTeacher(teams[teamID], teacher);
+		break;
+	case 5:
+		cout << INFO_MSG_CR << "Enter the new student's email: " << CLOSE_INFO_MSG;
+		cin >> temporary;
+
+		while (!checkEmailValidity(temporary)) 
+		{
+			cout << ERROR_MSG_CR << "Invalid, re-enter: " << CLOSE_ERR_MSG; cin >> temporary;
+		}
+
+		student = findStudentByEmail(students, temporary);
+		temporary = "";
+
+		cout << INFO_MSG_CR << "Enter the email of the student you want to replace: " << CLOSE_INFO_MSG;
+		cin >> temporary;
+		while (!checkEmailValidity(temporary))
+		{
+			cout << ERROR_MSG_CR << "Invalid, re-enter: " << CLOSE_ERR_MSG; cin >> temporary;
+		}
+
+		updateTeamStudent(teams[teamID], student, temporary);
+		break;
+		updateStudentData(students);
+		updateTeacherData(teachers);
+	default:
+		break;
+	}
+}
+
 bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& whiteListedRoles, vector<TEAM>& teams)
 {
 	vector<STUDENT> foundStudentsByCriteria;
@@ -604,16 +699,12 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		break;
 	case 12:
-		/*vector<LOG> audits = logger.readLogs();
-
-		for (size_t i = 0; i < audits.size(); i++)
-		{
-			cout << audits[i].date << " " << audits[i].time << " " << audits[i].severity << " " << audits[i].information;
-		}
-		break;*/
 		try
 		{
 			updateTeacherData(teachers);
+
+			// Doesn't update
+			//writeTeamsInTxt(teams);
 		}
 		catch (const std::exception& ex)
 		{
@@ -666,6 +757,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		try
 		{
 			updateTeamsData(teams, teachers, students);
+			
 		}
 		catch (const std::exception & ex)
 		{

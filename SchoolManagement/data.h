@@ -1,6 +1,7 @@
 #pragma once
 #include "structures.h"
 
+std::string toStatus(int inp_);
 
 STUDENT findStudentByEmail(std::vector<STUDENT>& students, std::string& email);
 
@@ -68,7 +69,9 @@ int findTeamByName(const std::vector<TEAM>& teams, const std::string name);
 
 void displayTeamsUpdateMenu();
 
-void updateTeamStatus(TEAM& team, std::string& status);
+void updateTeamStatus(TEAM& team, std::string status);
+
+void updateTeamDescription(TEAM& team, std::string& description);
 
 void updateTeamName(TEAM& team, std::string& name);
 

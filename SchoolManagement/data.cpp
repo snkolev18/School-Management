@@ -9,6 +9,7 @@
 #include <ctime>
 #include <stdio.h>
 #include "structures.h"
+#include "userInterface.h"
 #include "checkers.h"
 
 using namespace std;
@@ -26,6 +27,16 @@ string TEAM::statusToString(STATUS stat)
 	default:
 		return "Unknown Status";
 	}
+}
+
+string toStatus(int inp_) 
+{
+	vector<int> valid = { 0, 1, 2 };
+	if (find(valid.begin(), valid.end(), inp_) == valid.end()) 
+	{
+		return "Vania";
+	}
+	return TEAM::statusToString((TEAM::STATUS)inp_);
 }
 
 void writeRolesInTxt(vector<string>& whiteListedRoles)
@@ -278,8 +289,6 @@ string getDate()
 
 	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;
 
-	//return "chicho ivo sadsa sad as as";
-
 }
 
 TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers, vector<TEAM>& teams)
@@ -290,8 +299,10 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	ROLE role;
 
 	if (students.empty()) {
+		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to initialize a team, but there are no STUDENTS to be provided");
 		throw std::runtime_error("There are no students to add in a team");
 	} else if (teachers.empty()) {
+		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to initialize a team, but there are no TEACHERS to be provided");
 		throw std::runtime_error("There are no teachers to add in a team");
 	}
 
@@ -720,8 +731,6 @@ void updateTeacherData(vector<TEACHER>& teachers)
 			getline(cin, teachers.at(id).name);
 		}
 
-
-		cin.ignore();
 		cout << INFO_MSG_CR << "Enter new email of a teacher: " << CLOSE_INFO_MSG;
 		getline(cin, teachers.at(id).email);
 		while (!checkForExistingEmailTeachers(teachers, teachers.at(id).email) or !checkEmailValidity(teachers.at(id).email))
@@ -842,30 +851,27 @@ void deleteTeamsData(vector<TEAM>& teams)
 	}
 
 }
-void displayTeamsUpdateMenu()
-{
-	cout << "1. Change team status " << endl;
-	cout << "2. Change team description" << endl;
-	cout << "3. Change team name" << endl;
-	cout << "4. Change teacher" << endl;
-	cout << "5. Change student" << endl;
-}
-void updateTeamStatus(TEAM& team, string& status)
+
+void updateTeamStatus(TEAM& team, string status)
 {
 	team.status = status;
 }
+
 void updateTeamDescription(TEAM& team, string& description)
 {
 	team.description = description;
 }
+
 void updateTeamName(TEAM& team, string& name)
 {
 	team.teamName = name;
 }
+
 void updateTeamTeacher(TEAM& team, TEACHER& teacher)
 {
 	team.teacher = teacher;
 }
+
 void updateTeamStudent(TEAM& team, STUDENT& student, string& studentForReplacement)
 {
 	for (size_t i = 0; i < team.roles.size(); i++)
@@ -876,6 +882,7 @@ void updateTeamStudent(TEAM& team, STUDENT& student, string& studentForReplaceme
 		}
 	}
 }
+
 void updateTeamsData(vector<TEAM>& teams,vector<TEACHER>& teachers,vector<STUDENT>& students)
 {
 	ifstream file;
@@ -909,40 +916,7 @@ void updateTeamsData(vector<TEAM>& teams,vector<TEACHER>& teachers,vector<STUDEN
 			}
 			displayTeamsUpdateMenu();
 			cin >> option;
-			switch (option)
-			{
-			case 1:
-				cout << "Enter the new status: ";
-				cin >> temporary;
-				updateTeamStatus(teams[teamID], temporary);
-				break;
-			case 2:
-				cout << "Enter the new description: ";
-				cin >> temporary;
-				updateTeamDescription(teams[teamID], temporary);
-				break;
-			case 3:
-				cout << "Enter the new name of the team: ";
-				cin >> temporary;
-				updateTeamName(teams[teamID], temporary);
-				break;
-			case 4:
-				cout << "Enter the new teacher's email: ";
-				cin >> temporary;
-				teacher = findTeacherByEmail(teachers, temporary);
-				updateTeamTeacher(teams[teamID], teacher);
-				break;
-			case 5:
-				cout << "Enter the new student's email: ";
-				cin >> temporary;
-				student=findStudentByEmail(students, temporary);
-				cout << "Enter the email of the student you want to replace: ";
-				cin >> temporary;
-				updateTeamStudent(teams[teamID], student, temporary);
-				break;
-			default:
-				break;
-			}
+			handleUpdateTeamInfo(option, teams, teachers, students, teamID);
 			writeTeamsInTxt(teams);
 			/*cout << INFO_MSG_CR << "Update the name of the team: " << CLOSE_INFO_MSG;
 			getline(cin, teams.at(teamID).teamName);
@@ -966,6 +940,11 @@ void updateTeamsData(vector<TEAM>& teams,vector<TEACHER>& teachers,vector<STUDEN
 			}*/
 
 		}
+		else
+		{
+			logger.writeLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to delete contents of a team which status is set to IN_USE");
+			throw std::runtime_error("Tried to update a team that is currently being used. STATUS => In Use");
+		}
 	}
 	
 }
@@ -978,10 +957,14 @@ vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const strin
 	}
 
 	vector<STUDENT> foundStudents;
-	for (size_t i = 0; i < students.size(); i++)
-	{
-		if (students[i].grade == grade)
-		{
+	/*for_each(students.begin(), students.end(), [&](int i) {
+		if (students[i].grade == grade) {
+			foundStudents.push_back(students[i]);
+		}
+	});*/
+
+	for (size_t i = 0; i < students.size(); i++) {
+		if (students[i].grade == grade) {
 			foundStudents.push_back(students[i]);
 		}
 	}
@@ -997,15 +980,18 @@ vector<STUDENT> findStudentsByName(const vector<STUDENT>& students, const string
 	}
 
 	vector<STUDENT> foundStudents;
-	for (size_t i = 0; i < students.size(); i++)
-	{
-		if (students[i].name == name)
-		{
+	/*for_each(students.begin(), students.end(), [&](int i) {
+		if (students[i].name == name) {
+			foundstudents.push_back(students[i]);
+		}
+	});*/
+	for (size_t i = 0; i < students.size(); i++) {
+		if (students[i].name == name) {
 			foundStudents.push_back(students[i]);
 		}
 	}
-
 	return foundStudents;
+
 }
 
 vector<STUDENT> findStudentsBySurname(const vector<STUDENT>& students, const string& surname)

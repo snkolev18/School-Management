@@ -202,6 +202,27 @@ bool checkNameValidity(string name)
 	return isValid;
 }
 
+bool checkStrInput(const string inp_)
+{
+	for (char ch : inp_)
+	{
+		if (!isalpha(ch)) 
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+//void repeaterEmail(string inp_) 
+//{
+//	while (!checkEmailValidity(inp_))
+//	{
+//		cout << "Invalid, re-enter: "; cin >> inp_;
+//	}
+//}
+
 bool checkTeamNameLength(string name) 
 {
 	return name.length() > MAX_TEAMNAME_SIZE ? false : true;
