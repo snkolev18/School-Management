@@ -435,7 +435,7 @@ void displayStudentsInTable(vector<STUDENT>& students)
 	else
 	{
 		clearScreen();
-		cout << setw(50) <<ERROR_MSG_CR << "There are 0 students" << CLOSE_ERR_MSG;
+		cout << setw(50) << ERROR_MSG_CR << "There are 0 students" << CLOSE_ERR_MSG;
 	}
 }
 
@@ -545,8 +545,16 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		writeRolesInTxt(whiteListedRoles);
 		break;
 	case 4:
-		teams.push_back(inputTeam(whiteListedRoles, students, teachers, teams));
-		writeTeamsInTxt(teams);
+		try
+		{
+			teams.push_back(inputTeam(whiteListedRoles, students, teachers, teams));
+			writeTeamsInTxt(teams);
+
+		}
+		catch (const std::exception& ex)
+		{
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+		}
 		break;
 	case 5:
 		displayStudentsInTable(students);
@@ -645,7 +653,6 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	case 16:
 		try
 		{
-
 			cin >> criteria;
 			foundStudentsByCriteria = findStudentsBySurname(students, criteria);
 			displayStudentsInTable(foundStudentsByCriteria);
@@ -660,7 +667,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	default:
 		cout << endl;
 		cout << ERROR_MSG_CR << "|--------------------------|" << endl;
-		cout <<  "Incorrect input, try again!" << endl;
+		cout << "Incorrect input, try again!" << endl;
 		cout << "|--------------------------|" << CLOSE_ERR_MSG << endl;
 	}
 	return true;

@@ -8,6 +8,7 @@
 #define MAX_TEAM_DESCRIPTION 25
 #define MAX_EMAIL_SIZE 40
 #define MAX_TEAMNAME_SIZE 25
+#define MIN_NAME_SIZE 3
 // #################################
 
 // ######### MESSAGE COLORS ########
@@ -15,8 +16,10 @@
 #define CLOSE_ERR_MSG "\033[31;0m"
 #define EXCEPTION_MSG_CR "\033[33;33m"
 #define CLOSE_EXC_MSG "\033[33;0m"
-#define INFO_MSG_CR 
-#define CLOSE_MSG_CR
+#define INFO_MSG_CR "\033[92;92m"
+#define CLOSE_INFO_MSG "\033[92;0m"
+#define RESET_COLOR "\033[97;97m"
+#define CLOSE_RESET_COLOR "\033[97;0m"
 // #################################
 
 

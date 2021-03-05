@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <climits>
 #include "structures.h"
 
 using namespace std;
@@ -183,7 +184,7 @@ bool checkNameValidity(string name)
 
 	bool isValid = true;
 
-	if (name.length() > MAX_NAME_SIZE) 
+	if (name.length() > MAX_NAME_SIZE or name.length() < MIN_NAME_SIZE) 
 	{
 		return false;
 	}

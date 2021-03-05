@@ -289,6 +289,13 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	string email;
 	ROLE role;
 
+	if (students.empty()) {
+		throw std::runtime_error("There are no students to add in a team");
+	} else if (teachers.empty()) {
+		throw std::runtime_error("There are no teachers to add in a team");
+	}
+
+
 	cin.ignore();
 	cout << "Team name: ";
 	getline(cin, team.teamName);
@@ -578,7 +585,7 @@ void updateStudentData(vector<STUDENT>& students)
 	file.seekg(0, ios::end);
 	std::streamoff size = file.tellg();
 
-	if (size == 0) {
+	if (size == 0 or students.empty()) {
 		//LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
 		logger.writeLogMsg(SEVERITY::WARNING, "Option X clicked and Exception was thrown: Tried to update contents of a file that has no data");
 		throw std::runtime_error("File with students has no data!");
@@ -591,8 +598,8 @@ void updateStudentData(vector<STUDENT>& students)
 		getline(cin, email);
 		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
-			cout << "This email is not valid " << endl;
-			cout << "Please try again: ";
+			cout << ERROR_MSG_CR << "This email is not valid " << endl;
+			cout << "Please try again: " << CLOSE_ERR_MSG;
 			getline(cin, email);
 		}
 
@@ -610,16 +617,16 @@ void updateStudentData(vector<STUDENT>& students)
 		cin >> students.at(id).name;
 		while (!checkNameValidity(students.at(id).name))
 		{
-			cout << "Name is incorrect" << endl;
-			cout << "Re-Enter a correct name: ";
+			cout << ERROR_MSG_CR << "Name is incorrect" << endl;
+			cout << "Re-Enter a correct name: " << CLOSE_ERR_MSG;
 			cin >> students.at(id).name;
 		}
 
 		cin >> students.at(id).surname;
 		while (!checkNameValidity(students.at(id).surname))
 		{
-			cout << "Surname is incorrect" << endl;
-			cout << "Re-Enter a correct surname: ";
+			cout << ERROR_MSG_CR << "Surname is incorrect" << endl;
+			cout << "Re-Enter a correct surname: " << CLOSE_ERR_MSG;
 			cin >> students.at(id).surname;
 		}
 
@@ -628,8 +635,8 @@ void updateStudentData(vector<STUDENT>& students)
 		{
 			while (!checkGrade(students.at(id).grade))
 			{
-				cout << "This is cringe grade" << endl;
-				cout << "Please enter a valid one: ";
+				cout << ERROR_MSG_CR << "This is cringe grade" << endl;
+				cout << "Please enter a valid one: " << CLOSE_ERR_MSG;
 				cin >> students.at(id).grade;
 			}
 
@@ -640,12 +647,12 @@ void updateStudentData(vector<STUDENT>& students)
 		}
 
 		cin.ignore();
-		cout << "Enter new email of a student: ";
+		cout << INFO_MSG_CR << "Enter new email of a student: " << CLOSE_INFO_MSG;
 		getline(cin, students.at(id).email);
 		while (!checkForExistingEmailStudents(students, students.at(id).email) or !checkEmailValidity(students.at(id).email))
 		{
-			cout << "This email is not valid " << endl;
-			cout << "Please try again: ";
+			cout << ERROR_MSG_CR << "This email is not valid " << endl;
+			cout << "Please try again: " << CLOSE_ERR_MSG;
 			getline(cin, students.at(id).email);
 		}
 
@@ -662,7 +669,7 @@ void updateTeacherData(vector<TEACHER>& teachers)
 	file.seekg(0, ios::end);
 	std::streamoff size = file.tellg();
 
-	if (size == 0) {
+	if (size == 0 or teachers.empty()) {
 		//LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
 		logger.writeLogMsg(SEVERITY::WARNING, "Option X clicked and Exception was thrown: Tried to update contents of a file that has no data");
 		throw std::runtime_error("File with teachers has no data for update!");
@@ -671,12 +678,12 @@ void updateTeacherData(vector<TEACHER>& teachers)
 		string email;
 
 		cin.ignore();
-		cout << "Enter the email of the teacher that you want to edit: ";
+		cout << INFO_MSG_CR << "Enter the email of the teacher that you want to edit: " << CLOSE_INFO_MSG;
 		getline(cin, email);
 		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 		{
-			cout << "This email is not valid " << endl;
-			cout << "Please try again: ";
+			cout << ERROR_MSG_CR << "This email is not valid " << endl;
+			cout << "Please try again: " << CLOSE_ERR_MSG;
 			getline(cin, email);
 		}
 
@@ -691,34 +698,36 @@ void updateTeacherData(vector<TEACHER>& teachers)
 			}
 		}
 
-		cin.ignore();
-		cout << "Enter new first NAME of a teacher with email [ " << email << " ]" << " :";
+		cout << endl;
+		cout << INFO_MSG_CR << "Enter new first NAME of a teacher with email [ " 
+			 << RESET_COLOR << email << CLOSE_RESET_COLOR
+			 << INFO_MSG_CR << " ]" << " :" << CLOSE_INFO_MSG;
+
 		getline(cin, teachers.at(id).name);
 		while (!checkNameValidity(teachers.at(id).name))
 		{
-			cout << "Name is incorrect" << endl;
-			cout << "Re-Enter a correct name: ";
+			cout << ERROR_MSG_CR << "Name is incorrect" << endl;
+			cout << "Re-Enter a correct name: " << CLOSE_ERR_MSG;
 			cin >> teachers.at(id).name;
 		}
 
-		cin.ignore();
 		cout << "Enter new first SURNAME of a teacher with email [ " << email << " ]" << " :";
 		getline(cin, teachers.at(id).name);
 		while (!checkNameValidity(teachers.at(id).surname))
 		{
-			cout << "Surname is incorrect" << endl;
-			cout << "Re-Enter a correct surname: ";
+			cout << ERROR_MSG_CR << "Surname is incorrect" << endl;
+			cout << "Re-Enter a correct surname: " << CLOSE_ERR_MSG;
 			getline(cin, teachers.at(id).name);
 		}
 
 
 		cin.ignore();
-		cout << "Enter new email of a teacher: ";
+		cout << INFO_MSG_CR << "Enter new email of a teacher: " << CLOSE_INFO_MSG;
 		getline(cin, teachers.at(id).email);
 		while (!checkForExistingEmailTeachers(teachers, teachers.at(id).email) or !checkEmailValidity(teachers.at(id).email))
 		{
-			cout << "This email is not valid " << endl;
-			cout << "Please try again: ";
+			cout << ERROR_MSG_CR << "This email is not valid " << endl;
+			cout << "Please try again: " << CLOSE_ERR_MSG;
 			getline(cin, teachers.at(id).email);
 		}
 
@@ -735,7 +744,7 @@ void deleteStudentData(vector<STUDENT>& students)
 	file.seekg(0, ios::end);
 	std::streamoff size = file.tellg();
 
-	if (size == 0) {
+	if (size == 0 or students.empty()) {
 		//LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		throw std::runtime_error("File with students has no data to delete!");
@@ -744,13 +753,13 @@ void deleteStudentData(vector<STUDENT>& students)
 		string email;
 
 		cin.ignore();
-		cout << "Enter email of the student that you want to be delete: ";
+		cout << INFO_MSG_CR << "Enter email of the student that you want to be delete: " << CLOSE_INFO_MSG;
 
 		getline(cin, email);
 		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
-			cout << "There is no student with this email or it's incorrectly inputted" << endl;
-			cout << "Please enter an email of a student: ";
+			cout << ERROR_MSG_CR << "There is no student with this email or it's incorrectly inputted" << endl;
+			cout << "Please enter an email of a student: " << CLOSE_ERR_MSG;
 			getline(cin, email);
 		}
 		removeStudent(students, email);
@@ -766,7 +775,7 @@ void deleteTeacherData(vector<TEACHER>& teachers)
 	file.seekg(0, ios::end);
 	std::streamoff size = file.tellg();
 
-	if (size == 0) {
+	if (size == 0 or teachers.empty()) {
 		//LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		throw std::runtime_error("File with teachers has no data to delete!");
@@ -776,12 +785,12 @@ void deleteTeacherData(vector<TEACHER>& teachers)
 		string email;
 
 		cin.ignore();
-		cout << "Enter email of the teacher that you want to be delete: ";
+		cout << INFO_MSG_CR << "Enter email of the teacher that you want to be delete: " << CLOSE_INFO_MSG;
 		getline(cin, email);
 		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 		{
-			cout << "There is no teachers with this email or it's incorrectly inputted" << endl;
-			cout << "Please enter an email of a teacher: ";
+			cout << ERROR_MSG_CR << "There is no teachers with this email or it's incorrectly inputted" << endl;
+			cout << "Please enter an email of a teacher: " << CLOSE_ERR_MSG;
 			getline(cin, email);
 		}
 		removeTeacher(teachers, email);
@@ -797,7 +806,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 	file.seekg(0, ios::end);
 	std::streamoff size = file.tellg();
 
-	if (size == 0) {
+	if (size == 0 or teams.empty()) {
 		//LOG::putLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to delete contents of a file that has no data");
 		throw std::runtime_error("File with teams has no data to delete!");
@@ -808,7 +817,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 		string name;
 
 		cin.ignore();
-		cout << "Enter the name of the team that you want to be deleted: ";
+		cout << INFO_MSG_CR << "Enter the name of the team that you want to be deleted: " << CLOSE_INFO_MSG;
 		getline(cin, name);
 
 		int teamID = findTeamByName(teams, name);
@@ -817,8 +826,8 @@ void deleteTeamsData(vector<TEAM>& teams)
 		{
 			while (!checkIfTeamNameIsUsed(teams, name))
 			{
-				cout << "This team name is invalid or doesn't exist " << endl;
-				cout << "Please enter a correct name of a team: ";
+				cout << ERROR_MSG_CR << "This team name is invalid or doesn't exist " << CLOSE_ERR_MSG << endl;
+				cout << ERROR_MSG_CR << "Please enter a correct name of a team: " << CLOSE_ERR_MSG;
 				getline(cin, name);
 			}
 			removeTeam(teams, name);
@@ -841,7 +850,7 @@ void updateTeamsData(vector<TEAM>& teams)
 	file.seekg(0, ios::end);
 	std::streamoff size = file.tellg();
 
-	if (size == 0) {
+	if (size == 0 or teams.empty()) {
 		//LOG::putLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a file that has no data");
 		logger.writeLogMsg(SEVERITY::WARNING, "Option X clicked and Exception was thrown: Tried to update contents of a file that has no data");
 		throw std::runtime_error("File with teams has no data!");
@@ -850,7 +859,7 @@ void updateTeamsData(vector<TEAM>& teams)
 		string name;
 
 		cin.ignore();
-		cout << "Enter the name of the team that you want to edit: ";
+		cout << INFO_MSG_CR << "Enter the name of the team that you want to edit: " << CLOSE_INFO_MSG;
 		getline(cin, name);
 
 		int teamID = findTeamByName(teams, name);
@@ -859,24 +868,24 @@ void updateTeamsData(vector<TEAM>& teams)
 		{
 			while (!checkIfTeamNameIsUsed(teams, name))
 			{
-				cout << "This team name is invalid or doesn't exist " << endl;
-				cout << "Please enter a correct name of a team: ";
+				cout << ERROR_MSG_CR << "This team name is invalid or doesn't exist " << endl;
+				cout << "Please enter a correct name of a team: " << CLOSE_ERR_MSG;
 				getline(cin, name);
 			}
 			
 			cin.ignore();
-			cout << "Update the name of the team: ";
+			cout << INFO_MSG_CR << "Update the name of the team: " << CLOSE_INFO_MSG;
 			getline(cin, teams.at(teamID).teamName);
 			while (!checkTeamNameLength(teams.at(teamID).teamName))
 			{
-				cout << "That Team name is too long and invalid" << endl;
-				cout << "Re-Enter a shorter name: ";
+				cout << ERROR_MSG_CR << "That Team name is too long and invalid" << endl;
+				cout << "Re-Enter a shorter name: " << CLOSE_ERR_MSG;
 
 				getline(cin, teams.at(teamID).teamName);
 			}
 
 			cin.ignore();
-			cout << "Put a new teacher to consult this team: ";
+			cout << INFO_MSG_CR <<"Put a new teacher to consult this team: " << CLOSE_INFO_MSG;
 			getline(cin, teams.at(teamID).teacher.email);
 			/*while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 			{
