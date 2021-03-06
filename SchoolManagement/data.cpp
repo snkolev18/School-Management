@@ -126,6 +126,17 @@ TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 	}
 }
 
+int findIndexOfTeacherByEmail(const vector<TEACHER>& teachers, const string email)
+{
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		if (teachers.at(i).email == email)
+		{
+			return i;
+		}
+	}
+}
+
 int findTeamByName(const vector<TEAM>& teams, const string name)
 {
 	for (size_t i = 0; i < teams.size(); i++)
@@ -931,7 +942,7 @@ void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUD
 		cin.ignore();
 		cout << INFO_MSG_CR << "Enter the name of the team that you want to edit: " << CLOSE_INFO_MSG;
 		getline(cin, name);
-		int teamID = findTeamByName(teams, name);
+		int teamID = findTeamByName(teams, name);		
 
 		if (teams.at(teamID).status == TEAM::statusToString(TEAM::IN_USE))
 		{

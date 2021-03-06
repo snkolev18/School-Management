@@ -1,1 +1,3 @@
-Kokoshki|scrum:||||,dev:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,dev1:||||,qa:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,Viktor|Stoev|Kokoshki=|;|2021/03/06 11:28:32|Not active|v chovala|
+Kokoshki|scrum:||||,dev:||||,dev1:||||,qa:||||,Viktor|Stoev|Kokoshki=|;|2021/03/06 11:28:32|Not active|v chovala|
+IJASDIODSA|scrum:||||,dev:||||,dev1:||||,qa:||||,Pehso|G-ne|IJASDIODSA=pgeorgiev@c.v|;|2021/03/06 17:09:15|In use|SIAOJDDJIOAS|
+SSS|scrum:Stoyan|Kolev|10a|SNKolev18@codingburgas.bg|,dev:Stoyan|Kolev|10a|SNKolev18@codingburgas.bg|,dev1:Stoyan|Kolev|10a|SNKolev18@codingburgas.bg|,qa:Stoyan|Kolev|10a|SNKolev18@codingburgas.bg|,Pehso|G-ne|IJASDIODSA=SOD=pgeorgiev@c.v|;|2021/03/06 17:12:23|In use|iosadioashiodsa|

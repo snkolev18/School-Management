@@ -656,7 +656,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 		}
 		updateTeamDescription(teams[teamID], temporary);
 		break;
-	case 3:
+	case 3: {
 		cin.ignore();
 		cout << INFO_MSG_CR << "Enter the new name of the team: " << CLOSE_INFO_MSG;
 		getline(cin, temporary);
@@ -667,8 +667,24 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 
 			getline(cin, temporary);
 		}
+
+		string oldTeamName = teams[teamID].teamName;
 		updateTeamName(teams[teamID], temporary);
-		break;
+
+		string teacherEmail = teams[teamID].teacher.email;
+		int teacherId = findIndexOfTeacherByEmail(teachers, teacherEmail);
+		//teachers[teacherId].teams
+		for (size_t i = 0; i < teachers[teacherId].teams.size(); i++)
+		{
+			if (teachers[teacherId].teams[i] == oldTeamName)
+			{
+				teachers[teacherId].teams[i] = temporary;
+				writeTeachersInTxt(teachers);
+				break;
+			}
+		}
+
+		}; break;
 	case 4:
 		teachersEmpty(teachers, students);
 
@@ -775,7 +791,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 			║  (10) |Delete a team|					║
 			║  (11) |Update student's information|  ║
 			║  (12) |Update teacher's information|  ║
-			║  (18) | Visualize reports on criteria|║  
+			║  (18) | Visualize reports on criteria|║
 			║										║
 			║										║
 			║										║
@@ -888,47 +904,47 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
-	/*case 14:
-		try
-		{
-			cin >> criteria;
-			foundStudentsByCriteria = findStudentsByClass(students, criteria);
-			displayStudentsInTable(foundStudentsByCriteria);
-			foundStudentsByCriteria.clear();
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-	case 15:
-		try
-		{
-			cin >> criteria;
-			foundStudentsByCriteria = findStudentsByName(students, criteria);
-			displayStudentsInTable(foundStudentsByCriteria);
-			foundStudentsByCriteria.clear();
+		/*case 14:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByClass(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 15:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByName(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
 
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-	case 16:
-		try
-		{
-			cin >> criteria;
-			foundStudentsByCriteria = findStudentsBySurname(students, criteria);
-			displayStudentsInTable(foundStudentsByCriteria);
-			foundStudentsByCriteria.clear();
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 16:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
 
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;*/
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;*/
 	case 17:
 		try
 		{

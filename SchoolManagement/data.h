@@ -11,6 +11,8 @@ int findIndexByEmailStudents(std::vector<STUDENT>& students, std::string& email)
 
 int findIndexByEmailTeachers(std::vector<TEACHER>& teachers, std::string& email);
 
+int findIndexOfTeacherByEmail(const std::vector<TEACHER>& teachers, const std::string email);
+
 STUDENT inputStudent(std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
 
 TEACHER inputTeacher(std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
