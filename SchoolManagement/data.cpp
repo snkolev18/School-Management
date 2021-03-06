@@ -29,10 +29,10 @@ string TEAM::statusToString(STATUS stat)
 	}
 }
 
-string toStatus(int inp_) 
+string toStatus(int inp_)
 {
 	vector<int> valid = { 0, 1, 2 };
-	if (find(valid.begin(), valid.end(), inp_) == valid.end()) 
+	if (find(valid.begin(), valid.end(), inp_) == valid.end())
 	{
 		return "Vania";
 	}
@@ -301,7 +301,8 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	if (students.empty()) {
 		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to initialize a team, but there are no STUDENTS to be provided");
 		throw std::runtime_error("There are no students to add in a team");
-	} else if (teachers.empty()) {
+	}
+	else if (teachers.empty()) {
 		logger.writeLogMsg(SEVERITY::CRITICAL, "Exception thrown: Tried to initialize a team, but there are no TEACHERS to be provided");
 		throw std::runtime_error("There are no teachers to add in a team");
 	}
@@ -710,9 +711,9 @@ void updateTeacherData(vector<TEACHER>& teachers)
 		}
 
 		cout << endl;
-		cout << INFO_MSG_CR << "Enter new first NAME of a teacher with email [ " 
-			 << RESET_COLOR << email << CLOSE_RESET_COLOR
-			 << INFO_MSG_CR << " ]" << " :" << CLOSE_INFO_MSG;
+		cout << INFO_MSG_CR << "Enter new first NAME of a teacher with email [ "
+			<< RESET_COLOR << email << CLOSE_RESET_COLOR
+			<< INFO_MSG_CR << " ]" << " :" << CLOSE_INFO_MSG;
 
 		getline(cin, teachers.at(id).name);
 		while (!checkNameValidity(teachers.at(id).name))
@@ -746,7 +747,7 @@ void updateTeacherData(vector<TEACHER>& teachers)
 	//LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
 }
 
-void deleteStudentData(vector<STUDENT>& students)
+void deleteStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 {
 	ifstream file;
 	file.open("students.txt", ios::in | ios::binary);
@@ -763,8 +764,8 @@ void deleteStudentData(vector<STUDENT>& students)
 
 		cin.ignore();
 		cout << INFO_MSG_CR << "Enter email of the student that you want to be delete: " << CLOSE_INFO_MSG;
-
 		getline(cin, email);
+		int id = findIndexByEmailStudents(students, email);
 		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
 			cout << ERROR_MSG_CR << "There is no student with this email or it's incorrectly inputted" << endl;
@@ -773,11 +774,24 @@ void deleteStudentData(vector<STUDENT>& students)
 		}
 		removeStudent(students, email);
 		writeStudentsInTxt(students);
+		//teams.erase(teams.begin() + id);
+		for (size_t i = 0; i < teams.size(); i++)
+		{
+			for (size_t j = 0; j < teams[i].roles.size(); j++)
+			{
+
+				if (teams[i].roles[j].student.email == email) 
+				{
+					teams[i].roles[j].student = {};
+				}
+			}
+		}
+		writeTeamsInTxt(teams);
 		logger.writeLogMsg(SEVERITY::INFO, "Student was successfully DELETED");
 	}
 }
 
-void deleteTeacherData(vector<TEACHER>& teachers)
+void deleteTeacherData(vector<TEACHER>& teachers, vector<TEAM>& teams)
 {
 	ifstream file;
 	file.open("teachers.txt", ios::in | ios::binary);
@@ -803,7 +817,16 @@ void deleteTeacherData(vector<TEACHER>& teachers)
 			getline(cin, email);
 		}
 		removeTeacher(teachers, email);
+
+		for (size_t i = 0; i < teams.size(); i++) {
+			for (size_t j = 0; j < teams[i].roles.size(); j++) {
+				if (teams[i].teacher.email == email) {
+					teams[i].teacher = {};
+				}
+			}
+		}
 		writeTeachersInTxt(teachers);
+		writeTeamsInTxt(teams);
 	}
 
 }
@@ -842,7 +865,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 			removeTeam(teams, name);
 			writeTeamsInTxt(teams);
 		}
-		else 
+		else
 		{
 			logger.writeLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to delete contents of a team which status is set to IN_USE");
 			throw std::runtime_error("Tried to delete a team that is currently being used. STATUS => In Use");
@@ -883,7 +906,7 @@ void updateTeamStudent(TEAM& team, STUDENT& student, string& studentForReplaceme
 	}
 }
 
-void updateTeamsData(vector<TEAM>& teams,vector<TEACHER>& teachers,vector<STUDENT>& students)
+void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUDENT>& students)
 {
 	ifstream file;
 	string temporary;
@@ -946,12 +969,12 @@ void updateTeamsData(vector<TEAM>& teams,vector<TEACHER>& teachers,vector<STUDEN
 			throw std::runtime_error("Tried to update a team that is currently being used. STATUS => In Use");
 		}
 	}
-	
+
 }
 
 vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const string& grade)
 {
-	if (students.empty()) 
+	if (students.empty())
 	{
 		throw runtime_error("No students to search for and filter!!!");
 	}
@@ -1080,7 +1103,7 @@ vector<TEAM> findTeamsByTeacher(const vector<TEAM>& teams, const string& name)
 	vector<TEAM> foundTeams;
 	for (size_t i = 0; i < teams.size(); i++)
 	{
-		if (teams[i].teacher.name==name)
+		if (teams[i].teacher.name == name)
 		{
 			foundTeams.push_back(teams[i]);
 		}

@@ -59,9 +59,9 @@ void updateStudentData(std::vector<STUDENT>& students);
 
 void updateTeacherData(std::vector<TEACHER>& teachers);
 
-void deleteStudentData(std::vector<STUDENT>& students);
+void deleteStudentData(std::vector<STUDENT>& students, std::vector<TEAM>& teams);
 
-void deleteTeacherData(std::vector<TEACHER>& teachers);
+void deleteTeacherData(std::vector<TEACHER>& teachers, std::vector<TEAM>& teams);
 
 void deleteTeamsData(std::vector<TEAM>& teams);
 

@@ -1,3 +1,1 @@
-MSSQL|scrum:stoqn|kolev|10a|stoqn@abv.bg|,dev:stoqn|kolev|10a|stoqn@abv.bg|,dev1:atanas|burmov|10a|burmov@abv.bg|,qa:stoqn|kolev|10a|stoqn@abv.bg|,Petar|Georgiev|SQL=pgeorgiev@codingburgas.bg|;|2021/03/06 01:09:11|Archived|SQLite|
-Musaka|scrum:stoqn|kolev|10a|stoqn@abv.bg|,dev:stoqn|kolev|10a|stoqn@abv.bg|,dev1:stoqn|kolev|10a|stoqn@abv.bg|,qa:stoqn|kolev|10a|stoqn@abv.bg|,Petar|Georgiev|SQL=Musala=pgeorgiev@codingburgas.bg|;|2021/03/06 01:10:17|In use|Musala soft projects|
-Himiq|scrum:stoqn|kolev|10a|stoqn@abv.bg|,dev:stoqn|kolev|10a|stoqn@abv.bg|,dev1:stoqn|kolev|10a|stoqn@abv.bg|,qa:atanas|burmov|10a|burmov@abv.bg|,Georgi|Georgiev|Himiq=ggeorgiev@codingburgas.bg|;|2021/03/06 01:11:20|In use|Himiqta izuchavame|
+Kokoshki|scrum:||||,dev:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,dev1:||||,qa:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,Viktor|Stoev|Kokoshki=|;|2021/03/06 11:28:32|In use|v chovala|

@@ -650,9 +650,11 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		}
 		break;
 	case 5:
+		clearScreen();
 		displayStudentsInTable(students);
 		break;
 	case 6:
+		clearScreen();
 		displayTeachersInTable(teachers);
 		break;
 	case 7: displayTeamsInTable(teams, whiteListedRoles);
@@ -660,7 +662,8 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	case 8:
 		try
 		{
-			deleteStudentData(students);
+			clearScreen();
+			deleteStudentData(students, teams);
 		}
 		catch (const std::exception& ex)
 		{
@@ -670,7 +673,8 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	case 9:
 		try
 		{
-			deleteTeacherData(teachers);
+			clearScreen();
+			deleteTeacherData(teachers, teams);
 		}
 		catch (const std::exception& ex)
 		{
@@ -680,6 +684,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	case 10:
 		try
 		{
+			clearScreen();
 			deleteTeamsData(teams);
 		}
 		catch (const std::exception& ex)
@@ -701,6 +706,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	case 12:
 		try
 		{
+			clearScreen();
 			updateTeacherData(teachers);
 
 			// Doesn't update

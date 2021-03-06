@@ -1,2 +1,1 @@
-Atanas|Burmov|10B|AABurmov18@codingburgas.bg|
-stoqn|kolev|10a|stoqn@abv.bg|
+Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|
