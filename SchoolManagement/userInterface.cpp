@@ -767,179 +767,119 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	cout << setw(50) << "->: ";
 	checkChoiceInput(option);
 
-
-	switch (option)
-	{
-	case 1:
-		cin.ignore();
-		students.push_back(inputStudent(students, teachers));
-		writeStudentsInTxt(students);
-		break;
-
-	case 2:
-		cin.ignore();
-		teachers.push_back(inputTeacher(students, teachers));
-		writeTeachersInTxt(teachers);
-		break;
-
-	case 3:
-		cin.ignore();
-		addRole(whiteListedRoles);
-		writeRolesInTxt(whiteListedRoles);
-		break;
-	case 4:
-		try
+	try {
+		switch (option)
 		{
+		case 1:
+			cin.ignore();
+			students.push_back(inputStudent(students, teachers));
+			writeStudentsInTxt(students);
+			break;
+
+		case 2:
+			cin.ignore();
+			teachers.push_back(inputTeacher(students, teachers));
+			writeTeachersInTxt(teachers);
+			break;
+
+		case 3:
+			cin.ignore();
+			addRole(whiteListedRoles);
+			writeRolesInTxt(whiteListedRoles);
+			break;
+		case 4:
 			teams.push_back(inputTeam(whiteListedRoles, students, teachers, teams));
 			writeTeamsInTxt(teams);
-
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-	case 5:
-		clearScreen();
-		displayStudentsInTable(students);
-		break;
-	case 6:
-		clearScreen();
-		displayTeachersInTable(teachers);
-		break;
-	case 7: displayTeamsInTable(teams, whiteListedRoles);
-		break;
-	case 8:
-		try
-		{
+			break;
+		case 5:
 			clearScreen();
-			deleteStudentData(students, teams);
-		}
-		catch (const std::exception& ex)
-		{
-			cout << ex.what();
-		}
-		break;
-	case 9:
-		try
-		{
+			displayStudentsInTable(students);
+			break;
+		case 6:
 			clearScreen();
-			deleteTeacherData(teachers, teams);
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-	case 10:
-		try
-		{
-			clearScreen();
-			deleteTeamsData(teams);
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-	case 11:
-		try
-		{
-			clearScreen();
-			updateStudentData(students);
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-	case 12:
-		try
-		{
-			clearScreen();
-			updateTeacherData(teachers);
-
+			displayTeachersInTable(teachers);
+			break;
+		case 7: displayTeamsInTable(teams, whiteListedRoles);
+			break;
+		case 8: clearScreen(); deleteStudentData(students, teams); break;
+		case 9: clearScreen(); deleteTeacherData(teachers, teams); break;
+		case 10: clearScreen(); deleteTeamsData(teams);  break;
+		case 11: clearScreen(); updateStudentData(students); break;
+		case 12: 
+			clearScreen(); updateTeacherData(teachers);
 			// Doesn't update
 			//writeTeamsInTxt(teams);
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-		/*case 14:
-			try
-			{
-				cin >> criteria;
-				foundStudentsByCriteria = findStudentsByClass(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
 			break;
-		case 15:
-			try
-			{
-				cin >> criteria;
-				foundStudentsByCriteria = findStudentsByName(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;
-		case 16:
-			try
-			{
-				cin >> criteria;
-				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;*/
-	case 17:
-		try
-		{
-			updateTeamsData(teams, teachers, students);
-
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		break;
-	case 18:
-		cout << "1. Filter students" << endl;
-		cout << "2. Filter students" << endl;
-		checkChoiceInput(filter);
-		do {
-			switch (filter)
-			{
-			case 1: filt = filteringMenu(1, students, teachers); break;
-			case 2: filt = filteringMenu(0, students, teachers); break;
-			default:
+			/*case 14:
+				try
+				{
+					cin >> criteria;
+					foundStudentsByCriteria = findStudentsByClass(students, criteria);
+					displayStudentsInTable(foundStudentsByCriteria);
+					foundStudentsByCriteria.clear();
+				}
+				catch (const std::exception& ex)
+				{
+					cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+				}
 				break;
-			}
-		} while (filt);
-		break;
-	case 19:
-		return false;
-	default:
-		cout << endl;
-		cout << ERROR_MSG_CR << "|--------------------------|" << endl;
-		cout << "Incorrect option, try again!" << endl;
-		cout << "|--------------------------|" << CLOSE_ERR_MSG << endl;
+			case 15:
+				try
+				{
+					cin >> criteria;
+					foundStudentsByCriteria = findStudentsByName(students, criteria);
+					displayStudentsInTable(foundStudentsByCriteria);
+					foundStudentsByCriteria.clear();
+
+				}
+				catch (const std::exception& ex)
+				{
+					cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+				}
+				break;
+			case 16:
+				try
+				{
+					cin >> criteria;
+					foundStudentsByCriteria = findStudentsBySurname(students, criteria);
+					displayStudentsInTable(foundStudentsByCriteria);
+					foundStudentsByCriteria.clear();
+
+				}
+				catch (const std::exception& ex)
+				{
+					cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+				}
+				break;*/
+		case 17:
+			updateTeamsData(teams, teachers, students);
+			break;
+		case 18:
+			cout << "1. Filter students" << endl;
+			cout << "2. Filter students" << endl;
+			checkChoiceInput(filter);
+			do {
+				switch (filter)
+				{
+				case 1: filt = filteringMenu(1, students, teachers); break;
+				case 2: filt = filteringMenu(0, students, teachers); break;
+				default:
+					break;
+				}
+			} while (filt);
+			break;
+		case 19:
+			return false;
+		default:
+			cout << endl;
+			cout << ERROR_MSG_CR << "|--------------------------|" << endl;
+			cout << "Incorrect option, try again!" << endl;
+			cout << "|--------------------------|" << CLOSE_ERR_MSG << endl;
+		}
+	}
+	catch (const std::exception ex)
+	{
+		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
 	return true;
 }

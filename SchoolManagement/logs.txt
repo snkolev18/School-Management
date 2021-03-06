@@ -512,3 +512,9 @@
 [2021/03/06  18:00:00] INFO Student was successfully UPDATED
 [2021/03/06  18:05:41] INFO Program was executed successfully
 [2021/03/06  18:18:32] INFO Program was executed successfully
+[2021/03/06  18:24:34] INFO Program was executed successfully
+[2021/03/06  18:25:10] INFO Students were successfully written into students.txt
+[2021/03/06  18:25:10] INFO Student was successfully UPDATED
+[2021/03/06  19:18:29] INFO Program was executed successfully
+[2021/03/06  19:32:32] INFO Teams were successfully written into teams.txt
+[2021/03/06  19:32:44] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE

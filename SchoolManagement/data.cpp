@@ -641,6 +641,13 @@ void updateStudentData(vector<STUDENT>& students)
 			}
 		}
 
+		// Save stariq email
+		// Looping through the teams and find the which the student's participates in
+		// if match is found => update student data in the team
+		// Add the end save teams to file
+
+		// # Repeate for teachers
+
 		cin >> students.at(id).name;
 		while (!checkNameValidity(students.at(id).name))
 		{
@@ -795,7 +802,7 @@ void deleteStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 			for (size_t j = 0; j < teams[i].roles.size(); j++)
 			{
 
-				if (teams[i].roles[j].student.email == email) 
+				if (teams[i].roles[j].student.email == email)
 				{
 					teams[i].roles[j].student = {};
 				}
@@ -942,7 +949,7 @@ void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUD
 		cin.ignore();
 		cout << INFO_MSG_CR << "Enter the name of the team that you want to edit: " << CLOSE_INFO_MSG;
 		getline(cin, name);
-		int teamID = findTeamByName(teams, name);		
+		int teamID = findTeamByName(teams, name);
 
 		if (teams.at(teamID).status == TEAM::statusToString(TEAM::IN_USE))
 		{
@@ -999,7 +1006,7 @@ vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const strin
 		if (student.grade == grade) {
 			foundStudents.push_back(student);
 		}
-	});
+		});
 
 	/*for (size_t i = 0; i < students.size(); i++) {
 		if (students[i].grade == grade) {
@@ -1018,16 +1025,12 @@ vector<STUDENT> findStudentsByName(const vector<STUDENT>& students, const string
 	}
 
 	vector<STUDENT> foundStudents;
-	/*for_each(students.begin(), students.end(), [&](int i) {
-		if (students[i].name == name) {
-			foundstudents.push_back(students[i]);
+	for_each(students.begin(), students.end(), [&](STUDENT student) {
+		if (student.name == name) {
+			foundStudents.push_back(student);
 		}
-	});*/
-	for (size_t i = 0; i < students.size(); i++) {
-		if (students[i].name == name) {
-			foundStudents.push_back(students[i]);
-		}
-	}
+		});
+
 	return foundStudents;
 
 }
@@ -1040,13 +1043,11 @@ vector<STUDENT> findStudentsBySurname(const vector<STUDENT>& students, const str
 	}
 
 	vector<STUDENT> foundStudents;
-	for (size_t i = 0; i < students.size(); i++)
-	{
-		if (students[i].surname == surname)
-		{
-			foundStudents.push_back(students[i]);
+	for_each(students.begin(), students.end(), [&](STUDENT student) {
+		if (student.surname == surname) {
+			foundStudents.push_back(student);
 		}
-	}
+		});
 
 	return foundStudents;
 }
@@ -1059,13 +1060,11 @@ vector<TEACHER> findTeachersByName(const vector<TEACHER>& teachers, const string
 	}
 
 	vector<TEACHER> foundTeachers;
-	for (size_t i = 0; i < teachers.size(); i++)
-	{
-		if (teachers[i].name == name)
-		{
-			foundTeachers.push_back(teachers[i]);
+	for_each(teachers.begin(), teachers.end(), [&](TEACHER teacher) {
+		if (teacher.name == name) {
+			foundTeachers.push_back(teacher);
 		}
-	}
+		});
 
 	return foundTeachers;
 }
@@ -1078,13 +1077,11 @@ vector<TEACHER> findTeachersBySurname(const vector<TEACHER>& teachers, const str
 	}
 
 	vector<TEACHER> foundTeachers;
-	for (size_t i = 0; i < teachers.size(); i++)
-	{
-		if (teachers[i].surname == surname)
-		{
-			foundTeachers.push_back(teachers[i]);
+	for_each(teachers.begin(), teachers.end(), [&](TEACHER teacher) {
+		if (teacher.surname == surname) {
+			foundTeachers.push_back(teacher);
 		}
-	}
+		});
 
 	return foundTeachers;
 }
