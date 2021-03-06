@@ -507,3 +507,8 @@
 [2021/03/06  17:48:40] INFO Teachers were successfully written into teachers.txt
 [2021/03/06  17:48:51] INFO Teams were successfully written into teams.txt
 [2021/03/06  17:49:15] INFO Program was executed successfully
+[2021/03/06  17:57:53] INFO Program was executed successfully
+[2021/03/06  18:00:00] INFO Students were successfully written into students.txt
+[2021/03/06  18:00:00] INFO Student was successfully UPDATED
+[2021/03/06  18:05:41] INFO Program was executed successfully
+[2021/03/06  18:18:32] INFO Program was executed successfully

@@ -508,119 +508,82 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
 	int op;
-	if (who) {
-		cout << "\n 1. Search by class (10A, 10B, 10V and so on)" << endl;
-		cout << "2. Search by student's firstname" << endl;
-		cout << "3. Search by student's surname" << endl;
-		cout << "9. <- Back" << endl;
 
-		checkChoiceInput(op);
-		switch (op)
-		{
-		case 1:
-			try
+	try {
+
+		if (who) {
+			cout << "\n 1. Search by class (10A, 10B, 10V and so on)" << endl;
+			cout << "2. Search by student's firstname" << endl;
+			cout << "3. Search by student's surname" << endl;
+			cout << "9. <- Back" << endl;
+
+			checkChoiceInput(op);
+
+
+			switch (op)
 			{
+			case 1:
 				cin >> criteria;
 				foundStudentsByCriteria = findStudentsByClass(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;
-		case 2:
-			try
-			{
+				break;
+			case 2:
 				cin >> criteria;
 				foundStudentsByCriteria = findStudentsByName(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
-
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;
-		case 3:
-			try
-			{
+				break;
+			case 3:
 				cin >> criteria;
 				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
-
+			case 9:
+				return false;
+			default:
+				break;
 			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;
-		case 9:
-			return false;
-		default:
-			break;
+			return true;
 		}
-		return true;
+		else {
+			cout << "1. Search by teacher's firstname" << endl;
+			cout << "2. Search by teacher's surname" << endl;
+			cout << "3. Search teachers who have no teams assigned" << endl;
+			cout << "9. <- Back" << endl;
+
+			checkChoiceInput(op);
+			switch (op)
+			{
+			case 1:
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByClass(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+				break;
+			case 2:
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByName(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+				break;
+			case 3:
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+				break;
+			case 9:
+				return false;
+			default:
+				break;
+			}
+			return true;
+		}
 	}
-	else {
-		cout << "1. Search by teacher's firstname" << endl;
-		cout << "2. Search by teacher's surname" << endl;
-		cout << "3. Search teachers who have no teams assigned" << endl;
-		cout << "9. <- Back" << endl;
-
-		checkChoiceInput(op);
-		switch (op)
-		{
-		case 1:
-			try
-			{
-				cin >> criteria;
-				foundStudentsByCriteria = findStudentsByClass(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;
-		case 2:
-			try
-			{
-				cin >> criteria;
-				foundStudentsByCriteria = findStudentsByName(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;
-		case 3:
-			try
-			{
-				cin >> criteria;
-				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-
-			}
-			catch (const std::exception& ex)
-			{
-				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-			}
-			break;
-		case 9:
-			return false;
-		default:
-			break;
-		}
-		return true;
+	catch (const std::exception& ex)
+	{
+		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
 }
 
@@ -684,7 +647,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 			}
 		}
 
-		}; break;
+	}; break;
 	case 4:
 		teachersEmpty(teachers, students);
 

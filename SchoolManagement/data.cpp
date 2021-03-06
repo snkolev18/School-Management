@@ -995,17 +995,17 @@ vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const strin
 	}
 
 	vector<STUDENT> foundStudents;
-	/*for_each(students.begin(), students.end(), [&](int i) {
-		if (students[i].grade == grade) {
-			foundStudents.push_back(students[i]);
+	for_each(students.begin(), students.end(), [&](STUDENT student) {
+		if (student.grade == grade) {
+			foundStudents.push_back(student);
 		}
-	});*/
+	});
 
-	for (size_t i = 0; i < students.size(); i++) {
+	/*for (size_t i = 0; i < students.size(); i++) {
 		if (students[i].grade == grade) {
 			foundStudents.push_back(students[i]);
 		}
-	}
+	}*/
 
 	return foundStudents;
 }
