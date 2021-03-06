@@ -11,6 +11,7 @@
 #include "structures.h"
 #include "userInterface.h"
 #include "checkers.h"
+#include "messages.h"
 
 using namespace std;
 
@@ -605,7 +606,12 @@ void removeTeacher(vector<TEACHER>& teachers, string email)
 	}
 }
 
-void updateStudentData(vector<STUDENT>& students)
+void updateTeamStudentEmail(int id, TEAM& team, string email) 
+{
+	team.roles[id].student.email = email;
+}
+
+void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 {
 	ifstream file;
 	file.open("students.txt", ios::in | ios::binary);
@@ -625,8 +631,7 @@ void updateStudentData(vector<STUDENT>& students)
 		getline(cin, email);
 		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
-			cout << ERROR_MSG_CR << "This email is not valid " << endl;
-			cout << "Please try again: " << CLOSE_ERR_MSG;
+			badEmail();
 			getline(cin, email);
 		}
 
@@ -641,26 +646,18 @@ void updateStudentData(vector<STUDENT>& students)
 			}
 		}
 
-		// Save stariq email
-		// Looping through the teams and find the which the student's participates in
-		// if match is found => update student data in the team
-		// Add the end save teams to file
-
-		// # Repeate for teachers
 
 		cin >> students.at(id).name;
 		while (!checkNameValidity(students.at(id).name))
 		{
-			cout << ERROR_MSG_CR << "Name is incorrect" << endl;
-			cout << "Re-Enter a correct name: " << CLOSE_ERR_MSG;
+			badName("Name");
 			cin >> students.at(id).name;
 		}
 
 		cin >> students.at(id).surname;
 		while (!checkNameValidity(students.at(id).surname))
 		{
-			cout << ERROR_MSG_CR << "Surname is incorrect" << endl;
-			cout << "Re-Enter a correct surname: " << CLOSE_ERR_MSG;
+			badName("Surname");
 			cin >> students.at(id).surname;
 		}
 
@@ -669,8 +666,7 @@ void updateStudentData(vector<STUDENT>& students)
 		{
 			while (!checkGrade(students.at(id).grade))
 			{
-				cout << ERROR_MSG_CR << "This is cringe grade" << endl;
-				cout << "Please enter a valid one: " << CLOSE_ERR_MSG;
+				badGrade();
 				cin >> students.at(id).grade;
 			}
 
@@ -680,14 +676,36 @@ void updateStudentData(vector<STUDENT>& students)
 			cout << ex.what();
 		}
 
+		string oldEmail = students[id].email;
+
 		cin.ignore();
 		cout << INFO_MSG_CR << "Enter new email of a student: " << CLOSE_INFO_MSG;
 		getline(cin, students.at(id).email);
 		while (!checkForExistingEmailStudents(students, students.at(id).email) or !checkEmailValidity(students.at(id).email))
 		{
-			cout << ERROR_MSG_CR << "This email is not valid " << endl;
-			cout << "Please try again: " << CLOSE_ERR_MSG;
+			updateMsgs(email, "student");
 			getline(cin, students.at(id).email);
+		}
+		// Save stariq email
+		updateTeamStudentEmail(id, teams.at(id), students.at(id).email);
+		// Looping through the teams and find the team which the student's participates in
+		// if match is found => update student data in the team
+		// Add the end save teams to file
+
+		// # Repeate for teachers
+
+		for (size_t i = 0; i < teams.size(); i++)
+		{
+			for (size_t j = 0; j < teams[i].roles.size(); j++)
+			{
+				if (teams[i].roles[j].student.email == oldEmail)
+				{
+					teams[i].roles[j].student.email == students.at(id).email;
+					writeTeamsInTxt(teams);
+					break;
+				}
+
+			}
 		}
 
 		writeStudentsInTxt(students);
@@ -695,6 +713,7 @@ void updateStudentData(vector<STUDENT>& students)
 	}
 	//LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
 }
+
 
 void updateTeacherData(vector<TEACHER>& teachers)
 {
@@ -716,8 +735,7 @@ void updateTeacherData(vector<TEACHER>& teachers)
 		getline(cin, email);
 		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 		{
-			cout << ERROR_MSG_CR << "This email is not valid " << endl;
-			cout << "Please try again: " << CLOSE_ERR_MSG;
+			badEmail();
 			getline(cin, email);
 		}
 
@@ -732,16 +750,12 @@ void updateTeacherData(vector<TEACHER>& teachers)
 			}
 		}
 
-		cout << endl;
-		cout << INFO_MSG_CR << "Enter new first NAME of a teacher with email [ "
-			<< RESET_COLOR << email << CLOSE_RESET_COLOR
-			<< INFO_MSG_CR << " ]" << " :" << CLOSE_INFO_MSG;
+		updateMsgs(email, "teacher");
 
 		getline(cin, teachers.at(id).name);
 		while (!checkNameValidity(teachers.at(id).name))
 		{
-			cout << ERROR_MSG_CR << "Name is incorrect" << endl;
-			cout << "Re-Enter a correct name: " << CLOSE_ERR_MSG;
+			badName("Name");
 			cin >> teachers.at(id).name;
 		}
 
@@ -749,8 +763,7 @@ void updateTeacherData(vector<TEACHER>& teachers)
 		getline(cin, teachers.at(id).name);
 		while (!checkNameValidity(teachers.at(id).surname))
 		{
-			cout << ERROR_MSG_CR << "Surname is incorrect" << endl;
-			cout << "Re-Enter a correct surname: " << CLOSE_ERR_MSG;
+			badName("Surname");
 			getline(cin, teachers.at(id).name);
 		}
 
@@ -758,8 +771,7 @@ void updateTeacherData(vector<TEACHER>& teachers)
 		getline(cin, teachers.at(id).email);
 		while (!checkForExistingEmailTeachers(teachers, teachers.at(id).email) or !checkEmailValidity(teachers.at(id).email))
 		{
-			cout << ERROR_MSG_CR << "This email is not valid " << endl;
-			cout << "Please try again: " << CLOSE_ERR_MSG;
+			badEmail();
 			getline(cin, teachers.at(id).email);
 		}
 
@@ -790,8 +802,7 @@ void deleteStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		int id = findIndexByEmailStudents(students, email);
 		while (!checkForExistingEmailStudents(students, email) or !checkEmailValidity(email))
 		{
-			cout << ERROR_MSG_CR << "There is no student with this email or it's incorrectly inputted" << endl;
-			cout << "Please enter an email of a student: " << CLOSE_ERR_MSG;
+			incorrectEmail("student");
 			getline(cin, email);
 		}
 		removeStudent(students, email);
@@ -834,8 +845,7 @@ void deleteTeacherData(vector<TEACHER>& teachers, vector<TEAM>& teams)
 		getline(cin, email);
 		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 		{
-			cout << ERROR_MSG_CR << "There is no teachers with this email or it's incorrectly inputted" << endl;
-			cout << "Please enter an email of a teacher: " << CLOSE_ERR_MSG;
+			incorrectEmail("teacher");
 			getline(cin, email);
 		}
 		removeTeacher(teachers, email);
@@ -880,8 +890,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 		{
 			while (!checkIfTeamNameIsUsed(teams, name))
 			{
-				cout << ERROR_MSG_CR << "This team name is invalid or doesn't exist " << CLOSE_ERR_MSG << endl;
-				cout << ERROR_MSG_CR << "Please enter a correct name of a team: " << CLOSE_ERR_MSG;
+				badTeam();
 				getline(cin, name);
 			}
 			removeTeam(teams, name);
@@ -896,6 +905,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 	}
 
 }
+
 
 void updateTeamStatus(TEAM& team, string status)
 {
@@ -955,8 +965,7 @@ void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUD
 		{
 			while (!checkIfTeamNameIsUsed(teams, name))
 			{
-				cout << ERROR_MSG_CR << "This team name is invalid or doesn't exist " << endl;
-				cout << "Please enter a correct name of a team: " << CLOSE_ERR_MSG;
+				badTeam();
 				getline(cin, name);
 			}
 			displayTeamsUpdateMenu();

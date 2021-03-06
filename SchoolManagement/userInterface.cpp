@@ -244,11 +244,15 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 
 void displayHeaderStudentsAndTeachersTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeObject, int& maxSizeEmail, string object)
 {
+
 	cout << char(201);
 	for (int i = 0; i < maxSizeNames; i++)
 	{
+		//═
+		//cout << u8R"(═)";
 		cout << char(205);
 	}
+	//╦
 	cout << char(203);
 
 	for (int i = 0; i < maxSizeSurnames; i++)
@@ -681,7 +685,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 
 		updateTeamStudent(teams[teamID], student, temporary);
 		break;
-		updateStudentData(students);
+		updateStudentData(students, teams);
 		updateTeacherData(teachers);
 	default:
 		break;
@@ -804,7 +808,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		case 8: clearScreen(); deleteStudentData(students, teams); break;
 		case 9: clearScreen(); deleteTeacherData(teachers, teams); break;
 		case 10: clearScreen(); deleteTeamsData(teams);  break;
-		case 11: clearScreen(); updateStudentData(students); break;
+		case 11: clearScreen(); updateStudentData(students, teams); break;
 		case 12: 
 			clearScreen(); updateTeacherData(teachers);
 			// Doesn't update

@@ -143,12 +143,14 @@
     <ClCompile Include="data.cpp" />
     <ClCompile Include="delimitMethods.cpp" />
     <ClCompile Include="logs.cpp" />
+    <ClCompile Include="messages.cpp" />
     <ClCompile Include="SchoolManagement.cpp" />
     <ClCompile Include="userInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="checkers.h" />
     <ClInclude Include="data.h" />
+    <ClInclude Include="messages.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="userInterface.h" />
   </ItemGroup>
