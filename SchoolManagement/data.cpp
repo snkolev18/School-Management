@@ -31,7 +31,7 @@ string TEAM::statusToString(STATUS stat)
 
 string toStatus(int inp_)
 {
-	vector<int> valid = { 0, 1, 2 };
+	vector<int> valid = { 0, 1, 2, 3 };
 	if (find(valid.begin(), valid.end(), inp_) == valid.end())
 	{
 		return "Vania";
@@ -113,6 +113,10 @@ STUDENT findStudentByEmail(vector<STUDENT>& students, string& email)
 
 TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 {
+	/*if (teachers.empty()) {
+		throw std::runtime_error("Currently there are no teachers, Try adding some");
+	}*/
+
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
 		if (teachers[i].email == email)
@@ -868,7 +872,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 		else
 		{
 			logger.writeLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to delete contents of a team which status is set to IN_USE");
-			throw std::runtime_error("Tried to delete a team that is currently being used. STATUS => In Use");
+			throw std::runtime_error("Tried to delete a team that is currently NOT being used. STATUS is => In Use");
 		}
 
 	}

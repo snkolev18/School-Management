@@ -26,3 +26,5 @@ bool checkTeamNameLength(std::string name);
 bool checkTeamDescriptionLength(std::string description);
 
 void checkChoiceInput(int& option);
+
+void teachersEmpty(std::vector<TEACHER> teachers, std::vector<STUDENT> students);

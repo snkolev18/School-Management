@@ -12,7 +12,7 @@ int main()
 	//SCHOOL school;
 
 
-
+	bool flag;
 	logger.open("logs.txt");
 	logger.writeLogMsg(SEVERITY::INFO, "Program was executed successfully");
 	vector<string> whiteListedRoles = readRolesFromTxt();
@@ -26,7 +26,9 @@ int main()
 
 
 
-	while (true)menu(students,teachers, whiteListedRoles, teams);
+	do {
+		flag = menu(students, teachers, whiteListedRoles, teams);
+	} while (flag);
 
 	logger.writeLogMsg(SEVERITY::INFO, "Program was terminated successfully");
 

@@ -4,6 +4,7 @@
 #include <sstream>
 #include <algorithm>
 #include <climits>
+#include <regex>
 #include "structures.h"
 
 using namespace std;
@@ -169,7 +170,7 @@ bool checkGrade(string grade)
 
 		}
 	}
-	if (isalpha(grade[grade.size() - 1]) and gradeNumInRange)
+	if (toupper(isalpha(grade[grade.size() - 1])) and gradeNumInRange)
 	{
 		return true;
 	}
@@ -244,4 +245,22 @@ void checkChoiceInput(int& option)
 		cout << ERROR_MSG_CR << "Re-enter your choice: " << CLOSE_ERR_MSG;
 	}
 
+}
+
+//template <typename T>
+//void teachersEmpty(T object, const std::string type) 
+//{
+//	if (object.empty()) {
+//		throw std::runtime_error("Currently there are no " + type + ", Try adding some");
+//	}
+//	
+//}
+void teachersEmpty(vector<TEACHER> teachers, vector<STUDENT> students)
+{
+	if (teachers.empty()) {
+		throw std::runtime_error("Currently there are no teachers, Try adding some");
+	}
+	if (students.empty()) {
+		throw std::runtime_error("Currently there are no teachers, Try adding some");
+	}
 }

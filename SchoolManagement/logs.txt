@@ -429,3 +429,58 @@
 [2021/03/06  11:32:52] INFO Students were successfully written into students.txt
 [2021/03/06  11:32:52] INFO Teams were successfully written into teams.txt
 [2021/03/06  11:32:52] INFO Student was successfully DELETED
+[2021/03/06  13:04:40] INFO Program was executed successfully
+[2021/03/06  13:15:14] INFO Program was executed successfully
+[2021/03/06  13:15:20] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/06  13:23:14] INFO Program was executed successfully
+[2021/03/06  14:04:30] INFO Program was executed successfully
+[2021/03/06  14:04:43] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/06  14:06:55] INFO Program was executed successfully
+[2021/03/06  14:07:35] INFO Program was executed successfully
+[2021/03/06  14:07:49] INFO Teams were successfully written into teams.txt
+[2021/03/06  14:08:11] INFO Teams were successfully written into teams.txt
+[2021/03/06  14:08:23] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE
+[2021/03/06  14:12:12] INFO Program was executed successfully
+[2021/03/06  15:02:04] INFO Program was executed successfully
+[2021/03/06  15:02:48] INFO Program was executed successfully
+[2021/03/06  15:06:14] INFO Program was executed successfully
+[2021/03/06  15:13:40] INFO Program was executed successfully
+[2021/03/06  15:16:03] INFO Program was executed successfully
+[2021/03/06  15:16:06] INFO Program was terminated successfully
+[2021/03/06  15:16:16] INFO Program was executed successfully
+[2021/03/06  15:16:24] INFO Program was terminated successfully
+[2021/03/06  15:17:08] INFO Program was executed successfully
+[2021/03/06  15:17:11] INFO Program was terminated successfully
+[2021/03/06  15:17:26] INFO Program was executed successfully
+[2021/03/06  15:19:12] INFO Program was executed successfully
+[2021/03/06  15:20:24] INFO Program was executed successfully
+[2021/03/06  15:22:12] INFO Program was executed successfully
+[2021/03/06  15:22:17] INFO Program was terminated successfully
+[2021/03/06  15:23:18] INFO Program was executed successfully
+[2021/03/06  15:23:25] INFO Program was terminated successfully
+[2021/03/06  15:26:53] INFO Program was executed successfully
+[2021/03/06  15:27:01] INFO Program was terminated successfully
+[2021/03/06  15:27:29] INFO Program was executed successfully
+[2021/03/06  15:28:20] INFO Program was executed successfully
+[2021/03/06  15:28:32] INFO Program was terminated successfully
+[2021/03/06  15:28:39] INFO Program was executed successfully
+[2021/03/06  15:29:41] INFO Program was terminated successfully
+[2021/03/06  15:29:52] INFO Program was executed successfully
+[2021/03/06  15:31:22] INFO Program was executed successfully
+[2021/03/06  15:37:37] INFO Program was executed successfully
+[2021/03/06  15:59:42] INFO Program was executed successfully
+[2021/03/06  16:02:45] INFO Program was executed successfully
+[2021/03/06  16:11:21] INFO Program was executed successfully
+[2021/03/06  16:13:01] INFO Program was executed successfully
+[2021/03/06  16:13:33] INFO Program was executed successfully
+[2021/03/06  16:16:53] INFO Program was executed successfully
+[2021/03/06  16:23:39] INFO Program was executed successfully
+[2021/03/06  16:24:02] INFO Program was executed successfully
+[2021/03/06  16:24:32] INFO Program was executed successfully
+[2021/03/06  16:26:15] INFO Program was executed successfully
+[2021/03/06  16:26:46] INFO Program was executed successfully
+[2021/03/06  16:26:52] INFO Program was executed successfully
+[2021/03/06  16:28:14] INFO Program was executed successfully
+[2021/03/06  16:29:24] INFO Program was executed successfully
+[2021/03/06  16:29:52] INFO Program was executed successfully
+[2021/03/06  16:30:22] INFO Program was executed successfully

@@ -1,1 +1,1 @@
-Kokoshki|scrum:||||,dev:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,dev1:||||,qa:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,Viktor|Stoev|Kokoshki=|;|2021/03/06 11:28:32|In use|v chovala|
+Kokoshki|scrum:||||,dev:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,dev1:||||,qa:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,Viktor|Stoev|Kokoshki=|;|2021/03/06 11:28:32|Not active|v chovala|

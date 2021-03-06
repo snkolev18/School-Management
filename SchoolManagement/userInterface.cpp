@@ -495,11 +495,133 @@ void displayTeamsUpdateMenu()
 	cout << "5. Change student" << endl;
 }
 
-void statusMenu() 
+void statusMenu()
 {
 	cout << "0. In use" << endl;
 	cout << "1. Not Active" << endl;
 	cout << "2. Archived" << endl;
+}
+
+// I know that it can be improved :), don't worry
+bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teachers)
+{
+	vector<STUDENT> foundStudentsByCriteria;
+	string criteria;
+	int op;
+	if (who) {
+		cout << "\n 1. Search by class (10A, 10B, 10V and so on)" << endl;
+		cout << "2. Search by student's firstname" << endl;
+		cout << "3. Search by student's surname" << endl;
+		cout << "9. <- Back" << endl;
+
+		checkChoiceInput(op);
+		switch (op)
+		{
+		case 1:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByClass(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 2:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByName(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 3:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 9:
+			return false;
+		default:
+			break;
+		}
+		return true;
+	}
+	else {
+		cout << "1. Search by teacher's firstname" << endl;
+		cout << "2. Search by teacher's surname" << endl;
+		cout << "3. Search teachers who have no teams assigned" << endl;
+		cout << "9. <- Back" << endl;
+
+		checkChoiceInput(op);
+		switch (op)
+		{
+		case 1:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByClass(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 2:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsByName(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 3:
+			try
+			{
+				cin >> criteria;
+				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
+				displayStudentsInTable(foundStudentsByCriteria);
+				foundStudentsByCriteria.clear();
+
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			break;
+		case 9:
+			return false;
+		default:
+			break;
+		}
+		return true;
+	}
 }
 
 void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUDENT>& students, int& teamID)
@@ -515,7 +637,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 		statusMenu();
 		cout << INFO_MSG_CR << "Set a new status: " << CLOSE_INFO_MSG;
 		cin >> status;
-		while (toStatus(status) == "Vania") 
+		while (toStatus(status) == "Vania")
 		{
 			cout << ERROR_MSG_CR << "Invalid status, re-enter: " << CLOSE_ERR_MSG; cin >> status;
 		}
@@ -540,7 +662,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 		getline(cin, temporary);
 		while (!checkTeamNameLength(temporary) or checkIfTeamNameIsUsed(teams, temporary))
 		{
-			cout << ERROR_MSG_CR <<"That Team name is too long or there is already a team with that name" << endl;
+			cout << ERROR_MSG_CR << "That Team name is too long or there is already a team with that name" << endl;
 			cout << "Re-Enter a shorter name: " << CLOSE_ERR_MSG;
 
 			getline(cin, temporary);
@@ -548,16 +670,22 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 		updateTeamName(teams[teamID], temporary);
 		break;
 	case 4:
+		teachersEmpty(teachers, students);
+
 		cout << INFO_MSG_CR << "Enter the new teacher's email: " << CLOSE_INFO_MSG;
 		cin >> temporary;
 		teacher = findTeacherByEmail(teachers, temporary);
+
 		updateTeamTeacher(teams[teamID], teacher);
 		break;
 	case 5:
+
+		teachersEmpty(teachers, students);
+
 		cout << INFO_MSG_CR << "Enter the new student's email: " << CLOSE_INFO_MSG;
 		cin >> temporary;
 
-		while (!checkEmailValidity(temporary)) 
+		while (!checkEmailValidity(temporary))
 		{
 			cout << ERROR_MSG_CR << "Invalid, re-enter: " << CLOSE_ERR_MSG; cin >> temporary;
 		}
@@ -595,9 +723,8 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
        ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   
                                                                                                                   
         )";
-	system("chcp 437");
 	cout << endl;
-	cout << R"(				/-----------------------------------\
+	/*cout << R"(				/-----------------------------------\
 					Welcome to the Menu!
 				(1) |Add a student|
 				(2) |Add a teacher|
@@ -611,9 +738,53 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 				(10) |Delete a team|
 				(11) |Update student's information|
 				(12) |Update teacher's information|
-				\\-----------------------------------/)" << endl;
+				(18) | Visualize reports on criteria|
+				\\-----------------------------------/)" << endl;*/
 
+	cout << endl;
+	cout << setw(60) << "/-----------------------------------\\" << endl;
+	cout << "				Welcome to the Menu!" << endl;
+	cout << "				(1) |Add a student|" << endl;
+	cout << "				(2) |Add a teacher|" << endl;
+	cout << "				(3) |Add a role|" << endl;
+	cout << "				(4) |Add a team|" << endl;
+	cout << "				(5) |List of the students|" << endl;
+	cout << "				(6) |List of the teachers|" << endl;
+	cout << "				(7) |List of the teams|" << endl;
+	cout << "				(8) |Delete a student|" << endl;
+	cout << "				(9) |Delete a teacher|" << endl;
+	cout << "				(10) |Delete a team|" << endl;
+	cout << "				(11) |Update student's information|" << endl;
+	cout << "				(12) |Update teacher's information|" << endl;
+	cout << "				(18) | Visualize reports on criteria|" << endl;
+	cout << setw(60) << "\-----------------------------------/)" << endl;
+
+	/*cout << u8R"(
+
+			╔═══════════════════════════════════════╗
+			║										║
+			║  (1) |Add a student|			║
+			║  (2) |Add a teacher|			║
+			║  (3) |Add a role|				║
+			║  (4) |Add a team|				║
+			║  (5) |List of the students|	║
+			║  (6) |List of the teachers|	║
+			║  (7) |List of the teams|		║
+			║  (8) |Delete a student|		║
+			║  (9) |Delete a teacher|				║
+			║  (10) |Delete a team|					║
+			║  (11) |Update student's information|  ║
+			║  (12) |Update teacher's information|  ║
+			║  (18) | Visualize reports on criteria|║  
+			║										║
+			║										║
+			║										║
+			╚═══════════════════════════════════════╝
+		)";*/
+	system("chcp 437");
 	int option;
+	int filter;
+	bool filt = true;
 	cout << setw(50) << "->: ";
 	checkChoiceInput(option);
 
@@ -717,8 +888,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
-	case 13: return false;
-	case 14:
+	/*case 14:
 		try
 		{
 			cin >> criteria;
@@ -758,22 +928,38 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
-		break;
-	case 17: 
+		break;*/
+	case 17:
 		try
 		{
 			updateTeamsData(teams, teachers, students);
-			
+
 		}
-		catch (const std::exception & ex)
+		catch (const std::exception& ex)
 		{
 			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 		}
 		break;
+	case 18:
+		cout << "1. Filter students" << endl;
+		cout << "2. Filter students" << endl;
+		checkChoiceInput(filter);
+		do {
+			switch (filter)
+			{
+			case 1: filt = filteringMenu(1, students, teachers); break;
+			case 2: filt = filteringMenu(0, students, teachers); break;
+			default:
+				break;
+			}
+		} while (filt);
+		break;
+	case 19:
+		return false;
 	default:
 		cout << endl;
 		cout << ERROR_MSG_CR << "|--------------------------|" << endl;
-		cout << "Incorrect input, try again!" << endl;
+		cout << "Incorrect option, try again!" << endl;
 		cout << "|--------------------------|" << CLOSE_ERR_MSG << endl;
 	}
 	return true;
