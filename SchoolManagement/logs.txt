@@ -613,3 +613,15 @@
 [2021/03/07  19:33:21] INFO Program was executed successfully
 [2021/03/07  19:40:25] INFO Program was executed successfully
 [2021/03/07  19:43:03] INFO Program was executed successfully
+[2021/03/07  19:45:26] INFO Program was executed successfully
+[2021/03/07  19:46:00] INFO Option X: Student was successfully added
+[2021/03/07  19:46:03] INFO Students were successfully written into students.txt
+[2021/03/07  19:46:31] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  19:46:31] INFO Teams were successfully written into teams.txt
+[2021/03/07  19:49:45] INFO Program was executed successfully
+[2021/03/07  19:50:29] INFO Program was executed successfully
+[2021/03/07  19:52:07] INFO Program was executed successfully
+[2021/03/07  19:53:02] INFO Program was executed successfully
+[2021/03/07  19:53:39] INFO Teams were successfully written into teams.txt
+[2021/03/07  19:55:35] INFO Program was executed successfully
+[2021/03/07  19:59:05] INFO Program was executed successfully

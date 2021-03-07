@@ -624,6 +624,8 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		throw std::runtime_error("File with students has no data!");
 	}
 	else {
+		displayStudentsInTable(students);
+
 		string email;
 
 		cin.ignore();
@@ -705,6 +707,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		writeTeamsInTxt(teams);
 		writeStudentsInTxt(students);
 		logger.writeLogMsg(SEVERITY::INFO, "Student was successfully UPDATED");
+		logger.writeLogMsg(SEVERITY::INFO, "Teams which the students participates in were successfully updated");
 	}
 	//LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
 }
@@ -723,6 +726,7 @@ void updateTeacherData(vector<TEACHER>& teachers,vector<TEAM>& teams)
 		throw std::runtime_error("File with teachers has no data for update!");
 	}
 	else {
+		displayTeachersInTable(teachers);
 		string email;
 
 		cin.ignore();
@@ -783,6 +787,7 @@ void updateTeacherData(vector<TEACHER>& teachers,vector<TEAM>& teams)
 			}
 		}
 		writeTeamsInTxt(teams);
+		logger.writeLogMsg(SEVERITY::INFO, "Teams which the teachers participates in were successfully updated");
 	}
 
 	//LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
@@ -801,6 +806,7 @@ void deleteStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		throw std::runtime_error("File with students has no data to delete!");
 	}
 	else {
+		displayStudentsInTable(students);
 		string email;
 
 		cin.ignore();
@@ -844,7 +850,7 @@ void deleteTeacherData(vector<TEACHER>& teachers, vector<TEAM>& teams)
 		throw std::runtime_error("File with teachers has no data to delete!");
 	}
 	else {
-
+		displayTeachersInTable(teachers);
 		string email;
 
 		cin.ignore();
@@ -884,7 +890,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 	}
 	else {
 
-
+		
 		string name;
 
 		cin.ignore();
@@ -961,6 +967,7 @@ void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUD
 		throw std::runtime_error("File with teams has no data!");
 	}
 	else {
+		
 		string name;
 
 		cin.ignore();

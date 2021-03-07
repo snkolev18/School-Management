@@ -656,18 +656,18 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 
 void displayTeamsUpdateMenu()
 {
-	cout << "1. Change team status " << endl;
-	cout << "2. Change team description" << endl;
-	cout << "3. Change team name" << endl;
-	cout << "4. Change teacher" << endl;
-	cout << "5. Change student" << endl;
+	cout << "				1. Change team status " << endl;
+	cout << "				2. Change team description" << endl;
+	cout << "				3. Change team name" << endl;
+	cout << "				4. Change teacher" << endl;
+	cout << "				5. Change student" << endl;
 }
 
 void statusMenu()
 {
-	cout << "0. In use" << endl;
-	cout << "1. Not Active" << endl;
-	cout << "2. Archived" << endl;
+	cout << "				0. In use" << endl;
+	cout << "				1. Not Active" << endl;
+	cout << "				2. Archived" << endl;
 }
 
 bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teachers)
@@ -679,10 +679,10 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 	try {
 
 		if (who) {
-			cout << "\n 1. Search by class (10A, 10B, 10V and so on)" << endl;
-			cout << "2. Search by student's firstname" << endl;
-			cout << "3. Search by student's surname" << endl;
-			cout << "9. <- Back" << endl;
+			cout << "				\n 1. Search by class (10A, 10B, 10V and so on)" << endl;
+			cout << "				2. Search by student's firstname" << endl;
+			cout << "				3. Search by student's surname" << endl;
+			cout << "				9. <- Back" << endl;
 
 			checkChoiceInput(op);
 
