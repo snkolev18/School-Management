@@ -278,5 +278,34 @@ namespace UnitTestingQA
 			//Assert
 			Assert::AreEqual(oldTeachersSize - 1, teachers.size());
 		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ExpectToThrowAnExceptionWhenThereAreIsNoDataInTeachersTxtOrInTheTeachersVector)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ExpectToThrowAnExceptionWhenThereAreIsNoDataInTeachersTxtOrInTheTeachersVector)
+		{
+			// Arrange
+			vector<TEAM> teams;
+			vector<TEACHER> teachers;
+
+			//Act
+			try
+			{
+				deleteTeacherData(teachers, teams);
+			}
+			catch (const std::runtime_error& ex)
+			{
+				if (strcmp(ex.what(), "File with teachers has no data to delete!") == 0)
+					return;
+				Assert::Fail(L"Unexpected exception text thrown");
+			}
+			catch (...) {
+				Assert::Fail(L"Unexpected exception type thrown");
+			}
+
+			//Assert
+			Assert::Fail(L"No exceptions were thrown");
+		}
 	};
 }

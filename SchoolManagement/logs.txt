@@ -627,3 +627,8 @@
 [2021/03/07  19:59:05] INFO Program was executed successfully
 [2021/03/07  21:41:07] INFO Program was executed successfully
 [2021/03/07  21:46:22] INFO Program was executed successfully
+[2021/03/07  22:20:45] INFO Program was executed successfully
+[2021/03/07  22:21:50] INFO Teams were successfully written into teams.txt
+[2021/03/07  22:21:50] INFO Students were successfully written into students.txt
+[2021/03/07  22:21:50] INFO Student was successfully UPDATED
+[2021/03/07  22:21:50] INFO Teams which the students participates in were successfully updated
