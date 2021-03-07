@@ -360,10 +360,15 @@ void displayBodyTeachersTable(vector<TEACHER>& teachers, int& maxSize, int& maxS
 		displayNSpaces(maxSizeSurnames - teachers[i].surname.size());
 		if (teachers[i].teams.size() > 0)
 		{
+			cout << char(186);
 			for (size_t j = 0; j < teachers[i].teams.size(); j++)
 			{
-				cout << char(186) << teachers[i].teams[j];
-				displayNSpaces(maxSizeClass - teachers[i].teams[j].size());
+
+				cout << teachers[i].teams[j];
+				if (j < teachers[i].teams.size() - 1)
+				{
+					cout << ", ";
+				}
 			}
 		}
 		else
@@ -460,7 +465,7 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 				team += teachers[i].teams[j];
 				if (j < teachers[i].teams.size() - 1)
 				{
-					team += ',';
+					team += ", ";
 				}
 			}
 			teams.push_back(team);
