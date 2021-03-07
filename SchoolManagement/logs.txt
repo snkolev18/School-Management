@@ -632,3 +632,14 @@
 [2021/03/07  22:21:50] INFO Students were successfully written into students.txt
 [2021/03/07  22:21:50] INFO Student was successfully UPDATED
 [2021/03/07  22:21:50] INFO Teams which the students participates in were successfully updated
+[2021/03/07  23:30:32] INFO Program was executed successfully
+[2021/03/07  23:31:53] INFO Program was terminated successfully
+[2021/03/07  23:32:05] INFO Program was executed successfully
+[2021/03/07  23:33:27] INFO Program was terminated successfully
+[2021/03/07  23:33:33] INFO Program was executed successfully
+[2021/03/07  23:37:23] INFO Program was executed successfully
+[2021/03/07  23:38:09] INFO Program was terminated successfully
+[2021/03/07  23:39:51] INFO Program was executed successfully
+[2021/03/07  23:39:56] INFO Program was terminated successfully
+[2021/03/07  23:54:52] INFO Program was executed successfully
+[2021/03/07  23:54:57] INFO Program was terminated successfully
