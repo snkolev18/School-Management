@@ -25,7 +25,7 @@ int main()
 		inputSchoolInfo = 0;
 
 	do {
-		flag = menu(school.students, school.teachers, whiteListedRoles, school.teams, school.name, school.city, school.address, inputSchoolInfo);
+		flag = menu(school, whiteListedRoles, inputSchoolInfo);
 	} while (flag);
 
 	logger.writeLogMsg(SEVERITY::INFO, "Program was terminated successfully");

@@ -28,6 +28,165 @@ void displayNSpaces(int n)
 		cout << " ";
 	}
 }
+void displaySchoolTableHeader(int sizeName, int sizeCity, int sizeAddress, int sizeStudents, int sizeTeachers, int sizeTeams)
+{
+	cout << char(201);
+	for (int i = 0; i < sizeName; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(203);
+	for (int i = 0; i < sizeCity; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(203);
+	for (int i = 0; i < sizeAddress; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(203);
+	for (int i = 0; i < sizeStudents; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(203);
+	for (int i = 0; i < sizeTeachers; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(203);
+	for (int i = 0; i < sizeTeams; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187) << endl;
+
+	cout << char(186);
+	cout << "Name";
+	displayNSpaces(sizeName - 4);
+	cout << char(186);
+	cout << "City";
+	displayNSpaces(sizeCity - 4);
+	cout << char(186);
+	cout << "Address";
+	displayNSpaces(sizeAddress - 7);
+	cout << char(186);
+	cout << "Number of students";
+	displayNSpaces(sizeStudents - 18);
+	cout << char(186);
+	cout << "Number of teachers";
+	displayNSpaces(sizeTeachers - 18);
+	cout << char(186);
+	cout << "Number of teams";
+	displayNSpaces(sizeTeams - 15);
+	cout << char(186) << endl;
+
+	cout << char(204);
+	for (int i = 0; i < sizeName; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(206);
+	for (int i = 0; i < sizeCity; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(206);
+	for (int i = 0; i < sizeAddress; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(206);
+	for (int i = 0; i < sizeStudents; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(206);
+	for (int i = 0; i < sizeTeachers; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(206);
+	for (int i = 0; i < sizeTeams; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(185) << endl;
+}
+void displaySchoolTableBodyAndFooter(SCHOOL school,int sizeName, int sizeCity, int sizeAddress, int sizeStudents, int sizeTeachers, int sizeTeams)
+{
+	cout << char(186);
+	cout << school.name;
+	displayNSpaces(sizeName - school.name.size());
+	cout << char(186);
+	cout << school.city;
+	displayNSpaces(sizeCity - school.city.size());
+	cout << char(186);
+	cout << school.address;
+	displayNSpaces(sizeAddress - school.address.size());
+	cout << char(186);
+	cout << school.students.size();
+	displayNSpaces(sizeStudents - to_string(school.students.size()).size());
+	cout << char(186);
+	cout << school.teachers.size();
+	displayNSpaces(sizeTeachers - to_string(school.teachers.size()).size());
+	cout << char(186);
+	cout << school.teams.size();
+	displayNSpaces(sizeTeams - to_string(school.teams.size()).size());
+	cout << char(186) << endl;
+
+	cout << char(200);
+	for (int i = 0; i < sizeName; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(202);
+	for (int i = 0; i < sizeCity; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(202);
+	for (int i = 0; i < sizeAddress; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(202);
+	for (int i = 0; i < sizeStudents; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(202);
+	for (int i = 0; i < sizeTeachers; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(202);
+	for (int i = 0; i < sizeTeams; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188) << endl;
+}
+void displaySchoolInfoInTable(SCHOOL school)
+{
+	int sizeName, sizeCity, sizeAddress, sizeStudents = 18, sizeTeachers = 18, sizeTeams = 15;
+	if (school.name.size() < 5)
+		sizeName = 5;
+	else
+		sizeName = school.name.size();
+	if (school.city.size() < 5)
+		sizeCity = 5;
+	else
+		sizeCity = school.name.size();
+	if (school.address.size() < 7)
+		sizeAddress = 7;
+	else
+		sizeAddress = school.name.size();
+
+	displaySchoolTableHeader(sizeName, sizeCity, sizeAddress, sizeStudents, sizeTeachers, sizeTeams);
+	displaySchoolTableBodyAndFooter(school, sizeName, sizeCity, sizeAddress, sizeStudents, sizeTeachers, sizeTeams);
+}
 
 void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, vector<string>& whiteListedRoles)
 {
@@ -589,7 +748,7 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			return true;
 		}
 	}
-	catch (const std::exception& ex)
+	catch (const std::exception & ex)
 	{
 		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
@@ -696,7 +855,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 	}
 }
 
-bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& whiteListedRoles, vector<TEAM>& teams, string name, string city, string address, bool& inputSchoolInfo)
+bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInfo)
 {
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
@@ -714,12 +873,12 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	if (inputSchoolInfo)
 	{
 		cout << "Name of the school: ";
-		getline(cin, name);
+		getline(cin, school.name);
 		cout << "City: ";
-		getline(cin, city);
+		getline(cin, school.city);
 		cout << "Address: ";
-		getline(cin, address);
-		writeSchoolInTxt(name, city, address);
+		getline(cin, school.address);
+		writeSchoolInTxt(school.name, school.city, school.address);
 		inputSchoolInfo = 0;
 	}
 	/*cout << R"(				/-----------------------------------\
@@ -754,7 +913,9 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 	cout << "				(10) |Delete a team|" << endl;
 	cout << "				(11) |Update student's information|" << endl;
 	cout << "				(12) |Update teacher's information|" << endl;
-	cout << "				(18) | Visualize reports on criteria|" << endl;
+	cout << "				(13) |Update team's information|" << endl;
+	cout << "				(14) |Visualize reports on criteria|" << endl;
+	cout << "				(15) |Display school's info|" << endl;
 	cout << setw(60) << "\-----------------------------------/)" << endl;
 
 	/*cout << u8R"(
@@ -791,14 +952,14 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		{
 		case 1:
 			cin.ignore();
-			students.push_back(inputStudent(students, teachers));
-			writeStudentsInTxt(students);
+			school.students.push_back(inputStudent(school.students, school.teachers));
+			writeStudentsInTxt(school.students);
 			break;
 
 		case 2:
 			cin.ignore();
-			teachers.push_back(inputTeacher(students, teachers));
-			writeTeachersInTxt(teachers);
+			school.teachers.push_back(inputTeacher(school.students, school.teachers));
+			writeTeachersInTxt(school.teachers);
 			break;
 
 		case 3:
@@ -807,85 +968,44 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 			writeRolesInTxt(whiteListedRoles);
 			break;
 		case 4:
-			teams.push_back(inputTeam(whiteListedRoles, students, teachers, teams));
-			writeTeamsInTxt(teams);
+			school.teams.push_back(inputTeam(whiteListedRoles, school.students, school.teachers, school.teams));
+			writeTeamsInTxt(school.teams);
 			break;
 		case 5:
 			clearScreen();
-			displayStudentsInTable(students);
+			displayStudentsInTable(school.students);
 			break;
 		case 6:
 			clearScreen();
-			displayTeachersInTable(teachers);
+			displayTeachersInTable(school.teachers);
 			break;
-		case 7: displayTeamsInTable(teams, whiteListedRoles);
+		case 7: displayTeamsInTable(school.teams, whiteListedRoles);
 			break;
-		case 8: clearScreen(); deleteStudentData(students, teams); break;
-		case 9: clearScreen(); deleteTeacherData(teachers, teams); break;
-		case 10: clearScreen(); deleteTeamsData(teams);  break;
-		case 11: clearScreen(); updateStudentData(students, teams); break;
-		case 12: 
-			clearScreen(); updateTeacherData(teachers, teams);
-			// Doesn't update
-			//writeTeamsInTxt(teams);
+		case 8: clearScreen(); deleteStudentData(school.students, school.teams); break;
+		case 9: clearScreen(); deleteTeacherData(school.teachers, school.teams); break;
+		case 10: clearScreen(); deleteTeamsData(school.teams);  break;
+		case 11: clearScreen(); updateStudentData(school.students, school.teams); break;
+		case 12:
+			clearScreen(); updateTeacherData(school.teachers, school.teams);
 			break;
-			/*case 14:
-				try
-				{
-					cin >> criteria;
-					foundStudentsByCriteria = findStudentsByClass(students, criteria);
-					displayStudentsInTable(foundStudentsByCriteria);
-					foundStudentsByCriteria.clear();
-				}
-				catch (const std::exception& ex)
-				{
-					cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-				}
-				break;
-			case 15:
-				try
-				{
-					cin >> criteria;
-					foundStudentsByCriteria = findStudentsByName(students, criteria);
-					displayStudentsInTable(foundStudentsByCriteria);
-					foundStudentsByCriteria.clear();
-
-				}
-				catch (const std::exception& ex)
-				{
-					cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-				}
-				break;
-			case 16:
-				try
-				{
-					cin >> criteria;
-					foundStudentsByCriteria = findStudentsBySurname(students, criteria);
-					displayStudentsInTable(foundStudentsByCriteria);
-					foundStudentsByCriteria.clear();
-
-				}
-				catch (const std::exception& ex)
-				{
-					cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-				}
-				break;*/
-		case 17:
-			updateTeamsData(teams, teachers, students);
+		case 13:
+			updateTeamsData(school.teams, school.teachers, school.students);
 			break;
-		case 18:
+		case 14:
 			cout << "1. Filter students" << endl;
-			cout << "2. Filter students" << endl;
+			cout << "2. Filter teachers" << endl;
 			checkChoiceInput(filter);
 			do {
 				switch (filter)
 				{
-				case 1: filt = filteringMenu(1, students, teachers); break;
-				case 2: filt = filteringMenu(0, students, teachers); break;
+				case 1: filt = filteringMenu(1, school.students, school.teachers); break;
+				case 2: filt = filteringMenu(0, school.students, school.teachers); break;
 				default:
 					break;
 				}
 			} while (filt);
+			break;
+		case 15: displaySchoolInfoInTable(school);
 			break;
 		case 19:
 			return false;
