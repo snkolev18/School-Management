@@ -691,7 +691,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 	}
 }
 
-bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& whiteListedRoles, vector<TEAM>& teams)
+bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& whiteListedRoles, vector<TEAM>& teams, string name, string city, string address, bool& inputSchoolInfo)
 {
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
@@ -706,6 +706,17 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
                                                                                                                   
         )";
 	cout << endl;
+	if (inputSchoolInfo)
+	{
+		cout << "Name of the school: ";
+		getline(cin, name);
+		cout << "City: ";
+		getline(cin, city);
+		cout << "Address: ";
+		getline(cin, address);
+		writeSchoolInTxt(name, city, address);
+		inputSchoolInfo = 0;
+	}
 	/*cout << R"(				/-----------------------------------\
 					Welcome to the Menu!
 				(1) |Add a student|

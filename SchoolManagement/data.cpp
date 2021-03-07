@@ -1158,3 +1158,46 @@ vector<TEAM> findTeamsByStatus(const vector<TEAM>& teams, const string& status)
 
 	return foundTeams;
 }
+
+void writeSchoolInTxt(string name,string city,string address)
+{
+	ofstream file;
+	file.open("school.txt", ios::trunc);
+	if (file.is_open())
+	{
+		file << name << endl;
+		file << city << endl;
+		file << address << endl;
+		file.close();
+	}
+}
+SCHOOL readSchoolFromTxt()
+{
+	SCHOOL school;
+	vector<STUDENT> students;
+	vector<TEAM> teams;
+	vector<TEACHER> teachers;
+	string name;
+	string city;
+	string address;
+	students = readStudentsFromTxt();
+	teachers = readTeachersFromTxt();
+	teams = readTeamsFromTxt();
+	ifstream file;
+	string info;
+	file.open("school.txt");
+
+	if (file.is_open())
+	{
+		(getline(file, name));
+		(getline(file, city));
+		(getline(file, address));
+	}
+	school.name = name;
+	school.city = city;
+	school.address = address;
+	school.students = students;
+	school.teachers = teachers;
+	school.teams = teams;
+	return school;
+}

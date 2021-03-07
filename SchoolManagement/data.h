@@ -33,6 +33,8 @@ void writeTeachersInTxt(std::vector<TEACHER>& teachers);
 
 void writeTeamsInTxt(std::vector<TEAM>& teams);
 
+void writeSchoolInTxt(std::string name, std::string city, std::string address);
+
 STUDENT parsedStudentInfo(std::string info);
 
 TEACHER parsedTeacherInfo(std::string info);
@@ -46,6 +48,8 @@ std::vector<STUDENT> readStudentsFromTxt();
 std::vector<TEACHER> readTeachersFromTxt();
 
 std::vector<TEAM> readTeamsFromTxt();
+
+SCHOOL readSchoolFromTxt();
 
 void removeStudentFromTeam(std::vector<ROLE>& students, std::string& email);
 

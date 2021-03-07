@@ -595,3 +595,6 @@
 [2021/03/07  17:44:32] INFO Teams were successfully written into teams.txt
 [2021/03/07  17:45:32] INFO Program was executed successfully
 [2021/03/07  17:49:03] INFO Program was executed successfully
+[2021/03/07  18:35:14] INFO Program was executed successfully
+[2021/03/07  18:36:38] INFO Program was executed successfully
+[2021/03/07  18:36:52] INFO Program was executed successfully
