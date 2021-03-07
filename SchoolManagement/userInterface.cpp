@@ -506,7 +506,6 @@ void statusMenu()
 	cout << "2. Archived" << endl;
 }
 
-// I know that it can be improved :), don't worry
 bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teachers)
 {
 	vector<STUDENT> foundStudentsByCriteria;
@@ -686,7 +685,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 		updateTeamStudent(teams[teamID], student, temporary);
 		break;
 		updateStudentData(students, teams);
-		updateTeacherData(teachers);
+		updateTeacherData(teachers, teams);
 	default:
 		break;
 	}
@@ -810,7 +809,7 @@ bool menu(vector<STUDENT>& students, vector<TEACHER>& teachers, vector<string>& 
 		case 10: clearScreen(); deleteTeamsData(teams);  break;
 		case 11: clearScreen(); updateStudentData(students, teams); break;
 		case 12: 
-			clearScreen(); updateTeacherData(teachers);
+			clearScreen(); updateTeacherData(teachers, teams);
 			// Doesn't update
 			//writeTeamsInTxt(teams);
 			break;

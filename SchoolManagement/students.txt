@@ -1,3 +1,2 @@
-Kolev|Kolev|10A|KOLIO@GMAIL.COM|
-Stoyan|Kolev|10A|POG@CHAMP.C|
-Alexander|Dinev|10V|AGDinev18@codingburgas.bg|
+atanas|burmov|10a|burmov@abv.bg|
+stoyan|kolef|10g|stoyankolef@abv.bg|

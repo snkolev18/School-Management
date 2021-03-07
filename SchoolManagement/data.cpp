@@ -691,23 +691,18 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		// Looping through the teams and find the team which the student's participates in
 		// if match is found => update student data in the team
 		// Add the end save teams to file
-
-		// # Repeate for teachers
-
 		for (size_t i = 0; i < teams.size(); i++)
 		{
 			for (size_t j = 0; j < teams[i].roles.size(); j++)
 			{
-				if (teams[i].roles[j].student.email == oldEmail)
+				if (email == teams[i].roles[j].student.email)
 				{
-					teams[i].roles[j].student.email == students.at(id).email;
-					writeTeamsInTxt(teams);
-					break;
+					teams[i].roles[j].student = students.at(id);
 				}
-
 			}
 		}
-
+		// # Repeate for teachers
+		writeTeamsInTxt(teams);
 		writeStudentsInTxt(students);
 		logger.writeLogMsg(SEVERITY::INFO, "Student was successfully UPDATED");
 	}
@@ -715,7 +710,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 }
 
 
-void updateTeacherData(vector<TEACHER>& teachers)
+void updateTeacherData(vector<TEACHER>& teachers,vector<TEAM>& teams)
 {
 	ifstream file;
 	file.open("teachers.txt", ios::in | ios::binary);
@@ -760,11 +755,11 @@ void updateTeacherData(vector<TEACHER>& teachers)
 		}
 
 		cout << "Enter new first SURNAME of a teacher with email [ " << email << " ]" << " :";
-		getline(cin, teachers.at(id).name);
+		getline(cin, teachers.at(id).surname);
 		while (!checkNameValidity(teachers.at(id).surname))
 		{
 			badName("Surname");
-			getline(cin, teachers.at(id).name);
+			getline(cin, teachers.at(id).surname);
 		}
 
 		cout << INFO_MSG_CR << "Enter new email of a teacher: " << CLOSE_INFO_MSG;
@@ -777,7 +772,19 @@ void updateTeacherData(vector<TEACHER>& teachers)
 
 		writeTeachersInTxt(teachers);
 		logger.writeLogMsg(SEVERITY::INFO, "Teacher was successfully UPDATED");
+		for (size_t i = 0; i < teams.size(); i++)
+		{
+			for (size_t j = 0; j < teams[i].roles.size(); j++)
+			{
+				if (email == teams[i].teacher.email)
+				{
+					teams[i].teacher = teachers.at(id);
+				}
+			}
+		}
+		writeTeamsInTxt(teams);
 	}
+
 	//LOG::putLogMsg(SEVERITY::INFO, "Student was successfully updated");
 }
 

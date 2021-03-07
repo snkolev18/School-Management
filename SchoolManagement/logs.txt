@@ -549,3 +549,49 @@
 [2021/03/07  00:59:58] INFO Teams were successfully written into teams.txt
 [2021/03/07  00:59:58] INFO Students were successfully written into students.txt
 [2021/03/07  00:59:58] INFO Student was successfully UPDATED
+[2021/03/07  17:11:35] INFO Program was executed successfully
+[2021/03/07  17:12:33] INFO Students were successfully written into students.txt
+[2021/03/07  17:12:33] INFO Student was successfully UPDATED
+[2021/03/07  17:23:16] INFO Program was executed successfully
+[2021/03/07  17:24:35] INFO Program was executed successfully
+[2021/03/07  17:25:26] INFO Program was executed successfully
+[2021/03/07  17:25:59] INFO Program was executed successfully
+[2021/03/07  17:26:09] INFO Option X: Student was successfully added
+[2021/03/07  17:26:09] INFO Students were successfully written into students.txt
+[2021/03/07  17:26:14] INFO Option X: Student was successfully added
+[2021/03/07  17:26:14] INFO Students were successfully written into students.txt
+[2021/03/07  17:26:22] INFO Option X: Teacher was successfully added
+[2021/03/07  17:26:22] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  17:26:28] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  17:26:28] INFO Option X: Team was successfully added
+[2021/03/07  17:26:28] INFO Teams were successfully written into teams.txt
+[2021/03/07  17:26:40] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  17:26:40] INFO Option X: Team was successfully added
+[2021/03/07  17:26:40] INFO Teams were successfully written into teams.txt
+[2021/03/07  17:26:46] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  17:26:46] INFO Option X: Team was successfully added
+[2021/03/07  17:26:46] INFO Teams were successfully written into teams.txt
+[2021/03/07  17:27:21] INFO Students were successfully written into students.txt
+[2021/03/07  17:27:21] INFO Student was successfully UPDATED
+[2021/03/07  17:28:16] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  17:28:16] INFO Teacher was successfully UPDATED
+[2021/03/07  17:29:21] INFO Students were successfully written into students.txt
+[2021/03/07  17:29:21] INFO Student was successfully UPDATED
+[2021/03/07  17:30:52] INFO Program was executed successfully
+[2021/03/07  17:31:16] INFO Teams were successfully written into teams.txt
+[2021/03/07  17:31:16] INFO Students were successfully written into students.txt
+[2021/03/07  17:31:16] INFO Student was successfully UPDATED
+[2021/03/07  17:31:28] INFO Program was executed successfully
+[2021/03/07  17:31:55] INFO Teams were successfully written into teams.txt
+[2021/03/07  17:31:55] INFO Students were successfully written into students.txt
+[2021/03/07  17:31:55] INFO Student was successfully UPDATED
+[2021/03/07  17:41:08] INFO Program was executed successfully
+[2021/03/07  17:41:50] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  17:41:50] INFO Teacher was successfully UPDATED
+[2021/03/07  17:41:50] INFO Teams were successfully written into teams.txt
+[2021/03/07  17:43:49] INFO Program was executed successfully
+[2021/03/07  17:44:32] INFO Teachers were successfully written into teachers.txt
+[2021/03/07  17:44:32] INFO Teacher was successfully UPDATED
+[2021/03/07  17:44:32] INFO Teams were successfully written into teams.txt
+[2021/03/07  17:45:32] INFO Program was executed successfully
+[2021/03/07  17:49:03] INFO Program was executed successfully
