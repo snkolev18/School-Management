@@ -257,5 +257,26 @@ namespace UnitTestingQA
 			//Assert
 			Assert::AreEqual((size_t)1, students.size());
 		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccessfullyRemoveTeacher)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccessfullyRemoveTeacher)
+		{
+			// Arrange
+			vector<TEACHER> teachers = 
+			{ 
+				{ "Georgi", "Bokluka", {""}, "qkiq123@abv.bg" },
+				{ "Uchitel", "kurwi", {""}, "manqka928@gmail.com" }
+			};
+
+			// Act
+			size_t oldTeachersSize = teachers.size();
+			removeTeacher(teachers, (string)"qkiq123@abv.bg");
+
+			//Assert
+			Assert::AreEqual(oldTeachersSize - 1, teachers.size());
+		}
 	};
 }
