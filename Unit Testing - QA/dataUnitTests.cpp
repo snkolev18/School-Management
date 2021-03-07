@@ -109,7 +109,7 @@ namespace UnitTestingQA
 
 		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldFailTheSearchOfAStudent)
 			TEST_OWNER(L"SNKolev18")
-			TEST_PRIORITY(1)
+			TEST_PRIORITY("Low")
 			END_TEST_METHOD_ATTRIBUTE()
 			TEST_METHOD(ShouldFailTheSearchOfAStudent)
 		{
@@ -143,7 +143,7 @@ namespace UnitTestingQA
 		}
 
 		BEGIN_TEST_METHOD_ATTRIBUTE(ExpectToThrowAnExceptionWhenThereAreNoStudentsWhenPassingStudentsAsAnEmptyVector)
-			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
 			TEST_PRIORITY(1)
 			END_TEST_METHOD_ATTRIBUTE()
 			TEST_METHOD(ExpectToThrowAnExceptionWhenThereAreNoStudentsWhenPassingStudentsAsAnEmptyVector)
@@ -176,13 +176,17 @@ namespace UnitTestingQA
 
 		BEGIN_TEST_METHOD_ATTRIBUTE(ExpectToThrowAnExceptionWhenThereAreNoTeachersWhenPassingTeachersAsAnEmptyVector)
 			TEST_OWNER(L"SNKolev18")
-			TEST_PRIORITY(1)
+			TEST_PRIORITY("High")
 			END_TEST_METHOD_ATTRIBUTE()
 			TEST_METHOD(ExpectToThrowAnExceptionWhenThereAreNoTeachersWhenPassingTeachersAsAnEmptyVector)
 		{
 			// Arrange
 			vector<TEACHER> teachers;
-			vector<STUDENT> students = { {"Georgi", "Bokluka", "10V", "qkiq123@abv.bg"}, {"Manqka za", "Znaete kakvo", "10A", "manqka928@gmail.com"} };
+			vector<STUDENT> students = 
+			{ 
+				{"Georgi", "Bokluka", "10V", "qkiq123@abv.bg"}, 
+				{"Manqka za", "Znaete kakvo", "10A", "manqka928@gmail.com"} 
+			};
 			vector<TEAM> teams;
 			vector<string> whiteListedRoles = { "Scrum", "QA", "Backend", "Frontend" };
 
@@ -202,8 +206,56 @@ namespace UnitTestingQA
 				Assert::Fail(L"Unexpected exception type thrown");
 			}
 
-			Assert::Fail(L"No exceptions were thrown");
 			//Assert
+			Assert::Fail(L"No exceptions were thrown");
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldRemoveAStudentFromTeamByPassingSpecificEmail)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("Medium")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldRemoveAStudentFromTeamByPassingSpecificEmail)
+		{
+			// Arrange
+			vector<ROLE> students =
+			{ 
+				{"QA", { "Georgi", "Bokluka", "10V", "qkiq123@abv.bg" }},
+				{"Scrum", { "Manqka za", "kurwi", "10A", "manqka928@gmail.com" }}
+			};
+
+			
+			// Act
+			removeStudentFromTeam(students, (string)"manqka928@gmail.com");
+			
+			//Assert
+			for (size_t i = 0; i < students.size(); i++)
+			{
+				/*if (students[i].student.email == "manqka928@gmail.com") 
+				{
+				}*/
+				Assert::AreNotSame(students[i].student.email, (string)"manqka928@gmail.com", L"Student with email of manqka928@gmail.com has been successfully removed");
+			}
+			//Assert::AreEqual((size_t)1, students.size(), L"Successfully removed student with email of manqka928@gmail.com");
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccessfullyRemoveStudent)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccessfullyRemoveStudent)
+		{
+			// Arrange
+			vector<STUDENT> students =
+			{
+				{ "Georgi", "Bokluka", "10V", "qkiq123@abv.bg" },
+				{ "Manqka za", "kurwi", "10A", "manqka928@gmail.com" }
+			};
+
+			// Act
+			removeStudent(students, (string)"qkiq123@abv.bg");
+
+			//Assert
+			Assert::AreEqual((size_t)1, students.size());
 		}
 	};
 }
