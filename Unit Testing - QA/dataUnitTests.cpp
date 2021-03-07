@@ -182,10 +182,10 @@ namespace UnitTestingQA
 		{
 			// Arrange
 			vector<TEACHER> teachers;
-			vector<STUDENT> students = 
-			{ 
-				{"Georgi", "Bokluka", "10V", "qkiq123@abv.bg"}, 
-				{"Manqka za", "Znaete kakvo", "10A", "manqka928@gmail.com"} 
+			vector<STUDENT> students =
+			{
+				{"Georgi", "Bokluka", "10V", "qkiq123@abv.bg"},
+				{"Manqka za", "Znaete kakvo", "10A", "manqka928@gmail.com"}
 			};
 			vector<TEAM> teams;
 			vector<string> whiteListedRoles = { "Scrum", "QA", "Backend", "Frontend" };
@@ -218,19 +218,19 @@ namespace UnitTestingQA
 		{
 			// Arrange
 			vector<ROLE> students =
-			{ 
+			{
 				{"QA", { "Georgi", "Bokluka", "10V", "qkiq123@abv.bg" }},
 				{"Scrum", { "Manqka za", "kurwi", "10A", "manqka928@gmail.com" }}
 			};
 
-			
+
 			// Act
 			removeStudentFromTeam(students, (string)"manqka928@gmail.com");
-			
+
 			//Assert
 			for (size_t i = 0; i < students.size(); i++)
 			{
-				/*if (students[i].student.email == "manqka928@gmail.com") 
+				/*if (students[i].student.email == "manqka928@gmail.com")
 				{
 				}*/
 				Assert::AreNotSame(students[i].student.email, (string)"manqka928@gmail.com", L"Student with email of manqka928@gmail.com has been successfully removed");
@@ -265,8 +265,8 @@ namespace UnitTestingQA
 			TEST_METHOD(ShouldSuccessfullyRemoveTeacher)
 		{
 			// Arrange
-			vector<TEACHER> teachers = 
-			{ 
+			vector<TEACHER> teachers =
+			{
 				{ "Georgi", "Bokluka", {""}, "qkiq123@abv.bg" },
 				{ "Uchitel", "kurwi", {""}, "manqka928@gmail.com" }
 			};
@@ -335,6 +335,48 @@ namespace UnitTestingQA
 
 			//Assert
 			Assert::Fail(L"No exceptions were thrown");
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldReturnIndexOfTheFoundTeacher)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("Medium")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldReturnIndexOfTheFoundTeacher)
+		{
+			// Arrange
+			vector<TEACHER> teachers
+			{
+				{ "Georgi", "Bokluka", {""}, "qkiq123@abv.bg" },
+				{ "Uchitel", "kurwi", {""}, "manqka928@gmail.com" },
+				{ "Brat", "Vrat", {""}, "qnko@e.bratans" },
+			};
+
+			//Act
+			int foundIndex = findIndexByEmailTeachers(teachers, (string)"qnko@e.bratans");
+
+			//Assert
+			Assert::AreEqual(2, foundIndex);
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldReturnIndexOfTheFoundStudent)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("Medium")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldReturnIndexOfTheFoundStudent)
+		{
+			// Arrange
+			vector<STUDENT> students
+			{
+				{ "Georgi", "Manqka", "10A" , "qkiq123@abv.bg" },
+				{ "Izvinqvam", "se", "10A" , "manqka928@gmail.com" },
+				{ "Brat", "Vrat", "10V", "qnko@e.bratans" },
+			};
+
+			//Act
+			int foundIndex = findIndexByEmailStudents(students, (string)"manqka928@gmail.com");
+
+			//Assert
+			Assert::AreEqual(1, foundIndex);
 		}
 	};
 }
