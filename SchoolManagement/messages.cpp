@@ -21,12 +21,12 @@ void badName(std::string ns)
 	cout << "Re-Enter a correct " + ns + ": " << CLOSE_ERR_MSG;
 }
 
-void updateMsgs(string email, string who) 
+void updateMsgs(string email, string who, string what) 
 {
 	cout << endl;
-	cout << INFO_MSG_CR << "Enter new first NAME of a" + who + " with email [ "
+	cout << INFO_MSG_CR << "Enter new " + what + " of a " + who + " with email [ "
 		<< RESET_COLOR << email << CLOSE_RESET_COLOR
-		<< INFO_MSG_CR << " ]" << " :" << CLOSE_INFO_MSG;
+		<< INFO_MSG_CR << " ]" << " : " << CLOSE_INFO_MSG;
 }
 
 void badTeam() 

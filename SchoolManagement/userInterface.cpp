@@ -397,7 +397,7 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 	else
 	{
 		clearScreen();
-		cout << ERROR_MSG_CR << "There are 0 teams" << CLOSE_ERR_MSG << endl;
+		cout << setw(50) << ERROR_MSG_CR << "There are 0 teams" << CLOSE_ERR_MSG << endl;
 	}
 }
 
@@ -601,7 +601,7 @@ void displayStudentsInTable(vector<STUDENT>& students)
 	else
 	{
 		clearScreen();
-		cout << setw(50) << ERROR_MSG_CR << "There are 0 students" << CLOSE_ERR_MSG;
+		cout << setw(50) << ERROR_MSG_CR << "There are 0 students" << CLOSE_ERR_MSG << endl;
 	}
 }
 
@@ -650,7 +650,7 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 	else
 	{
 		clearScreen();
-		cout << "There are 0 teachers";
+		cout << setw(50)<<ERROR_MSG_CR << "There are 0 teachers" << CLOSE_ERR_MSG;
 	}
 }
 
@@ -714,10 +714,10 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			return true;
 		}
 		else {
-			cout << "1. Search by teacher's firstname" << endl;
-			cout << "2. Search by teacher's surname" << endl;
-			cout << "3. Search teachers who have no teams assigned" << endl;
-			cout << "9. <- Back" << endl;
+			cout << "				(1) Search by teacher's firstname" << endl;
+			cout << "				(2) Search by teacher's surname" << endl;
+			cout << "				(3) Search teachers who have no teams assigned" << endl;
+			cout << "				(9) <- Back" << endl;
 
 			checkChoiceInput(op);
 			switch (op)
@@ -859,7 +859,8 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 {
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
-	system("chcp 65001");
+	cout << endl;
+	system("chcp 65001 > NUL");
 	cout << endl << u8R"( 
     ████████╗███████╗ █████╗ ███╗   ███╗███████╗ ██████╗ ███╗   ██╗██████╗ ██╗   ██╗██████╗  ██████╗ ███████╗████████╗
     ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██╔════╝██╔═══██╗████╗  ██║██╔══██╗██║   ██║██╔══██╗██╔════╝ ██╔════╝╚══██╔══╝
@@ -916,6 +917,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 	cout << "				(13) |Update team's information|" << endl;
 	cout << "				(14) |Visualize reports on criteria|" << endl;
 	cout << "				(15) |Display school's info|" << endl;
+	cout << "				(16) |Display school hierarchy|" << endl;
 	cout << setw(60) << "\-----------------------------------/)" << endl;
 
 	/*cout << u8R"(
@@ -940,7 +942,8 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 			║										║
 			╚═══════════════════════════════════════╝
 		)";*/
-	system("chcp 437");
+	system("chcp 437 > NUL");
+	//			/dev/null
 	int option;
 	int filter;
 	bool filt = true;
@@ -1006,6 +1009,12 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 			} while (filt);
 			break;
 		case 15: displaySchoolInfoInTable(school);
+			break;
+		case 16:
+			displaySchoolInfoInTable(school);
+			displayTeamsInTable(school.teams, whiteListedRoles);
+			displayTeachersInTable(school.teachers);
+			displayStudentsInTable(school.students);
 			break;
 		case 19:
 			return false;

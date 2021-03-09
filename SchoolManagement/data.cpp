@@ -43,7 +43,7 @@ string toStatus(int inp_)
 void writeRolesInTxt(vector<string>& whiteListedRoles)
 {
 	ofstream file;
-	file.open("roles.txt", ios::trunc);
+	file.open("roles.txt", ios::out | ios::trunc);
 	if (file.is_open())
 	{
 		for (size_t i = 0; i < whiteListedRoles.size(); i++)
@@ -58,7 +58,7 @@ void writeRolesInTxt(vector<string>& whiteListedRoles)
 void writeStudentsInTxt(vector<STUDENT>& students)
 {
 	ofstream file;
-	file.open("students.txt", ios::trunc);
+	file.open("students.txt", ios::out | ios::trunc);
 	if (file.is_open())
 	{
 		for (size_t i = 0; i < students.size(); i++)
@@ -73,7 +73,7 @@ void writeStudentsInTxt(vector<STUDENT>& students)
 void writeTeachersInTxt(vector<TEACHER>& teachers)
 {
 	ofstream file;
-	file.open("teachers.txt", ios::trunc);
+	file.open("teachers.txt", ios::out | ios::trunc);
 	if (file.is_open())
 	{
 		for (size_t i = 0; i < teachers.size(); i++)
@@ -88,7 +88,7 @@ void writeTeachersInTxt(vector<TEACHER>& teachers)
 void writeTeamsInTxt(vector<TEAM>& teams)
 {
 	ofstream file;
-	file.open("teams.txt", ios::trunc);
+	file.open("teams.txt", ios::out | ios::trunc);
 	if (file.is_open())
 	{
 		for (size_t i = 0; i < teams.size(); i++)
@@ -648,7 +648,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 			}
 		}
 
-
+		updateMsgs(email, "student", "NAME");
 		cin >> students.at(id).name;
 		while (!checkNameValidity(students.at(id).name))
 		{
@@ -656,6 +656,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 			cin >> students.at(id).name;
 		}
 
+		updateMsgs(email, "student", "SURNAME");
 		cin >> students.at(id).surname;
 		while (!checkNameValidity(students.at(id).surname))
 		{
@@ -663,6 +664,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 			cin >> students.at(id).surname;
 		}
 
+		updateMsgs(email, "student", "GRADE");
 		cin >> students.at(id).grade;
 		try
 		{
@@ -681,11 +683,11 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		string oldEmail = students[id].email;
 
 		cin.ignore();
-		cout << INFO_MSG_CR << "Enter new email of a student: " << CLOSE_INFO_MSG;
+		updateMsgs(email, "student", "EMAIL");
 		getline(cin, students.at(id).email);
 		while (!checkForExistingEmailStudents(students, students.at(id).email) or !checkEmailValidity(students.at(id).email))
 		{
-			updateMsgs(email, "student");
+			updateMsgs(email, "student", "EMAIL");
 			getline(cin, students.at(id).email);
 		}
 		// Save stariq email
@@ -749,7 +751,7 @@ void updateTeacherData(vector<TEACHER>& teachers,vector<TEAM>& teams)
 			}
 		}
 
-		updateMsgs(email, "teacher");
+		updateMsgs(email, "teacher", "NAME");
 
 		getline(cin, teachers.at(id).name);
 		while (!checkNameValidity(teachers.at(id).name))
@@ -758,7 +760,7 @@ void updateTeacherData(vector<TEACHER>& teachers,vector<TEAM>& teams)
 			cin >> teachers.at(id).name;
 		}
 
-		cout << "Enter new first SURNAME of a teacher with email [ " << email << " ]" << " :";
+		updateMsgs(email, "teacher", "SURNAME");
 		getline(cin, teachers.at(id).surname);
 		while (!checkNameValidity(teachers.at(id).surname))
 		{
@@ -766,7 +768,7 @@ void updateTeacherData(vector<TEACHER>& teachers,vector<TEAM>& teams)
 			getline(cin, teachers.at(id).surname);
 		}
 
-		cout << INFO_MSG_CR << "Enter new email of a teacher: " << CLOSE_INFO_MSG;
+		cout << INFO_MSG_CR << "\nEnter new email of a teacher: " << CLOSE_INFO_MSG;
 		getline(cin, teachers.at(id).email);
 		while (!checkForExistingEmailTeachers(teachers, teachers.at(id).email) or !checkEmailValidity(teachers.at(id).email))
 		{
