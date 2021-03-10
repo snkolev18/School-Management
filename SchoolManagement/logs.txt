@@ -714,3 +714,11 @@
 [2021/03/10  16:57:34] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
 [2021/03/10  16:57:41] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
 [2021/03/10  16:58:13] INFO Program was executed successfully
+[2021/03/10  21:50:04] INFO Program was executed successfully
+[2021/03/10  21:50:41] INFO Option X: Student was successfully added
+[2021/03/10  21:50:41] INFO Students were successfully written into students.txt
+[2021/03/10  21:51:09] INFO Option X: Teacher was successfully added
+[2021/03/10  21:51:09] INFO Teachers were successfully written into teachers.txt
+[2021/03/10  21:52:23] INFO Teachers were successfully written into teachers.txt
+[2021/03/10  21:52:23] INFO Option X: Team was successfully added
+[2021/03/10  21:52:23] INFO Teams were successfully written into teams.txt

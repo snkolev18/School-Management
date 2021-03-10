@@ -28,7 +28,7 @@ void displayNSpaces(int n)
 		cout << " ";
 	}
 }
-void displaySchoolTableHeader(int sizeName, int sizeCity, int sizeAddress, int sizeStudents, int sizeTeachers, int sizeTeams)
+void displaySchoolTableHeader(int& sizeName, int& sizeCity, int& sizeAddress, int& sizeStudents, int& sizeTeachers, int& sizeTeams)
 {
 	cout << char(201);
 	for (int i = 0; i < sizeName; i++)
@@ -114,7 +114,7 @@ void displaySchoolTableHeader(int sizeName, int sizeCity, int sizeAddress, int s
 	}
 	cout << char(185) << endl;
 }
-void displaySchoolTableBodyAndFooter(SCHOOL school,int sizeName, int sizeCity, int sizeAddress, int sizeStudents, int sizeTeachers, int sizeTeams)
+void displaySchoolTableBodyAndFooter(SCHOOL& school,int& sizeName, int& sizeCity, int& sizeAddress, int& sizeStudents, int& sizeTeachers, int& sizeTeams)
 {
 	cout << char(186);
 	cout << school.name;
@@ -168,7 +168,7 @@ void displaySchoolTableBodyAndFooter(SCHOOL school,int sizeName, int sizeCity, i
 	}
 	cout << char(188) << endl;
 }
-void displaySchoolInfoInTable(SCHOOL school)
+void displaySchoolInfoInTable(SCHOOL& school)
 {
 	int sizeName, sizeCity, sizeAddress, sizeStudents = 18, sizeTeachers = 18, sizeTeams = 15;
 	if (school.name.size() < 5)
@@ -860,7 +860,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 	}
 }
 
-bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInfo)
+bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInfo, vector<TEAM_PROJECT>& projects)
 {
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
@@ -887,23 +887,6 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		writeSchoolInTxt(school.name, school.city, school.address);
 		inputSchoolInfo = 0;
 	}
-	/*cout << R"(				/-----------------------------------\
-					Welcome to the Menu!
-				(1) |Add a student|
-				(2) |Add a teacher|
-				(3) |Add a role|
-				(4) |Add a team|
-				(5) |List of the students|
-				(6) |List of the teachers|
-				(7) |List of the teams|
-				(8) |Delete a student|
-				(9) |Delete a teacher|
-				(10) |Delete a team|
-				(11) |Update student's information|
-				(12) |Update teacher's information|
-				(18) | Visualize reports on criteria|
-				\\-----------------------------------/)" << endl;*/
-
 	cout << endl;
 	cout << setw(60) << "/-----------------------------------\\" << endl;
 	cout << "				Welcome to the Menu!" << endl;
@@ -925,28 +908,6 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 	cout << "				(16) |Display school hierarchy|" << endl;
 	cout << setw(60) << "\\-----------------------------------/" << endl;
 
-	/*cout << u8R"(
-
-			╔═══════════════════════════════════════╗
-			║										║
-			║  (1) |Add a student|			║
-			║  (2) |Add a teacher|			║
-			║  (3) |Add a role|				║
-			║  (4) |Add a team|				║
-			║  (5) |List of the students|	║
-			║  (6) |List of the teachers|	║
-			║  (7) |List of the teams|		║
-			║  (8) |Delete a student|		║
-			║  (9) |Delete a teacher|				║
-			║  (10) |Delete a team|					║
-			║  (11) |Update student's information|  ║
-			║  (12) |Update teacher's information|  ║
-			║  (18) | Visualize reports on criteria|║
-			║										║
-			║										║
-			║										║
-			╚═══════════════════════════════════════╝
-		)";*/
 	system("chcp 437 > NUL");
 	//			/dev/null
 	int option;
@@ -1022,6 +983,9 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 			displayTeamsInTable(school.teams, whiteListedRoles);
 			displayTeachersInTable(school.teachers);
 			displayStudentsInTable(school.students);
+			break;
+		case 17:
+			addProject(projects);
 			break;
 		case 19:
 			return false;

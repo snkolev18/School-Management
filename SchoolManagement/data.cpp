@@ -15,6 +15,8 @@
 
 using namespace std;
 
+
+// Converts enumeration code to string representation
 string TEAM::statusToString(STATUS stat)
 {
 	switch (stat)
@@ -30,6 +32,7 @@ string TEAM::statusToString(STATUS stat)
 	}
 }
 
+// Checks if a status is valid and returns converted string version of it
 string toStatus(int inp_)
 {
 	vector<int> valid = { 0, 1, 2 };
@@ -100,6 +103,21 @@ void writeTeamsInTxt(vector<TEAM>& teams)
 	}
 }
 
+void writeProjectsInTxt(vector<TEAM_PROJECT>& project, string fileName) 
+{
+	ofstream out;
+	out.open(fileName, ios::out | ios::trunc);
+	if (out.is_open())
+	{
+		for (size_t i = 0; i < project.size(); i++)
+		{
+			out << project[i].delimitInfo() << endl;
+		}
+		out.close();
+		logger.writeLogMsg(SEVERITY::INFO, "Projects were successfully written into projects.txt");
+	}
+}
+
 STUDENT findStudentByEmail(vector<STUDENT>& students, string& email)
 {
 
@@ -126,6 +144,7 @@ TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 		}
 	}
 }
+
 
 int findIndexOfTeacherByEmail(const vector<TEACHER>& teachers, const string email)
 {
@@ -399,6 +418,17 @@ void addRole(vector<string>& whiteListedRoles)
 	whiteListedRoles.push_back(role);
 }
 
+void addProject(vector<TEAM_PROJECT>& projects) 
+{
+	TEAM_PROJECT project;
+	cin >> project.name;
+	cin >> project.description;
+	cin >> project.dueDate;
+	cin >> project.uuid;
+
+	projects.push_back(project);
+}
+
 void removeRole(vector<string>& roles, int& id)
 {
 	roles.erase(roles.begin() + id);
@@ -467,6 +497,21 @@ TEAM parsedTeamInfo(string info)
 	info.erase(0, info.find('|') + 1);
 
 	return teamInfo;
+}
+
+TEAM_PROJECT parsedProjectInfo(string info)
+{
+	TEAM_PROJECT projects;
+
+	projects.name = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	projects.description = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	projects.dueDate = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	projects.uuid = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);
+	return projects;
 }
 
 vector<string> readRolesFromTxt()
@@ -539,6 +584,24 @@ vector<TEAM> readTeamsFromTxt()
 	}
 
 	return teams;
+}
+
+vector<TEAM_PROJECT> readProjectsFromTxt(string fileName)
+{
+	vector<TEAM_PROJECT> projects;
+	ifstream file;
+	string info;
+	file.open(fileName);
+
+	if (file.is_open())
+	{
+		while (getline(file, info))
+		{
+			projects.push_back(parsedProjectInfo(info));
+		}
+	}
+
+	return projects;
 }
 
 void removeStudentFromTeam(vector<ROLE>& students, string& email)

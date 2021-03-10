@@ -49,6 +49,15 @@ struct ROLE
 	STUDENT student;
 };
 
+struct TEAM_PROJECT 
+{
+	std::string uuid;
+	std::string name;
+	std::string description;
+	std::string dueDate;
+
+	std::string delimitInfo();
+};
 
 struct TEAM
 {
@@ -67,6 +76,7 @@ struct TEAM
 	
 	std::string status = "";
 
+	TEAM_PROJECT project;
 
 	static std::string statusToString(STATUS stat);
 	std::string delimitInfo();
@@ -82,13 +92,6 @@ struct SCHOOL
 	std::vector<STUDENT> students;
 };
 
-struct TEAM_PROJECT 
-{
-	std::string uuid;
-	std::string name;
-	std::string description;
-	std::string dueDate;
-};
 
 enum SEVERITY
 {

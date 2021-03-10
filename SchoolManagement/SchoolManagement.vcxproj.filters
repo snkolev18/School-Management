@@ -73,6 +73,9 @@
     <Text Include="school.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="projects.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

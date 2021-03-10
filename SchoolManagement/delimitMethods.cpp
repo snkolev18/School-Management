@@ -48,3 +48,13 @@ string TEAM::delimitInfo()
 
 	return result;
 }
+
+string TEAM_PROJECT::delimitInfo()
+{
+	string res;
+
+	res += name + "|" + description + "|" + dueDate + "|" + uuid + "|";
+	
+	return res;
+
+}

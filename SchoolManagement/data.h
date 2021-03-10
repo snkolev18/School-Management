@@ -23,6 +23,8 @@ TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>&
 
 void addRole(std::vector<std::string>& whiteListedRoles);
 
+void addProject(std::vector<TEAM_PROJECT>& projects);
+
 void removeRole(std::vector<std::string>& roles, int& id);
 
 void writeRolesInTxt(std::vector<std::string>& roles);
@@ -35,11 +37,15 @@ void writeTeamsInTxt(std::vector<TEAM>& teams);
 
 void writeSchoolInTxt(std::string name, std::string city, std::string address);
 
+void writeProjectsInTxt(std::vector<TEAM_PROJECT>& project, std::string fileName);
+
 STUDENT parsedStudentInfo(std::string info);
 
 TEACHER parsedTeacherInfo(std::string info);
 
 TEAM parsedTeamInfo(std::string info);
+
+TEAM_PROJECT parsedProjectInfo(std::string info);
 
 std::vector<std::string> readRolesFromTxt();
 
@@ -48,6 +54,8 @@ std::vector<STUDENT> readStudentsFromTxt();
 std::vector<TEACHER> readTeachersFromTxt();
 
 std::vector<TEAM> readTeamsFromTxt();
+
+std::vector<TEAM_PROJECT> readProjectsFromTxt(std::string fileName);
 
 SCHOOL readSchoolFromTxt();
 
@@ -104,5 +112,3 @@ std::vector<TEACHER> findTeachersByNoTeams(const std::vector<TEACHER>& teachers)
 std::vector<TEAM> findTeamsByTeacher(const std::vector<TEAM>& teams, const std::string& name);
 
 std::vector<TEAM> findTeamsByStatus(const std::vector<TEAM>& teams, const std::string& status);
-
-void emptyAllData();
