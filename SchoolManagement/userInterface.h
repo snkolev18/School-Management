@@ -39,4 +39,4 @@ bool filteringMenu(bool who, std::vector<STUDENT>& students, std::vector<TEACHER
 
 void handleUpdateTeamInfo(int option, std::vector<TEAM>& teams, std::vector<TEACHER>& teachers, std::vector<STUDENT>& students, int& teamID);
 
-bool menu(SCHOOL& school, std::vector<std::string>& whiteListedRoles, bool& inputSchoolInfo, std::vector<TEAM_PROJECT> projects);
+bool menu(SCHOOL& school, std::vector<std::string>& whiteListedRoles, bool& inputSchoolInfo, std::vector<TEAM_PROJECT>& projects);

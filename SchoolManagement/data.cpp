@@ -427,6 +427,7 @@ void addProject(vector<TEAM_PROJECT>& projects)
 	cin >> project.uuid;
 
 	projects.push_back(project);
+	writeProjectsInTxt(projects, "projects.txt");
 }
 
 void removeRole(vector<string>& roles, int& id)
