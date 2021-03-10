@@ -82,6 +82,14 @@ struct SCHOOL
 	std::vector<STUDENT> students;
 };
 
+struct TEAM_PROJECT 
+{
+	std::string uuid;
+	std::string name;
+	std::string description;
+	std::string dueDate;
+};
+
 enum SEVERITY
 {
 	CRITICAL,

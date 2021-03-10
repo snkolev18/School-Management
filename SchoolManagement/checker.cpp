@@ -234,10 +234,23 @@ bool checkTeamDescriptionLength(string description)
 	return description.length() > MAX_TEAM_DESCRIPTION ? false : true;
 }
 
-void checkChoiceInput(int& option) 
+void badChoice(int& option) 
 {
 
 	while (!(cin >> option).good())
+	{
+		cout << ERROR_MSG_CR << "That's not a valid input!" << CLOSE_ERR_MSG << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << ERROR_MSG_CR << "Re-enter your choice: " << CLOSE_ERR_MSG;
+	}
+
+}
+
+void badChoiceFiltering(int& option)
+{
+
+	while (!(cin >> option).good() or option < 1 or option > 4)
 	{
 		cout << ERROR_MSG_CR << "That's not a valid input!" << CLOSE_ERR_MSG << endl;
 		cin.clear();
@@ -264,3 +277,4 @@ void teachersEmpty(vector<TEACHER> teachers, vector<STUDENT> students)
 		throw std::runtime_error("Currently there are no teachers, Try adding some");
 	}
 }
+

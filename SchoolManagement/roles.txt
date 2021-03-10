@@ -1,4 +1,4 @@
-scrum
-dev
-dev1
-qa
+Scrum Master
+Backend
+Frontend
+QA Engineer

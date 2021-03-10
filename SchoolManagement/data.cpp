@@ -32,7 +32,7 @@ string TEAM::statusToString(STATUS stat)
 
 string toStatus(int inp_)
 {
-	vector<int> valid = { 0, 1, 2, 3 };
+	vector<int> valid = { 0, 1, 2 };
 	if (find(valid.begin(), valid.end(), inp_) == valid.end())
 	{
 		return "Vania";
@@ -1012,8 +1012,8 @@ void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUD
 		}
 		else
 		{
-			logger.writeLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to delete contents of a team which status is set to IN_USE");
-			throw std::runtime_error("Tried to update a team that is currently being used. STATUS => In Use");
+			logger.writeLogMsg(SEVERITY::WARNING, "Exception thrown: Tried to update contents of a team which status is NOT set to IN_USE");
+			throw std::runtime_error("Tried to update a team that is currently not being used. STATUS => In Use");
 		}
 	}
 
@@ -1032,6 +1032,11 @@ vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const strin
 			foundStudents.push_back(student);
 		}
 		});
+
+	if (foundStudents.empty())
+	{
+		throw runtime_error("Couldn't find any students");
+	}
 
 	/*for (size_t i = 0; i < students.size(); i++) {
 		if (students[i].grade == grade) {
@@ -1056,6 +1061,11 @@ vector<STUDENT> findStudentsByName(const vector<STUDENT>& students, const string
 		}
 		});
 
+	if (foundStudents.empty())
+	{
+		throw runtime_error("Couldn't find any students");
+	}
+
 	return foundStudents;
 
 }
@@ -1074,6 +1084,11 @@ vector<STUDENT> findStudentsBySurname(const vector<STUDENT>& students, const str
 		}
 		});
 
+	if (foundStudents.empty())
+	{
+		throw runtime_error("Couldn't find any students");
+	}
+
 	return foundStudents;
 }
 
@@ -1090,6 +1105,11 @@ vector<TEACHER> findTeachersByName(const vector<TEACHER>& teachers, const string
 			foundTeachers.push_back(teacher);
 		}
 		});
+
+	if (foundTeachers.empty())
+	{
+		throw runtime_error("Couldn't find any teachers");
+	}
 
 	return foundTeachers;
 }
@@ -1108,6 +1128,11 @@ vector<TEACHER> findTeachersBySurname(const vector<TEACHER>& teachers, const str
 		}
 		});
 
+	if (foundTeachers.empty())
+	{
+		throw runtime_error("Couldn't find any teachers");
+	}
+
 	return foundTeachers;
 }
 
@@ -1125,6 +1150,11 @@ vector<TEACHER> findTeachersByNoTeams(const vector<TEACHER>& teachers)
 		{
 			foundTeachers.push_back(teachers[i]);
 		}
+	}
+
+	if (foundTeachers.empty())
+	{
+		throw runtime_error("Couldn't find any teachers");
 	}
 
 	return foundTeachers;
@@ -1146,6 +1176,11 @@ vector<TEAM> findTeamsByTeacher(const vector<TEAM>& teams, const string& name)
 		}
 	}
 
+	if (foundTeams.empty())
+	{
+		throw runtime_error("Couldn't find any teams");
+	}
+
 	return foundTeams;
 }
 
@@ -1165,6 +1200,11 @@ vector<TEAM> findTeamsByStatus(const vector<TEAM>& teams, const string& status)
 		}
 	}
 
+	if (foundTeams.empty())
+	{
+		throw runtime_error("Couldn't find any teams");
+	}
+
 	return foundTeams;
 }
 
@@ -1180,6 +1220,7 @@ void writeSchoolInTxt(string name,string city,string address)
 		file.close();
 	}
 }
+
 SCHOOL readSchoolFromTxt()
 {
 	SCHOOL school;
@@ -1210,3 +1251,4 @@ SCHOOL readSchoolFromTxt()
 	school.teams = teams;
 	return school;
 }
+

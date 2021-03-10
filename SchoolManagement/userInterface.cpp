@@ -672,24 +672,27 @@ void statusMenu()
 
 bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teachers)
 {
+
 	vector<STUDENT> foundStudentsByCriteria;
+	vector<TEACHER> foundTeachersByCriteria;
 	string criteria;
 	int op;
 
 	try {
-
+		if (students.empty()) { throw std::runtime_error("No students data to filter"); }
+		
 		if (who) {
-			cout << "				\n 1. Search by class (10A, 10B, 10V and so on)" << endl;
-			cout << "				2. Search by student's firstname" << endl;
-			cout << "				3. Search by student's surname" << endl;
-			cout << "				9. <- Back" << endl;
+			cout << "				(1) Search by class (10A, 10B, 10V and so on)" << endl;
+			cout << "				(2) Search by student's firstname" << endl;
+			cout << "				(3) Search by student's surname" << endl;
+			cout << "				(9) <- Back" << endl;
 
-			checkChoiceInput(op);
-
-
+			badChoice(op);
+			
 			switch (op)
 			{
 			case 1:
+
 				cin >> criteria;
 				foundStudentsByCriteria = findStudentsByClass(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
@@ -714,31 +717,33 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			return true;
 		}
 		else {
+			clearScreen();
+			if (teachers.empty()) { throw std::runtime_error("No teachers data to filter"); }
+
 			cout << "				(1) Search by teacher's firstname" << endl;
 			cout << "				(2) Search by teacher's surname" << endl;
 			cout << "				(3) Search teachers who have no teams assigned" << endl;
 			cout << "				(9) <- Back" << endl;
 
-			checkChoiceInput(op);
+			badChoice(op);
 			switch (op)
 			{
 			case 1:
 				cin >> criteria;
-				foundStudentsByCriteria = findStudentsByClass(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
+				foundTeachersByCriteria = findTeachersByName(teachers, criteria);
+				displayTeachersInTable(foundTeachersByCriteria);
 				foundStudentsByCriteria.clear();
 				break;
 			case 2:
 				cin >> criteria;
-				foundStudentsByCriteria = findStudentsByName(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
+				foundTeachersByCriteria = findTeachersBySurname(teachers, criteria);
+				displayTeachersInTable(foundTeachersByCriteria);
+				foundTeachersByCriteria.clear();
 				break;
 			case 3:
-				cin >> criteria;
-				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
+				foundTeachersByCriteria = findTeachersByNoTeams(teachers);
+				displayTeachersInTable(foundTeachersByCriteria);
+				foundTeachersByCriteria.clear();
 				break;
 			case 9:
 				return false;
@@ -918,7 +923,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 	cout << "				(14) |Visualize reports on criteria|" << endl;
 	cout << "				(15) |Display school's info|" << endl;
 	cout << "				(16) |Display school hierarchy|" << endl;
-	cout << setw(60) << "\-----------------------------------/)" << endl;
+	cout << setw(60) << "\\-----------------------------------/" << endl;
 
 	/*cout << u8R"(
 
@@ -948,7 +953,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 	int filter;
 	bool filt = true;
 	cout << setw(50) << "->: ";
-	checkChoiceInput(option);
+	badChoice(option);
 
 	try {
 		switch (option)
@@ -992,23 +997,25 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 			clearScreen(); updateTeacherData(school.teachers, school.teams);
 			break;
 		case 13:
+			displayTeamsInTable(school.teams, whiteListedRoles);
 			updateTeamsData(school.teams, school.teachers, school.students);
 			break;
 		case 14:
-			cout << "1. Filter students" << endl;
-			cout << "2. Filter teachers" << endl;
-			checkChoiceInput(filter);
+			cout << "				(1) Filter students" << endl;
+			cout << "				(2) Filter teachers" << endl;
+			badChoiceFiltering(filter);
 			do {
 				switch (filter)
 				{
 				case 1: filt = filteringMenu(1, school.students, school.teachers); break;
 				case 2: filt = filteringMenu(0, school.students, school.teachers); break;
+				case 3: filt = false; break;
 				default:
 					break;
 				}
 			} while (filt);
 			break;
-		case 15: displaySchoolInfoInTable(school);
+		case 15: clearScreen();  displaySchoolInfoInTable(school);
 			break;
 		case 16:
 			displaySchoolInfoInTable(school);

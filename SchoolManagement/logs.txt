@@ -643,3 +643,74 @@
 [2021/03/07  23:39:56] INFO Program was terminated successfully
 [2021/03/07  23:54:52] INFO Program was executed successfully
 [2021/03/07  23:54:57] INFO Program was terminated successfully
+[2021/03/09  12:37:49] INFO Program was executed successfully
+[2021/03/09  12:43:14] INFO Program was executed successfully
+[2021/03/09  12:45:25] INFO Program was executed successfully
+[2021/03/09  12:45:32] INFO Program was executed successfully
+[2021/03/09  12:45:43] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/09  12:45:54] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/09  12:45:59] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/09  12:46:56] INFO Teams were successfully written into teams.txt
+[2021/03/09  12:48:31] INFO Teams were successfully written into teams.txt
+[2021/03/09  12:48:31] INFO Students were successfully written into students.txt
+[2021/03/09  12:48:31] INFO Student was successfully UPDATED
+[2021/03/09  12:48:31] INFO Teams which the students participates in were successfully updated
+[2021/03/09  12:49:04] INFO Students were successfully written into students.txt
+[2021/03/09  12:49:04] INFO Teams were successfully written into teams.txt
+[2021/03/09  12:49:04] INFO Student was successfully DELETED
+[2021/03/09  12:49:30] INFO Students were successfully written into students.txt
+[2021/03/09  12:49:30] INFO Teams were successfully written into teams.txt
+[2021/03/09  12:49:30] INFO Student was successfully DELETED
+[2021/03/09  12:49:54] INFO Program was terminated successfully
+[2021/03/09  12:50:19] INFO Program was executed successfully
+[2021/03/09  12:50:46] INFO Teams were successfully written into teams.txt
+[2021/03/09  12:51:45] INFO Teams were successfully written into teams.txt
+[2021/03/09  12:51:45] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/09  12:52:16] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE
+[2021/03/09  12:54:12] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE
+[2021/03/09  12:54:33] INFO Program was executed successfully
+[2021/03/09  12:54:53] INFO Option X: Student was successfully added
+[2021/03/09  12:54:53] INFO Students were successfully written into students.txt
+[2021/03/09  12:55:31] WARNING Exception thrown: Tried to update contents of a team which status is NOT set to IN_USE
+[2021/03/09  15:49:34] INFO Program was executed successfully
+[2021/03/09  15:53:16] INFO Program was executed successfully
+[2021/03/09  15:57:58] INFO Program was executed successfully
+[2021/03/09  16:00:12] INFO Program was executed successfully
+[2021/03/09  16:01:19] INFO Program was executed successfully
+[2021/03/09  16:01:24] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/09  16:01:35] WARNING Exception thrown: Tried to update contents of a team which status is NOT set to IN_USE
+[2021/03/10  15:20:44] INFO Program was executed successfully
+[2021/03/10  15:22:40] INFO Program was executed successfully
+[2021/03/10  15:23:26] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/10  15:23:29] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/10  15:23:33] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/10  15:31:20] INFO Program was executed successfully
+[2021/03/10  15:31:52] INFO Program was executed successfully
+[2021/03/10  15:35:06] INFO Program was executed successfully
+[2021/03/10  15:35:24] INFO Program was executed successfully
+[2021/03/10  15:35:58] INFO Program was executed successfully
+[2021/03/10  15:36:33] INFO Program was executed successfully
+[2021/03/10  15:41:17] INFO Program was executed successfully
+[2021/03/10  15:42:19] INFO Program was executed successfully
+[2021/03/10  15:47:08] INFO Program was executed successfully
+[2021/03/10  15:47:33] INFO Program was executed successfully
+[2021/03/10  16:07:11] INFO Program was executed successfully
+[2021/03/10  16:08:49] INFO Program was executed successfully
+[2021/03/10  16:09:02] INFO Program was executed successfully
+[2021/03/10  16:09:41] INFO Program was executed successfully
+[2021/03/10  16:12:31] INFO Program was executed successfully
+[2021/03/10  16:35:36] INFO Program was executed successfully
+[2021/03/10  16:38:50] INFO Program was executed successfully
+[2021/03/10  16:41:15] INFO Program was executed successfully
+[2021/03/10  16:42:05] INFO Program was executed successfully
+[2021/03/10  16:51:51] INFO Program was executed successfully
+[2021/03/10  16:57:03] INFO Program was executed successfully
+[2021/03/10  16:57:09] CRITICAL Exception thrown: Tried to initialize a team, but there are no STUDENTS to be provided
+[2021/03/10  16:57:21] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/10  16:57:25] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/10  16:57:28] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021/03/10  16:57:31] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/10  16:57:32] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/10  16:57:34] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/10  16:57:41] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021/03/10  16:58:13] INFO Program was executed successfully

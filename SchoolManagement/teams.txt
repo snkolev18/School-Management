@@ -1,3 +1,0 @@
-teamsonbudget|scrum:Kolev|Kolev|10V|KOLIO@kolio.com|,dev:atanas|burmov|10a|burmov@abv.bg|,dev1:atanas|burmov|10a|burmov@abv.bg|,qa:Kolev|Kolev|10V|KOLIO@kolio.com|,|||;|2021/03/07 17:26:28|Not active|we are too good|
-zdr|scrum:Kolev|Kolev|10V|KOLIO@kolio.com|,dev:atanas|burmov|10a|KOLIO@kolio.com|,dev1:atanas|burmov|10a|burmov@abv.bg|,qa:Kolev|Kolev|10V|KOLIO@kolio.com|,|||;|2021/03/07 17:26:40|In use|we are too good|
-kp|scrum:Kolev|Kolev|10V|KOLIO@kolio.com|,dev:atanas|burmov|10a|burmov@abv.bg|,dev1:atanas|burmov|10a|burmov@abv.bg|,qa:Kolev|Kolev|10V|KOLIO@kolio.com|,|||;|2021/03/07 17:26:46|In use|we are too good|
