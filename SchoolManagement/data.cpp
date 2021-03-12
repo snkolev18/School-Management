@@ -103,7 +103,7 @@ void writeTeamsInTxt(vector<TEAM>& teams)
 	}
 }
 
-void writeProjectsInTxt(vector<TEAM_PROJECT>& project, string fileName) 
+void writeProjectsInTxt(vector<TEAM_PROJECT>& project, string fileName)
 {
 	ofstream out;
 	out.open(fileName, ios::out | ios::trunc);
@@ -418,7 +418,7 @@ void addRole(vector<string>& whiteListedRoles)
 	whiteListedRoles.push_back(role);
 }
 
-void addProject(vector<TEAM_PROJECT>& projects) 
+void addProject(vector<TEAM_PROJECT>& projects)
 {
 	TEAM_PROJECT project;
 	cin >> project.name;
@@ -670,7 +670,7 @@ void removeTeacher(vector<TEACHER>& teachers, string email)
 	}
 }
 
-void updateTeamStudentEmail(int id, TEAM& team, string email) 
+void updateTeamStudentEmail(int id, TEAM& team, string email)
 {
 	team.roles[id].student.email = email;
 }
@@ -755,9 +755,9 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 			getline(cin, students.at(id).email);
 		}
 		// Save stariq email
-		if (teams.size() != 0) {
-			updateTeamStudentEmail(id, teams.at(id), students.at(id).email);
-		}
+
+		//updateTeamStudentEmail(id, teams.at(id), students.at(id).email);
+
 		// Looping through the teams and find the team which the student's participates in
 		// if match is found => update student data in the team
 		// Add the end save teams to file
@@ -772,8 +772,8 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 			}
 		}
 		// # Repeate for teachers
-		writeTeamsInTxt(teams);
 		writeStudentsInTxt(students);
+		writeTeamsInTxt(teams);
 		logger.writeLogMsg(SEVERITY::INFO, "Student was successfully UPDATED");
 		logger.writeLogMsg(SEVERITY::INFO, "Teams which the students participates in were successfully updated");
 	}
@@ -781,7 +781,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 }
 
 
-void updateTeacherData(vector<TEACHER>& teachers,vector<TEAM>& teams)
+void updateTeacherData(vector<TEACHER>& teachers, vector<TEAM>& teams)
 {
 	ifstream file;
 	file.open("teachers.txt", ios::in | ios::binary);
@@ -958,7 +958,7 @@ void deleteTeamsData(vector<TEAM>& teams)
 	}
 	else {
 
-		
+
 		string name;
 
 		cin.ignore();
@@ -1035,7 +1035,7 @@ void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUD
 		throw std::runtime_error("File with teams has no data!");
 	}
 	else {
-		
+
 		string name;
 
 		cin.ignore();
@@ -1099,7 +1099,7 @@ vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const strin
 		}
 		});
 
-	
+
 
 	/*for (size_t i = 0; i < students.size(); i++) {
 		if (students[i].grade == grade) {
@@ -1124,7 +1124,7 @@ vector<STUDENT> findStudentsByName(const vector<STUDENT>& students, const string
 		}
 		});
 
-	
+
 
 	return foundStudents;
 
@@ -1144,7 +1144,7 @@ vector<STUDENT> findStudentsBySurname(const vector<STUDENT>& students, const str
 		}
 		});
 
-	
+
 
 	return foundStudents;
 }
@@ -1181,7 +1181,7 @@ vector<TEACHER> findTeachersBySurname(const vector<TEACHER>& teachers, const str
 		}
 		});
 
-	
+
 	return foundTeachers;
 }
 
@@ -1201,7 +1201,7 @@ vector<TEACHER> findTeachersByNoTeams(const vector<TEACHER>& teachers)
 		}
 	}
 
-	
+
 
 	return foundTeachers;
 }
@@ -1222,7 +1222,7 @@ vector<TEAM> findTeamsByTeacher(const vector<TEAM>& teams, const string& name)
 		}
 	}
 
-	
+
 
 	return foundTeams;
 }
@@ -1243,12 +1243,12 @@ vector<TEAM> findTeamsByStatus(const vector<TEAM>& teams, const string& status)
 		}
 	}
 
-	
+
 
 	return foundTeams;
 }
 
-void writeSchoolInTxt(string name,string city,string address)
+void writeSchoolInTxt(string name, string city, string address)
 {
 	ofstream file;
 	file.open("school.txt", ios::trunc);
