@@ -166,6 +166,8 @@ int findTeamByName(const vector<TEAM>& teams, const string name)
 			return i;
 		}
 	}
+
+	return -69;
 }
 
 int findIndexByEmailTeachers(vector<TEACHER>& teachers, string& email)
@@ -659,6 +661,30 @@ void removeTeam(vector<TEAM>& teams, const string teamName)
 	}
 }
 
+void removeTeamFromTeachers(vector<TEACHER>& teachers, const string teamName) 
+{
+	/*for_each(teams.begin(), teams.end(), [&](TEAM teams) {
+		[&](TEAM teams) {
+			if (teams.teacher.teams == teamName)
+			{
+
+			}
+		};
+		});*/
+
+	for (size_t i = 0; i < teachers.size(); i++)
+	{
+		for (size_t j = 0; j < teachers.size(); j++)
+		{
+			if (teachers.at(i).teams.at(j) == teamName) 
+			{
+				teachers.at(i).teams.at(j) = {};
+			}
+		}
+	}
+
+}
+
 void removeTeacher(vector<TEACHER>& teachers, string email)
 {
 	for (size_t i = 0; i < teachers.size(); i++)
@@ -967,6 +993,12 @@ void deleteTeamsData(vector<TEAM>& teams)
 
 		int teamID = findTeamByName(teams, name);
 
+		if (teamID == -69)
+		{
+			cout << ERROR_MSG_CR << "Couldn't find such a team" << CLOSE_ERR_MSG << endl;
+			return;
+		}
+
 		if (teams.at(teamID).status == TEAM::statusToString(TEAM::IN_USE))
 		{
 			while (!checkIfTeamNameIsUsed(teams, name))
@@ -1042,6 +1074,12 @@ void updateTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUD
 		cout << INFO_MSG_CR << "Enter the name of the team that you want to edit: " << CLOSE_INFO_MSG;
 		getline(cin, name);
 		int teamID = findTeamByName(teams, name);
+
+		if (teamID == -69) 
+		{
+			cout << ERROR_MSG_CR << "Couldn't find such a team" << CLOSE_ERR_MSG << endl;
+			return;
+		}
 
 		if (teams.at(teamID).status == TEAM::statusToString(TEAM::IN_USE))
 		{

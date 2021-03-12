@@ -20,6 +20,16 @@ void clearScreen()
 
 }
 
+void switchEncoding() 
+{
+#ifdef __linux__
+	system("echo Encoding is not ok, we know it, but luit didn't work");
+#else WIN32
+	system("chcp 65001");
+#endif // __linux__
+
+}
+
 
 void displayNSpaces(int n)
 {
@@ -661,7 +671,7 @@ void displayTeamsUpdateMenu()
 	cout << "(3) | Change team name        |" << endl;
 	cout << "(4) | Change teacher          |" << endl;
 	cout << "(5) | Change student          |" << endl;
-}
+}	
 
 void statusMenu()
 {
@@ -726,10 +736,10 @@ bool handleUpdateMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 		switch (updCh)
 		{
 		case 1:
-			clearScreen(); updateStudentData(school.students, school.teams);
+			 updateStudentData(school.students, school.teams);
 			break;
 		case 2:
-			clearScreen(); updateTeacherData(school.teachers, school.teams);
+			updateTeacherData(school.teachers, school.teams);
 			break;
 		case 3:
 			displayTeamsInTable(school.teams, whiteListedRoles);
@@ -758,13 +768,14 @@ bool handleDeleteMenu(SCHOOL& school)
 	switch (delCh)
 	{
 	case 1:
-		clearScreen(); deleteStudentData(school.students, school.teams); 
+		 deleteStudentData(school.students, school.teams); 
 		break;
 	case 2:
-		clearScreen(); deleteTeacherData(school.teachers, school.teams);
+		 deleteTeacherData(school.teachers, school.teams);
 		break;
 	case 3:
-		clearScreen(); deleteTeamsData(school.teams);
+		 deleteTeamsData(school.teams);
+		removeTeamFromTeachers(school.teachers, "Offensive Security");
 		break;
 	case 4:
 		return false;

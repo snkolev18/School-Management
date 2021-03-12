@@ -855,3 +855,30 @@
 [2021/03/12  14:41:22] INFO Student was successfully DELETED
 [2021/03/12  14:42:11] INFO Teams were successfully written into teams.txt
 [2021/03/12  14:42:25] INFO Program was terminated successfully
+[2021/03/12  22:22:09] INFO Program was executed successfully
+[2021/03/12  22:26:03] INFO Program was executed successfully
+[2021/03/12  22:26:22] WARNING Exception thrown: Tried to update contents of a team which status is NOT set to IN_USE
+[2021/03/12  22:27:12] INFO Teams were successfully written into teams.txt
+[2021/03/12  22:27:43] INFO Teachers were successfully written into teachers.txt
+[2021/03/12  22:27:43] INFO Teams were successfully written into teams.txt
+[2021/03/12  22:38:02] INFO Program was executed successfully
+[2021/03/12  22:43:56] INFO Program was executed successfully
+[2021/03/12  22:44:16] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE
+[2021/03/12  22:44:44] INFO Program was executed successfully
+[2021/03/12  22:45:02] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE
+[2021/03/12  22:45:08] INFO Program was executed successfully
+[2021/03/12  22:45:25] INFO Program was executed successfully
+[2021/03/12  22:46:14] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE
+[2021/03/12  22:49:54] INFO Program was executed successfully
+[2021/03/12  22:50:45] INFO Program was executed successfully
+[2021/03/12  22:51:51] INFO Program was executed successfully
+[2021/03/12  22:52:09] INFO Program was executed successfully
+[2021/03/12  22:52:26] INFO Program was executed successfully
+[2021/03/12  22:54:29] INFO Program was executed successfully
+[2021/03/12  22:55:47] INFO Program was executed successfully
+[2021/03/12  22:56:22] INFO Program was executed successfully
+[2021/03/12  22:57:15] INFO Program was executed successfully
+[2021/03/12  22:59:04] INFO Teachers were successfully written into teachers.txt
+[2021/03/12  22:59:04] INFO Option X: Team was successfully added
+[2021/03/12  22:59:04] INFO Teams were successfully written into teams.txt
+[2021/03/12  22:59:28] INFO Teams were successfully written into teams.txt

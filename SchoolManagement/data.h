@@ -69,6 +69,8 @@ void removeStudent(std::vector<STUDENT>& students, std::string email);
 
 void removeTeacher(std::vector<TEACHER>& teachers, std::string email);
 
+void removeTeamFromTeachers(std::vector<TEACHER>& teachers, const std::string teamName);
+
 void updateTeamStudentEmail(int id, TEAM& team, std::string email);
 
 void updateStudentData(std::vector<STUDENT>& students, std::vector<TEAM>& teams);
