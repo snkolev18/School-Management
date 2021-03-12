@@ -1,1 +1,1 @@
-Georgi|Jolev|Offsec=gjolev@gmail.com|;
+Georgi|Georgiev|Offsec=georgiev@gosho.com|;

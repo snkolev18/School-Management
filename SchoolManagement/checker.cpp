@@ -237,7 +237,7 @@ bool checkTeamDescriptionLength(string description)
 void badChoice(int& option) 
 {
 
-	while (!(cin >> option).good())
+	while (!(cin >> option))
 	{
 		cout << ERROR_MSG_CR << "That's not a valid input!" << CLOSE_ERR_MSG << endl;
 		cin.clear();

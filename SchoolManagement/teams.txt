@@ -1,1 +1,0 @@
-Offsec|Scrum Master:Sample|SampleG|1-A|gmail@gmail.com|,Backend:Sample|SampleG|1-A|gmail@gmail.com|,Frontend:Sample|SampleG|1-A|gmail@gmail.com|,QA Engineer:Sample|SampleG|1-A|gmail@gmail.com|,Georgi|Jolev|Offsec=gjolev@gmail.com|;|2021/03/10 21:52:23|In use|QK TEAM|

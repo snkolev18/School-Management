@@ -755,7 +755,9 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 			getline(cin, students.at(id).email);
 		}
 		// Save stariq email
-		updateTeamStudentEmail(id, teams.at(id), students.at(id).email);
+		if (teams.size() != 0) {
+			updateTeamStudentEmail(id, teams.at(id), students.at(id).email);
+		}
 		// Looping through the teams and find the team which the student's participates in
 		// if match is found => update student data in the team
 		// Add the end save teams to file
@@ -1097,10 +1099,7 @@ vector<STUDENT> findStudentsByClass(const vector<STUDENT>& students, const strin
 		}
 		});
 
-	if (foundStudents.empty())
-	{
-		throw runtime_error("Couldn't find any students");
-	}
+	
 
 	/*for (size_t i = 0; i < students.size(); i++) {
 		if (students[i].grade == grade) {
@@ -1125,10 +1124,7 @@ vector<STUDENT> findStudentsByName(const vector<STUDENT>& students, const string
 		}
 		});
 
-	if (foundStudents.empty())
-	{
-		throw runtime_error("Couldn't find any students");
-	}
+	
 
 	return foundStudents;
 
@@ -1148,10 +1144,7 @@ vector<STUDENT> findStudentsBySurname(const vector<STUDENT>& students, const str
 		}
 		});
 
-	if (foundStudents.empty())
-	{
-		throw runtime_error("Couldn't find any students");
-	}
+	
 
 	return foundStudents;
 }
@@ -1170,10 +1163,6 @@ vector<TEACHER> findTeachersByName(const vector<TEACHER>& teachers, const string
 		}
 		});
 
-	if (foundTeachers.empty())
-	{
-		throw runtime_error("Couldn't find any teachers");
-	}
 
 	return foundTeachers;
 }
@@ -1192,11 +1181,7 @@ vector<TEACHER> findTeachersBySurname(const vector<TEACHER>& teachers, const str
 		}
 		});
 
-	if (foundTeachers.empty())
-	{
-		throw runtime_error("Couldn't find any teachers");
-	}
-
+	
 	return foundTeachers;
 }
 
@@ -1216,10 +1201,7 @@ vector<TEACHER> findTeachersByNoTeams(const vector<TEACHER>& teachers)
 		}
 	}
 
-	if (foundTeachers.empty())
-	{
-		throw runtime_error("Couldn't find any teachers");
-	}
+	
 
 	return foundTeachers;
 }
@@ -1240,10 +1222,7 @@ vector<TEAM> findTeamsByTeacher(const vector<TEAM>& teams, const string& name)
 		}
 	}
 
-	if (foundTeams.empty())
-	{
-		throw runtime_error("Couldn't find any teams");
-	}
+	
 
 	return foundTeams;
 }
@@ -1264,10 +1243,7 @@ vector<TEAM> findTeamsByStatus(const vector<TEAM>& teams, const string& status)
 		}
 	}
 
-	if (foundTeams.empty())
-	{
-		throw runtime_error("Couldn't find any teams");
-	}
+	
 
 	return foundTeams;
 }

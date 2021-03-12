@@ -656,18 +656,189 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 
 void displayTeamsUpdateMenu()
 {
-	cout << "				1. Change team status " << endl;
-	cout << "				2. Change team description" << endl;
-	cout << "				3. Change team name" << endl;
-	cout << "				4. Change teacher" << endl;
-	cout << "				5. Change student" << endl;
+	cout << "				(1) Change team status " << endl;
+	cout << "				(2) Change team description" << endl;
+	cout << "				(3) Change team name" << endl;
+	cout << "				(4) Change teacher" << endl;
+	cout << "				(5) Change student" << endl;
 }
 
 void statusMenu()
 {
-	cout << "				0. In use" << endl;
-	cout << "				1. Not Active" << endl;
-	cout << "				2. Archived" << endl;
+	cout << "				(0) In use" << endl;
+	cout << "				(1) Not Active" << endl;
+	cout << "				(2) Archived" << endl;
+}
+
+void printMenu() 
+{
+	cout << "(1) | Display Teachers |" << endl;
+	cout << "(2) | Display Students |" << endl;
+	cout << "(3) | Display Teams    |" << endl;
+	cout << "(4) <- Back		    |" << endl;
+	cout << "Enter your choice: ";
+}
+
+void addMenu()
+{
+	cout << "(2) | Add Students |" << endl;
+	cout << "(1) | Add Teachers |" << endl;
+	cout << "(3) | Add Roles    |" << endl;
+	cout << "(4) | Add Teams    |" << endl;
+	cout << "(5) <- Back        |" << endl;
+	cout << "Enter your choice: ";
+}
+
+void listMenu() 
+{
+	cout << "(1) | List of the students |" << endl;
+	cout << "(2) | List of the teachers |" << endl;
+	cout << "(3) | List of the teams    |" << endl;
+	cout << "(4) <- Back" << endl;
+	cout << "Enter your choice: ";
+}
+
+void deleteMenu() 
+{
+	cout << "(1) | Delete a student |" << endl;
+	cout << "(2) | Delete a teacher |" << endl;
+	cout << "(3) | Delete a team    |" << endl;
+	cout << "(4) <- Back" << endl;
+	cout << "Enter your choice: ";
+}
+
+void updateMenu() 
+{
+	cout << "(1) | Update student's information|" << endl;
+	cout << "(2) | Update teacher's information|" << endl;
+	cout << "(3) | Update team's information   |" << endl;
+	cout << "(4) <- Back" << endl;
+	cout << "Enter your choice: ";
+}
+
+bool handleUpdateMenu(SCHOOL& school, vector<string>& whiteListedRoles)
+{
+	updateMenu();
+	int updCh;
+	badChoice(updCh);
+	try
+	{
+		switch (updCh)
+		{
+		case 1:
+			clearScreen(); updateStudentData(school.students, school.teams);
+			break;
+		case 2:
+			clearScreen(); updateTeacherData(school.teachers, school.teams);
+			break;
+		case 3:
+			displayTeamsInTable(school.teams, whiteListedRoles);
+			updateTeamsData(school.teams, school.teachers, school.students);
+			break;
+		case 4:
+			return false;
+		default:
+			break;
+		}
+	}
+	catch (const std::exception& ex)
+	{
+		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+	}
+	return true;
+}
+
+bool handleDeleteMenu(SCHOOL& school)
+{
+	clearScreen();
+	deleteMenu();
+	int delCh;
+	badChoice(delCh);
+
+	switch (delCh)
+	{
+	case 1:
+		clearScreen(); deleteStudentData(school.students, school.teams); 
+		break;
+	case 2:
+		clearScreen(); deleteTeacherData(school.teachers, school.teams);
+		break;
+	case 3:
+		clearScreen(); deleteTeamsData(school.teams);
+		break;
+	case 4:
+		return false;
+	default:
+		break;
+	}
+	return true;
+}
+
+bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles)
+{
+	clearScreen();
+	addMenu();
+	int addCh;
+	badChoice(addCh);
+	switch (addCh)
+	{
+	case 1:
+		clearScreen();
+		cin.ignore();
+		school.students.push_back(inputStudent(school.students, school.teachers));
+		writeStudentsInTxt(school.students);
+		return true;
+	case 2:
+		clearScreen();
+		cin.ignore();
+		school.teachers.push_back(inputTeacher(school.students, school.teachers));
+		writeTeachersInTxt(school.teachers);
+		break;
+	case 3:
+		clearScreen();
+		cin.ignore();
+		addRole(whiteListedRoles);
+		writeRolesInTxt(whiteListedRoles);
+		break;
+	case 4:
+		clearScreen();
+		school.teams.push_back(inputTeam(whiteListedRoles, school.students, school.teachers, school.teams));
+		writeTeamsInTxt(school.teams);
+		break;
+	case 5:
+		return false;
+	default:
+		break;
+	}
+	return true;
+}
+
+bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles)
+{
+	listMenu();
+	int listCh;
+	badChoice(listCh);
+
+	switch (listCh)
+	{
+	case 1:
+		clearScreen();
+		displayStudentsInTable(school.students);
+		return true;
+	case 2:
+		clearScreen();
+		displayTeachersInTable(school.teachers);
+		break;
+	case 3:
+		clearScreen();
+		displayTeamsInTable(school.teams, whiteListedRoles);
+		break;
+	case 4:
+		return false;
+	default:
+		break;
+	}
+	return true;
 }
 
 bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teachers)
@@ -682,10 +853,11 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 		if (students.empty()) { throw std::runtime_error("No students data to filter"); }
 		
 		if (who) {
-			cout << "				(1) Search by class (10A, 10B, 10V and so on)" << endl;
-			cout << "				(2) Search by student's firstname" << endl;
-			cout << "				(3) Search by student's surname" << endl;
-			cout << "				(9) <- Back" << endl;
+
+			cout << "(1) Search by class (10A, 10B, 10V and so on)" << endl;
+			cout << "(2) Search by student's firstname" << endl;
+			cout << "(3) Search by student's surname" << endl;
+			cout << "(9) <- Back" << endl;
 
 			badChoice(op);
 			
@@ -717,13 +889,14 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			return true;
 		}
 		else {
-			clearScreen();
+			
 			if (teachers.empty()) { throw std::runtime_error("No teachers data to filter"); }
 
-			cout << "				(1) Search by teacher's firstname" << endl;
-			cout << "				(2) Search by teacher's surname" << endl;
-			cout << "				(3) Search teachers who have no teams assigned" << endl;
-			cout << "				(9) <- Back" << endl;
+			cout << endl;
+			cout << "(1) Search by teacher's firstname" << endl;
+			cout << "(2) Search by teacher's surname" << endl;
+			cout << "(3) Search teachers who have no teams assigned" << endl;
+			cout << "(9) <- Back" << endl;
 
 			badChoice(op);
 			switch (op)
@@ -862,6 +1035,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 
 bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInfo, vector<TEAM_PROJECT>& projects)
 {
+	clearScreen();
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
 	cout << endl;
@@ -888,31 +1062,23 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		inputSchoolInfo = 0;
 	}
 	cout << endl;
-	cout << setw(60) << "/-----------------------------------\\" << endl;
-	cout << "				Welcome to the Menu!" << endl;
-	cout << "				(1) |Add a student|" << endl;
-	cout << "				(2) |Add a teacher|" << endl;
-	cout << "				(3) |Add a role|" << endl;
-	cout << "				(4) |Add a team|" << endl;
-	cout << "				(5) |List of the students|" << endl;
-	cout << "				(6) |List of the teachers|" << endl;
-	cout << "				(7) |List of the teams|" << endl;
-	cout << "				(8) |Delete a student|" << endl;
-	cout << "				(9) |Delete a teacher|" << endl;
-	cout << "				(10) |Delete a team|" << endl;
-	cout << "				(11) |Update student's information|" << endl;
-	cout << "				(12) |Update teacher's information|" << endl;
-	cout << "				(13) |Update team's information|" << endl;
-	cout << "				(14) |Visualize reports on criteria|" << endl;
-	cout << "				(15) |Display school's info|" << endl;
-	cout << "				(16) |Display school hierarchy|" << endl;
-	cout << setw(60) << "\\-----------------------------------/" << endl;
+	cout << "/-----------------------------------\\" << endl;
+	cout << "Welcome to the Menu!" << endl;
+	cout << "(1) |Add students, teachers, roles, teams|" << endl;
+	cout << "(2) |List tables with students, teachers, teams|" << endl;
+	cout << "(3) |Delete data |" << endl;
+	cout << "(4) |Update data |" << endl;
+	cout << "(14) |Visualize reports on criteria |" << endl;
+	cout << "(15) |Display school's info |" << endl;
+	cout << "(16) |Display school hierarchy |" << endl;
+	cout << "(19) |Terminate the program |" << endl;
+	cout << "\\-----------------------------------/" << endl;
 
 	system("chcp 437 > NUL");
 	//			/dev/null
 	int option;
 	int filter;
-	bool filt = true;
+	bool filt = true, add = true, list = true, del = true, upd = true;
 	cout << setw(50) << "->: ";
 	badChoice(option);
 
@@ -920,56 +1086,43 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		switch (option)
 		{
 		case 1:
-			cin.ignore();
-			school.students.push_back(inputStudent(school.students, school.teachers));
-			writeStudentsInTxt(school.students);
+			clearScreen();
+			do {
+				add = handleAddMenu(school, whiteListedRoles);
+			} while (add);
 			break;
-
 		case 2:
-			cin.ignore();
-			school.teachers.push_back(inputTeacher(school.students, school.teachers));
-			writeTeachersInTxt(school.teachers);
+			clearScreen();
+			do
+			{
+				list = handleListTablesMenu(school, whiteListedRoles);
+			} while (list);
 			break;
-
 		case 3:
-			cin.ignore();
-			addRole(whiteListedRoles);
-			writeRolesInTxt(whiteListedRoles);
+			clearScreen();
+			do
+			{
+				del = handleDeleteMenu(school);
+			} while (del);
 			break;
 		case 4:
-			school.teams.push_back(inputTeam(whiteListedRoles, school.students, school.teachers, school.teams));
-			writeTeamsInTxt(school.teams);
-			break;
-		case 5:
 			clearScreen();
-			displayStudentsInTable(school.students);
-			break;
-		case 6:
-			clearScreen();
-			displayTeachersInTable(school.teachers);
-			break;
-		case 7: displayTeamsInTable(school.teams, whiteListedRoles);
-			break;
-		case 8: clearScreen(); deleteStudentData(school.students, school.teams); break;
-		case 9: clearScreen(); deleteTeacherData(school.teachers, school.teams); break;
-		case 10: clearScreen(); deleteTeamsData(school.teams);  break;
-		case 11: clearScreen(); updateStudentData(school.students, school.teams); break;
-		case 12:
-			clearScreen(); updateTeacherData(school.teachers, school.teams);
-			break;
-		case 13:
-			displayTeamsInTable(school.teams, whiteListedRoles);
-			updateTeamsData(school.teams, school.teachers, school.students);
+			do
+			{
+				upd = handleUpdateMenu(school, whiteListedRoles);
+			} while (upd);
 			break;
 		case 14:
-			cout << "				(1) Filter students" << endl;
-			cout << "				(2) Filter teachers" << endl;
+			clearScreen();
+			cout << "(1) Filter students" << endl;
+			cout << "(2) Filter teachers" << endl;
+			cout << "(3) <- Back" << endl;
 			badChoiceFiltering(filter);
 			do {
 				switch (filter)
 				{
-				case 1: filt = filteringMenu(1, school.students, school.teachers); break;
-				case 2: filt = filteringMenu(0, school.students, school.teachers); break;
+				case 1: clearScreen(); filt = filteringMenu(1, school.students, school.teachers); break;
+				case 2: clearScreen(); filt = filteringMenu(0, school.students, school.teachers); break;
 				case 3: filt = false; break;
 				default:
 					break;
@@ -990,6 +1143,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		case 19:
 			return false;
 		default:
+			clearScreen();
 			cout << endl;
 			cout << ERROR_MSG_CR << "|--------------------------|" << endl;
 			cout << "Incorrect option, try again!" << endl;
