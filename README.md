@@ -1,7 +1,7 @@
 # School-Management
 
 <p align="center">
-  Logo goes here
+  <img src="https://github.com/snkolev18/School-Management/blob/master/docs/logo.png">Logo goes here</img>
 </p> 
 <h1 align="center">TeamsOnBudget</h1>
 <p align="center">
@@ -40,7 +40,7 @@ For <b>setup2.sh</b> you will have to: ``` sudo apt-get install dialog ```
 Here are the installation steps in order to have the application running.
 
 <p>For <b>Windows</b> you will have to open the .sln file like this one below. Simple as that</p>
-<img alt="SLN goes here"> </img>
+<img alt="SLN goes here" src="https://github.com/snkolev18/School-Management/blob/master/docs/w_install.png"> </img>
 
 <p>For <b>Linux</b> you will have to follow some more steps. When you have cloned the repository do the following: Find the location where you have cloned the repository and then: </p>
 
@@ -51,7 +51,8 @@ Here are the installation steps in order to have the application running.
 ``` ./setup ``` or ``` ./setup2 ```
 
 <p> Now you are granted with menu and you can select options </p>
-<img alt="Linux install comes here (.sh photos)"> </img>
+<img alt="Linux install comes here (.sh photos)" src="https://github.com/snkolev18/School-Management/blob/master/docs/l_menu.png"> </img>
+<img alt="Linux install comes here (.sh photos)" src="https://github.com/snkolev18/School-Management/blob/master/docs/l_menu2.png"> </img>
 
-<p> If you choose option, g++ (using the Makefile) will link your executables into an ELF and will execute the programme </p>
+<p> If you choose option 1 on both menus, g++ (using the Makefile) will link your executables into an ELF and will execute the programme </p>
 
