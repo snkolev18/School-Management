@@ -656,18 +656,18 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 
 void displayTeamsUpdateMenu()
 {
-	cout << "				(1) Change team status " << endl;
-	cout << "				(2) Change team description" << endl;
-	cout << "				(3) Change team name" << endl;
-	cout << "				(4) Change teacher" << endl;
-	cout << "				(5) Change student" << endl;
+	cout << "(1) | Change team status      |" << endl;
+	cout << "(2) | Change team description |" << endl;
+	cout << "(3) | Change team name        |" << endl;
+	cout << "(4) | Change teacher          |" << endl;
+	cout << "(5) | Change student          |" << endl;
 }
 
 void statusMenu()
 {
-	cout << "				(0) In use" << endl;
-	cout << "				(1) Not Active" << endl;
-	cout << "				(2) Archived" << endl;
+	cout << "(0) In use" << endl;
+	cout << "(1) Not Active" << endl;
+	cout << "(2) Archived" << endl;
 }
 
 void printMenu() 
