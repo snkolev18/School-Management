@@ -774,8 +774,7 @@ bool handleDeleteMenu(SCHOOL& school)
 		 deleteTeacherData(school.teachers, school.teams);
 		break;
 	case 3:
-		 deleteTeamsData(school.teams);
-		removeTeamFromTeachers(school.teachers, "Offensive Security");
+		 deleteTeamsData(school.teams,school.teachers);
 		break;
 	case 4:
 		return false;

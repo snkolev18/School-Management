@@ -81,7 +81,7 @@ void deleteStudentData(std::vector<STUDENT>& students, std::vector<TEAM>& teams)
 
 void deleteTeacherData(std::vector<TEACHER>& teachers, std::vector<TEAM>& teams);
 
-void deleteTeamsData(std::vector<TEAM>& teams);
+void deleteTeamsData(std::vector<TEAM>& teams, std::vector<TEACHER>& teachers);
 
 int findTeamByName(const std::vector<TEAM>& teams, const std::string name);
 
@@ -116,3 +116,4 @@ std::vector<TEAM> findTeamsByTeacher(const std::vector<TEAM>& teams, const std::
 std::vector<TEAM> findTeamsByStatus(const std::vector<TEAM>& teams, const std::string& status);
 
 void assignProjectToTeam(std::vector<TEAM>& teams, std::string& nameOfTheTeam, TEAM_PROJECT& project);
+

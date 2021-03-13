@@ -423,9 +423,13 @@ void addRole(vector<string>& whiteListedRoles)
 void addProject(vector<TEAM_PROJECT>& projects)
 {
 	TEAM_PROJECT project;
+	cout << "Name of the project: ";
 	cin >> project.name;
+	cout << "Description of the project: ";
 	cin >> project.description;
+	cout << "Due date of the project: ";
 	cin >> project.dueDate;
+	cout << "ID of the project: ";
 	cin >> project.uuid;
 
 	projects.push_back(project);
@@ -674,11 +678,12 @@ void removeTeamFromTeachers(vector<TEACHER>& teachers, const string teamName)
 
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
-		for (size_t j = 0; j < teachers.size(); j++)
+		for (size_t j = 0; j < teachers[i].teams.size(); j++)
 		{
 			if (teachers.at(i).teams.at(j) == teamName) 
 			{
-				teachers.at(i).teams.at(j) = {};
+				teachers.at(i).teams.erase(teachers.at(i).teams.begin() + j);
+				break;
 			}
 		}
 	}
@@ -970,7 +975,7 @@ void deleteTeacherData(vector<TEACHER>& teachers, vector<TEAM>& teams)
 
 }
 
-void deleteTeamsData(vector<TEAM>& teams)
+void deleteTeamsData(vector<TEAM>& teams, vector<TEACHER>& teachers)
 {
 	ifstream file;
 	file.open("teams.txt", ios::in | ios::binary);
@@ -1007,6 +1012,8 @@ void deleteTeamsData(vector<TEAM>& teams)
 				getline(cin, name);
 			}
 			removeTeam(teams, name);
+			removeTeamFromTeachers(teachers, name);
+			writeTeachersInTxt(teachers);
 			writeTeamsInTxt(teams);
 		}
 		else
@@ -1341,3 +1348,14 @@ void assignProjectToTeam(vector<TEAM>& teams,string& nameOfTheTeam,TEAM_PROJECT&
 	}
 }
 
+void rewriteProject(TEAM_PROJECT& project)
+{
+	cout << "Name of the project: ";
+	cin >> project.name;
+	cout << "Description of the project: ";
+	cin >> project.description;
+	cout << "Due date of the project: ";
+	cin >> project.dueDate;
+	cout << "ID of the project: ";
+	cin >> project.uuid;
+}
