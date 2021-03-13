@@ -11,4 +11,8 @@ void updateMsgs(std::string email, std::string who, std::string what);
 
 void badTeam();
 
+void badDate();
+
 void incorrectEmail(std::string ts);
+
+void badProjectDescription();

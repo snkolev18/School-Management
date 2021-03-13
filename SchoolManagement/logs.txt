@@ -915,3 +915,24 @@
 [2021/03/13  15:34:34] INFO Teams were successfully written into teams.txt
 [2021/03/13  15:44:15] INFO Program was executed successfully
 [2021/03/13  20:51:24] INFO Program was executed successfully
+[2021/03/13  21:06:39] INFO Program was executed successfully
+[2021/03/13  21:07:13] INFO Program was executed successfully
+[2021/03/13  21:07:20] CRITICAL Exception thrown: Tried to initialize a team, but there are no TEACHERS to be provided
+[2021/03/13  21:07:22] CRITICAL Exception thrown: Tried to initialize a team, but there are no TEACHERS to be provided
+[2021/03/13  21:07:37] INFO Option X: Teacher was successfully added
+[2021/03/13  21:07:37] INFO Teachers were successfully written into teachers.txt
+[2021/03/13  21:08:17] INFO Teachers were successfully written into teachers.txt
+[2021/03/13  21:08:17] INFO Option X: Team was successfully added
+[2021/03/13  21:08:17] INFO Teams were successfully written into teams.txt
+[2021/03/13  21:10:18] INFO Students were successfully written into students.txt
+[2021/03/13  21:10:18] INFO Teams were successfully written into teams.txt
+[2021/03/13  21:10:18] INFO Student was successfully UPDATED
+[2021/03/13  21:10:18] INFO Teams which the students participates in were successfully updated
+[2021/03/13  21:11:28] INFO Program was executed successfully
+[2021/03/13  21:12:14] INFO Program was executed successfully
+[2021/03/13  21:13:40] INFO Teachers were successfully written into teachers.txt
+[2021/03/13  21:13:40] INFO Teams were successfully written into teams.txt
+[2021/03/13  21:41:36] INFO Program was executed successfully
+[2021/03/13  21:51:17] INFO Program was executed successfully
+[2021/03/13  21:51:55] INFO Program was executed successfully
+[2021/03/13  21:52:29] INFO Program was executed successfully

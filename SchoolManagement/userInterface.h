@@ -11,13 +11,21 @@ void displaySchoolTableBodyAndFooter(SCHOOL& school, int& sizeName, int& sizeCit
 
 void displaySchoolInfoInTable(SCHOOL& school);
 
-void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, std::vector<std::string>& whiteListedRoles);
+void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, std::vector<std::string>& whiteListedRoles,int& maxSizeProjects);
 
-void displayBodyTeamsTable(std::vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus);
+void displayBodyTeamsTable(std::vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus,int& maxSizeProjects);
 
-void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus);
+void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, std::vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus,int& maxSizeProjects);
 
 void displayTeamsInTable(std::vector<TEAM>& teams, std::vector<std::string> whiteListedRoles);
+
+void displayHeaderProjectsTable(int& maxSizeNames, int& maxSizeDate);
+
+void displayBodyProjectsTable(std::vector<TEAM_PROJECT>& projects, int& maxSizeNames, int& maxSizeDate);
+
+void displayFooterProjectsTable(int& maxSizeNames, int& maxSizeDate);
+
+void displayProjectsInTable(std::vector<TEAM_PROJECT>& projects);
 
 void displayHeaderStudentsAndTeachersTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail, std::string object);
 

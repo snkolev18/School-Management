@@ -9,6 +9,10 @@
 #define MAX_EMAIL_SIZE 40
 #define MAX_TEAMNAME_SIZE 25
 #define MIN_NAME_SIZE 3
+#define MIN_PROJECT_NAME_SIZE 5
+#define MAX_PROJECT_NAME_SIZE 35
+#define MIN_PROJECT_DESCRIPTION_SIZE 7
+#define MAX_PROJECT_DESCRIPTION_SIZE 30
 // #################################
 
 // ######### MESSAGE COLORS ########
@@ -51,7 +55,7 @@ struct ROLE
 
 struct TEAM_PROJECT 
 {
-	std::string uuid;
+	//std::string uuid;
 	std::string name;
 	std::string description;
 	std::string dueDate;

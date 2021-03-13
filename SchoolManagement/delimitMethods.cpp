@@ -53,7 +53,7 @@ string TEAM_PROJECT::delimitInfo()
 {
 	string res;
 
-	res += name + "|" + description + "|" + dueDate + "|" + uuid + "|";
+	res += name + "|" + description + "|" + dueDate + "|";
 	
 	return res;
 

@@ -234,6 +234,16 @@ bool checkTeamDescriptionLength(string description)
 	return description.length() > MAX_TEAM_DESCRIPTION ? false : true;
 }
 
+bool checkProjectDescription(string description) 
+{
+	return description.length() > MAX_PROJECT_DESCRIPTION_SIZE or description.length() < MIN_PROJECT_DESCRIPTION_SIZE ? false : true;
+}
+
+bool checkDateStandart(string date) 
+{
+	return regex_match(date, regex("#^((19|20)?[0-9]{2}[- /.](0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01]))*$#")) ? true : false;
+}
+
 void badChoice(int& option) 
 {
 
@@ -259,6 +269,8 @@ void badChoiceFiltering(int& option)
 	}
 
 }
+
+
 
 //template <typename T>
 //void teachersEmpty(T object, const std::string type) 

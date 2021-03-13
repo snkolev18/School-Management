@@ -198,7 +198,7 @@ void displaySchoolInfoInTable(SCHOOL& school)
 	displaySchoolTableBodyAndFooter(school, sizeName, sizeCity, sizeAddress, sizeStudents, sizeTeachers, sizeTeams);
 }
 
-void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, vector<string>& whiteListedRoles)
+void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, vector<string>& whiteListedRoles,int& maxSizeProjects)
 {
 	cout << char(201);
 	for (int i = 0; i < maxSizeNames; i++)
@@ -233,6 +233,11 @@ void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& m
 	{
 		cout << char(205);
 	}
+	cout << char(203);
+	for (int i = 0; i < maxSizeProjects; i++)
+	{
+		cout << char(205);
+	}
 	cout << char(187) << endl;
 
 
@@ -251,10 +256,12 @@ void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& m
 	displayNSpaces(maxSizeTeachers - 7);
 	cout << char(186) << "Status";
 	displayNSpaces(maxSizeStatus - 6);
+	cout << char(186) << "Project Name";
+	displayNSpaces(maxSizeProjects - 12);
 	cout << char(186) << endl;
 }
 
-void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus)
+void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus,int& maxSizeProjects)
 {
 	for (size_t i = 0; i < teams.size(); i++)
 	{
@@ -291,6 +298,11 @@ void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeD
 		{
 			cout << char(205);
 		}
+		cout << char(206);
+		for (int i = 0; i < maxSizeProjects; i++)
+		{
+			cout << char(205);
+		}
 		cout << char(185) << endl;
 
 
@@ -311,11 +323,13 @@ void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeD
 		displayNSpaces(maxSizeTeachers - (teams[i].teacher.name.size() + teams[i].teacher.surname.size() + 1));
 		cout << char(186) << teams[i].status;
 		displayNSpaces(maxSizeStatus - teams[i].status.size());
+		cout << char(186) << teams[i].project.name;
+		displayNSpaces(maxSizeProjects - teams[i].project.name.size());
 		cout << char(186) << endl;
 	}
 }
 
-void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus)
+void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus,int& maxSizeProjects)
 {
 	cout << char(200);
 	for (int i = 0; i < maxSizeNames; i++)
@@ -350,6 +364,11 @@ void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& m
 	{
 		cout << char(205);
 	}
+	cout << char(202);
+	for (int i = 0; i < maxSizeProjects; i++)
+	{
+		cout << char(205);
+	}
 	cout << char(188) << endl;
 }
 
@@ -357,11 +376,11 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 {
 	if (teams.size() > 0)
 	{
-		int maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeTeachers, maxSizeStatus, maxSize = 0;
+		int maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeTeachers, maxSizeStatus,maxSizeProjects, maxSize = 0;
 
 		vector<int> maxSizeStudents;
 
-		vector<string> teamNames, descriptions, dates, teacherNames, status, studentNames;
+		vector<string> teamNames, descriptions, dates, teacherNames, status, studentNames, projects;
 
 		for (size_t i = 0; i < teams.size(); i++)
 		{
@@ -370,6 +389,7 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 			dates.push_back(teams[i].dateCreation);
 			teacherNames.push_back(teams[i].teacher.name + ' ' + teams[i].teacher.surname);
 			status.push_back(teams[i].status);
+			projects.push_back(teams[i].project.name);
 		}
 
 		teamNames.push_back("Team");
@@ -377,6 +397,8 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 		dates.push_back("Date of setup");
 		teacherNames.push_back("Teacher");
 		status.push_back("status");
+		projects.push_back("Project Name");
+
 
 		for (size_t i = 0; i < whiteListedRoles.size(); i++)
 		{
@@ -397,17 +419,114 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 		maxSizeDate = maxSizeOfStrings(dates);
 		maxSizeTeachers = maxSizeOfStrings(teacherNames);
 		maxSizeStatus = maxSizeOfStrings(status);
+		maxSizeProjects = maxSizeOfStrings(projects);
 
-		maxSize = maxSizeDate + maxSizeNames + maxSizeDescriptions + maxSizeTeachers + maxSizeStatus;
+		maxSize = maxSizeDate + maxSizeNames + maxSizeDescriptions + maxSizeTeachers + maxSizeStatus+maxSizeProjects;
 
-		displayHeaderTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus, whiteListedRoles);
-		displayBodyTeamsTable(teams, maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus);
-		displayFooterTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus);
+		displayHeaderTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus, whiteListedRoles,maxSizeProjects);
+		displayBodyTeamsTable(teams, maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus,maxSizeProjects);
+		displayFooterTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus,maxSizeProjects);
 	}
 	else
 	{
 		clearScreen();
 		cout << setw(50) << ERROR_MSG_CR << "There are 0 teams" << CLOSE_ERR_MSG << endl;
+	}
+}
+
+void displayHeaderProjectsTable(int& maxSizeNames, int& maxSizeDate)
+{
+	cout << char(201);
+	for (int i = 0; i < maxSizeNames; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(203);
+	for (int i = 0; i < maxSizeDate; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(187) << endl;
+
+
+	cout << char(186) << "Name of the project";
+	displayNSpaces(maxSizeNames - 19);
+	cout << char(186) << "Date of end";
+	displayNSpaces(maxSizeDate - 11);
+	cout << char(186) << endl;
+}
+
+void displayBodyProjectsTable(vector<TEAM_PROJECT>& projects,int& maxSizeNames, int& maxSizeDate)
+{
+	for (size_t i = 0; i < projects.size(); i++)
+	{
+		cout << char(204);
+		for (int i = 0; i < maxSizeNames; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(206);
+		for (int i = 0; i < maxSizeDate; i++)
+		{
+			cout << char(205);
+		}
+		cout << char(185) << endl;
+
+
+		cout << char(186) << projects[i].name;
+		displayNSpaces(maxSizeNames - projects[i].name.size());
+		cout << char(186) << projects[i].dueDate;
+		displayNSpaces(maxSizeDate - projects[i].dueDate.size());
+		cout << char(186) << endl;
+	}
+}
+
+void displayFooterProjectsTable(int& maxSizeNames, int& maxSizeDate)
+{
+	cout << char(200);
+	for (int i = 0; i < maxSizeNames; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(202);
+	for (int i = 0; i < maxSizeDate; i++)
+	{
+		cout << char(205);
+	}
+	cout << char(188) << endl;
+}
+
+void displayProjectsInTable(vector<TEAM_PROJECT>& projects)
+{
+	if (projects.size() > 0)
+	{
+		int maxSizeNames, maxSizeDate,maxSize = 0;
+
+		vector<string> names, dates;
+
+		for (size_t i = 0; i < projects.size(); i++)
+		{
+			names.push_back(projects[i].name);
+			dates.push_back(projects[i].dueDate);
+		}
+
+		names.push_back("Name of the project");
+		dates.push_back("Date of end");
+
+		maxSizeNames = maxSizeOfStrings(names);
+		maxSizeDate = maxSizeOfStrings(dates);
+
+
+		maxSize = maxSizeDate + maxSizeNames;
+
+		displayHeaderProjectsTable(maxSizeNames, maxSizeDate);
+		displayBodyProjectsTable(projects, maxSizeNames, maxSizeDate);
+		displayFooterProjectsTable(maxSizeNames, maxSizeDate);
+	}
+	else
+	{
+		clearScreen();
+		cout << setw(50) << ERROR_MSG_CR << "There are 0 projects" << CLOSE_ERR_MSG << endl;
 	}
 }
 
@@ -453,7 +572,6 @@ void displayHeaderStudentsAndTeachersTable(int& maxSize, int& maxSizeNames, int&
 	displayNSpaces(maxSizeEmail - 5);
 	cout << char(186) << endl;
 }
-
 void displayBodyStudentsTable(vector<STUDENT>& students, int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail)
 {
 	for (size_t i = 0; i < students.size(); i++)
@@ -691,16 +809,19 @@ void printMenu()
 
 void addMenu()
 {
-	cout << "(2) | Add Students |" << endl;
-	cout << "(1) | Add Teachers |" << endl;
-	cout << "(3) | Add Roles    |" << endl;
-	cout << "(4) | Add Teams    |" << endl;
-	cout << "(5) <- Back        |" << endl;
+	cout << "_________________________" << endl;
+	cout << "(1) | Add Students     |" << endl;
+	cout << "(2) | Add Teachers     |" << endl;
+	cout << "(3) | Add Roles        |" << endl;
+	cout << "(4) | Add Teams        |" << endl;
+	cout << "(5) | Assign a project |" << endl;
+	cout << "(6) <- Back            " << endl;
 	cout << "Enter your choice: ";
 }
 
 void listMenu()
 {
+	cout << "____________________________" << endl;
 	cout << "(1) | List of the students |" << endl;
 	cout << "(2) | List of the teachers |" << endl;
 	cout << "(3) | List of the teams    |" << endl;
@@ -710,6 +831,7 @@ void listMenu()
 
 void deleteMenu()
 {
+	cout << "_________________________" << endl;
 	cout << "(1) | Delete a student |" << endl;
 	cout << "(2) | Delete a teacher |" << endl;
 	cout << "(3) | Delete a team    |" << endl;
@@ -719,6 +841,7 @@ void deleteMenu()
 
 void updateMenu()
 {
+	cout << "___________________________________" << endl;
 	cout << "(1) | Update student's information|" << endl;
 	cout << "(2) | Update teacher's information|" << endl;
 	cout << "(3) | Update team's information   |" << endl;
@@ -825,6 +948,14 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 			writeTeamsInTxt(school.teams);
 			break;
 		case 5:
+			clearScreen();
+			//ime
+			string tName;
+			cin >> tName;
+			//id
+			//addProject call
+			break;
+		case 6:
 			return false;
 		default:
 			break;
@@ -1066,7 +1197,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 
 bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInfo, vector<TEAM_PROJECT>& projects)
 {
-	clearScreen();
+	
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
 	cout << endl;
@@ -1167,6 +1298,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 			displayTeamsInTable(school.teams, whiteListedRoles);
 			displayTeachersInTable(school.teachers);
 			displayStudentsInTable(school.students);
+			displayProjectsInTable(projects);
 			break;
 		case 17:
 			addProject(projects);

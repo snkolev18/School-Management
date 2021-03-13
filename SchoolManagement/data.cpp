@@ -145,6 +145,16 @@ TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 	}
 }
 
+int findIndexOfProjectById(vector<TEAM_PROJECT> projects,string name)
+{
+	for (size_t i = 0; i < projects.size(); i++)
+	{
+		if (projects.at(i).name == name)
+		{
+			return i;
+		}
+	}
+}
 
 int findIndexOfTeacherByEmail(const vector<TEACHER>& teachers, const string email)
 {
@@ -423,14 +433,32 @@ void addRole(vector<string>& whiteListedRoles)
 void addProject(vector<TEAM_PROJECT>& projects)
 {
 	TEAM_PROJECT project;
+
 	cout << "Name of the project: ";
 	cin >> project.name;
+	while (!checkNameValidity(project.name))
+	{
+		badName("Team Name");
+		cin >> project.name;
+	}
+
 	cout << "Description of the project: ";
 	cin >> project.description;
+	while (!checkProjectDescription(project.description))
+	{
+		badProjectDescription();
+		cin >> project.description;
+	}
+
 	cout << "Due date of the project: ";
 	cin >> project.dueDate;
-	cout << "ID of the project: ";
-	cin >> project.uuid;
+	while (!(checkDateStandart(project.dueDate))) 
+	{
+		badDate();
+	}
+
+	/*cout << "ID of the project: ";
+	cin >> project.uuid;*/
 
 	projects.push_back(project);
 	writeProjectsInTxt(projects, "projects.txt");
@@ -516,8 +544,8 @@ TEAM_PROJECT parsedProjectInfo(string info)
 	info.erase(0, info.find('|') + 1);
 	projects.dueDate = info.substr(0, info.find('|'));
 	info.erase(0, info.find('|') + 1);
-	projects.uuid = info.substr(0, info.find('|'));
-	info.erase(0, info.find('|') + 1);
+	/*projects.uuid = info.substr(0, info.find('|'));
+	info.erase(0, info.find('|') + 1);*/
 	return projects;
 }
 
@@ -782,7 +810,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		getline(cin, students.at(id).email);
 		while (!checkForExistingEmailStudents(students, students.at(id).email) or !checkEmailValidity(students.at(id).email))
 		{
-			updateMsgs(email, "student", "EMAIL");
+			badEmail();
 			getline(cin, students.at(id).email);
 		}
 		// Save stariq email
@@ -1356,6 +1384,6 @@ void rewriteProject(TEAM_PROJECT& project)
 	cin >> project.description;
 	cout << "Due date of the project: ";
 	cin >> project.dueDate;
-	cout << "ID of the project: ";
-	cin >> project.uuid;
+	/*cout << "ID of the project: ";
+	cin >> project.uuid;*/
 }

@@ -35,8 +35,20 @@ void badTeam()
 	cout << ERROR_MSG_CR << "Please enter a correct name of a team: " << CLOSE_ERR_MSG;
 }
 
+void badDate() 
+{
+	cout << ERROR_MSG_CR << "This is date does not meet the ISO8601 standart (eg YYYY/MM/DD) (ex 2021/03/13)" << endl;
+	cout << "Try with a correct date: " << CLOSE_ERR_MSG;
+}
+
 void incorrectEmail(std::string ts)
 {
 	cout << ERROR_MSG_CR << "There is no " + ts + " with this email or it's incorrectly inputted" << endl;
 	cout << "Please enter an email of a " + ts + ": " << CLOSE_ERR_MSG;
+}
+
+void badProjectDescription()
+{
+	cout << ERROR_MSG_CR << "This project description does not match our criteria" << endl;
+	cout << "Re-enter a valid one: " << CLOSE_ERR_MSG;
 }

@@ -25,6 +25,10 @@ bool checkTeamNameLength(std::string name);
 
 bool checkTeamDescriptionLength(std::string description);
 
+bool checkProjectDescription(std::string description);
+
+bool checkDateStandart(std::string date);
+
 void badChoice(int& option);
 
 void teachersEmpty(std::vector<TEACHER> teachers, std::vector<STUDENT> students);

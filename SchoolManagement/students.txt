@@ -1,5 +1,5 @@
 alex|dinev|10V|asiodha@ohasdoi.com|
-Stoyan|Kolev|10A|snkolev18@codingburgas.bg|
+Stoyan|Nikolaev|10A|SNKolev18@codingburgas.bg|
 DObre|Deeee|10A|dobre@dsa.d|
 AAAAAAAAAAAA|AAAAAAAA|10A|asdf@asdok.com|
 offff|pfffff|10a|fofof@aiosnd.com|
