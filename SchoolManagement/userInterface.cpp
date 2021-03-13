@@ -20,7 +20,7 @@ void clearScreen()
 
 }
 
-void switchEncoding() 
+void switchEncoding()
 {
 #ifdef __linux__
 	system("echo Encoding is not ok, we know it, but luit didn't work");
@@ -124,7 +124,7 @@ void displaySchoolTableHeader(int& sizeName, int& sizeCity, int& sizeAddress, in
 	}
 	cout << char(185) << endl;
 }
-void displaySchoolTableBodyAndFooter(SCHOOL& school,int& sizeName, int& sizeCity, int& sizeAddress, int& sizeStudents, int& sizeTeachers, int& sizeTeams)
+void displaySchoolTableBodyAndFooter(SCHOOL& school, int& sizeName, int& sizeCity, int& sizeAddress, int& sizeStudents, int& sizeTeachers, int& sizeTeams)
 {
 	cout << char(186);
 	cout << school.name;
@@ -660,7 +660,7 @@ void displayTeachersInTable(vector<TEACHER>& teachers)
 	else
 	{
 		clearScreen();
-		cout << setw(50)<<ERROR_MSG_CR << "There are 0 teachers" << CLOSE_ERR_MSG;
+		cout << setw(50) << ERROR_MSG_CR << "There are 0 teachers" << CLOSE_ERR_MSG << endl;
 	}
 }
 
@@ -671,7 +671,7 @@ void displayTeamsUpdateMenu()
 	cout << "(3) | Change team name        |" << endl;
 	cout << "(4) | Change teacher          |" << endl;
 	cout << "(5) | Change student          |" << endl;
-}	
+}
 
 void statusMenu()
 {
@@ -680,7 +680,7 @@ void statusMenu()
 	cout << "(2) Archived" << endl;
 }
 
-void printMenu() 
+void printMenu()
 {
 	cout << "(1) | Display Teachers |" << endl;
 	cout << "(2) | Display Students |" << endl;
@@ -699,7 +699,7 @@ void addMenu()
 	cout << "Enter your choice: ";
 }
 
-void listMenu() 
+void listMenu()
 {
 	cout << "(1) | List of the students |" << endl;
 	cout << "(2) | List of the teachers |" << endl;
@@ -708,7 +708,7 @@ void listMenu()
 	cout << "Enter your choice: ";
 }
 
-void deleteMenu() 
+void deleteMenu()
 {
 	cout << "(1) | Delete a student |" << endl;
 	cout << "(2) | Delete a teacher |" << endl;
@@ -717,7 +717,7 @@ void deleteMenu()
 	cout << "Enter your choice: ";
 }
 
-void updateMenu() 
+void updateMenu()
 {
 	cout << "(1) | Update student's information|" << endl;
 	cout << "(2) | Update teacher's information|" << endl;
@@ -736,7 +736,7 @@ bool handleUpdateMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 		switch (updCh)
 		{
 		case 1:
-			 updateStudentData(school.students, school.teams);
+			updateStudentData(school.students, school.teams);
 			break;
 		case 2:
 			updateTeacherData(school.teachers, school.teams);
@@ -765,21 +765,28 @@ bool handleDeleteMenu(SCHOOL& school)
 	int delCh;
 	badChoice(delCh);
 
-	switch (delCh)
+	try
 	{
-	case 1:
-		 deleteStudentData(school.students, school.teams); 
-		break;
-	case 2:
-		 deleteTeacherData(school.teachers, school.teams);
-		break;
-	case 3:
-		 deleteTeamsData(school.teams,school.teachers);
-		break;
-	case 4:
-		return false;
-	default:
-		break;
+		switch (delCh)
+		{
+		case 1:
+			deleteStudentData(school.students, school.teams);
+			break;
+		case 2:
+			deleteTeacherData(school.teachers, school.teams);
+			break;
+		case 3:
+			deleteTeamsData(school.teams, school.teachers);
+			break;
+		case 4:
+			return false;
+		default:
+			break;
+		}
+	}
+	catch (const std::exception& ex)
+	{
+		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
 	return true;
 }
@@ -790,35 +797,42 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 	addMenu();
 	int addCh;
 	badChoice(addCh);
-	switch (addCh)
+	try
 	{
-	case 1:
-		clearScreen();
-		cin.ignore();
-		school.students.push_back(inputStudent(school.students, school.teachers));
-		writeStudentsInTxt(school.students);
-		return true;
-	case 2:
-		clearScreen();
-		cin.ignore();
-		school.teachers.push_back(inputTeacher(school.students, school.teachers));
-		writeTeachersInTxt(school.teachers);
-		break;
-	case 3:
-		clearScreen();
-		cin.ignore();
-		addRole(whiteListedRoles);
-		writeRolesInTxt(whiteListedRoles);
-		break;
-	case 4:
-		clearScreen();
-		school.teams.push_back(inputTeam(whiteListedRoles, school.students, school.teachers, school.teams));
-		writeTeamsInTxt(school.teams);
-		break;
-	case 5:
-		return false;
-	default:
-		break;
+		switch (addCh)
+		{
+		case 1:
+			clearScreen();
+			cin.ignore();
+			school.students.push_back(inputStudent(school.students, school.teachers));
+			writeStudentsInTxt(school.students);
+			return true;
+		case 2:
+			clearScreen();
+			cin.ignore();
+			school.teachers.push_back(inputTeacher(school.students, school.teachers));
+			writeTeachersInTxt(school.teachers);
+			break;
+		case 3:
+			clearScreen();
+			cin.ignore();
+			addRole(whiteListedRoles);
+			writeRolesInTxt(whiteListedRoles);
+			break;
+		case 4:
+			clearScreen();
+			school.teams.push_back(inputTeam(whiteListedRoles, school.students, school.teachers, school.teams));
+			writeTeamsInTxt(school.teams);
+			break;
+		case 5:
+			return false;
+		default:
+			break;
+		}
+	}
+	catch (const std::exception& ex)
+	{
+		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
 	return true;
 }
@@ -829,24 +843,31 @@ bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 	int listCh;
 	badChoice(listCh);
 
-	switch (listCh)
+	try
 	{
-	case 1:
-		clearScreen();
-		displayStudentsInTable(school.students);
-		return true;
-	case 2:
-		clearScreen();
-		displayTeachersInTable(school.teachers);
-		break;
-	case 3:
-		clearScreen();
-		displayTeamsInTable(school.teams, whiteListedRoles);
-		break;
-	case 4:
-		return false;
-	default:
-		break;
+		switch (listCh)
+		{
+		case 1:
+			clearScreen();
+			displayStudentsInTable(school.students);
+			return true;
+		case 2:
+			clearScreen();
+			displayTeachersInTable(school.teachers);
+			break;
+		case 3:
+			clearScreen();
+			displayTeamsInTable(school.teams, whiteListedRoles);
+			break;
+		case 4:
+			return false;
+		default:
+			break;
+		}
+	}
+	catch (const std::exception& ex)
+	{
+		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
 	return true;
 }
@@ -861,7 +882,7 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 
 	try {
 		if (students.empty()) { throw std::runtime_error("No students data to filter"); }
-		
+
 		if (who) {
 
 			cout << "(1) Search by class (10A, 10B, 10V and so on)" << endl;
@@ -870,7 +891,7 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			cout << "(9) <- Back" << endl;
 
 			badChoice(op);
-			
+
 			switch (op)
 			{
 			case 1:
@@ -899,7 +920,7 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			return true;
 		}
 		else {
-			
+
 			if (teachers.empty()) { throw std::runtime_error("No teachers data to filter"); }
 
 			cout << endl;
@@ -936,7 +957,7 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			return true;
 		}
 	}
-	catch (const std::exception & ex)
+	catch (const std::exception& ex)
 	{
 		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
