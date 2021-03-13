@@ -145,7 +145,7 @@ TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 	}
 }
 
-int findIndexOfProjectById(vector<TEAM_PROJECT> projects,string name)
+int findIndexOfProjectByTeam(vector<TEAM_PROJECT> projects,string name)
 {
 	for (size_t i = 0; i < projects.size(); i++)
 	{
@@ -154,6 +154,21 @@ int findIndexOfProjectById(vector<TEAM_PROJECT> projects,string name)
 			return i;
 		}
 	}
+
+	return -29;
+}
+
+int findIndexOfTeamByName(vector<TEAM> teams, string name)
+{
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		if (teams.at(i).teamName == name)
+		{
+			return i;
+		}
+	}
+
+	return -39;
 }
 
 int findIndexOfTeacherByEmail(const vector<TEACHER>& teachers, const string email)
@@ -430,7 +445,7 @@ void addRole(vector<string>& whiteListedRoles)
 	whiteListedRoles.push_back(role);
 }
 
-void addProject(vector<TEAM_PROJECT>& projects)
+TEAM_PROJECT addProject(vector<TEAM_PROJECT>& projects)
 {
 	TEAM_PROJECT project;
 
@@ -452,16 +467,19 @@ void addProject(vector<TEAM_PROJECT>& projects)
 
 	cout << "Due date of the project: ";
 	cin >> project.dueDate;
-	while (!(checkDateStandart(project.dueDate))) 
+	/*while (!(checkDateStandart(project.dueDate))) 
 	{
 		badDate();
-	}
+	}*/
 
 	/*cout << "ID of the project: ";
 	cin >> project.uuid;*/
 
 	projects.push_back(project);
 	writeProjectsInTxt(projects, "projects.txt");
+
+	// Dovurshi ottuk
+	return project;
 }
 
 void removeRole(vector<string>& roles, int& id)

@@ -936,3 +936,10 @@
 [2021/03/13  21:51:17] INFO Program was executed successfully
 [2021/03/13  21:51:55] INFO Program was executed successfully
 [2021/03/13  21:52:29] INFO Program was executed successfully
+[2021/03/13  22:24:46] INFO Program was executed successfully
+[2021/03/13  22:26:27] INFO Teachers were successfully written into teachers.txt
+[2021/03/13  22:26:27] INFO Option X: Team was successfully added
+[2021/03/13  22:26:27] INFO Teams were successfully written into teams.txt
+[2021/03/13  22:29:52] INFO Program was executed successfully
+[2021/03/13  22:30:22] INFO Projects were successfully written into projects.txt
+[2021/03/13  22:31:42] INFO Program was terminated successfully

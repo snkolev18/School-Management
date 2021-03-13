@@ -914,11 +914,12 @@ bool handleDeleteMenu(SCHOOL& school)
 	return true;
 }
 
-bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles)
+bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM_PROJECT>& projects)
 {
 	clearScreen();
 	addMenu();
-	int addCh;
+	int addCh, aId;
+	string tName;
 	badChoice(addCh);
 	try
 	{
@@ -950,8 +951,9 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 		case 5:
 			clearScreen();
 			//ime
-			string tName;
 			cin >> tName;
+			aId = findIndexOfTeamByName(school.teams, tName);
+			school.teams[aId].project = addProject(projects);
 			//id
 			//addProject call
 			break;
@@ -1250,7 +1252,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		case 1:
 			clearScreen();
 			do {
-				add = handleAddMenu(school, whiteListedRoles);
+				add = handleAddMenu(school, whiteListedRoles, projects);
 			} while (add);
 			break;
 		case 2:

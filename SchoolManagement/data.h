@@ -11,7 +11,9 @@ int findIndexByEmailStudents(std::vector<STUDENT>& students, std::string& email)
 
 int findIndexByEmailTeachers(std::vector<TEACHER>& teachers, std::string& email);
 
-int findIndexOfProjectById(std::vector<TEAM_PROJECT> projects, std::string name);
+int findIndexOfProjectByTeam(std::vector<TEAM_PROJECT> projects, std::string name);
+
+int findIndexOfTeamByName(std::vector<TEAM> teams, std::string name);
 
 int findIndexOfTeacherByEmail(const std::vector<TEACHER>& teachers, const std::string email);
 
@@ -25,7 +27,7 @@ TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>&
 
 void addRole(std::vector<std::string>& whiteListedRoles);
 
-void addProject(std::vector<TEAM_PROJECT>& projects);
+TEAM_PROJECT addProject(std::vector<TEAM_PROJECT>& projects);
 
 void removeRole(std::vector<std::string>& roles, int& id);
 
