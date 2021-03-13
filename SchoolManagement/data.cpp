@@ -1330,3 +1330,14 @@ SCHOOL readSchoolFromTxt()
 	return school;
 }
 
+void assignProjectToTeam(vector<TEAM>& teams,string& nameOfTheTeam,TEAM_PROJECT& project)
+{
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		if (teams[i].teamName == nameOfTheTeam)
+		{
+			teams[i].project = project;
+		}
+	}
+}
+

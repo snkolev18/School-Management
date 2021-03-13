@@ -114,3 +114,5 @@ std::vector<TEACHER> findTeachersByNoTeams(const std::vector<TEACHER>& teachers)
 std::vector<TEAM> findTeamsByTeacher(const std::vector<TEAM>& teams, const std::string& name);
 
 std::vector<TEAM> findTeamsByStatus(const std::vector<TEAM>& teams, const std::string& status);
+
+void assignProjectToTeam(std::vector<TEAM>& teams, std::string& nameOfTheTeam, TEAM_PROJECT& project);

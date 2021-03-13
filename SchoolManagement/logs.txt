@@ -882,3 +882,5 @@
 [2021/03/12  22:59:04] INFO Option X: Team was successfully added
 [2021/03/12  22:59:04] INFO Teams were successfully written into teams.txt
 [2021/03/12  22:59:28] INFO Teams were successfully written into teams.txt
+[2021/03/13  02:30:44] INFO Program was executed successfully
+[2021/03/13  02:56:49] INFO Program was executed successfully
