@@ -378,5 +378,100 @@ namespace UnitTestingQA
 			//Assert
 			Assert::AreEqual(1, foundIndex);
 		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccesfullyUpdateTeacherInATeamWithANewOne)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccesfullyUpdateTeacherInATeamWithANewOne)
+		{
+			// Arrange
+			TEAM team =
+			{
+				{{"QA"}, {"Stoyan", "Kolev", "10A", "manqka123@abv.bg"}}, "Offsec", {"Nikolai", "Ivanov", {""}, "nikiI@abv.bg"}, "Qk description", getDate() 
+			};
+			vector<TEACHER> teachers
+			{
+				{ "Georgi", "Bokluka", {""}, "qkiq123@abv.bg" },
+				{ "Uchitel", "kurwi", {""}, "manqka928@gmail.com" },
+				{ "Brat", "Vrat", {""}, "qnko@e.bratans" },
+			};
+
+			//Act
+			updateTeamTeacher(team, teachers.at(1));
+
+			//Assert
+
+			// Name or any other field is enough just to check if it was updated
+			Assert::AreEqual(team.teacher.name, teachers.at(1).name, L"Should be changed with second teacher from the vector of teachers");
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccesfullyUpdateTeamNameWithANewOne)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccesfullyUpdateTeamNameWithANewOne)
+		{
+			// Arrange
+			TEAM team =
+			{
+				{{"QA"}, {"Stoyan", "Kolev", "10A", "manqka123@abv.bg"}}, "Offsec", {"Nikolai", "Ivanov", {""}, "nikiI@abv.bg"}, "Qk description", getDate()
+			};
+
+			//Act
+			updateTeamName(team, (string)"Offensive Security");
+
+			//Assert
+
+			// Name or any other field is enough just to check if it was updated
+			Assert::AreEqual(team.teamName, (string)"Offensive Security", L"Should change the name of a team with Offensive Security in this case");
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccesfullyUpdateTeamDescriptionWithANewOne)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccesfullyUpdateTeamDescriptionWithANewOne)
+		{
+			// Arrange
+			TEAM team =
+			{
+				{{"QA"}, {"Stoyan", "Kolev", "10A", "manqka123@abv.bg"}}, "Offsec", {"Nikolai", "Ivanov", {""}, "nikiI@abv.bg"}, "Qk description", getDate()
+			};
+
+			//Act
+			updateTeamDescription(team, (string)"New team description");
+
+			//Assert
+
+			// Name or any other field is enough just to check if it was updated
+			Assert::AreEqual(team.description, (string)"New team description", L"Should change the description of a team with a new one");
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccesfullyUpdateTeamStatusWithANewOne)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccesfullyUpdateTeamStatusWithANewOne)
+		{
+			// Arrange
+			string status = TEAM::statusToString(TEAM::STATUS::IN_USE);
+
+			TEAM team =
+			{
+				{ {"QA"}, {"Stoyan", "Kolev", "10A", "manqka123@abv.bg"}}, "Offsec", {"Nikolai", "Ivanov", {""}, "nikiI@abv.bg"}, "Qk description", getDate(), status
+			};
+
+			string newStatus = TEAM::statusToString(TEAM::STATUS::ARCHIVED);
+
+			//Act
+			updateTeamStatus(team, newStatus);
+
+			//Assert
+
+			// Name or any other field is enough just to check if it was updated
+			Assert::AreEqual(team.status, newStatus, L"Should change the status of a team with a new one");
+		}
 	};
 }
+
