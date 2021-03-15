@@ -239,9 +239,10 @@ bool checkProjectDescription(string description)
 	return description.length() > MAX_PROJECT_DESCRIPTION_SIZE or description.length() < MIN_PROJECT_DESCRIPTION_SIZE ? false : true;
 }
 
-bool checkDateStandart(string date) 
+bool checkDateStandart(const string date) 
 {
-	return regex_match(date, regex("#^((19|20)?[0-9]{2}[- /.](0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01]))*$#")) ? true : false;
+	regex pattern("\\b\\d{4}[-]\\d{2}[-]\\d{2}\\b");
+	return regex_match(date, pattern);
 }
 
 void badChoice(int& option) 
@@ -270,7 +271,10 @@ void badChoiceFiltering(int& option)
 
 }
 
-
+bool isDataEmpty(SCHOOL school) 
+{
+	return school.teachers.empty() or school.teams.empty() or school.students.empty() ? true : false;
+}
 
 //template <typename T>
 //void teachersEmpty(T object, const std::string type) 

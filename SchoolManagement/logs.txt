@@ -943,3 +943,26 @@
 [2021/03/13  22:29:52] INFO Program was executed successfully
 [2021/03/13  22:30:22] INFO Projects were successfully written into projects.txt
 [2021/03/13  22:31:42] INFO Program was terminated successfully
+[2021/03/14  23:24:51] INFO Program was executed successfully
+[2021/03/14  23:30:11] INFO Program was executed successfully
+[2021/03/14  23:41:15] INFO Program was executed successfully
+[2021/03/14  23:41:20] INFO Program was executed successfully
+[2021/03/14  23:42:29] INFO Option X: Student was successfully added
+[2021/03/14  23:42:29] INFO Students were successfully written into students.txt
+[2021/03/15  08:38:06] INFO Program was executed successfully
+[2021/03/15  08:48:26] INFO Program was executed successfully
+[2021/03/15  08:50:50] INFO Program was executed successfully
+[2021/03/15  08:51:35] INFO Students were successfully written into students.txt
+[2021/03/15  08:51:35] INFO Teams were successfully written into teams.txt
+[2021/03/15  08:51:35] INFO Student was successfully UPDATED
+[2021/03/15  08:51:35] INFO Teams which the students participates in were successfully updated
+[2021/03/15  08:52:22] INFO Students were successfully written into students.txt
+[2021/03/15  08:52:22] INFO Teams were successfully written into teams.txt
+[2021/03/15  08:52:22] INFO Student was successfully UPDATED
+[2021/03/15  08:52:22] INFO Teams which the students participates in were successfully updated
+[2021/03/15  08:55:22] INFO Program was executed successfully
+[2021/03/15  08:56:33] INFO Program was executed successfully
+[2021/03/15  08:59:15] INFO Students were successfully written into students.txt
+[2021/03/15  08:59:15] INFO Teams were successfully written into teams.txt
+[2021/03/15  08:59:15] INFO Student was successfully UPDATED
+[2021/03/15  08:59:15] INFO Teams which the students participates in were successfully updated

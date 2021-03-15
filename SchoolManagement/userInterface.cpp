@@ -20,12 +20,20 @@ void clearScreen()
 
 }
 
-void switchEncoding()
+void switchEncoding(int what)
 {
 #ifdef __linux__
 	system("echo Encoding is not ok, we know it, but luit didn't work");
 #else WIN32
-	system("chcp 65001");
+	switch (what)
+	{
+	case 1:
+		system("chcp 65001 > NUL");
+		break;
+	case 2:
+		system("chcp 437 > NUL");
+		break;
+	}
 #endif // __linux__
 
 }
@@ -192,13 +200,13 @@ void displaySchoolInfoInTable(SCHOOL& school)
 	if (school.address.size() < 7)
 		sizeAddress = 7;
 	else
-		sizeAddress = school.name.size();
+		sizeAddress = school.address.size();
 
 	displaySchoolTableHeader(sizeName, sizeCity, sizeAddress, sizeStudents, sizeTeachers, sizeTeams);
 	displaySchoolTableBodyAndFooter(school, sizeName, sizeCity, sizeAddress, sizeStudents, sizeTeachers, sizeTeams);
 }
 
-void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, vector<string>& whiteListedRoles,int& maxSizeProjects)
+void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, vector<string>& whiteListedRoles, int& maxSizeProjects)
 {
 	cout << char(201);
 	for (int i = 0; i < maxSizeNames; i++)
@@ -261,7 +269,7 @@ void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& m
 	cout << char(186) << endl;
 }
 
-void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus,int& maxSizeProjects)
+void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, int& maxSizeProjects)
 {
 	for (size_t i = 0; i < teams.size(); i++)
 	{
@@ -329,7 +337,7 @@ void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeD
 	}
 }
 
-void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus,int& maxSizeProjects)
+void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, int& maxSizeProjects)
 {
 	cout << char(200);
 	for (int i = 0; i < maxSizeNames; i++)
@@ -376,7 +384,7 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 {
 	if (teams.size() > 0)
 	{
-		int maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeTeachers, maxSizeStatus,maxSizeProjects, maxSize = 0;
+		int maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeTeachers, maxSizeStatus, maxSizeProjects, maxSize = 0;
 
 		vector<int> maxSizeStudents;
 
@@ -421,11 +429,11 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 		maxSizeStatus = maxSizeOfStrings(status);
 		maxSizeProjects = maxSizeOfStrings(projects);
 
-		maxSize = maxSizeDate + maxSizeNames + maxSizeDescriptions + maxSizeTeachers + maxSizeStatus+maxSizeProjects;
+		maxSize = maxSizeDate + maxSizeNames + maxSizeDescriptions + maxSizeTeachers + maxSizeStatus + maxSizeProjects;
 
-		displayHeaderTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus, whiteListedRoles,maxSizeProjects);
-		displayBodyTeamsTable(teams, maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus,maxSizeProjects);
-		displayFooterTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus,maxSizeProjects);
+		displayHeaderTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus, whiteListedRoles, maxSizeProjects);
+		displayBodyTeamsTable(teams, maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus, maxSizeProjects);
+		displayFooterTeamsTable(maxSizeNames, maxSizeDescriptions, maxSizeDate, maxSizeStudents, maxSizeTeachers, maxSizeStatus, maxSizeProjects);
 	}
 	else
 	{
@@ -456,7 +464,7 @@ void displayHeaderProjectsTable(int& maxSizeNames, int& maxSizeDate)
 	cout << char(186) << endl;
 }
 
-void displayBodyProjectsTable(vector<TEAM_PROJECT>& projects,int& maxSizeNames, int& maxSizeDate)
+void displayBodyProjectsTable(vector<TEAM_PROJECT>& projects, int& maxSizeNames, int& maxSizeDate)
 {
 	for (size_t i = 0; i < projects.size(); i++)
 	{
@@ -500,7 +508,7 @@ void displayProjectsInTable(vector<TEAM_PROJECT>& projects)
 {
 	if (projects.size() > 0)
 	{
-		int maxSizeNames, maxSizeDate,maxSize = 0;
+		int maxSizeNames, maxSizeDate, maxSize = 0;
 
 		vector<string> names, dates;
 
@@ -814,19 +822,31 @@ void addMenu()
 	cout << "(2) | Add Teachers     |" << endl;
 	cout << "(3) | Add Roles        |" << endl;
 	cout << "(4) | Add Teams        |" << endl;
-	cout << "(5) | Assign a project |" << endl;
-	cout << "(6) <- Back            " << endl;
+	cout << "(5) | Add Project      |" << endl;
+	cout << "(6) | Assign a project |" << endl;
+	cout << "(7) <- Back            " << endl;
 	cout << "Enter your choice: ";
 }
 
 void listMenu()
 {
-	cout << "____________________________" << endl;
-	cout << "(1) | List of the students |" << endl;
-	cout << "(2) | List of the teachers |" << endl;
-	cout << "(3) | List of the teams    |" << endl;
-	cout << "(4) <- Back" << endl;
+	cout << "_________________________________" << endl;
+	cout << "(1) | List of the students      |" << endl;
+	cout << "(2) | List of the teachers      |" << endl;
+	cout << "(3) | List of the teams         |" << endl;
+	cout << "(4) | List all projects         |" << endl;
+	cout << "(5) | Display school info       |" << endl;
+	cout << "(6) | Display school hierarchy  |" << endl;
+	cout << "(7) <- Back" << endl;
 	cout << "Enter your choice: ";
+}
+
+void displayHierarchy(SCHOOL& school, vector<string> whiteListedRoles)
+{
+	displaySchoolInfoInTable(school);
+	displayTeamsInTable(school.teams, whiteListedRoles);
+	displayTeachersInTable(school.teachers);
+	displayStudentsInTable(school.students);
 }
 
 void deleteMenu()
@@ -859,7 +879,7 @@ bool handleUpdateMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 		switch (updCh)
 		{
 		case 1:
-			updateStudentData(school.students, school.teams);
+			updateStudentData(school.students, school.teams, school.teachers);
 			break;
 		case 2:
 			updateTeacherData(school.teachers, school.teams);
@@ -916,7 +936,7 @@ bool handleDeleteMenu(SCHOOL& school)
 
 bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM_PROJECT>& projects)
 {
-	clearScreen();
+
 	addMenu();
 	int addCh, aId;
 	string tName;
@@ -930,7 +950,7 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 			cin.ignore();
 			school.students.push_back(inputStudent(school.students, school.teachers));
 			writeStudentsInTxt(school.students);
-			return true;
+			break;
 		case 2:
 			clearScreen();
 			cin.ignore();
@@ -950,14 +970,24 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 			break;
 		case 5:
 			clearScreen();
+			addProject(projects);
+			break;
+		case 6:
+			clearScreen();
 			//ime
 			cin >> tName;
 			aId = findIndexOfTeamByName(school.teams, tName);
-			school.teams[aId].project = addProject(projects);
+			if (aId == -39)
+			{
+				cout << ERROR_MSG_CR << "You cannot assign a project to a non-existing team" << CLOSE_ERR_MSG << endl;
+			}
+			else {
+				school.teams[aId].project = addProject(projects);
+			}
 			//id
 			//addProject call
 			break;
-		case 6:
+		case 7:
 			return false;
 		default:
 			break;
@@ -970,7 +1000,7 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 	return true;
 }
 
-bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles)
+bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM_PROJECT>& projects)
 {
 	listMenu();
 	int listCh;
@@ -993,6 +1023,22 @@ bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 			displayTeamsInTable(school.teams, whiteListedRoles);
 			break;
 		case 4:
+			clearScreen();
+			displayProjectsInTable(projects);
+			break;
+		case 5:
+			clearScreen(); displaySchoolInfoInTable(school);
+			break;
+		case 6:
+			if (!isDataEmpty(school)) {
+				clearScreen(); 
+				displayHierarchy(school, whiteListedRoles);
+			}
+			else {
+				cout << INFO_MSG_CR << "Hierarchy couldn't be displayed, because some school elements are missing" << CLOSE_INFO_MSG << endl;
+			}
+			break;
+		case 7:
 			return false;
 		default:
 			break;
@@ -1007,62 +1053,73 @@ bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 
 bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teachers)
 {
-
+	
 	vector<STUDENT> foundStudentsByCriteria;
 	vector<TEACHER> foundTeachersByCriteria;
 	string criteria;
 	int op;
 
-	try {
-		if (students.empty()) { throw std::runtime_error("No students data to filter"); }
+	if (students.empty()) { throw std::runtime_error("No students data to filter"); }
 
-		if (who) {
+	if (who) {
+		clearScreen();
+		cout << "___________________________________________________" << endl;
+		cout << "(1) Search by class (10A, 10B, 10V and so on)" << endl;
+		cout << "(2) Search by student's firstname" << endl;
+		cout << "(3) Search by student's surname" << endl;
+		cout << "(4) <- Back" << endl;
+		cout << "Enter your choice: ";
 
-			cout << "(1) Search by class (10A, 10B, 10V and so on)" << endl;
-			cout << "(2) Search by student's firstname" << endl;
-			cout << "(3) Search by student's surname" << endl;
-			cout << "(9) <- Back" << endl;
-
-			badChoice(op);
-
+		badChoice(op);
+		try {
 			switch (op)
 			{
 			case 1:
-
+				cout << INFO_MSG_CR << "Enter the CLASS of a student that you want to filter by: " << CLOSE_INFO_MSG;
 				cin >> criteria;
 				foundStudentsByCriteria = findStudentsByClass(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
 				break;
 			case 2:
+				cout << INFO_MSG_CR << "Enter the NAME of a student that you want to filter by: " << CLOSE_INFO_MSG;
 				cin >> criteria;
 				foundStudentsByCriteria = findStudentsByName(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
 				break;
 			case 3:
+				cout << INFO_MSG_CR << "Enter the SURNAME of a student that you want to filter by: " << CLOSE_INFO_MSG;
 				cin >> criteria;
 				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
-			case 9:
+			case 4:
 				return false;
 			default:
 				break;
 			}
-			return true;
 		}
-		else {
+		catch (const std::exception& ex)
+		{
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+		}
+		return true;
+	}
+	else {
 
-			if (teachers.empty()) { throw std::runtime_error("No teachers data to filter"); }
+		if (teachers.empty()) { throw std::runtime_error("No teachers data to filter"); }
 
-			cout << endl;
-			cout << "(1) Search by teacher's firstname" << endl;
-			cout << "(2) Search by teacher's surname" << endl;
-			cout << "(3) Search teachers who have no teams assigned" << endl;
-			cout << "(9) <- Back" << endl;
+		cout << endl;
+		cout << "___________________________________________________" << endl;
+		cout << "(1) | Search by teacher's firstname              |" << endl;
+		cout << "(2) | Search by teacher's surname				  |" << endl;
+		cout << "(3) | Search teachers who have no teams assigned |" << endl;
+		cout << "Enter your choice: ";
+		cout << "(4) <- Back" << endl;
 
-			badChoice(op);
+		badChoice(op);
+		try {
 			switch (op)
 			{
 			case 1:
@@ -1082,19 +1139,20 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 				displayTeachersInTable(foundTeachersByCriteria);
 				foundTeachersByCriteria.clear();
 				break;
-			case 9:
+			case 4:
 				return false;
 			default:
 				break;
 			}
-			return true;
 		}
-	}
-	catch (const std::exception& ex)
-	{
-		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+		catch (const std::exception& ex)
+		{
+			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+		}
+		return true;
 	}
 }
+
 
 void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teachers, vector<STUDENT>& students, int& teamID)
 {
@@ -1190,7 +1248,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 
 		updateTeamStudent(teams[teamID], student, temporary);
 		break;
-		updateStudentData(students, teams);
+		updateStudentData(students, teams, teachers);
 		updateTeacherData(teachers, teams);
 	default:
 		break;
@@ -1199,11 +1257,11 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 
 bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInfo, vector<TEAM_PROJECT>& projects)
 {
-	
+	clearScreen();
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
 	cout << endl;
-	system("chcp 65001 > NUL");
+	switchEncoding(1);
 	cout << endl << u8R"( 
     ████████╗███████╗ █████╗ ███╗   ███╗███████╗ ██████╗ ███╗   ██╗██████╗ ██╗   ██╗██████╗  ██████╗ ███████╗████████╗
     ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██╔════╝██╔═══██╗████╗  ██║██╔══██╗██║   ██║██╔══██╗██╔════╝ ██╔════╝╚══██╔══╝
@@ -1223,7 +1281,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		cout << "Address: ";
 		getline(cin, school.address);
 		writeSchoolInTxt(school.name, school.city, school.address);
-		inputSchoolInfo = 0;
+		inputSchoolInfo = 0;	
 	}
 	cout << endl;
 	cout << "/-----------------------------------\\" << endl;
@@ -1232,13 +1290,11 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 	cout << "(2) |List tables with students, teachers, teams|" << endl;
 	cout << "(3) |Delete data |" << endl;
 	cout << "(4) |Update data |" << endl;
-	cout << "(14) |Visualize reports on criteria |" << endl;
-	cout << "(15) |Display school's info |" << endl;
-	cout << "(16) |Display school hierarchy |" << endl;
-	cout << "(19) |Terminate the program |" << endl;
+	cout << "(5) |Visualize reports on criteria |" << endl;
+	cout << "(6) |Terminate the program |" << endl;
 	cout << "\\-----------------------------------/" << endl;
 
-	system("chcp 437 > NUL");
+	switchEncoding(2);
 	//			/dev/null
 	int option;
 	int filter;
@@ -1259,7 +1315,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 			clearScreen();
 			do
 			{
-				list = handleListTablesMenu(school, whiteListedRoles);
+				list = handleListTablesMenu(school, whiteListedRoles, projects);
 			} while (list);
 			break;
 		case 3:
@@ -1276,36 +1332,25 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 				upd = handleUpdateMenu(school, whiteListedRoles);
 			} while (upd);
 			break;
-		case 14:
+		case 5:
 			clearScreen();
 			cout << "(1) Filter students" << endl;
 			cout << "(2) Filter teachers" << endl;
 			cout << "(3) <- Back" << endl;
+			cout << "Enter your choice: ";
 			badChoiceFiltering(filter);
 			do {
 				switch (filter)
 				{
-				case 1: clearScreen(); filt = filteringMenu(1, school.students, school.teachers); break;
-				case 2: clearScreen(); filt = filteringMenu(0, school.students, school.teachers); break;
+				case 1: filt = filteringMenu(1, school.students, school.teachers); break;
+				case 2: filt = filteringMenu(0, school.students, school.teachers); break;
 				case 3: filt = false; break;
 				default:
 					break;
 				}
 			} while (filt);
 			break;
-		case 15: clearScreen();  displaySchoolInfoInTable(school);
-			break;
-		case 16:
-			displaySchoolInfoInTable(school);
-			displayTeamsInTable(school.teams, whiteListedRoles);
-			displayTeachersInTable(school.teachers);
-			displayStudentsInTable(school.students);
-			displayProjectsInTable(projects);
-			break;
-		case 17:
-			addProject(projects);
-			break;
-		case 19:
+		case 6:
 			return false;
 		default:
 			clearScreen();

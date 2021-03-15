@@ -34,3 +34,5 @@ void badChoice(int& option);
 void teachersEmpty(std::vector<TEACHER> teachers, std::vector<STUDENT> students);
 
 void badChoiceFiltering(int& option);
+
+bool isDataEmpty(SCHOOL school);

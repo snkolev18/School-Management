@@ -77,7 +77,7 @@ void removeTeamFromTeachers(std::vector<TEACHER>& teachers, const std::string te
 
 void updateTeamStudentEmail(int id, TEAM& team, std::string email);
 
-void updateStudentData(std::vector<STUDENT>& students, std::vector<TEAM>& teams);
+void updateStudentData(std::vector<STUDENT>& students, std::vector<TEAM>& teams, std::vector<TEACHER>& teachers);
 
 void updateTeacherData(std::vector<TEACHER>& teachers, std::vector<TEAM>& team);
 

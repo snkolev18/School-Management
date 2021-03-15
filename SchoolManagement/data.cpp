@@ -453,7 +453,7 @@ TEAM_PROJECT addProject(vector<TEAM_PROJECT>& projects)
 	cin >> project.name;
 	while (!checkNameValidity(project.name))
 	{
-		badName("Team Name");
+		badName("Project name");
 		cin >> project.name;
 	}
 
@@ -465,12 +465,14 @@ TEAM_PROJECT addProject(vector<TEAM_PROJECT>& projects)
 		cin >> project.description;
 	}
 
+	cin.ignore();
 	cout << "Due date of the project: ";
-	cin >> project.dueDate;
-	/*while (!(checkDateStandart(project.dueDate))) 
+	getline(cin, project.dueDate);
+	while (!(checkDateStandart(project.dueDate))) 
 	{
 		badDate();
-	}*/
+		getline(cin, project.dueDate);
+	}
 
 	/*cout << "ID of the project: ";
 	cin >> project.uuid;*/
@@ -752,7 +754,7 @@ void updateTeamStudentEmail(int id, TEAM& team, string email)
 	team.roles[id].student.email = email;
 }
 
-void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
+void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams, vector<TEACHER>& teachers)
 {
 	ifstream file;
 	file.open("students.txt", ios::in | ios::binary);
@@ -826,7 +828,7 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams)
 		cin.ignore();
 		updateMsgs(email, "student", "EMAIL");
 		getline(cin, students.at(id).email);
-		while (!checkForExistingEmailStudents(students, students.at(id).email) or !checkEmailValidity(students.at(id).email))
+		while (checkForExistingEmail(students, teachers, students.at(id).email) and !checkEmailValidity(students.at(id).email))
 		{
 			badEmail();
 			getline(cin, students.at(id).email);
