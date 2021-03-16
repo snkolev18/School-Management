@@ -3,6 +3,8 @@
 #include "../SchoolManagement/checkers.h"
 #include "../SchoolManagement/userInterface.h"
 #include "../SchoolManagement/data.h"
+#include "../SchoolManagement/file_io.h"
+
 #include <vector>
 #include <string>
 

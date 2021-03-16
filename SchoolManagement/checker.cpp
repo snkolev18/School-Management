@@ -276,6 +276,11 @@ bool isDataEmpty(SCHOOL school)
 	return school.teachers.empty() or school.teams.empty() or school.students.empty() ? true : false;
 }
 
+bool checkProjectNameLength(const string name) 
+{
+	return name.length() < MIN_PROJECT_NAME_SIZE or name.length() > MAX_PROJECT_NAME_SIZE ? false : true;
+}
+
 //template <typename T>
 //void teachersEmpty(T object, const std::string type) 
 //{

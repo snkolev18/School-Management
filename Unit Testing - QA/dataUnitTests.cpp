@@ -3,6 +3,8 @@
 #include "../SchoolManagement/checkers.h"
 #include "../SchoolManagement/userInterface.h"
 #include "../SchoolManagement/data.h"
+#include "../SchoolManagement/utils.h"
+#include "../SchoolManagement/file_io.h"
 #include <vector>
 #include <string>
 #include <fstream>
@@ -388,7 +390,7 @@ namespace UnitTestingQA
 			// Arrange
 			TEAM team =
 			{
-				{{"QA"}, {"Stoyan", "Kolev", "10A", "manqka123@abv.bg"}}, "Offsec", {"Nikolai", "Ivanov", {""}, "nikiI@abv.bg"}, "Qk description", getDate() 
+				{{"QA"}, {"Stoyan", "Kolev", "10A", "manqka123@abv.bg"}}, "Offsec", {"Nikolai", "Ivanov", {""}, "nikiI@abv.bg"}, "Qk description", getDate()
 			};
 			vector<TEACHER> teachers
 			{
@@ -471,6 +473,126 @@ namespace UnitTestingQA
 
 			// Name or any other field is enough just to check if it was updated
 			Assert::AreEqual(team.status, newStatus, L"Should change the status of a team with a new one");
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccessfullyConvertEnumCodeToString)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("Medium")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccessfullyConvertEnumCodeToString)
+		{
+			// Arrange
+			vector<TEAM::STATUS> statuses = { TEAM::STATUS::IN_USE, TEAM::STATUS::NOT_ACTIVE, TEAM::STATUS::ARCHIVED };
+			vector<string> results;
+			vector<string> posibles = { "In use", "Not active", "Archived" };
+
+			//Act
+			for (size_t i = 0; i < statuses.size(); i++)
+			{
+				results.push_back(TEAM::statusToString(statuses[i]));
+			}
+
+			//Assert
+
+			for (size_t i = 0; i < results.size(); i++)
+			{
+				Assert::AreEqual(posibles.at(i), results.at(i));
+			}
+
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccessfullyWriteProjectsInTxt)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("Medium")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccessfullyWriteProjectsInTxt)
+		{
+			// Arrange
+			string filename = (std::string)TEST_DIRECTORY;
+			string outer = filename;
+
+			outer += "\\projects.txt";
+
+			vector<TEAM_PROJECT> projects =
+			{
+				{ "Project_One", "Cool Project", "2021-03-17" },
+				{ "Project_Two", "Cool Project YEAH", "2021-03-17" }
+			};
+
+			string expect = "Project_One|Cool Project|2021-03-17|Project_Two|Cool Project YEAH|2021-03-17|";
+
+			//Act
+			writeProjectsInTxt(projects, outer);
+
+			string curLine, outLine;
+			fstream fileOut(outer, ios::in);
+
+			if (fileOut.is_open()) 
+			{
+				while (!fileOut.eof())
+				{
+					getline(fileOut, curLine);
+					outLine += curLine;
+				}
+			}
+			
+
+			//Assert
+
+			Assert::AreEqual(expect, outLine);
+
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccessfullyRemoveAStudent)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccessfullyRemoveAStudent)
+		{
+			// Arrange
+			vector<STUDENT> students =
+			{
+				{"Stoyan", "Kolev", "10A", "SNKolev18@codingburgas.bg" },
+				{"Alex", "Dinev", "10V", "AGDinev18@codingburgas.bg"},
+				{"Atanas", "Burmov", "10B", "AABurmov18@codingburgas.bg"}
+			};
+			STUDENT safe = { "Stoyan", "Kolev", "10A", "SNKolev18@codingburgas.bg" };
+			//Act
+			removeStudent(students, "AABurmov18@codingburgas.bg");
+
+			//Assert
+			for (size_t i = 0; i < students.size(); i++)
+			{
+				Assert::AreNotEqual(students.at(i).email, safe.email);
+				Assert::AreNotEqual(students.at(i).name, safe.name);
+				Assert::AreNotEqual(students.at(i).surname, safe.surname);
+				Assert::AreNotEqual(students.at(i).grade, safe.grade);
+			}
+			
+
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldSuccessfullyRemoveATeam)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldSuccessfullyRemoveATeam)
+		{
+			// Arrange
+
+			vector<TEAM> teams =
+			{
+				{{ {"QA"}, {"Stoyan", "Kolev", "10A", "manqka123@abv.bg"}}, "Offsec", {"Nikolai", "Ivanov", {""}, "nikiI@abv.bg"}, "Qk description", getDate(), "" }
+			};
+
+			//Act
+			removeTeam(teams, "Offsec");
+
+			//Assert
+			
+			Assert::AreEqual((size_t)0, teams.size());
+
+
 		}
 	};
 }

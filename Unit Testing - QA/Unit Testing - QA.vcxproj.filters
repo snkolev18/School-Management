@@ -34,5 +34,8 @@
     <Text Include="students.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="projects.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

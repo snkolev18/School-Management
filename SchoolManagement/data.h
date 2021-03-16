@@ -1,8 +1,6 @@
 #pragma once
 #include "structures.h"
 
-std::string toStatus(int inp_);
-
 STUDENT findStudentByEmail(std::vector<STUDENT>& students, std::string& email);
 
 TEACHER findTeacherByEmail(std::vector<TEACHER>& teachers, std::string& email);
@@ -11,7 +9,7 @@ int findIndexByEmailStudents(std::vector<STUDENT>& students, std::string& email)
 
 int findIndexByEmailTeachers(std::vector<TEACHER>& teachers, std::string& email);
 
-int findIndexOfProjectByTeam(std::vector<TEAM_PROJECT> projects, std::string name);
+int findIndexOfProjectByName(std::vector<TEAM_PROJECT> projects, std::string name);
 
 int findIndexOfTeamByName(std::vector<TEAM> teams, std::string name);
 
@@ -21,9 +19,8 @@ STUDENT inputStudent(std::vector<STUDENT>& students, std::vector<TEACHER>& teach
 
 TEACHER inputTeacher(std::vector<STUDENT>& students, std::vector<TEACHER>& teachers);
 
-std::string getDate();
-
-TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, std::vector<TEACHER>& teachers, std::vector<TEAM>& teams);
+TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, 
+				std::vector<TEACHER>& teachers, std::vector<TEAM>& teams);
 
 void addRole(std::vector<std::string>& whiteListedRoles);
 
@@ -31,17 +28,17 @@ TEAM_PROJECT addProject(std::vector<TEAM_PROJECT>& projects);
 
 void removeRole(std::vector<std::string>& roles, int& id);
 
-void writeRolesInTxt(std::vector<std::string>& roles);
-
-void writeStudentsInTxt(std::vector<STUDENT>& students);
-
-void writeTeachersInTxt(std::vector<TEACHER>& teachers);
-
-void writeTeamsInTxt(std::vector<TEAM>& teams);
-
-void writeSchoolInTxt(std::string name, std::string city, std::string address);
-
-void writeProjectsInTxt(std::vector<TEAM_PROJECT>& project, std::string fileName);
+//void writeRolesInTxt(std::vector<std::string>& roles);
+//
+//void writeStudentsInTxt(std::vector<STUDENT>& students);
+//
+//void writeTeachersInTxt(std::vector<TEACHER>& teachers);
+//
+//void writeTeamsInTxt(std::vector<TEAM>& teams);
+//
+//void writeSchoolInTxt(std::string name, std::string city, std::string address);
+//
+//void writeProjectsInTxt(std::vector<TEAM_PROJECT>& project, std::string fileName);
 
 STUDENT parsedStudentInfo(std::string info);
 
@@ -72,6 +69,8 @@ int maxSizeOfStrings(std::vector<std::string>& strings);
 void removeStudent(std::vector<STUDENT>& students, std::string email);
 
 void removeTeacher(std::vector<TEACHER>& teachers, std::string email);
+
+void removeTeam(std::vector<TEAM>& teams, const std::string teamName);
 
 void removeTeamFromTeachers(std::vector<TEACHER>& teachers, const std::string teamName);
 

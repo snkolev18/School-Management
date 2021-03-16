@@ -16,3 +16,7 @@ void badDate();
 void incorrectEmail(std::string ts);
 
 void badProjectDescription();
+
+void invalidProjectName(std::string name);
+
+void assignMsgToTeam();

@@ -1,1 +1,1 @@
-Georgi|Scrum Master:POPP|POPP|10S|fofof@aiosnd.com|,Backend:POPP|POPP|10S|fofof@aiosnd.com|,Frontend:POPP|POPP|10S|fofof@aiosnd.com|,QA Engineer:POPP|POPP|10S|fofof@aiosnd.com|,Pesho|Georgiev|Georgi=pgeorgiev@sa.com|;|2021/03/13 22:26:27|In use|Are e brat pls|
+Team|Scrum Master:Stozan|Kolev|10O|SNKolev18@codingburgas.bg|,Backend:Stozan|Kolev|10O|SNKolev18@codingburgas.bg|,Frontend:Stozan|Kolev|10O|SNKolev18@codingburgas.bg|,QA Engineer:Stozan|Kolev|10O|SNKolev18@codingburgas.bg|,Dragan|Georgiev|Team=drago123@yahoo.com|;|2021/03/16 15:40:27|In use|Cool team|

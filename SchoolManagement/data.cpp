@@ -12,111 +12,85 @@
 #include "userInterface.h"
 #include "checkers.h"
 #include "messages.h"
+#include "utils.h"
+#include "file_io.h"
 
 using namespace std;
 
-
-// Converts enumeration code to string representation
-string TEAM::statusToString(STATUS stat)
-{
-	switch (stat)
-	{
-	case IN_USE:
-		return "In use";
-	case NOT_ACTIVE:
-		return "Not active";
-	case ARCHIVED:
-		return "Archived";
-	default:
-		return "Unknown Status";
-	}
-}
-
-// Checks if a status is valid and returns converted string version of it
-string toStatus(int inp_)
-{
-	vector<int> valid = { 0, 1, 2 };
-	if (find(valid.begin(), valid.end(), inp_) == valid.end())
-	{
-		return "Vania";
-	}
-	return TEAM::statusToString((TEAM::STATUS)inp_);
-}
-
-void writeRolesInTxt(vector<string>& whiteListedRoles)
-{
-	ofstream file;
-	file.open("roles.txt", ios::out | ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < whiteListedRoles.size(); i++)
-		{
-			file << whiteListedRoles[i] << endl;
-		}
-		file.close();
-		logger.writeLogMsg(SEVERITY::INFO, "Roles were successfully written into roles.txt");
-	}
-}
-
-void writeStudentsInTxt(vector<STUDENT>& students)
-{
-	ofstream file;
-	file.open("students.txt", ios::out | ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < students.size(); i++)
-		{
-			file << students[i].delimitInfo() << endl;
-		}
-		file.close();
-		logger.writeLogMsg(SEVERITY::INFO, "Students were successfully written into students.txt");
-	}
-}
-
-void writeTeachersInTxt(vector<TEACHER>& teachers)
-{
-	ofstream file;
-	file.open("teachers.txt", ios::out | ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < teachers.size(); i++)
-		{
-			file << teachers[i].delimitInfo() << endl;
-		}
-		file.close();
-		logger.writeLogMsg(SEVERITY::INFO, "Teachers were successfully written into teachers.txt");
-	}
-}
-
-void writeTeamsInTxt(vector<TEAM>& teams)
-{
-	ofstream file;
-	file.open("teams.txt", ios::out | ios::trunc);
-	if (file.is_open())
-	{
-		for (size_t i = 0; i < teams.size(); i++)
-		{
-			file << teams[i].delimitInfo() << endl;
-		}
-		file.close();
-		logger.writeLogMsg(SEVERITY::INFO, "Teams were successfully written into teams.txt");
-	}
-}
-
-void writeProjectsInTxt(vector<TEAM_PROJECT>& project, string fileName)
-{
-	ofstream out;
-	out.open(fileName, ios::out | ios::trunc);
-	if (out.is_open())
-	{
-		for (size_t i = 0; i < project.size(); i++)
-		{
-			out << project[i].delimitInfo() << endl;
-		}
-		out.close();
-		logger.writeLogMsg(SEVERITY::INFO, "Projects were successfully written into projects.txt");
-	}
-}
+//void writeRolesInTxt(vector<string>& whiteListedRoles)
+//{
+//	ofstream file;
+//	file.open("roles.txt", ios::out | ios::trunc);
+//	if (file.is_open())
+//	{
+//		for (size_t i = 0; i < whiteListedRoles.size(); i++)
+//		{
+//			file << whiteListedRoles[i] << endl;
+//		}
+//		file.close();
+//		logger.writeLogMsg(SEVERITY::INFO, "Roles were successfully written into roles.txt");
+//	}
+//}
+//
+//void writeStudentsInTxt(vector<STUDENT>& students)
+//{
+//	ofstream file;
+//	file.open("students.txt", ios::out | ios::trunc);
+//	if (file.is_open())
+//	{
+//		for (size_t i = 0; i < students.size(); i++)
+//		{
+//			file << students[i].delimitInfo() << endl;
+//		}
+//		file.close();
+//		logger.writeLogMsg(SEVERITY::INFO, "Students were successfully written into students.txt");
+//	}
+//}
+//
+//void writeTeachersInTxt(vector<TEACHER>& teachers)
+//{
+//	ofstream file;
+//	file.open("teachers.txt", ios::out | ios::trunc);
+//	if (file.is_open())
+//	{
+//		for (size_t i = 0; i < teachers.size(); i++)
+//		{
+//			file << teachers[i].delimitInfo() << endl;
+//		}
+//		file.close();
+//		logger.writeLogMsg(SEVERITY::INFO, "Teachers were successfully written into teachers.txt");
+//	}
+//}
+//
+//void writeTeamsInTxt(vector<TEAM>& teams)
+//{
+//	ofstream file;
+//	file.open("teams.txt", ios::out | ios::trunc);
+//	if (file.is_open())
+//	{
+//		for (size_t i = 0; i < teams.size(); i++)
+//		{
+//			file << teams[i].delimitInfo() << endl;
+//		}
+//		file.close();
+//		logger.writeLogMsg(SEVERITY::INFO, "Teams were successfully written into teams.txt");
+//	}
+//}
+//
+//void writeProjectsInTxt(vector<TEAM_PROJECT>& project, string fileName)
+//{
+//	ofstream out;
+//	out.open(fileName, ios::out | ios::trunc);
+//	if (out.is_open())
+//	{
+//		for (size_t i = 0; i < project.size(); i++)
+//		{
+//			out << project[i].delimitInfo() << endl;
+//		}
+//		out.close();
+//		logger.writeLogMsg(SEVERITY::INFO, "Projects were successfully written into projects.txt");
+//	}
+//}
 
 STUDENT findStudentByEmail(vector<STUDENT>& students, string& email)
 {
@@ -145,7 +119,7 @@ TEACHER findTeacherByEmail(vector<TEACHER>& teachers, string& email)
 	}
 }
 
-int findIndexOfProjectByTeam(vector<TEAM_PROJECT> projects,string name)
+int findIndexOfProjectByName(vector<TEAM_PROJECT> projects,string name)
 {
 	for (size_t i = 0; i < projects.size(); i++)
 	{
@@ -297,62 +271,6 @@ TEACHER inputTeacher(vector<STUDENT>& students, vector<TEACHER>& teachers)
 	return teacher;
 }
 
-string getDate()
-{
-	int day, month, year, hour, minute, second;
-	string days, months, years, hours, minutes, seconds;
-
-	time_t timer = time(NULL);
-	tm timerPtr{ 0 };
-	char* err = asctime(localtime(&timer));
-
-	if (err == NULL)
-	{
-		return "Couldn't convert time";
-	}
-
-	timerPtr = *localtime(&timer);
-
-
-	day = timerPtr.tm_mday;
-	month = timerPtr.tm_mon + 1;
-	year = timerPtr.tm_year + 1900;
-	hour = timerPtr.tm_hour;
-	minute = timerPtr.tm_min;
-	second = timerPtr.tm_sec;
-
-	seconds = to_string(second);
-	minutes = to_string(minute);
-	hours = to_string(hour);
-	days = to_string(day);
-	months = to_string(month);
-	if (months.length() < 2)
-	{
-		months = "0" + months;
-	}
-	if (days.length() < 2)
-	{
-		days = "0" + days;
-	}
-	if (hours.length() < 2)
-	{
-		hours = "0" + hours;
-	}
-	if (minutes.length() < 2)
-	{
-		minutes = "0" + minutes;
-	}
-	if (seconds.length() < 2)
-	{
-		seconds = "0" + seconds;
-	}
-
-	years = to_string(year);
-
-	return years + '/' + months + '/' + days + " " + hours + ":" + minutes + ":" + seconds;
-
-}
-
 TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vector<TEACHER>& teachers, vector<TEAM>& teams)
 {
 	TEAM team;
@@ -449,23 +367,24 @@ TEAM_PROJECT addProject(vector<TEAM_PROJECT>& projects)
 {
 	TEAM_PROJECT project;
 
+	cin.ignore();
 	cout << "Name of the project: ";
-	cin >> project.name;
-	while (!checkNameValidity(project.name))
+	getline(cin, project.name);
+	while (!checkProjectNameLength(project.name))
 	{
 		badName("Project name");
-		cin >> project.name;
+		getline(cin, project.name);
 	}
 
+
 	cout << "Description of the project: ";
-	cin >> project.description;
+	getline(cin, project.description);
 	while (!checkProjectDescription(project.description))
 	{
 		badProjectDescription();
-		cin >> project.description;
+		getline(cin, project.description);
 	}
 
-	cin.ignore();
 	cout << "Due date of the project: ";
 	getline(cin, project.dueDate);
 	while (!(checkDateStandart(project.dueDate))) 
@@ -1341,18 +1260,18 @@ vector<TEAM> findTeamsByStatus(const vector<TEAM>& teams, const string& status)
 	return foundTeams;
 }
 
-void writeSchoolInTxt(string name, string city, string address)
-{
-	ofstream file;
-	file.open("school.txt", ios::trunc);
-	if (file.is_open())
-	{
-		file << name << endl;
-		file << city << endl;
-		file << address << endl;
-		file.close();
-	}
-}
+//void writeSchoolInTxt(string name, string city, string address)
+//{
+//	ofstream file;
+//	file.open("school.txt", ios::trunc);
+//	if (file.is_open())
+//	{
+//		file << name << endl;
+//		file << city << endl;
+//		file << address << endl;
+//		file.close();
+//	}
+//}
 
 SCHOOL readSchoolFromTxt()
 {

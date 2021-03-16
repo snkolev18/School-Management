@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "structures.h"
+#include "file_io.h"
 
 using namespace std;
 

@@ -7,37 +7,10 @@
 #include "data.h"
 #include "userInterface.h"
 #include "checkers.h"
+#include "messages.h"
+#include "utils.h"
+#include "file_io.h"
 using namespace std;
-
-void clearScreen()
-{
-
-#ifdef __linux__
-	system("clear");
-#else WIN32
-	system("cls");
-#endif
-
-}
-
-void switchEncoding(int what)
-{
-#ifdef __linux__
-	system("echo Encoding is not ok, we know it, but luit didn't work");
-#else WIN32
-	switch (what)
-	{
-	case 1:
-		system("chcp 65001 > NUL");
-		break;
-	case 2:
-		system("chcp 437 > NUL");
-		break;
-	}
-#endif // __linux__
-
-}
-
 
 void displayNSpaces(int n)
 {
@@ -46,6 +19,7 @@ void displayNSpaces(int n)
 		cout << " ";
 	}
 }
+
 void displaySchoolTableHeader(int& sizeName, int& sizeCity, int& sizeAddress, int& sizeStudents, int& sizeTeachers, int& sizeTeams)
 {
 	cout << char(201);
@@ -801,6 +775,7 @@ void displayTeamsUpdateMenu()
 
 void statusMenu()
 {
+	cout << "___________" << endl;
 	cout << "(0) In use" << endl;
 	cout << "(1) Not Active" << endl;
 	cout << "(2) Archived" << endl;
@@ -808,6 +783,7 @@ void statusMenu()
 
 void printMenu()
 {
+	cout << "_________________________" << endl;
 	cout << "(1) | Display Teachers |" << endl;
 	cout << "(2) | Display Students |" << endl;
 	cout << "(3) | Display Teams    |" << endl;
@@ -901,9 +877,9 @@ bool handleUpdateMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 	return true;
 }
 
-bool handleDeleteMenu(SCHOOL& school)
+bool handleDeleteMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 {
-	clearScreen();
+	
 	deleteMenu();
 	int delCh;
 	badChoice(delCh);
@@ -919,6 +895,7 @@ bool handleDeleteMenu(SCHOOL& school)
 			deleteTeacherData(school.teachers, school.teams);
 			break;
 		case 3:
+			displayTeamsInTable(school.teams, whiteListedRoles);
 			deleteTeamsData(school.teams, school.teachers);
 			break;
 		case 4:
@@ -938,8 +915,8 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 {
 
 	addMenu();
-	int addCh, aId;
-	string tName;
+	int addCh, TID, PID;
+	string tName, pName;
 	badChoice(addCh);
 	try
 	{
@@ -974,18 +951,34 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 			break;
 		case 6:
 			clearScreen();
-			//ime
-			cin >> tName;
-			aId = findIndexOfTeamByName(school.teams, tName);
-			if (aId == -39)
-			{
-				cout << ERROR_MSG_CR << "You cannot assign a project to a non-existing team" << CLOSE_ERR_MSG << endl;
-			}
+			displayProjectsInTable(projects);
+			displayTeamsInTable(school.teams, whiteListedRoles);
+			//ime na project
+			cin.ignore();
+			cout << "Enter the name of the project that you want to assign: ";
+			getline(cin, pName);
+			//findProjectByName
+			PID = findIndexOfProjectByName(projects, pName);
+			if (PID == -29) { invalidProjectName(pName); }
 			else {
-				school.teams[aId].project = addProject(projects);
+				//Assigning the project
+				//ime
+				assignMsgToTeam();
+				getline(cin, tName);
+				TID = findIndexOfTeamByName(school.teams, tName);
+				if (TID == -39)
+				{
+					cout << ERROR_MSG_CR << "You cannot assign a project to a non-existing team" << CLOSE_ERR_MSG << endl;
+				}
+				else {
+					//school.teams[aId].project = addProject(projects);
+					school.teams[TID].project = projects.at(PID);
+				}
 			}
 			//id
 			//addProject call
+
+
 			break;
 		case 7:
 			return false;
@@ -1062,7 +1055,7 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 	if (students.empty()) { throw std::runtime_error("No students data to filter"); }
 
 	if (who) {
-		clearScreen();
+		
 		cout << "___________________________________________________" << endl;
 		cout << "(1) Search by class (10A, 10B, 10V and so on)" << endl;
 		cout << "(2) Search by student's firstname" << endl;
@@ -1094,6 +1087,7 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
+				break;
 			case 4:
 				return false;
 			default:
@@ -1322,7 +1316,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 			clearScreen();
 			do
 			{
-				del = handleDeleteMenu(school);
+				del = handleDeleteMenu(school, whiteListedRoles);
 			} while (del);
 			break;
 		case 4:

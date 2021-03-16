@@ -100,7 +100,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)SchoolManagement\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>checker.obj;data.obj;delimitMethods.obj;logs.obj;userInterface.obj;messages.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>checker.obj;data.obj;delimitMethods.obj;logs.obj;userInterface.obj;messages.obj;utils.obj;file_io.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -170,6 +170,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="projects.txt" />
     <Text Include="students.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

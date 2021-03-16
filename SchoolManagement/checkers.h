@@ -36,3 +36,5 @@ void teachersEmpty(std::vector<TEACHER> teachers, std::vector<STUDENT> students)
 void badChoiceFiltering(int& option);
 
 bool isDataEmpty(SCHOOL school);
+
+bool checkProjectNameLength(const std::string name);

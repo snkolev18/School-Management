@@ -37,7 +37,7 @@ void badTeam()
 
 void badDate() 
 {
-	cout << ERROR_MSG_CR << "This is date does not meet the ISO8601 standart (eg YYYY/MM/DD) (ex 2021/03/13)" << endl;
+	cout << ERROR_MSG_CR << "This is date does not meet the ISO 8601 standart (eg YYYY-MM-DD) (ex 2021-03-13)" << endl;
 	cout << "Try with a correct date: " << CLOSE_ERR_MSG;
 }
 
@@ -51,4 +51,15 @@ void badProjectDescription()
 {
 	cout << ERROR_MSG_CR << "This project description does not match our criteria" << endl;
 	cout << "Re-enter a valid one: " << CLOSE_ERR_MSG;
+}
+
+void invalidProjectName(string name) 
+{
+	cout << ERROR_MSG_CR << "There is no project with a name of " << name << CLOSE_ERR_MSG << endl;
+}
+
+void assignMsgToTeam()
+{
+	cin.ignore();
+	cout << "Enter the name of the team that you want to assign this project to: ";
 }
