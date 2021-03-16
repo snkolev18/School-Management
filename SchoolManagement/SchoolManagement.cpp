@@ -17,7 +17,6 @@ int main()
 
 	vector<string> whiteListedRoles = readRolesFromTxt();
 	vector<TEAM_PROJECT> projects = readProjectsFromTxt("projects.txt");
-
 	bool inputSchoolInfo;
 
 	if (school.name.empty())

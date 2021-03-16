@@ -1,4 +1,3 @@
-Scrum Master
 Backend
 Frontend
 QA Engineer

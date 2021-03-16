@@ -22,11 +22,11 @@ TEACHER inputTeacher(std::vector<STUDENT>& students, std::vector<TEACHER>& teach
 TEAM inputTeam(std::vector<std::string>& whiteListedRoles, std::vector<STUDENT>& students, 
 				std::vector<TEACHER>& teachers, std::vector<TEAM>& teams);
 
-void addRole(std::vector<std::string>& whiteListedRoles);
+void addRole(std::vector<std::string>& whiteListedRoles, std::vector<TEAM>& teams);
 
-TEAM_PROJECT addProject(std::vector<TEAM_PROJECT>& projects);
+void addProject(std::vector<TEAM_PROJECT>& projects);
 
-void removeRole(std::vector<std::string>& roles, int& id);
+void deleteRole(std::vector<std::string>& whiteListedRoles, std::vector<TEAM>& teams);
 
 //void writeRolesInTxt(std::vector<std::string>& roles);
 //

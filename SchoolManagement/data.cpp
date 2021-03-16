@@ -347,7 +347,9 @@ TEAM inputTeam(vector<string>& whiteListedRoles, vector<STUDENT>& students, vect
 	return team;
 }
 
-void addRole(vector<string>& whiteListedRoles)
+
+
+void addRole(vector<string>& whiteListedRoles,vector<TEAM>& teams)
 {
 	string role;
 
@@ -359,11 +361,49 @@ void addRole(vector<string>& whiteListedRoles)
 		cout << "Please enter a new name for the role: ";
 		getline(cin, role);
 	}
-
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		teams[i].roles.push_back({ role, {} });
+	}
 	whiteListedRoles.push_back(role);
+	writeRolesInTxt(whiteListedRoles);
+	writeTeamsInTxt(teams);
 }
 
-TEAM_PROJECT addProject(vector<TEAM_PROJECT>& projects)
+void deleteRole(vector<string>& whiteListedRoles, vector<TEAM>& teams)
+{
+	string role;
+	cin.ignore();
+	cout << "Enter the name of the role you want to delete: ";
+	getline(cin, role);
+	while (!checkIfRoleIsWhiteListed(whiteListedRoles, role))
+	{
+		cout << "This role doesn't exist" << endl;
+		cout << "Please enter the name of the role you want to delete: ";
+		getline(cin, role);
+	}
+	for (size_t i = 0; i < teams.size(); i++)
+	{
+		for (size_t j = 0; j < teams[i].roles.size(); j++)
+		{
+			if (teams[i].roles[j].role == role)
+			{
+				teams[i].roles.erase(teams[i].roles.begin() + j);
+			}
+		}
+	}
+	for (size_t i = 0; i < whiteListedRoles.size(); i++)
+	{
+		if (whiteListedRoles[i] == role)
+		{
+			whiteListedRoles.erase(whiteListedRoles.begin() + i);
+		}
+	}
+	writeRolesInTxt(whiteListedRoles);
+	writeTeamsInTxt(teams);
+}
+
+void addProject(vector<TEAM_PROJECT>& projects)
 {
 	TEAM_PROJECT project;
 
@@ -398,14 +438,6 @@ TEAM_PROJECT addProject(vector<TEAM_PROJECT>& projects)
 
 	projects.push_back(project);
 	writeProjectsInTxt(projects, "projects.txt");
-
-	// Dovurshi ottuk
-	return project;
-}
-
-void removeRole(vector<string>& roles, int& id)
-{
-	roles.erase(roles.begin() + id);
 }
 
 STUDENT parsedStudentInfo(string info)
@@ -746,12 +778,13 @@ void updateStudentData(vector<STUDENT>& students, vector<TEAM>& teams, vector<TE
 
 		cin.ignore();
 		updateMsgs(email, "student", "EMAIL");
-		getline(cin, students.at(id).email);
-		while (checkForExistingEmail(students, teachers, students.at(id).email) and !checkEmailValidity(students.at(id).email))
+		getline(cin, email);
+		while (checkForExistingEmail(students, teachers, email) or !checkEmailValidity(email))
 		{
 			badEmail();
-			getline(cin, students.at(id).email);
+			getline(cin, email);
 		}
+		students.at(id).email = email;
 		// Save stariq email
 
 		//updateTeamStudentEmail(id, teams.at(id), students.at(id).email);
@@ -833,13 +866,13 @@ void updateTeacherData(vector<TEACHER>& teachers, vector<TEAM>& teams)
 		}
 
 		cout << INFO_MSG_CR << "\nEnter new email of a teacher: " << CLOSE_INFO_MSG;
-		getline(cin, teachers.at(id).email);
-		while (!checkForExistingEmailTeachers(teachers, teachers.at(id).email) or !checkEmailValidity(teachers.at(id).email))
+		getline(cin, email);
+		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 		{
 			badEmail();
-			getline(cin, teachers.at(id).email);
+			getline(cin, email);
 		}
-
+		teachers.at(id).email = email;
 		writeTeachersInTxt(teachers);
 		logger.writeLogMsg(SEVERITY::INFO, "Teacher was successfully UPDATED");
 		for (size_t i = 0; i < teams.size(); i++)

@@ -22,143 +22,143 @@ void displayNSpaces(int n)
 
 void displaySchoolTableHeader(int& sizeName, int& sizeCity, int& sizeAddress, int& sizeStudents, int& sizeTeachers, int& sizeTeams)
 {
-	cout << char(201);
+	cout << u8"\x250F";
 	for (int i = 0; i < sizeName; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < sizeCity; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < sizeAddress; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < sizeStudents; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < sizeTeachers; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < sizeTeams; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(187) << endl;
+	cout << u8"\x2513" << endl;
 
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << "Name";
 	displayNSpaces(sizeName - 4);
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << "City";
 	displayNSpaces(sizeCity - 4);
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << "Address";
 	displayNSpaces(sizeAddress - 7);
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << "Number of students";
 	displayNSpaces(sizeStudents - 18);
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << "Number of teachers";
 	displayNSpaces(sizeTeachers - 18);
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << "Number of teams";
 	displayNSpaces(sizeTeams - 15);
-	cout << char(186) << endl;
+	cout << u8"\x2503" << endl;
 
-	cout << char(204);
+	cout << u8"\x2523";
 	for (int i = 0; i < sizeName; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(206);
+	cout << u8"\x254B";
 	for (int i = 0; i < sizeCity; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(206);
+	cout << u8"\x254B";
 	for (int i = 0; i < sizeAddress; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(206);
+	cout << u8"\x254B";
 	for (int i = 0; i < sizeStudents; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(206);
+	cout << u8"\x254B";
 	for (int i = 0; i < sizeTeachers; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(206);
+	cout << u8"\x254B";
 	for (int i = 0; i < sizeTeams; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(185) << endl;
+	cout << u8"\x252B" << endl;
 }
 void displaySchoolTableBodyAndFooter(SCHOOL& school, int& sizeName, int& sizeCity, int& sizeAddress, int& sizeStudents, int& sizeTeachers, int& sizeTeams)
 {
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << school.name;
 	displayNSpaces(sizeName - school.name.size());
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << school.city;
 	displayNSpaces(sizeCity - school.city.size());
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << school.address;
 	displayNSpaces(sizeAddress - school.address.size());
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << school.students.size();
 	displayNSpaces(sizeStudents - to_string(school.students.size()).size());
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << school.teachers.size();
 	displayNSpaces(sizeTeachers - to_string(school.teachers.size()).size());
-	cout << char(186);
+	cout << u8"\x2503";
 	cout << school.teams.size();
 	displayNSpaces(sizeTeams - to_string(school.teams.size()).size());
-	cout << char(186) << endl;
+	cout << u8"\x2503" << endl;
 
-	cout << char(200);
+	cout << u8"\x2517";
 	for (int i = 0; i < sizeName; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < sizeCity; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < sizeAddress; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < sizeStudents; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < sizeTeachers; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < sizeTeams; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(188) << endl;
+	cout << u8"\x251B" << endl;
 }
 void displaySchoolInfoInTable(SCHOOL& school)
 {
@@ -182,176 +182,176 @@ void displaySchoolInfoInTable(SCHOOL& school)
 
 void displayHeaderTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, vector<string>& whiteListedRoles, int& maxSizeProjects)
 {
-	cout << char(201);
+	cout << u8"\x250F";
 	for (int i = 0; i < maxSizeNames; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < maxSizeDescriptions; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < maxSizeDate; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (size_t j = 0; j < whiteListedRoles.size(); j++)
 	{
 		for (int i = 0; i < maxSizeStudents[j]; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(203);
+		cout << u8"\x2533";
 	}
 	for (int i = 0; i < maxSizeTeachers; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < maxSizeStatus; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < maxSizeProjects; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(187) << endl;
+	cout << u8"\x2513" << endl;
 
 
-	cout << char(186) << "Team";
+	cout << u8"\x2503" << "Team";
 	displayNSpaces(maxSizeNames - 4);
-	cout << char(186) << "Description";
+	cout << u8"\x2503" << "Description";
 	displayNSpaces(maxSizeDescriptions - 11);
-	cout << char(186) << "Date of setup";
+	cout << u8"\x2503" << "Date of setup";
 	displayNSpaces(maxSizeDate - 13);
 	for (size_t i = 0; i < whiteListedRoles.size(); i++)
 	{
-		cout << char(186) << whiteListedRoles[i];
+		cout << u8"\x2503" << whiteListedRoles[i];
 		displayNSpaces(maxSizeStudents[i] - whiteListedRoles[i].size());
 	}
-	cout << char(186) << "Teacher";
+	cout << u8"\x2503" << "Teacher";
 	displayNSpaces(maxSizeTeachers - 7);
-	cout << char(186) << "Status";
+	cout << u8"\x2503" << "Status";
 	displayNSpaces(maxSizeStatus - 6);
-	cout << char(186) << "Project Name";
+	cout << u8"\x2503" << "Project Name";
 	displayNSpaces(maxSizeProjects - 12);
-	cout << char(186) << endl;
+	cout << u8"\x2503" << endl;
 }
 
 void displayBodyTeamsTable(vector<TEAM>& teams, int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, int& maxSizeProjects)
 {
 	for (size_t i = 0; i < teams.size(); i++)
 	{
-		cout << char(204);
+		cout << u8"\x2523";
 		for (int i = 0; i < maxSizeNames; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (int i = 0; i < maxSizeDescriptions; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (int i = 0; i < maxSizeDate; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (size_t j = 0; j < maxSizeStudents.size(); j++)
 		{
 			for (int i = 0; i < maxSizeStudents[j]; i++)
 			{
-				cout << char(205);
+				cout << u8"\x2501";
 			}
-			cout << char(206);
+			cout << u8"\x254B";
 		}
 		for (int i = 0; i < maxSizeTeachers; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (int i = 0; i < maxSizeStatus; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (int i = 0; i < maxSizeProjects; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(185) << endl;
+		cout << u8"\x252B" << endl;
 
 
-		cout << char(186) << teams[i].teamName;
+		cout << u8"\x2503" << teams[i].teamName;
 		displayNSpaces(maxSizeNames - teams[i].teamName.size());
-		cout << char(186) << teams[i].description;
+		cout << u8"\x2503" << teams[i].description;
 		displayNSpaces(maxSizeDescriptions - teams[i].description.size());
-		cout << char(186) << teams[i].dateCreation;
+		cout << u8"\x2503" << teams[i].dateCreation;
 		displayNSpaces(maxSizeDate - teams[i].dateCreation.size());
-		cout << char(186);
+		cout << u8"\x2503";
 		for (size_t j = 0; j < maxSizeStudents.size(); j++)
 		{
 			cout << teams[i].roles[j].student.name << ' ' << teams[i].roles[j].student.surname;
 			displayNSpaces(maxSizeStudents[j] - (teams[i].roles[j].student.name.size() + teams[i].roles[j].student.surname.size() + 1));
-			cout << char(186);
+			cout << u8"\x2503";
 		}
 		cout << teams[i].teacher.name << ' ' << teams[i].teacher.surname;
 		displayNSpaces(maxSizeTeachers - (teams[i].teacher.name.size() + teams[i].teacher.surname.size() + 1));
-		cout << char(186) << teams[i].status;
+		cout << u8"\x2503" << teams[i].status;
 		displayNSpaces(maxSizeStatus - teams[i].status.size());
-		cout << char(186) << teams[i].project.name;
+		cout << u8"\x2503" << teams[i].project.name;
 		displayNSpaces(maxSizeProjects - teams[i].project.name.size());
-		cout << char(186) << endl;
+		cout << u8"\x2503" << endl;
 	}
 }
 
 void displayFooterTeamsTable(int& maxSizeNames, int& maxSizeDescriptions, int& maxSizeDate, vector<int>& maxSizeStudents, int& maxSizeTeachers, int& maxSizeStatus, int& maxSizeProjects)
 {
-	cout << char(200);
+	cout << u8"\x2517";
 	for (int i = 0; i < maxSizeNames; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeDescriptions; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeDate; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (size_t i = 0; i < maxSizeStudents.size(); i++)
 	{
 		for (int j = 0; j < maxSizeStudents[i]; j++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(202);
+		cout << u8"\x253B";
 	}
 	for (int i = 0; i < maxSizeTeachers; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeStatus; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeProjects; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(188) << endl;
+	cout << u8"\x251B" << endl;
 }
 
 void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
@@ -418,64 +418,64 @@ void displayTeamsInTable(vector<TEAM>& teams, vector<string> whiteListedRoles)
 
 void displayHeaderProjectsTable(int& maxSizeNames, int& maxSizeDate)
 {
-	cout << char(201);
+	cout << u8"\x250F";
 	for (int i = 0; i < maxSizeNames; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 	for (int i = 0; i < maxSizeDate; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(187) << endl;
+	cout << u8"\x2513" << endl;
 
 
-	cout << char(186) << "Name of the project";
+	cout << u8"\x2503" << "Name of the project";
 	displayNSpaces(maxSizeNames - 19);
-	cout << char(186) << "Date of end";
+	cout << u8"\x2503" << "Date of end";
 	displayNSpaces(maxSizeDate - 11);
-	cout << char(186) << endl;
+	cout << u8"\x2503" << endl;
 }
 
 void displayBodyProjectsTable(vector<TEAM_PROJECT>& projects, int& maxSizeNames, int& maxSizeDate)
 {
 	for (size_t i = 0; i < projects.size(); i++)
 	{
-		cout << char(204);
+		cout << u8"\x2523";
 		for (int i = 0; i < maxSizeNames; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (int i = 0; i < maxSizeDate; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(185) << endl;
+		cout << u8"\x252B" << endl;
 
 
-		cout << char(186) << projects[i].name;
+		cout << u8"\x2503" << projects[i].name;
 		displayNSpaces(maxSizeNames - projects[i].name.size());
-		cout << char(186) << projects[i].dueDate;
+		cout << u8"\x2503" << projects[i].dueDate;
 		displayNSpaces(maxSizeDate - projects[i].dueDate.size());
-		cout << char(186) << endl;
+		cout << u8"\x2503" << endl;
 	}
 }
 
 void displayFooterProjectsTable(int& maxSizeNames, int& maxSizeDate)
 {
-	cout << char(200);
+	cout << u8"\x2517";
 	for (int i = 0; i < maxSizeNames; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeDate; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(188) << endl;
+	cout << u8"\x251B" << endl;
 }
 
 void displayProjectsInTable(vector<TEAM_PROJECT>& projects)
@@ -515,165 +515,169 @@ void displayProjectsInTable(vector<TEAM_PROJECT>& projects)
 void displayHeaderStudentsAndTeachersTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeObject, int& maxSizeEmail, string object)
 {
 
-	cout << char(201);
+	cout << u8"\x250F";
 	for (int i = 0; i < maxSizeNames; i++)
 	{
 		//═
 		//cout << u8R"(═)";
-		cout << char(205);
+		cout << u8"\x2501";
 	}
 	//╦
-	cout << char(203);
+	cout << u8"\x2533";
 
 	for (int i = 0; i < maxSizeSurnames; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 
 	for (int i = 0; i < maxSizeObject; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(203);
+	cout << u8"\x2533";
 
 	for (int i = 0; i < maxSizeEmail; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(187) << endl;
+	cout << u8"\x2513" << endl;
 
 
-	cout << char(186) << "Name";
+	cout << u8"\x2503" << "Name";
 	displayNSpaces(maxSizeNames - 4);
-	cout << char(186) << "Surname";
+	cout << u8"\x2503" << "Surname";
 	displayNSpaces(maxSizeSurnames - 7);
-	cout << char(186) << object;
+	cout << u8"\x2503" << object;
 	displayNSpaces(maxSizeObject - object.size());
-	cout << char(186) << "Email";
+	cout << u8"\x2503" << "Email";
 	displayNSpaces(maxSizeEmail - 5);
-	cout << char(186) << endl;
+	cout << u8"\x2503" << endl;
 }
 void displayBodyStudentsTable(vector<STUDENT>& students, int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail)
 {
 	for (size_t i = 0; i < students.size(); i++)
 	{
-		cout << char(204);
+		cout << u8"\x2523";
 		for (int i = 0; i < maxSizeNames; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 
 		for (int i = 0; i < maxSizeSurnames; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 
 		for (int i = 0; i < maxSizeClass; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 
 		for (int i = 0; i < maxSizeEmail; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(185) << endl;
+		cout << u8"\x252B" << endl;
 
 
-		cout << char(186) << students[i].name;
+		cout << u8"\x2503" << students[i].name;
 		displayNSpaces(maxSizeNames - students[i].name.size());
-		cout << char(186) << students[i].surname;
+		cout << u8"\x2503" << students[i].surname;
 		displayNSpaces(maxSizeSurnames - students[i].surname.size());
-		cout << char(186) << students[i].grade;
+		cout << u8"\x2503" << students[i].grade;
 		displayNSpaces(maxSizeClass - students[i].grade.size());
-		cout << char(186) << students[i].email;
+		cout << u8"\x2503" << students[i].email;
 		displayNSpaces(maxSizeEmail - students[i].email.size());
-		cout << char(186) << endl;
+		cout << u8"\x2503" << endl;
 	}
 }
 
-void displayBodyTeachersTable(vector<TEACHER>& teachers, int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail, vector<string> teams)
+void displayBodyTeachersTable(vector<TEACHER>& teachers, int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeTeams, int& maxSizeEmail, vector<string> teams)
 {
+	int spacesAfterTeams=0;
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
-		cout << char(204);
+		cout << u8"\x2523";
 		for (int i = 0; i < maxSizeNames; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (int i = 0; i < maxSizeSurnames; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
-		for (int i = 0; i < maxSizeClass; i++)
+		cout << u8"\x254B";
+		for (int i = 0; i < maxSizeTeams; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(206);
+		cout << u8"\x254B";
 		for (int i = 0; i < maxSizeEmail; i++)
 		{
-			cout << char(205);
+			cout << u8"\x2501";
 		}
-		cout << char(185) << endl;
+		cout << u8"\x252B" << endl;
 
 
-		cout << char(186) << teachers[i].name;
+		cout << u8"\x2503" << teachers[i].name;
 		displayNSpaces(maxSizeNames - teachers[i].name.size());
-		cout << char(186) << teachers[i].surname;
+		cout << u8"\x2503" << teachers[i].surname;
 		displayNSpaces(maxSizeSurnames - teachers[i].surname.size());
 		if (teachers[i].teams.size() > 0)
 		{
-			cout << char(186);
+			cout << u8"\x2503";
 			for (size_t j = 0; j < teachers[i].teams.size(); j++)
 			{
 
 				cout << teachers[i].teams[j];
+				spacesAfterTeams += teachers[i].teams[j].size();
 				if (j < teachers[i].teams.size() - 1)
 				{
 					cout << ", ";
+					spacesAfterTeams += 2;
 				}
 			}
+			displayNSpaces(maxSizeTeams - spacesAfterTeams);
 		}
 		else
 		{
-			cout << char(186);
-			displayNSpaces(maxSizeClass);
+			cout << u8"\x2503";
+			displayNSpaces(maxSizeTeams);
 		}
-		cout << char(186) << teachers[i].email;
+		cout << u8"\x2503" << teachers[i].email;
 		displayNSpaces(maxSizeEmail - teachers[i].email.size());
-		cout << char(186) << endl;
+		cout << u8"\x2503" << endl;
 	}
 }
 
 void displayFooterTable(int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeClass, int& maxSizeEmail)
 {
-	cout << char(200);
+	cout << u8"\x2517";
 	for (int i = 0; i < maxSizeNames; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeSurnames; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeClass; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(202);
+	cout << u8"\x253B";
 	for (int i = 0; i < maxSizeEmail; i++)
 	{
-		cout << char(205);
+		cout << u8"\x2501";
 	}
-	cout << char(188) << endl;
+	cout << u8"\x251B" << endl;
 }
 
 void displayStudentsInTable(vector<STUDENT>& students)
@@ -813,7 +817,8 @@ void listMenu()
 	cout << "(4) | List all projects         |" << endl;
 	cout << "(5) | Display school info       |" << endl;
 	cout << "(6) | Display school hierarchy  |" << endl;
-	cout << "(7) <- Back" << endl;
+	cout << "(7) | Display available roles   |" << endl;
+	cout << "(8) <- Back" << endl;
 	cout << "Enter your choice: ";
 }
 
@@ -831,7 +836,8 @@ void deleteMenu()
 	cout << "(1) | Delete a student |" << endl;
 	cout << "(2) | Delete a teacher |" << endl;
 	cout << "(3) | Delete a team    |" << endl;
-	cout << "(4) <- Back" << endl;
+	cout << "(4) | Delete a role    |" << endl;
+	cout << "(5) <- Back" << endl;
 	cout << "Enter your choice: ";
 }
 
@@ -843,6 +849,20 @@ void updateMenu()
 	cout << "(3) | Update team's information   |" << endl;
 	cout << "(4) <- Back" << endl;
 	cout << "Enter your choice: ";
+}
+
+void displayAvailableRoles(vector<string>& whiteListedRoles)
+{
+	cout << "\nAvailable roles: ";
+	for (size_t i = 0; i < whiteListedRoles.size(); i++)
+	{
+		cout << whiteListedRoles[i];
+		if (i < whiteListedRoles.size() - 1)
+		{
+			cout << ", ";
+		}
+	}
+	cout << endl;
 }
 
 bool handleUpdateMenu(SCHOOL& school, vector<string>& whiteListedRoles)
@@ -899,6 +919,9 @@ bool handleDeleteMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 			deleteTeamsData(school.teams, school.teachers);
 			break;
 		case 4:
+			displayAvailableRoles(whiteListedRoles);
+			deleteRole(whiteListedRoles, school.teams);
+		case 5:
 			return false;
 		default:
 			break;
@@ -937,7 +960,7 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 		case 3:
 			clearScreen();
 			cin.ignore();
-			addRole(whiteListedRoles);
+			addRole(whiteListedRoles, school.teams);
 			writeRolesInTxt(whiteListedRoles);
 			break;
 		case 4:
@@ -1032,6 +1055,10 @@ bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles, vect
 			}
 			break;
 		case 7:
+			clearScreen();
+			displayAvailableRoles(whiteListedRoles);
+			break;
+		case 8:
 			return false;
 		default:
 			break;
@@ -1278,17 +1305,17 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		inputSchoolInfo = 0;	
 	}
 	cout << endl;
-	cout << "/-----------------------------------\\" << endl;
-	cout << "Welcome to the Menu!" << endl;
-	cout << "(1) |Add students, teachers, roles, teams|" << endl;
-	cout << "(2) |List tables with students, teachers, teams|" << endl;
-	cout << "(3) |Delete data |" << endl;
-	cout << "(4) |Update data |" << endl;
-	cout << "(5) |Visualize reports on criteria |" << endl;
-	cout << "(6) |Terminate the program |" << endl;
-	cout << "\\-----------------------------------/" << endl;
+	cout << " /----------------------------------------------\\" << endl;
+	cout << "|           Welcome to the Menu!                 |" << endl;
+	cout << "| (1) Add students, teachers, roles, teams       |" << endl;
+	cout << "| (2) List tables with students, teachers, teams |" << endl;
+	cout << "| (3) Delete data                                |" << endl;
+	cout << "| (4) Update data                                |" << endl;
+	cout << "| (5) Visualize reports on criteria              |" << endl;
+	cout << "| (6) Terminate the program                      |" << endl;
+	cout << " \\----------------------------------------------/" << endl;
 
-	switchEncoding(2);
+
 	//			/dev/null
 	int option;
 	int filter;
