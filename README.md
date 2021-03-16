@@ -27,6 +27,8 @@ Our project is a multi-platform console application written on C++. It is intend
 
 [![Ubuntu)](https://www.google.com/s2/favicons?domain=https://ubuntu.com/)](https://ubuntu.com/) **Ubuntu**
 
+[![Parrot)](https://www.google.com/s2/favicons?domain=https://www.parrotsec.org/)](https://www.parrotsec.org/) **Parrot**
+
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 Here we will briefly describe you how you can run the application on your machine
