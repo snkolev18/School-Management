@@ -1121,3 +1121,31 @@
 [2021-03-16  22:34:19] INFO Program was terminated successfully
 [2021-03-16  22:41:31] INFO Program was executed successfully
 [2021-03-16  22:42:06] INFO Program was terminated successfully
+[2021-03-16  22:55:42] INFO Program was executed successfully
+[2021-03-16  22:56:41] INFO Teachers were successfully written into teachers.txt
+[2021-03-16  22:56:41] INFO Teams were successfully written into teams.txt
+[2021-03-16  22:56:55] INFO Teachers were successfully written into teachers.txt
+[2021-03-16  22:56:55] INFO Teams were successfully written into teams.txt
+[2021-03-16  22:57:11] CRITICAL Exception thrown: Tried to delete contents of a file that has no data
+[2021-03-16  23:02:16] INFO Program was executed successfully
+[2021-03-16  23:05:44] INFO Roles were successfully written into roles.txt
+[2021-03-16  23:05:44] INFO Teams were successfully written into teams.txt
+[2021-03-16  23:20:32] INFO Students were successfully written into students.txt
+[2021-03-16  23:20:32] INFO Teams were successfully written into teams.txt
+[2021-03-16  23:20:32] INFO Student was successfully UPDATED
+[2021-03-16  23:20:32] INFO Teams which the students participates in were successfully updated
+[2021-03-16  23:35:05] INFO Program was executed successfully
+[2021-03-16  23:35:30] INFO Teachers were successfully written into teachers.txt
+[2021-03-16  23:35:30] INFO Teacher was successfully UPDATED
+[2021-03-16  23:35:30] INFO Teams were successfully written into teams.txt
+[2021-03-16  23:35:30] INFO Teams which the teachers participates in were successfully updated
+[2021-03-16  23:48:40] WARNING Option X clicked and Exception was thrown: Tried to update contents of a file that has no data
+[2021-03-16  23:57:59] INFO Program was executed successfully
+[2021-03-16  23:59:49] INFO Program was executed successfully
+[2021-03-17  00:00:54] INFO Program was executed successfully
+[2021-03-17  00:02:20] INFO Program was executed successfully
+[2021-03-17  00:04:19] INFO Program was executed successfully
+[2021-03-17  00:10:24] INFO Program was executed successfully
+[2021-03-17  00:10:57] INFO Program was executed successfully
+[2021-03-17  00:11:46] INFO Program was executed successfully
+[2021-03-17  00:39:07] INFO Program was executed successfully

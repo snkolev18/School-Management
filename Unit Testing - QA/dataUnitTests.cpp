@@ -594,6 +594,116 @@ namespace UnitTestingQA
 
 
 		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldReturnAllFoundByNameTeachers)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldReturnAllFoundByNameTeachers)
+		{
+			// Arrange
+
+			vector<TEACHER> teachers =
+			{
+				{ "Georgi", "Qkiq", {""}, "qkiq123@abv.bg" },
+				{ "Georgi", "Manqka", {""}, "manqka928@gmail.com" },
+				{ "Petko", "Hubaviq", {""}, "hubaviq73@gmail.com" }
+			};
+
+			vector<TEACHER> results;
+
+			//Act
+			results = findTeachersByName(teachers, "Georgi");
+
+			//Assert
+			for (size_t i = 0; i < results.size(); i++)
+			{
+				Assert::AreEqual((string)"Georgi", results.at(i).name);
+			}
+
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldReturn0IfThereAreNoFoundByNameTeachers)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldReturn0IfThereAreNoFoundByNameTeachers)
+		{
+			// Arrange
+
+			vector<TEACHER> teachers =
+			{
+				{ "Georgi", "Qkiq", {""}, "qkiq123@abv.bg" },
+				{ "Georgi", "Manqka", {""}, "manqka928@gmail.com" },
+				{ "Petko", "Hubaviq", {""}, "hubaviq73@gmail.com" }
+			};
+
+			vector<TEACHER> results;
+
+			//Act
+			results = findTeachersByName(teachers, "Drago");
+
+			//Assert
+			Assert::AreEqual((size_t)0, results.size());
+
+		}
+
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldReturnAllFoundBySurnameTeachers)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldReturnAllFoundBySurnameTeachers)
+		{
+			// Arrange
+
+			vector<TEACHER> teachers =
+			{
+				{ "Georgi", "Qkiq", {""}, "qkiq123@abv.bg" },
+				{ "Georgi", "Manqka", {""}, "manqka928@gmail.com" },
+				{ "Petko", "Manqka", {""}, "hubaviq73@gmail.com" }
+			};
+
+			
+
+			vector<TEACHER> results;
+
+			//Act
+			results = findTeachersBySurname(teachers, "Manqka");
+
+			//Assert
+			for (size_t i = 0; i < results.size(); i++)
+			{
+				Assert::AreEqual((string)"Manqka", results.at(i).surname);
+			}
+
+		}
+
+		BEGIN_TEST_METHOD_ATTRIBUTE(ShouldReturn0IfThereAreNoFoundBySurnameTeachers)
+			TEST_OWNER(L"SNKolev18")
+			TEST_PRIORITY("High")
+			END_TEST_METHOD_ATTRIBUTE()
+			TEST_METHOD(ShouldReturn0IfThereAreNoFoundBySurnameTeachers)
+		{
+			// Arrange
+
+			vector<TEACHER> teachers =
+			{
+				{ "Georgi", "Qkiq", {""}, "qkiq123@abv.bg" },
+				{ "Georgi", "Manqka", {""}, "manqka928@gmail.com" },
+				{ "Petko", "Hubaviq", {""}, "hubaviq73@gmail.com" }
+			};
+
+			vector<TEACHER> results;
+
+			//Act
+			results = findTeachersBySurname(teachers, "Boichev");
+
+			//Assert
+			Assert::AreEqual((size_t)0, results.size());
+
+		}
+
 	};
 }
 

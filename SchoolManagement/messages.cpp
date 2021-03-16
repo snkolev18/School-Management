@@ -63,3 +63,21 @@ void assignMsgToTeam()
 	cin.ignore();
 	cout << "Enter the name of the team that you want to assign this project to: ";
 }
+
+void badRole() 
+{
+	cout << ERROR_MSG_CR << "This role doesn't exist" << endl;
+	cout << "Please enter the name of the role you want to delete: " << CLOSE_ERR_MSG;
+}
+
+void enterRole() 
+{
+	cin.ignore();
+	cout << INFO_MSG_CR << "Enter the name of the role you want to delete: " << CLOSE_INFO_MSG;
+}
+
+void filterWho(string what, string who)
+{
+	cin.ignore();
+	cout << INFO_MSG_CR << "Enter the " + what + " of a " + who + " that you want to filter by: " << CLOSE_INFO_MSG;
+}

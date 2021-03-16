@@ -20,3 +20,9 @@ void badProjectDescription();
 void invalidProjectName(std::string name);
 
 void assignMsgToTeam();
+
+void badRole();
+
+void enterRole();
+
+void filterWho(std::string what, std::string who);

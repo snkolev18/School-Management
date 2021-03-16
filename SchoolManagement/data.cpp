@@ -373,13 +373,11 @@ void addRole(vector<string>& whiteListedRoles,vector<TEAM>& teams)
 void deleteRole(vector<string>& whiteListedRoles, vector<TEAM>& teams)
 {
 	string role;
-	cin.ignore();
-	cout << "Enter the name of the role you want to delete: ";
+	enterRole();
 	getline(cin, role);
 	while (!checkIfRoleIsWhiteListed(whiteListedRoles, role))
 	{
-		cout << "This role doesn't exist" << endl;
-		cout << "Please enter the name of the role you want to delete: ";
+		badRole();
 		getline(cin, role);
 	}
 	for (size_t i = 0; i < teams.size(); i++)
@@ -867,7 +865,7 @@ void updateTeacherData(vector<TEACHER>& teachers, vector<TEAM>& teams)
 
 		cout << INFO_MSG_CR << "\nEnter new email of a teacher: " << CLOSE_INFO_MSG;
 		getline(cin, email);
-		while (!checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
+		while (checkForExistingEmailTeachers(teachers, email) or !checkEmailValidity(email))
 		{
 			badEmail();
 			getline(cin, email);

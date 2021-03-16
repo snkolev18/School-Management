@@ -1,2 +1,0 @@
-Team|Backend:Stozan|Kolev|10O|SNKolev18@codingburgas.bg|,Frontend:Stozan|Kolev|10O|SNKolev18@codingburgas.bg|,QA Engineer:Stozan|Kolev|10O|SNKolev18@codingburgas.bg|,stoqnovi:||||,Dragan|Georgiev|Team=drago123@yahoo.com|;|2021/03/16 15:40:27|In use|Cool team|
-stoqn|Backend:DObre|Deeee|10A|dobre@dsa.d|,Frontend:DObre|Deeee|10A|dobre@dsa.d|,QA Engineer:DObre|Deeee|10A|dobre@dsa.d|,Dragan|Georgiev|Team=stoqn=drago123@yahoo.com|;|2021-03-16 21:58:34|In use|asd|

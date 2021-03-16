@@ -921,6 +921,7 @@ bool handleDeleteMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 		case 4:
 			displayAvailableRoles(whiteListedRoles);
 			deleteRole(whiteListedRoles, school.teams);
+			break;
 		case 5:
 			return false;
 		default:
@@ -1095,22 +1096,22 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 			switch (op)
 			{
 			case 1:
-				cout << INFO_MSG_CR << "Enter the CLASS of a student that you want to filter by: " << CLOSE_INFO_MSG;
-				cin >> criteria;
+				filterWho("GRADE", "student");
+				getline(cin, criteria);
 				foundStudentsByCriteria = findStudentsByClass(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
 				break;
 			case 2:
-				cout << INFO_MSG_CR << "Enter the NAME of a student that you want to filter by: " << CLOSE_INFO_MSG;
-				cin >> criteria;
+				filterWho("NAME", "student");
+				getline(cin, criteria);
 				foundStudentsByCriteria = findStudentsByName(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
 				break;
 			case 3:
-				cout << INFO_MSG_CR << "Enter the SURNAME of a student that you want to filter by: " << CLOSE_INFO_MSG;
-				cin >> criteria;
+				filterWho("SURNAME", "student");
+				getline(cin, criteria);
 				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
 				displayStudentsInTable(foundStudentsByCriteria);
 				foundStudentsByCriteria.clear();
@@ -1134,23 +1135,25 @@ bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teacher
 		cout << endl;
 		cout << "___________________________________________________" << endl;
 		cout << "(1) | Search by teacher's firstname              |" << endl;
-		cout << "(2) | Search by teacher's surname				  |" << endl;
+		cout << "(2) | Search by teacher's surname                |" << endl;
 		cout << "(3) | Search teachers who have no teams assigned |" << endl;
-		cout << "Enter your choice: ";
 		cout << "(4) <- Back" << endl;
+		cout << "Enter your choice: ";
 
 		badChoice(op);
 		try {
 			switch (op)
 			{
 			case 1:
-				cin >> criteria;
+				filterWho("NAME", "teacher");
+				getline(cin, criteria);
 				foundTeachersByCriteria = findTeachersByName(teachers, criteria);
 				displayTeachersInTable(foundTeachersByCriteria);
 				foundStudentsByCriteria.clear();
 				break;
 			case 2:
-				cin >> criteria;
+				filterWho("SURNAME", "teacher");
+				getline(cin, criteria);
 				foundTeachersByCriteria = findTeachersBySurname(teachers, criteria);
 				displayTeachersInTable(foundTeachersByCriteria);
 				foundTeachersByCriteria.clear();
@@ -1367,6 +1370,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 				case 2: filt = filteringMenu(0, school.students, school.teachers); break;
 				case 3: filt = false; break;
 				default:
+					return false;
 					break;
 				}
 			} while (filt);
