@@ -13,7 +13,7 @@
 Our project is a multi-platform console application written on C++. It is intended for teachers or school directors and its main purpose is to make their job easier. Like assigning students to different teams, add students/teachers and update their info and so on. 
 
 ## Features
-- [x] Works on many platforms 
+- [x] Works on the platforms that are mentioned beneath 
 - [x] An incredible table and design that formats the results
 
 ## Tested On/Working On
@@ -22,6 +22,10 @@ Our project is a multi-platform console application written on C++. It is intend
 [![GNU/Linux)](https://www.google.com/s2/favicons?domain=https://www.gnu.org/) **Linux Distributions**
 
 [![Debian)](https://www.google.com/s2/favicons?domain=https://www.debian.org/)](https://www.debian.org/) **Debian Distributions**
+
+[![OpenSUSE)](https://www.google.com/s2/favicons?domain=https://www.opensuse.org/)](https://www.opensuse.org/) **OpenSUSE**
+
+[![Ubuntu)](https://www.google.com/s2/favicons?domain=https://ubuntu.com/)](https://ubuntu.com/) **Ubuntu**
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
@@ -44,7 +48,8 @@ Here are the installation steps in order to have the application running.
 
 <p>For <b>Linux</b> you will have to follow some more steps. When you have cloned the repository do the following: Find the location where you have cloned the repository and then: </p>
 
-``` chmod +x setup.sh ``` or  ``` chmod +x GUIsetup.sh ``` Both works fine it's just about interface and preferences. setup.sh -> text based setup and GUIsetup.sh -> graphical mode setup:)
+``` chmod +x setup.sh ``` or  ``` chmod +x GUIsetup.sh ``` Both works fine it's just about interface and preferences :D.<br>
+<b>setup.sh</b> -> text based setup <br> <b>GUIsetup.sh</b> -> graphical mode setup
 
 <p>Then you run one of the following scripts: </p>
 
