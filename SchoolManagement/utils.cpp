@@ -3,6 +3,8 @@
 #include <iostream>
 #include <time.h>
 #include <ctime>
+#include <algorithm>
+#include <sstream>
 #include <vector>
 #include "structures.h"
 #include "utils.h"
@@ -94,7 +96,7 @@ void clearScreen()
 void switchEncoding(int what)
 {
 #ifdef __linux__
-	system("echo Encoding is not ok, we know it, but luit didn't work");
+	system("echo \"Encoding is not ok, we know it, but luit didn't work\"");
 #else WIN32
 	switch (what)
 	{

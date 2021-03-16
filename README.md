@@ -1,7 +1,7 @@
 # School-Management
 
 <p align="center">
-  <img src="https://github.com/snkolev18/School-Management/blob/master/docs/logo.png">Logo goes here</img>
+  <img src="https://github.com/snkolev18/School-Management/blob/master/docs/logo.png" alt="Logo goes here"></img>
 </p> 
 <h1 align="center">TeamsOnBudget</h1>
 <p align="center">
@@ -30,9 +30,9 @@ Here we will briefly describe you how you can run the application on your machin
 
 ### Prerequisites
 What things you need to install the software and how to install them. So firstly you have to just copy the following command and paste in your terminal and your set.<br>
-For Windows - Windows 7 or upper versions and up-to date Visual Studio<br>
+For Windows - Windows 7 or LATER versions and up-to date Visual Studio<br>
 For Linux – Up-to date g++ compiler, works on most distributions<br>
-For <b>setup2.sh</b> you will have to: ``` sudo apt-get install dialog ```
+For <b>GUIsetup.sh</b> you will have to: ``` sudo apt-get install dialog ```
 
  ``` git clone https://github.com/snkolev18/School-Management.git  ```
 
@@ -44,11 +44,11 @@ Here are the installation steps in order to have the application running.
 
 <p>For <b>Linux</b> you will have to follow some more steps. When you have cloned the repository do the following: Find the location where you have cloned the repository and then: </p>
 
-``` chmod +x setup.sh ``` or  ``` chmod +x setup2.sh ``` Both works fine it's just about interface and preferences :)
+``` chmod +x setup.sh ``` or  ``` chmod +x GUIsetup.sh ``` Both works fine it's just about interface and preferences. setup.sh -> text based setup and GUIsetup.sh -> graphical mode setup:)
 
-<p>Then you type the following expression: </p>
+<p>Then you run one of the following scripts: </p>
 
-``` ./setup ``` or ``` ./setup2 ```
+``` ./setup ``` or ``` ./GUIsetup ```
 
 <p> Now you are granted with menu and you can select options </p>
 <img alt="Linux install comes here (.sh photos)" src="https://github.com/snkolev18/School-Management/blob/master/docs/l_menu.png"> </img>
