@@ -62,4 +62,8 @@ Here are the installation steps in order to have the application running.
 <img alt="Linux install comes here (.sh photos)" src="https://github.com/snkolev18/School-Management/blob/master/docs/l_menu2.png"> </img>
 
 <p> If you choose option 1 on both menus, g++ (using the Makefile) will link your executables into an ELF and will execute the programme </p>
+<br><br><br>
 
+<p align="center"><b>System Testing Report</b></p>
+
+[![QA System Testing Report)](https://github.com/snkolev18/School-Management/blob/master/docs/System-Testing-Report.png)](https://vscpi.testcaselab.com/test_run_reports/fdf75f1b4e6fb0c4887fdb9b3c158388de61d093f5f18dc9b665f422ef2ccddd$$WjhCS1hYUWJZWlF6YWRSTzl3QU5CVWg3M3NqN0gyT1J2WjZvTGY5SWdVWT0tLVhYOEpaaU1DWUx4ZWFWRkpOU0NubHc9PQ==--67bfb32ba7b936e6e2aeb6175b80723c3d882011)
