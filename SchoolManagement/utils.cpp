@@ -73,11 +73,11 @@ string toStatus(int inp_)
 	vector<int> valid = { 0, 1, 2, 3 };
 	if (find(valid.begin(), valid.end(), inp_) == valid.end())
 	{
-		return "Vania";
+		return "Invalid";
 	}
 	if (inp_ == 3)
 	{
-		return "Vania";
+		return "Invalid";
 	}
 	return TEAM::statusToString((TEAM::STATUS)inp_);
 }

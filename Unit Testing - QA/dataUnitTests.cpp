@@ -18,10 +18,10 @@ using namespace std;
 
 string getCurrentDirectory(string path)
 {
-	const size_t last_slash_idx = path.rfind('\\');
-	if (std::string::npos != last_slash_idx)
+	const size_t curr_dir = path.rfind('\\');
+	if (curr_dir != std::string::npos)
 	{
-		return path.substr(0, last_slash_idx);
+		return path.substr(0, curr_dir);
 	}
 	return "";
 }

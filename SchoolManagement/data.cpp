@@ -223,7 +223,7 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 	{
 		while (!checkGrade(student.grade))
 		{
-			cout << "This is cringe grade" << endl;
+			cout << "This is invalid grade" << endl;
 			cout << "Please enter a valid one: ";
 
 			getline(cin, student.grade);
@@ -234,6 +234,8 @@ STUDENT inputStudent(vector<STUDENT>& students, vector<TEACHER>& teachers)
 	{
 		cout << ex.what();
 	}
+
+
 
 	cout << endl;
 	cout << "Email: ";

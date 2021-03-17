@@ -170,7 +170,7 @@ void displaySchoolInfoInTable(SCHOOL& school)
 	if (school.city.size() < 5)
 		sizeCity = 5;
 	else
-		sizeCity = school.name.size();
+		sizeCity = school.city.size();
 	if (school.address.size() < 7)
 		sizeAddress = 7;
 	else
@@ -1201,7 +1201,7 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 		statusMenu();
 		cout << INFO_MSG_CR << "Set a new status: " << CLOSE_INFO_MSG;
 		cin >> status;
-		while (toStatus(status) == "Vania")
+		while (toStatus(status) == "Invalid")
 		{
 			cout << ERROR_MSG_CR << "Invalid status, re-enter: " << CLOSE_ERR_MSG; cin >> status;
 		}

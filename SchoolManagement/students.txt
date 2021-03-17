@@ -1,6 +1,3 @@
-alex|dinev|10V|asiodha@ohasdoi.com|
-Georgi|Georgiev|10A|ggeorgiev12@gmail.com|
-AAAAAAAAAAAA|AAAAAAAA|10A|asdf@asdok.com|
-chernio|chernev|10g|cherniochernev@abv.bg|
-kolev|kolev|10V|aosdjap@Ijiosajdio.com|
-zdr|zdr|10v|asd@asdok.com|
+Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|
+Alexander|Dinev|10V|AGDinev18@codingburgas.bg|
+Atanas|Burmov|10B|AABurmov18@codingburgas.bg|

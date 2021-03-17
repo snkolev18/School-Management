@@ -1,0 +1,1 @@
+TeamsOnBudget|Scrum Master:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,Backend:Alexander|Dinev|10V|AGDinev18@codingburgas.bg|,Frontend:Atanas|Burmov|10B|AABurmov18@codingburgas.bg|,QA Engineer:Stoyan|Kolev|10A|SNKolev18@codingburgas.bg|,Petar|Georgiev|TeamsOnBudget=pgeorgiev@codingburgas.bg|;|2021-03-17 15:53:49|Not active|Musala Soft Project|
