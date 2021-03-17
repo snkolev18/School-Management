@@ -598,7 +598,7 @@ void displayBodyStudentsTable(vector<STUDENT>& students, int& maxSize, int& maxS
 
 void displayBodyTeachersTable(vector<TEACHER>& teachers, int& maxSize, int& maxSizeNames, int& maxSizeSurnames, int& maxSizeTeams, int& maxSizeEmail, vector<string> teams)
 {
-	int spacesAfterTeams=0;
+	int spacesAfterTeams = 0;
 	for (size_t i = 0; i < teachers.size(); i++)
 	{
 		cout << u8"\x2523";
@@ -899,26 +899,30 @@ bool handleUpdateMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 
 bool handleDeleteMenu(SCHOOL& school, vector<string>& whiteListedRoles)
 {
-	
+
 	deleteMenu();
 	int delCh;
 	badChoice(delCh);
-
+	clearScreen();
 	try
 	{
 		switch (delCh)
 		{
 		case 1:
+			clearScreen();
 			deleteStudentData(school.students, school.teams);
 			break;
 		case 2:
+			clearScreen();
 			deleteTeacherData(school.teachers, school.teams);
 			break;
 		case 3:
+			clearScreen();
 			displayTeamsInTable(school.teams, whiteListedRoles);
 			deleteTeamsData(school.teams, school.teachers);
 			break;
 		case 4:
+			clearScreen();
 			displayAvailableRoles(whiteListedRoles);
 			deleteRole(whiteListedRoles, school.teams);
 			break;
@@ -1048,7 +1052,7 @@ bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles, vect
 			break;
 		case 6:
 			if (!isDataEmpty(school)) {
-				clearScreen(); 
+				clearScreen();
 				displayHierarchy(school, whiteListedRoles);
 			}
 			else {
@@ -1074,106 +1078,112 @@ bool handleListTablesMenu(SCHOOL& school, vector<string>& whiteListedRoles, vect
 
 bool filteringMenu(bool who, vector<STUDENT>& students, vector<TEACHER>& teachers)
 {
-	
+
 	vector<STUDENT> foundStudentsByCriteria;
 	vector<TEACHER> foundTeachersByCriteria;
 	string criteria;
 	int op;
 
-	if (students.empty()) { throw std::runtime_error("No students data to filter"); }
+	try {
+		if (students.empty()) { throw std::runtime_error("No students data to filter"); }
 
-	if (who) {
-		
-		cout << "___________________________________________________" << endl;
-		cout << "(1) Search by class (10A, 10B, 10V and so on)" << endl;
-		cout << "(2) Search by student's firstname" << endl;
-		cout << "(3) Search by student's surname" << endl;
-		cout << "(4) <- Back" << endl;
-		cout << "Enter your choice: ";
+		if (who) {
 
-		badChoice(op);
-		try {
-			switch (op)
-			{
-			case 1:
-				filterWho("GRADE", "student");
-				getline(cin, criteria);
-				foundStudentsByCriteria = findStudentsByClass(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-				break;
-			case 2:
-				filterWho("NAME", "student");
-				getline(cin, criteria);
-				foundStudentsByCriteria = findStudentsByName(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-				break;
-			case 3:
-				filterWho("SURNAME", "student");
-				getline(cin, criteria);
-				foundStudentsByCriteria = findStudentsBySurname(students, criteria);
-				displayStudentsInTable(foundStudentsByCriteria);
-				foundStudentsByCriteria.clear();
-				break;
-			case 4:
-				return false;
-			default:
-				break;
+			cout << "___________________________________________________" << endl;
+			cout << "(1) Search by class (10A, 10B, 10V and so on)" << endl;
+			cout << "(2) Search by student's firstname" << endl;
+			cout << "(3) Search by student's surname" << endl;
+			cout << "(4) <- Back" << endl;
+			cout << "Enter your choice: ";
+
+			badChoice(op);
+			try {
+				switch (op)
+				{
+				case 1:
+					filterWho("GRADE", "student");
+					getline(cin, criteria);
+					foundStudentsByCriteria = findStudentsByClass(students, criteria);
+					displayStudentsInTable(foundStudentsByCriteria);
+					foundStudentsByCriteria.clear();
+					break;
+				case 2:
+					filterWho("NAME", "student");
+					getline(cin, criteria);
+					foundStudentsByCriteria = findStudentsByName(students, criteria);
+					displayStudentsInTable(foundStudentsByCriteria);
+					foundStudentsByCriteria.clear();
+					break;
+				case 3:
+					filterWho("SURNAME", "student");
+					getline(cin, criteria);
+					foundStudentsByCriteria = findStudentsBySurname(students, criteria);
+					displayStudentsInTable(foundStudentsByCriteria);
+					foundStudentsByCriteria.clear();
+					break;
+				case 4:
+					return false;
+				default:
+					break;
+				}
 			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			return true;
 		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+		else {
+
+			if (teachers.empty()) { throw std::runtime_error("No teachers data to filter"); }
+
+			cout << endl;
+			cout << "___________________________________________________" << endl;
+			cout << "(1) | Search by teacher's firstname              |" << endl;
+			cout << "(2) | Search by teacher's surname                |" << endl;
+			cout << "(3) | Search teachers who have no teams assigned |" << endl;
+			cout << "(4) <- Back" << endl;
+			cout << "Enter your choice: ";
+
+			badChoice(op);
+			try {
+				switch (op)
+				{
+				case 1:
+					filterWho("NAME", "teacher");
+					getline(cin, criteria);
+					foundTeachersByCriteria = findTeachersByName(teachers, criteria);
+					displayTeachersInTable(foundTeachersByCriteria);
+					foundStudentsByCriteria.clear();
+					break;
+				case 2:
+					filterWho("SURNAME", "teacher");
+					getline(cin, criteria);
+					foundTeachersByCriteria = findTeachersBySurname(teachers, criteria);
+					displayTeachersInTable(foundTeachersByCriteria);
+					foundTeachersByCriteria.clear();
+					break;
+				case 3:
+					foundTeachersByCriteria = findTeachersByNoTeams(teachers);
+					displayTeachersInTable(foundTeachersByCriteria);
+					foundTeachersByCriteria.clear();
+					break;
+				case 4:
+					return false;
+				default:
+					break;
+				}
+			}
+			catch (const std::exception& ex)
+			{
+				cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
+			}
+			return true;
 		}
-		return true;
 	}
-	else {
-
-		if (teachers.empty()) { throw std::runtime_error("No teachers data to filter"); }
-
-		cout << endl;
-		cout << "___________________________________________________" << endl;
-		cout << "(1) | Search by teacher's firstname              |" << endl;
-		cout << "(2) | Search by teacher's surname                |" << endl;
-		cout << "(3) | Search teachers who have no teams assigned |" << endl;
-		cout << "(4) <- Back" << endl;
-		cout << "Enter your choice: ";
-
-		badChoice(op);
-		try {
-			switch (op)
-			{
-			case 1:
-				filterWho("NAME", "teacher");
-				getline(cin, criteria);
-				foundTeachersByCriteria = findTeachersByName(teachers, criteria);
-				displayTeachersInTable(foundTeachersByCriteria);
-				foundStudentsByCriteria.clear();
-				break;
-			case 2:
-				filterWho("SURNAME", "teacher");
-				getline(cin, criteria);
-				foundTeachersByCriteria = findTeachersBySurname(teachers, criteria);
-				displayTeachersInTable(foundTeachersByCriteria);
-				foundTeachersByCriteria.clear();
-				break;
-			case 3:
-				foundTeachersByCriteria = findTeachersByNoTeams(teachers);
-				displayTeachersInTable(foundTeachersByCriteria);
-				foundTeachersByCriteria.clear();
-				break;
-			case 4:
-				return false;
-			default:
-				break;
-			}
-		}
-		catch (const std::exception& ex)
-		{
-			cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
-		}
-		return true;
+	catch (const std::exception& ex)
+	{
+		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
 }
 
@@ -1281,7 +1291,6 @@ void handleUpdateTeamInfo(int option, vector<TEAM>& teams, vector<TEACHER>& teac
 
 bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInfo, vector<TEAM_PROJECT>& projects)
 {
-	clearScreen();
 	vector<STUDENT> foundStudentsByCriteria;
 	string criteria;
 	cout << endl;
@@ -1305,7 +1314,7 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 		cout << "Address: ";
 		getline(cin, school.address);
 		writeSchoolInTxt(school.name, school.city, school.address);
-		inputSchoolInfo = 0;	
+		inputSchoolInfo = 0;
 	}
 	cout << endl;
 	cout << " /----------------------------------------------\\" << endl;
@@ -1387,54 +1396,8 @@ bool menu(SCHOOL& school, vector<string>& whiteListedRoles, bool& inputSchoolInf
 	}
 	catch (const std::exception ex)
 	{
+		clearScreen();
 		cout << EXCEPTION_MSG_CR << ex.what() << CLOSE_EXC_MSG << endl;
 	}
 	return true;
 }
-
-/*
-void mainMenu(string adminEmail, string adminPass, vector<STUDENT> students, vector<TEACHER> teachers, vector<string> whiteListedRoles, vector<TEAM> teams)
-{
-	bool flag = false;
-	string em, pass;
-
-	while (flag == false)
-	{
-		system("cls");
-		cout << endl << u8R"(
-	████████╗███████╗ █████╗ ███╗   ███╗███████╗ ██████╗ ███╗   ██╗██████╗ ██╗   ██╗██████╗  ██████╗ ███████╗████████╗
-	╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██╔════╝██╔═══██╗████╗  ██║██╔══██╗██║   ██║██╔══██╗██╔════╝ ██╔════╝╚══██╔══╝
-	   ██║   █████╗  ███████║██╔████╔██║███████╗██║   ██║██╔██╗ ██║██████╔╝██║   ██║██║  ██║██║  ███╗█████╗     ██║
-	   ██║   ██╔══╝  ██╔══██║██║╚██╔╝██║╚════██║██║   ██║██║╚██╗██║██╔══██╗██║   ██║██║  ██║██║   ██║██╔══╝     ██║
-	   ██║   ███████╗██║  ██║██║ ╚═╝ ██║███████║╚██████╔╝██║ ╚████║██████╔╝╚██████╔╝██████╔╝╚██████╔╝███████╗   ██║
-	   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝  ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝
-
-		)";
-
-		cout << u8R"(
-
-											╔═════════════════════════════╗
-											║                             ║
-											║  EMAIL:                     ║
-											║                             ║
-											║  PASSW:                     ║
-											║                             ║
-											╚═════════════════════════════╝
-		)";
-
-		getline(cin, em);
-		getline(cin, pass);
-
-		if (em == adminEmail and pass == adminPass)
-		{
-			do {
-				showMainMenu = menu(students, teachers, whiteListedRoles, teams);
-			} while (showMainMenu != false);
-		}
-		else
-		{
-			flag = false;
-		}
-	}
-}
-*/
