@@ -1040,3 +1040,30 @@
 [2021-03-17  15:45:59] INFO Teachers were successfully written into teachers.txt
 [2021-03-17  15:46:14] INFO Option X: Teacher was successfully added
 [2021-03-17  15:46:14] INFO Teachers were successfully written into teachers.txt
+[2021-03-17  16:11:38] INFO Program was executed successfully
+[2021-03-17  16:13:55] INFO Program was executed successfully
+[2021-03-17  16:14:18] INFO Projects were successfully written into projects.txt
+[2021-03-17  16:16:22] WARNING Exception thrown: Tried to update contents of a team which status is NOT set to IN_USE
+[2021-03-17  16:17:59] INFO Program was executed successfully
+[2021-03-17  16:19:10] INFO Program was executed successfully
+[2021-03-17  16:24:34] INFO Program was executed successfully
+[2021-03-17  16:25:53] INFO Option X: Student was successfully added
+[2021-03-17  16:25:53] INFO Students were successfully written into students.txt
+[2021-03-17  16:26:17] INFO Option X: Teacher was successfully added
+[2021-03-17  16:26:17] INFO Teachers were successfully written into teachers.txt
+[2021-03-17  16:27:50] INFO Teachers were successfully written into teachers.txt
+[2021-03-17  16:27:50] INFO Option X: Team was successfully added
+[2021-03-17  16:27:50] INFO Teams were successfully written into teams.txt
+[2021-03-17  16:28:26] INFO Projects were successfully written into projects.txt
+[2021-03-17  16:30:42] INFO Students were successfully written into students.txt
+[2021-03-17  16:30:42] INFO Teams were successfully written into teams.txt
+[2021-03-17  16:30:42] INFO Student was successfully DELETED
+[2021-03-17  16:31:10] INFO Teachers were successfully written into teachers.txt
+[2021-03-17  16:31:10] INFO Teams were successfully written into teams.txt
+[2021-03-17  16:31:43] WARNING Exception thrown: Tried to delete contents of a team which status is set to IN_USE
+[2021-03-17  16:31:58] INFO Teachers were successfully written into teachers.txt
+[2021-03-17  16:31:58] INFO Teams were successfully written into teams.txt
+[2021-03-17  16:32:40] INFO Students were successfully written into students.txt
+[2021-03-17  16:32:40] INFO Teams were successfully written into teams.txt
+[2021-03-17  16:32:40] INFO Student was successfully UPDATED
+[2021-03-17  16:32:40] INFO Teams which the students participates in were successfully updated

@@ -970,6 +970,8 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 			break;
 		case 4:
 			clearScreen();
+			displayTeachersInTable(school.teachers);
+			displayStudentsInTable(school.students);
 			school.teams.push_back(inputTeam(whiteListedRoles, school.students, school.teachers, school.teams));
 			writeTeamsInTxt(school.teams);
 			break;
@@ -981,16 +983,15 @@ bool handleAddMenu(SCHOOL& school, vector<string>& whiteListedRoles, vector<TEAM
 			clearScreen();
 			displayProjectsInTable(projects);
 			displayTeamsInTable(school.teams, whiteListedRoles);
-			//ime na project
+			
 			cin.ignore();
 			cout << "Enter the name of the project that you want to assign: ";
 			getline(cin, pName);
-			//findProjectByName
+			
 			PID = findIndexOfProjectByName(projects, pName);
 			if (PID == -29) { invalidProjectName(pName); }
 			else {
-				//Assigning the project
-				//ime
+				
 				assignMsgToTeam();
 				getline(cin, tName);
 				TID = findIndexOfTeamByName(school.teams, tName);
